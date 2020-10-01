@@ -1,16 +1,32 @@
-name: Deploy Website
+name: Build and deploy to surge
 
-on: [push]
+on:
+  push:
+    branches: [ master]
 
 jobs:
-  build:
+  build-and-deploy:
+
     runs-on: ubuntu-latest
-    name: Deploying to surge
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Install surge and fire deployment
-        uses: actions/setup-node@v1
-        with:
-          node-version: 8
-      - run: npm install -g surge
-      - run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+     - uses: actions/checkout@v2
+     - name: Setup node
+       uses: actions/setup-node@v1 #this installs node and npm for us
+       with:
+        node-version: '12.x'
+     - name: cache node modules
+       uses: actions/cache@v2
+       with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-   
+     - name: Build
+       run: |
+          npm ci
+          npm run-script build
+     - name: Deploy
+       run: |
+          npm install -g surge
+          surge ./dist ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
