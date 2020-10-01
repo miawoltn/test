@@ -25,7 +25,7 @@ jobs:
      - name: Build
        run: |
           npm ci
+          npm install -g surge
           npm run-script build-prod
      - name: Deploy
-     - run: npm install -g surge
-     - run: surge -p dist/ --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+       run: surge -p dist/ --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
