@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
           /* if (this._router.navigate([''])) {
             window.location.replace('');
           } */
-          this.alert.success(res.message);
+//           this.alert.success(res.message);
         },
         err => {
           console.log(err);
