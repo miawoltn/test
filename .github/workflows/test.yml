@@ -29,4 +29,4 @@ jobs:
      - name: Deploy
        run: |
           npm install -g surge
-          surge ./dist ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+          surge ./dist --domain ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
