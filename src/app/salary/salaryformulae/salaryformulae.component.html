@@ -1,0 +1,217 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="GradeLevelID"
+                                                    [class.text-danger]="GradeLevelID.invalid &amp;&amp; GradeLevelID.touched">Grade Level</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="GradeLevelID"
+                                                    name="GradeLevelID" #GradeLevelID="ngModel"
+                                                    [(ngModel)]="obj.GradeLevelID"
+                                                    [class.is-invalid]="GradeLevelID.invalid &amp;&amp; GradeLevelID.touched"
+                                                    placeholder="Select Grade Level..."
+                                                    required [items]="GradeLevel" bindValue="id" bindLabel="GradeLevelName"></ng-select>
+                                                <div *ngIf="GradeLevelID.invalid &amp;&amp; GradeLevelID.touched">
+                                                    <small *ngIf="GradeLevelID.errors?.required"
+                                                        class="text-danger">Grade Level is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PayrollCategoryID"
+                                                    [class.text-danger]="PayrollCategoryID.invalid &amp;&amp; PayrollCategoryID.touched">Payroll Category</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="PayrollCategoryID"
+                                                    name="PayrollCategoryID" #PayrollCategoryID="ngModel"
+                                                    [(ngModel)]="obj.PayrollCategoryID"
+                                                    [class.is-invalid]="PayrollCategoryID.invalid &amp;&amp; PayrollCategoryID.touched"
+                                                    placeholder="Select Payroll CategoryID..."
+                                                    required [items]="PayrollCategory" bindValue="id" bindLabel="PayrollCategory"></ng-select>
+                                                <div *ngIf="PayrollCategoryID.invalid &amp;&amp; PayrollCategoryID.touched">
+                                                    <small *ngIf="PayrollCategoryID.errors?.required"
+                                                        class="text-danger">Payroll Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SalaryComponentID"
+                                                    [class.text-danger]="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched">Salary Component</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="SalaryComponentID"
+                                                    name="SalaryComponentID" #SalaryComponentID="ngModel"
+                                                    [(ngModel)]="obj.SalaryComponentID"
+                                                    [class.is-invalid]="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched"
+                                                    placeholder="Select Salary ComponentID..."
+                                                    required [items]="SalaryComponent" bindValue="id" bindLabel="SalaryComponent"></ng-select>
+
+                                                <div *ngIf="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched">
+                                                    <small *ngIf="SalaryComponentID.errors?.required"
+                                                        class="text-danger">Salary Component is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Percentage"
+                                                    [class.text-danger]="Percentage.invalid &amp;&amp; Percentage.touched">Percentage</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Percentage"
+                                                    name="Percentage" #Percentage="ngModel"
+                                                    [(ngModel)]="obj.Percentage"
+                                                    [class.is-invalid]="Percentage.invalid &amp;&amp; Percentage.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Percentage..."
+                                                    required>
+                                                <div *ngIf="Percentage.invalid &amp;&amp; Percentage.touched">
+                                                    <small *ngIf="Percentage.errors?.required"
+                                                        class="text-danger">Percentage is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="TaxStatusID"
+                                                    [class.text-danger]="TaxStatusID.invalid &amp;&amp; TaxStatusID.touched">Tax Status</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="TaxStatusID"
+                                                    name="TaxStatusID" #TaxStatusID="ngModel"
+                                                    [(ngModel)]="obj.TaxStatusID"
+                                                    [class.is-invalid]="TaxStatusID.invalid &amp;&amp; TaxStatusID.touched"
+                                                    placeholder="Select TaxStatus..."
+                                                    required [items]="TaxStatus" bindValue="id" bindLabel="TaxStatus"></ng-select>
+
+                                                <div *ngIf="TaxStatusID.invalid &amp;&amp; TaxStatusID.touched">
+                                                    <small *ngIf="TaxStatusID.errors?.required"
+                                                        class="text-danger">Tax Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StatusID"
+                                                    [class.text-danger]="StatusID.invalid &amp;&amp; StatusID.touched">Status</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="StatusID"
+                                                    name="StatusID" #StatusID="ngModel"
+                                                    [(ngModel)]="obj.StatusID"
+                                                    [class.is-invalid]="StatusID.invalid &amp;&amp; StatusID.touched"
+                                                    placeholder="Select Status..."
+                                                    required [items]="Status" bindValue="id" bindLabel="title"></ng-select>
+
+                                                <div *ngIf="StatusID.invalid &amp;&amp; StatusID.touched">
+                                                    <small *ngIf="StatusID.errors?.required"
+                                                        class="text-danger">Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Salary Formulae</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="GradeLevelID"
+                                        caption="Grade Level">
+                                        <dxo-lookup [dataSource]="GradeLevel" valueExpr="id" displayExpr="GradeLevelName"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PayrollCategoryID"
+                                        caption="Payroll Category">
+                                        <dxo-lookup [dataSource]="PayrollCategory" valueExpr="id" displayExpr="PayrollCategory"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="SalaryComponentID"
+                                        caption="Salary Component">
+                                        <dxo-lookup [dataSource]="SalaryComponent" valueExpr="id" displayExpr="SalaryComponent"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Percentage"
+                                        caption="Percentage">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="TaxStatusID"
+                                        caption="Tax Status">
+                                        <dxo-lookup [dataSource]="TaxStatus" valueExpr="id" displayExpr="TaxStatus"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StatusID"
+                                        caption="Status">
+                                        <dxo-lookup [dataSource]="Status" valueExpr="id" displayExpr="title"></dxo-lookup>
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

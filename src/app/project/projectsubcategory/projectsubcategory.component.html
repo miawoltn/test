@@ -1,0 +1,114 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectCategoryID"
+                                                    [class.text-danger]="ProjectCategoryID.invalid &amp;&amp; ProjectCategoryID.touched">Project
+                                                    Category</label><i class="text-danger">*</i>
+                                                <ng-select [items]="projectcategory" bindLabel="ProjectCategory"
+                                                    bindValue="id" #ProjectCategoryID="ngModel" name="ProjectCategoryID"
+                                                    [(ngModel)]="obj.ProjectCategoryID"
+                                                    [class.is-invalid]="ProjectCategoryID.invalid &amp;&amp; ProjectCategoryID.touched"
+                                                    placeholder="Select Project Category..." required></ng-select>
+                                                <div
+                                                    *ngIf="ProjectCategoryID.invalid &amp;&amp; ProjectCategoryID.touched">
+                                                    <small *ngIf="ProjectCategoryID.errors?.required"
+                                                        class="text-danger">Project Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectSubCategory"
+                                                    [class.text-danger]="ProjectSubCategory.invalid &amp;&amp; ProjectSubCategory.touched">Project
+                                                    Sub Category</label><i class="text-danger">*</i>
+                                                <input type="text" id="ProjectSubCategory" name="ProjectSubCategory"
+                                                    #ProjectSubCategory="ngModel" [(ngModel)]="obj.ProjectSubCategory"
+                                                    [class.is-invalid]="ProjectSubCategory.invalid &amp;&amp; ProjectSubCategory.touched"
+                                                    class="form-control" placeholder="Enter Project Sub Category..."
+                                                    required>
+                                                <div
+                                                    *ngIf="ProjectSubCategory.invalid &amp;&amp; ProjectSubCategory.touched">
+                                                    <small *ngIf="ProjectSubCategory.errors?.required"
+                                                        class="text-danger">Project Sub Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Project Sub-Category</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="ProjectSubCategory" caption="Project Sub Category">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectCategory" caption="Project Category">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

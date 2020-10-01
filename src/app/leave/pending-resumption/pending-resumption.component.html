@@ -1,0 +1,53 @@
+
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">{{data.length}} Pending Leave Applications</h4>
+                        
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="LeaveApplicationID" caption="ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="Employee" caption="Employee">
+                                    </dxi-column>
+                                    <dxi-column dataField="LeaveType" caption="Leave Type">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateFrom" caption="Start Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateBack" caption="Resumption Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="NoDayApplied" caption="No DayApplied">
+                                    </dxi-column>
+                                    <dxi-column dataField="PayLeaveGrant" caption="Pay Leave Grant">
+                                        <dxo-lookup displayExpr="label" valueExpr="value" [dataSource]="choices"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="RelieveOfficer" caption="Relieve Officer">
+                                    </dxi-column>
+                                    <dxi-column dataField="ApprovalOfficer" caption="Approving Officer">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Proceed" [onClick]="loadLeave"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

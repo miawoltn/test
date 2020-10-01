@@ -1,0 +1,149 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Holiday"
+                                                    [class.text-danger]="Holiday.invalid &amp;&amp; Holiday.touched">Holiday</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="text" id="Holiday" name="Holiday" #Holiday="ngModel"
+                                                    [(ngModel)]="obj.Holiday"
+                                                    [class.is-invalid]="Holiday.invalid &amp;&amp; Holiday.touched"
+                                                    class="form-control" placeholder="Enter Holiday..." required>
+                                                <div *ngIf="Holiday.invalid &amp;&amp; Holiday.touched">
+                                                    <small *ngIf="Holiday.errors?.required" class="text-danger">Holiday
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="HolidayDate"
+                                                    [class.text-danger]="HolidayDate.invalid &amp;&amp; HolidayDate.touched">Holiday
+                                                    Date</label><i class="text-danger">*</i>
+                                                <input type="date" id="HolidayDate" name="HolidayDate"
+                                                    #HolidayDate="ngModel" [(ngModel)]="obj.HolidayDate"
+                                                    [class.is-invalid]="HolidayDate.invalid &amp;&amp; HolidayDate.touched"
+                                                    class="form-control" placeholder="Enter Holiday Date..." required>
+                                                <div *ngIf="HolidayDate.invalid &amp;&amp; HolidayDate.touched">
+                                                    <small *ngIf="HolidayDate.errors?.required"
+                                                        class="text-danger">Holiday Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="YearID"
+                                                    [class.text-danger]="YearID.invalid &amp;&amp; YearID.touched">Year</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select [items]="year" bindLabel="YearName" bindValue="id"
+                                                    #YearID="ngModel" [(ngModel)]="obj.YearID" id="YearID"
+                                                    name="YearID"
+                                                    [class.is-invalid]="YearID.invalid &amp;&amp; YearID.touched"
+                                                    placeholder="Select Year..." required></ng-select>
+                                                <div *ngIf="YearID.invalid &amp;&amp; YearID.touched">
+                                                    <small *ngIf="YearID.errors?.required" class="text-danger">Year is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DatePeriod"
+                                                    [class.text-danger]="DatePeriod.invalid &amp;&amp; DatePeriod.touched">Date
+                                                    Period</label><i class="text-danger">*</i>
+                                                <input type="date" id="DatePeriod" name="DatePeriod"
+                                                    #DatePeriod="ngModel" [(ngModel)]="obj.DatePeriod"
+                                                    [class.is-invalid]="DatePeriod.invalid &amp;&amp; DatePeriod.touched"
+                                                    class="form-control" placeholder="Enter Date Period..." required>
+                                                <div *ngIf="DatePeriod.invalid &amp;&amp; DatePeriod.touched">
+                                                    <small *ngIf="DatePeriod.errors?.required" class="text-danger">Date
+                                                        Period is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Holidays</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="Holiday" caption="Holiday">
+                                    </dxi-column>
+                                    <dxi-column dataField="HolidayDate" caption="Holiday Date">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="YearID"
+                                        caption="Year">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DatePeriod"
+                                        caption="Date Period">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

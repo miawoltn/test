@@ -1,0 +1,244 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="appraisal_id"
+                                    [class.text-danger]="appraisal_id.invalid && appraisal_id.touched">Appraisal<i
+                                        class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <ng-select [items]="appraisalheader" bindLabel="period_id" bindValue="id"
+                                        [(ngModel)]="obj.appraisal_id" name="appraisal_id" required
+                                        #appraisal_id="ngModel"
+                                        [class.is-invalid]="appraisal_id.invalid && appraisal_id.touched"
+                                        placeholder="Select Appraisal..."></ng-select>
+                                    <div *ngIf="appraisal_id.invalid && appraisal_id.touched">
+                                        <small *ngIf="appraisal_id.errors?.required" class="text-danger">Appraisal is
+                                            Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="kpi_id"
+                                    [class.text-danger]="kpi_id.invalid && kpi_id.touched">Kpi<i
+                                        class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <ng-select [items]="kpi" bindLabel="kpitype_id" bindValue="id"
+                                        [(ngModel)]="obj.kpi_id" name="kpi_id" required #kpi_id="ngModel"
+                                        [class.is-invalid]="kpi_id.invalid && kpi_id.touched"
+                                        placeholder="Select Kpi..."></ng-select>
+                                    <div *ngIf="kpi_id.invalid && kpi_id.touched">
+                                        <small *ngIf="kpi_id.errors?.required" class="text-danger">Kpi is
+                                            Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="comments"
+                                    [class.text-danger]="comments.invalid && comments.touched">Comments<i
+                                        class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="text" id="comments" name="comments" class="form-control"
+                                        placeholder="Enter Comments .." [(ngModel)]="obj.comments" required
+                                        #comments="ngModel" [class.is-invalid]="comments.invalid && comments.touched"
+                                        placeholder="Select Comments...">
+                                    <div *ngIf="comments.invalid && comments.touched">
+                                        <small *ngIf="comments.errors?.required" class="text-danger">Comments is
+                                            Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="kpitype_id"
+                                    [class.text-danger]="kpitype_id.invalid && kpitype_id.touched">Kpitype<i
+                                        class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="number" id="kpitype_id" name="kpitype_id" class="form-control"
+                                        placeholder="Enter Kpitype id .." [(ngModel)]="obj.kpitype_id" required
+                                        #kpitype_id="ngModel"
+                                        [class.is-invalid]="kpitype_id.invalid && kpitype_id.touched"
+                                        placeholder="Select Kpitype...">
+                                    <div *ngIf="kpitype_id.invalid && kpitype_id.touched">
+                                        <small *ngIf="kpitype_id.errors?.required" class="text-danger">KPI Type is
+                                            Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="score"
+                                    [class.text-danger]="score.invalid && score.touched">Score<i
+                                        class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="number" id="score" name="score" class="form-control"
+                                        placeholder="Enter Score .." [(ngModel)]="obj.score" required #score="ngModel"
+                                        [class.is-invalid]="score.invalid && score.touched"
+                                        placeholder="Select Score...">
+                                    <div *ngIf="score.invalid && score.touched">
+                                        <small *ngIf="score.errors?.required" class="text-danger">Score is
+                                            Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="selfscore"
+                                    [class.text-danger]="selfscore.invalid && selfscore.touched">Self score<i
+                                        class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="number" id="selfscore" name="selfscore" class="form-control"
+                                        placeholder="Enter Selfscore .." [(ngModel)]="obj.selfscore" required
+                                        #selfscore="ngModel" [class.is-invalid]="selfscore.invalid && selfscore.touched"
+                                        placeholder="Select Selfscore...">
+                                    <div *ngIf="selfscore.invalid && selfscore.touched">
+                                        <small *ngIf="selfscore.errors?.required" class="text-danger">Self score is
+                                            Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="appraiser_comments"
+                                    [class.text-danger]="appraiser_comments.invalid && appraiser_comments.touched">Appraiser
+                                    comments<i class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="text" id="appraiser_comments" name="appraiser_comments"
+                                        class="form-control" placeholder="Enter Appraiser comments .."
+                                        [(ngModel)]="obj.appraiser_comments" required #appraiser_comments="ngModel"
+                                        [class.is-invalid]="appraiser_comments.invalid && appraiser_comments.touched"
+                                        placeholder="Select Appraiser comments...">
+                                    <div *ngIf="appraiser_comments.invalid && appraiser_comments.touched">
+                                        <small *ngIf="appraiser_comments.errors?.required" class="text-danger">Appraiser
+                                            comments is Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="last_modified_date"
+                                    [class.text-danger]="last_modified_date.invalid && last_modified_date.touched">Last
+                                    modified date<i class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="date" id="last_modified_date" name="last_modified_date"
+                                        class="form-control" placeholder="Enter Last modified date .."
+                                        [(ngModel)]="obj.last_modified_date" required #last_modified_date="ngModel"
+                                        [class.is-invalid]="last_modified_date.invalid && last_modified_date.touched"
+                                        placeholder="Select Last modified date...">
+                                    <div *ngIf="last_modified_date.invalid && last_modified_date.touched">
+                                        <small *ngIf="last_modified_date.errors?.required" class="text-danger">Last
+                                            modified date is Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="last_modified_by"
+                                    [class.text-danger]="last_modified_by.invalid && last_modified_by.touched">Last
+                                    modified by<i class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="number" id="last_modified_by" name="last_modified_by"
+                                        class="form-control" placeholder="Enter Last modified by .."
+                                        [(ngModel)]="obj.last_modified_by" required #last_modified_by="ngModel"
+                                        [class.is-invalid]="last_modified_by.invalid && last_modified_by.touched"
+                                        placeholder="Select Last modified by...">
+                                    <div *ngIf="last_modified_by.invalid && last_modified_by.touched">
+                                        <small *ngIf="last_modified_by.errors?.required" class="text-danger">Last
+                                            modified by is Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-md-4 form-control-label" for="is_systemgenerated"
+                                    [class.text-danger]="is_systemgenerated.invalid && is_systemgenerated.touched">Is
+                                    systemgenerated<i class="text-danger">*</i></label>
+                                <div class="col-md-8">
+                                    <input type="number" id="is_systemgenerated" name="is_systemgenerated"
+                                        class="form-control" placeholder="Enter Is systemgenerated .."
+                                        [(ngModel)]="obj.is_systemgenerated" required #is_systemgenerated="ngModel"
+                                        [class.is-invalid]="is_systemgenerated.invalid && is_systemgenerated.touched"
+                                        placeholder="Select Is systemgenerated...">
+                                    <div *ngIf="is_systemgenerated.invalid && is_systemgenerated.touched">
+                                        <small *ngIf="is_systemgenerated.errors?.required" class="text-danger">Is
+                                            System Generated is Required</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Appraisal Details</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="period_id" caption="Period"></dxi-column>
+                            <dxi-column dataField="kpitype_id" caption="KPI Type"></dxi-column>
+                            <dxi-column dataField="comments" caption="Comments"></dxi-column>
+                            <dxi-column dataField="kpitype_id" caption="KPI Type"></dxi-column>
+                            <dxi-column dataField="score" caption="Score"></dxi-column>
+                            <dxi-column dataField="selfscore" caption="Self Score"></dxi-column>
+                            <dxi-column dataField="appraiser_comments" caption="Appraiser Comments"></dxi-column>
+                            <dxi-column dataField="last_modified_date" caption="Last Modified Date"></dxi-column>
+                            <dxi-column dataField="last_modified_by" caption="Last Modified by"></dxi-column>
+                            <dxi-column dataField="is_systemgenerated" caption="Is System Generated"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

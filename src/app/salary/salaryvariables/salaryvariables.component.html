@@ -1,0 +1,226 @@
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                    <form role="form" #form="ngForm" (ngSubmit)="processForm()">
+                        <div class="form-body">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="VariableTypeID"
+                                            [class.text-danger]="VariableTypeID.invalid &amp;&amp; VariableTypeID.touched">Variable
+                                            Type</label><i class="text-danger">*</i>
+                                            <ng-select id="VariableTypeID"
+                                                    name="VariableTypeID" #VariableTypeID="ngModel"
+                                                    [(ngModel)]="obj.VariableTypeID"
+                                                    [class.is-invalid]="VariableTypeID.invalid &amp;&amp; VariableTypeID.touched"
+                                                    placeholder="Select VariableTypeID..."
+                                                    required [items]="VariableType" bindValue="id" bindLabel="VariableType"></ng-select>
+                                        <div *ngIf="VariableTypeID.invalid &amp;&amp; VariableTypeID.touched">
+                                            <small *ngIf="VariableTypeID.errors?.required" class="text-danger">Variable Type
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="VariableCategoryID"
+                                            [class.text-danger]="VariableCategoryID.invalid &amp;&amp; VariableCategoryID.touched">Variable
+                                            Category</label><i class="text-danger">*</i>
+                                            <ng-select id="VariableCategoryID"
+                                                    name="SalaryTypeID" #VariableCategoryID="ngModel"
+                                                    [(ngModel)]="obj.VariableCategoryID"
+                                                    [class.is-invalid]="VariableCategoryID.invalid &amp;&amp; VariableCategoryID.touched"
+                                                    placeholder="Select VariableCategoryID..."
+                                                    required [items]="VariableCategory" bindValue="id" bindLabel="VariableCategory"></ng-select>
+
+                                        
+                                        <div *ngIf="VariableCategoryID.invalid &amp;&amp; VariableCategoryID.touched">
+                                            <small *ngIf="VariableCategoryID.errors?.required" class="text-danger">Variable
+                                                Category is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="EmployeeID"
+                                            [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee
+                                            </label><i class="text-danger">*</i>
+                                            <ng-select id="EmployeeID"
+                                                    name="EmployeeID" #EmployeeID="ngModel"
+                                                    [(ngModel)]="obj.EmployeeID"
+                                                    [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                                                    placeholder="Select Employee..."
+                                                    required [items]="Employee" bindValue="id" bindLabel="FullName"></ng-select>
+                                        <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                                            <small *ngIf="EmployeeID.errors?.required" class="text-danger">Employee is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Amount"
+                                            [class.text-danger]="Amount.invalid &amp;&amp; Amount.touched">Amount</label><i
+                                            class="text-danger">*</i>
+                                        <input type="number" id="Amount" name="Amount" #Amount="ngModel"
+                                            [(ngModel)]="obj.Amount"
+                                            [class.is-invalid]="Amount.invalid &amp;&amp; Amount.touched"
+                                            class="form-control" placeholder="Enter Amount..." required>
+                                        <div *ngIf="Amount.invalid &amp;&amp; Amount.touched">
+                                            <small *ngIf="Amount.errors?.required" class="text-danger">Amount is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="Tenor"
+                                            [class.text-danger]="Tenor.invalid &amp;&amp; Tenor.touched">Tenor</label><i
+                                            class="text-danger">*</i>
+                                        <input type="text" id="Tenor" name="Tenor" #Tenor="ngModel" [(ngModel)]="obj.Tenor"
+                                            [class.is-invalid]="Tenor.invalid &amp;&amp; Tenor.touched" class="form-control"
+                                            placeholder="Enter Tenor..." required>
+                                        <div *ngIf="Tenor.invalid &amp;&amp; Tenor.touched">
+                                            <small *ngIf="Tenor.errors?.required" class="text-danger">Tenor is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="PayrollPeriodID"
+                                            [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Payroll
+                                            Period</label><i class="text-danger">*</i>
+                                            <ng-select id="PayrollPeriodID"
+                                                    name="PayrollPeriodID" #PayrollPeriodID="ngModel"
+                                                    [(ngModel)]="obj.PayrollPeriodID"
+                                                    [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                                    placeholder="Select Payroll Period..."
+                                                    required [items]="PayrollPeriod" bindValue="id" bindLabel="PayrollPeriod"></ng-select>
+                                        <div *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                            <small *ngIf="PayrollPeriodID.errors?.required" class="text-danger">Payroll
+                                                Period is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="StatusID"
+                                            [class.text-danger]="StatusID.invalid &amp;&amp; StatusID.touched">Status
+                                        </label><i class="text-danger">*</i>
+                                            <ng-select id="StatusID"
+                                                    name="StatusID" #StatusID="ngModel"
+                                                    [(ngModel)]="obj.StatusID"
+                                                    [class.is-invalid]="StatusID.invalid &amp;&amp; StatusID.touched"
+                                                    placeholder="Select Status..."
+                                                    required [items]="Statuses" bindValue="id" bindLabel="StatusName"></ng-select>
+                                        <div *ngIf="StatusID.invalid &amp;&amp; StatusID.touched">
+                                            <small *ngIf="StatusID.errors?.required" class="text-danger">Status is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="SalaryComponentID"
+                                            [class.text-danger]="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched">Salary
+                                            Component</label><i class="text-danger">*</i>
+                                            <ng-select id="SalaryComponentID"
+                                                    name="SalaryComponentID" #SalaryComponentID="ngModel"
+                                                    [(ngModel)]="obj.SalaryComponentID"
+                                                    [class.is-invalid]="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched"
+                                                    placeholder="Select Salary Component..."
+                                                    required [items]="SalaryComponents" bindValue="id" bindLabel="SalaryComponent"></ng-select>
+                                        <div *ngIf="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched">
+                                            <small *ngIf="SalaryComponentID.errors?.required" class="text-danger">Salary
+                                                Component is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-actions right">
+                            <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                <!-- <i class="ft-x"></i>  -->
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                <!-- <i class="fa fa-check-square-o"></i>  -->
+                                {{operation}}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                    <h4>List of Salary Variables</h4>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="VariableTypeID" caption="Variable Type">
+                                <dxo-lookup [dataSource]="VariableType" valueExpr="id" displayExpr="VariableType"></dxo-lookup>
+                            </dxi-column>
+                            <!-- <dxi-column dataField="VariableCategoryID" caption="Variable Category ID">
+                                <dxo-lookup [dataSource]="VariableCategory" valueExpr="id" displayExpr="VariableCategory"></dxo-lookup>
+                            </dxi-column> -->
+                            <dxi-column dataField="EmployeeID" caption="Full Name">
+                                <dxo-lookup [dataSource]="Employee" valueExpr="id" displayExpr="FullName"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="Amount" caption="Amount"></dxi-column>
+                            <!-- <dxi-column dataField="Tenor" caption="Tenor"></dxi-column> -->
+                            <dxi-column dataField="PayrollPeriodID" caption="Payroll Period">
+                                <dxo-lookup [dataSource]="PayrollPeriod" valueExpr="id" displayExpr="PayrollPeriod"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="StatusID" caption="Status Name">
+                                <dxo-lookup [dataSource]="Statuses" valueExpr="id" displayExpr="StatusName"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="SalaryComponentID" caption="Salary Component">
+                                <dxo-lookup [dataSource]="SalaryComponents" valueExpr="id" displayExpr="SalaryComponent"></dxo-lookup>
+                            </dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</div>

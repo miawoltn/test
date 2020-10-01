@@ -1,0 +1,182 @@
+
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <form *ngIf="ProcurementVendors.length < 1" class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProcurementTitle"
+                          [class.text-danger]="ProcurementTitle.invalid &amp;&amp; ProcurementTitle.touched">Procurement
+                          Title</label><i class="text-danger">*</i>
+                        <input type="text" id="ProcurementTitle" name="ProcurementTitle" #ProcurementTitle="ngModel"
+                          [(ngModel)]="obj.ProcurementTitle"
+                          [class.is-invalid]="ProcurementTitle.invalid &amp;&amp; ProcurementTitle.touched"
+                          class="form-control" placeholder="Enter Procurement Date..." required>
+                        <div *ngIf="ProcurementTitle.invalid &amp;&amp; ProcurementTitle.touched">
+                          <small *ngIf="ProcurementTitle.errors?.required" class="text-danger">Procurement Title is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                  </div>
+                  <div class="row">
+                    <div class="card-header">
+                      <h4 class="card-title" id="horz-layout-basic">Add Participating Vendors</h4>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Vendor</th>
+                          <th>Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- <div class="row" *ngFor="let item of procurementDetail, index as i"> -->
+                        <tr *ngFor="let item of procurementVendors, index as i">
+                          <th style="width: 5%">{{ i + 1 }}</th>
+                          <td style="width: 50%">
+                            <ng-select [items]="vendors" bindLabel="VendorName" bindValue="VendorID" #VendorID="ngModel"
+                              name="VendorID{{i}}" [(ngModel)]="item.VendorID"
+                              [class.is-invalid]="VendorID.invalid &amp;&amp; VendorID.touched"
+                              placeholder="Select Vendor..." required></ng-select>
+                          </td>
+                          <td *ngIf="procurementVendors.length > 1"><button type="button" class="btn btn-sm btn-danger" (click)="removeProcurementVendors(i)">Remove</button></td>
+                        </tr>
+                        <!-- </div> -->
+                      </tbody>
+                    </table>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="addProcurementVendors()">Add Vendor</button>
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+
+              <!-- Procurement Details -->
+              <form *ngIf="ProcurementVendors.length > 0" class="form" role="form" #form="ngForm" (ngSubmit)="processProcurementDetails()">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="card-header">
+                      <h4 class="card-title" id="horz-layout-basic">Procurement Detail</h4>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Vendor</th>
+                          <th>Product</th>
+                          <th>Qty</th>
+                          <th>Price</th>
+                          <th>Total</th>
+                          <th>Remove</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- <div class="row" *ngFor="let item of procurementDetail, index as i"> -->
+                        <tr *ngFor="let item of procurementDetail, index as i">
+                          <th scope="row">{{ i + 1 }}</th>
+                          <td style="width: 30%">
+                            <ng-select [items]="ProcurementVendors" bindLabel="VendorName" bindValue="VendorID" #VendorID="ngModel"
+                              name="VendorID{{i}}" [(ngModel)]="item.VendorID"
+                              [class.is-invalid]="VendorID.invalid &amp;&amp; VendorID.touched"
+                              placeholder="Select Vendor..." required></ng-select>
+                          </td>
+                          <td style="width: 40%">
+                            <ng-select [items]="Equipments" bindLabel="Equipment" bindValue="EquipmentID"
+                              #EquipmentID="ngModel" name="EquipmentID{{i}}" [(ngModel)]="item.EquipmentID"
+                              [class.is-invalid]="EquipmentID.invalid &amp;&amp; EquipmentID.touched"
+                              placeholder="Select Equipment..." required></ng-select>
+                          </td>
+                          <td style="width: 12%"><input type="number" id="Quantity" name="Quantity{{i}}" #Quantity="ngModel"
+                              [(ngModel)]="item.Quantity"
+                              [class.is-invalid]="Quantity.invalid &amp;&amp; Quantity.touched" class="form-control"
+                              placeholder="Qty..." required></td>
+                          <td style="width: 33%"><input type="number" id="Price" name="Price{{i}}" #Price="ngModel"
+                              [(ngModel)]="item.Price" [class.is-invalid]="Price.invalid &amp;&amp; Price.touched"
+                              class="form-control" placeholder="$Price..." required></td>
+                          <td>{{ item.Quantity * item.Price }}</td>
+                          <td *ngIf="procurementDetail.length > 1"><button type="button" class="btn btn-sm btn-danger" (click)="removeProcurementDetail(i)">Remove</button></td>
+                        </tr>
+                        <!-- </div> -->
+                      </tbody>
+                    </table>
+                    <button type="button" class="btn btn-sm btn-primary" (click)="addProcurementDetail()">Add Item</button>
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Procurement</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="ProcurementDate" caption="Procurement Date">
+                  </dxi-column>
+                  <dxi-column dataField="RequestBy" caption="Request By">
+                  </dxi-column>
+                  <dxi-column dataField="ApprovalStages" caption="Approval Stages">
+                  </dxi-column>
+                  <dxi-column dataField="ApprovalOfficerID" caption="Approval Officer ID">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

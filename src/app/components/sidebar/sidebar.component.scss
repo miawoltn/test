@@ -1,0 +1,18 @@
+.mtitle{
+    color: white;
+    font-weight: 800;
+}
+
+.logh{
+    height: 40px;
+}
+
+.mism{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: "Segoe UI";
+}
+
+@media print{
+    .doNotPrint{display:none !important;}
+  }

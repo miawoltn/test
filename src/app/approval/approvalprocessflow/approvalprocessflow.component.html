@@ -1,0 +1,165 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SequenceNo"
+                                                    [class.text-danger]="SequenceNo.invalid &amp;&amp; SequenceNo.touched">Sequence No</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="SequenceNo"
+                                                    name="SequenceNo" #SequenceNo="ngModel"
+                                                    [(ngModel)]="obj.SequenceNo"
+                                                    [class.is-invalid]="SequenceNo.invalid &amp;&amp; SequenceNo.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Sequence No..."
+                                                    required>
+                                                <div *ngIf="SequenceNo.invalid &amp;&amp; SequenceNo.touched">
+                                                    <small *ngIf="SequenceNo.errors?.required"
+                                                        class="text-danger">Sequence No is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalProcessModuleID"
+                                                    [class.text-danger]="ApprovalProcessModuleID.invalid &amp;&amp; ApprovalProcessModuleID.touched">Approval Process Module</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="ApprovalProcessModuleID"
+                                                    name="ApprovalProcessModuleID" #ApprovalProcessModuleID="ngModel"
+                                                    [(ngModel)]="obj.ApprovalProcessModuleID"
+                                                    [class.is-invalid]="ApprovalProcessModuleID.invalid &amp;&amp; ApprovalProcessModuleID.touched"
+                                                    placeholder="Select Approval Process Module..."
+                                                    required [items]="ApprovalProcessModule" bindValue="id" bindLabel="ApprovalProcessModule"></ng-select>
+                                                <div *ngIf="ApprovalProcessModuleID.invalid &amp;&amp; ApprovalProcessModuleID.touched">
+                                                    <small *ngIf="ApprovalProcessModuleID.errors?.required"
+                                                        class="text-danger">Approval Process Module is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalStagesID"
+                                                    [class.text-danger]="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched">Approval Stages</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="ApprovalStagesID"
+                                                    name="ApprovalStagesID" #ApprovalStagesID="ngModel"
+                                                    [(ngModel)]="obj.ApprovalStagesID"
+                                                    [class.is-invalid]="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched"
+                                                    placeholder="Select Approval Stages..."
+                                                    required [items]="ApprovalStages" bindValue="id" bindLabel="ApprovalStages"></ng-select>
+                                                <div *ngIf="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched">
+                                                    <small *ngIf="ApprovalStagesID.errors?.required"
+                                                        class="text-danger">Approval Stages is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StatusID"
+                                                    [class.text-danger]="StatusID.invalid &amp;&amp; StatusID.touched">Status</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="StatusID"
+                                                    name="StatusID" #StatusID="ngModel"
+                                                    [(ngModel)]="obj.StatusID"
+                                                    [class.is-invalid]="StatusID.invalid &amp;&amp; StatusID.touched"
+                                                    placeholder="Select Status..."
+                                                    required [items]="Status" bindValue="id" bindLabel="title"></ng-select>
+                                                <div *ngIf="StatusID.invalid &amp;&amp; StatusID.touched">
+                                                    <small *ngIf="StatusID.errors?.required"
+                                                        class="text-danger">Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Approval Process Flow</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="SequenceNo"
+                                        caption="Sequence No">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalProcessModuleID"
+                                        caption="Approval Process Module">
+                                        <dxo-lookup [dataSource]="ApprovalProcessModule" valueExpr="id" displayExpr="ApprovalProcessModule"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalStagesID"
+                                        caption="Approval Stages">
+                                        <dxo-lookup [dataSource]="ApprovalStages" valueExpr="id" displayExpr="ApprovalStages"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StatusID"
+                                        caption="Status">
+                                        <dxo-lookup [dataSource]="Status" valueExpr="id" displayExpr="title"></dxo-lookup>
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

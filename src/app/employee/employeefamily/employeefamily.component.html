@@ -1,0 +1,184 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="FullName"
+                                                    [class.text-danger]="FullName.invalid &amp;&amp; FullName.touched">Full
+                                                    Name</label><i class="text-danger">*</i>
+                                                <input type="text" id="FullName" name="FullName" #FullName="ngModel"
+                                                    [(ngModel)]="obj.FullName"
+                                                    [class.is-invalid]="FullName.invalid &amp;&amp; FullName.touched"
+                                                    class="form-control" placeholder="Enter Full Name..." required>
+                                                <div *ngIf="FullName.invalid &amp;&amp; FullName.touched">
+                                                    <small *ngIf="FullName.errors?.required" class="text-danger">Full
+                                                        Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="Email"
+                                                    [class.text-danger]="Email.invalid &amp;&amp; Email.touched">Email</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="text" id="Email" name="Email" #Email="ngModel"
+                                                    [(ngModel)]="obj.Email"
+                                                    [class.is-invalid]="Email.invalid &amp;&amp; Email.touched"
+                                                    class="form-control" placeholder="Enter Email..." required>
+                                                <div *ngIf="Email.invalid &amp;&amp; Email.touched">
+                                                    <small *ngIf="Email.errors?.required" class="text-danger">Email is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="PhoneNumber"
+                                                    [class.text-danger]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">Phone
+                                                    Number</label><i class="text-danger">*</i>
+                                                <input type="text" id="PhoneNumber" name="PhoneNumber"
+                                                    #PhoneNumber="ngModel" [(ngModel)]="obj.PhoneNumber"
+                                                    [class.is-invalid]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched"
+                                                    class="form-control" placeholder="Enter Phone Number..." required>
+                                                <div *ngIf="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">
+                                                    <small *ngIf="PhoneNumber.errors?.required"
+                                                        class="text-danger">Phone Number is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="RelationshipID"
+                                                    [class.text-danger]="RelationshipID.invalid &amp;&amp; RelationshipID.touched">Relationship
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="Relationship" bindLabel="RelationshipName"
+                                                    bindValue="id" [(ngModel)]="obj.RelationshipID"
+                                                    id="FamilyRelationshipID" name="RelationshipID" required
+                                                    #RelationshipID="ngModel"
+                                                    [class.is-invalid]="RelationshipID.invalid &amp;&amp; RelationshipID.touched"
+                                                    placeholder="Select Relationship..."></ng-select>
+                                                <div *ngIf="RelationshipID.invalid &amp;&amp; RelationshipID.touched">
+                                                    <small *ngIf="RelationshipID.errors?.required"
+                                                        class="text-danger">Relationship is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-md-4">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="FamilyRelationshipID"
+                                                    [class.text-danger]="RelationshipID.invalid &amp;&amp; RelationshipID.touched">Relationship
+                                                    <i class="text-danger">*</i></label>
+                                                <div class="col-md-8">
+                                                    <ng-select [items]="Relationship" bindLabel="RelationshipName"
+                                                        bindValue="id" [(ngModel)]="obj.RelationshipID"
+                                                        id="FamilyRelationshipID" name="RelationshipID" required
+                                                        #RelationshipID="ngModel"
+                                                        [class.is-invalid]="RelationshipID.invalid &amp;&amp; RelationshipID.touched"
+                                                        placeholder="Select Relationship..."></ng-select>
+                                                    <div *ngIf="RelationshipID.invalid &amp;&amp; RelationshipID.touched">
+                                                        <small *ngIf="RelationshipID.errors?.required"
+                                                            class="text-danger">Relationship is Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="Address"
+                                                    [class.text-danger]="Address.invalid &amp;&amp; Address.touched">Address</label><i
+                                                    class="text-danger">*</i>
+                                                <textarea type="text" id="Address" name="Address" #Address="ngModel"
+                                                    [(ngModel)]="obj.Address"
+                                                    [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                                                    class="form-control" placeholder="Enter Address..."
+                                                    required></textarea>
+                                                <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                                                    <small *ngIf="Address.errors?.required" class="text-danger">Address
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="form">
+                    <div class="form-heading">
+                        <h3>Family & Relationship</h3>
+                        <div class="form-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="table-responsive">
+
+                            <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                keyExpr="FamilyID" [focusedRowEnabled]="false" [focusedRowIndex]="0"
+                                [columnAutoWidth]="true" [columnHidingEnabled]="false">
+                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxi-column dataField="FullName" caption="Full Name">
+                                </dxi-column>
+                                <dxi-column dataField="Address" caption="Address">
+                                </dxi-column>
+                                <dxi-column dataField="PhoneNumber" caption="Phone Number">
+                                </dxi-column>
+                                <dxi-column dataField="Email" caption="Email">
+                                </dxi-column>
+                                <dxi-column dataField="RelationshipName" caption="Relationship">
+                                </dxi-column>
+                                <dxi-column type="buttons">
+                                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

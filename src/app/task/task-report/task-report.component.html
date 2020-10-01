@@ -1,0 +1,47 @@
+<div class="content-body">
+    <div class="card">
+
+        <div class="card-content collpase show">
+            <div class="card-body">
+                <dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true"
+                    [showBorders]="true">
+                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+                    <dxi-column dataField="Task" caption="Task">
+                    </dxi-column>
+                    <dxi-column dataField="ProjectDescription" caption="Project">
+                    </dxi-column>
+                    <dxi-column dataField="FullName" caption="Assigned To">
+                    </dxi-column>
+                    <dxi-column dataField="TaskStatus" caption="Task Status">
+                    </dxi-column>
+                    <dxi-column dataField="TaskPriority" caption="Task Priority">
+                    </dxi-column>
+
+                    <dxi-column dataField="Department" caption="Department"></dxi-column>
+                    <dxi-column dataField="Unit" [visible]="false"></dxi-column>
+
+                    <dxi-column dataField="Job Title" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Project" Caption="Project" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Office Location" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Category" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Gender" caption="Gender" [visible]="false"></dxi-column>
+                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                    <dxo-paging [pageSize]="20"></dxo-paging>
+                    <dxo-group-panel [visible]="true"></dxo-group-panel>
+                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+
+                    <dxo-export [enabled]="true" fileName="Task Report"></dxo-export>
+                </dx-data-grid>
+                <div class="options">
+                    <div class="caption">Options</div>
+                    <div class="option">
+                        <dx-check-box [(value)]="expand.autoExpandAll" text="Expand All Groups">
+                        </dx-check-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

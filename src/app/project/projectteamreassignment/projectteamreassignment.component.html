@@ -1,0 +1,166 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateofTransfer"
+                                                    [class.text-danger]="DateofTransfer.invalid &amp;&amp; DateofTransfer.touched">Dateof
+                                                    Transfer</label><i class="text-danger">*</i>
+                                                <input type="date" id="DateofTransfer" name="DateofTransfer"
+                                                    #DateofTransfer="ngModel" [(ngModel)]="obj.DateofTransfer"
+                                                    [class.is-invalid]="DateofTransfer.invalid &amp;&amp; DateofTransfer.touched"
+                                                    class="form-control" placeholder="Enter Dateof Transfer..."
+                                                    required>
+                                                <div *ngIf="DateofTransfer.invalid &amp;&amp; DateofTransfer.touched">
+                                                    <small *ngIf="DateofTransfer.errors?.required"
+                                                        class="text-danger">Dateof Transfer is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectFrom"
+                                                    [class.text-danger]="ProjectFrom.invalid &amp;&amp; ProjectFrom.touched">Project
+                                                    From</label><i class="text-danger">*</i>
+                                                <input type="number" id="ProjectFrom" name="ProjectFrom"
+                                                    #ProjectFrom="ngModel" [(ngModel)]="obj.ProjectFrom"
+                                                    [class.is-invalid]="ProjectFrom.invalid &amp;&amp; ProjectFrom.touched"
+                                                    class="form-control" placeholder="Enter Project From..." required>
+                                                <div *ngIf="ProjectFrom.invalid &amp;&amp; ProjectFrom.touched">
+                                                    <small *ngIf="ProjectFrom.errors?.required"
+                                                        class="text-danger">Project From is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectTo"
+                                                    [class.text-danger]="ProjectTo.invalid &amp;&amp; ProjectTo.touched">Project
+                                                    To</label><i class="text-danger">*</i>
+                                                <input type="number" id="ProjectTo" name="ProjectTo"
+                                                    #ProjectTo="ngModel" [(ngModel)]="obj.ProjectTo"
+                                                    [class.is-invalid]="ProjectTo.invalid &amp;&amp; ProjectTo.touched"
+                                                    class="form-control" placeholder="Enter Project To..." required>
+                                                <div *ngIf="ProjectTo.invalid &amp;&amp; ProjectTo.touched">
+                                                    <small *ngIf="ProjectTo.errors?.required"
+                                                        class="text-danger">Project To is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployeeID"
+                                                    [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="employee" bindLabel="SurName" bindValue="id"
+                                                    #EmployeeID="ngModel" name="EmployeeID" [(ngModel)]="obj.EmployeeID"
+                                                    [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                                                    placeholder="Select Employee..." required></ng-select>
+                                                <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                                                    <small *ngIf="EmployeeID.errors?.required"
+                                                        class="text-danger">Employee is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ReassigningOfficer"
+                                                    [class.text-danger]="ReassigningOfficer.invalid &amp;&amp; ReassigningOfficer.touched">Reassigning
+                                                    Officer</label><i class="text-danger">*</i>
+                                                <input type="number" id="ReassigningOfficer" name="ReassigningOfficer"
+                                                    #ReassigningOfficer="ngModel" [(ngModel)]="obj.ReassigningOfficer"
+                                                    [class.is-invalid]="ReassigningOfficer.invalid &amp;&amp; ReassigningOfficer.touched"
+                                                    class="form-control" placeholder="Enter Reassigning Officer..."
+                                                    required>
+                                                <div
+                                                    *ngIf="ReassigningOfficer.invalid &amp;&amp; ReassigningOfficer.touched">
+                                                    <small *ngIf="ReassigningOfficer.errors?.required"
+                                                        class="text-danger">Reassigning Officer is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Project Team Re-Assignment</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="DateofTransfer" caption="Dateof Transfer">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectFrom" caption="Project From">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectTo" caption="Project To">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Employee">
+                                    </dxi-column>
+                                    <dxi-column dataField="ReassigningOfficer" caption="Reassigning Officer">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

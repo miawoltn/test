@@ -1,0 +1,421 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployeeID"
+                                                    [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="EmployeeID"
+                                                    name="EmployeeID" #EmployeeID="ngModel"
+                                                    [(ngModel)]="obj.EmployeeID"
+                                                    [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Employee..."
+                                                    required>
+                                                <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                                                    <small *ngIf="EmployeeID.errors?.required"
+                                                        class="text-danger">Employee is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_date"
+                                                    [class.text-danger]="shift_date.invalid &amp;&amp; shift_date.touched">Shift Date</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="date" id="shift_date"
+                                                    name="shift_date" #shift_date="ngModel"
+                                                    [(ngModel)]="obj.shift_date"
+                                                    [class.is-invalid]="shift_date.invalid &amp;&amp; shift_date.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Shift Date..."
+                                                    required>
+                                                <div *ngIf="shift_date.invalid &amp;&amp; shift_date.touched">
+                                                    <small *ngIf="shift_date.errors?.required"
+                                                        class="text-danger">Shift Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_status_id"
+                                                    [class.text-danger]="shift_status_id.invalid &amp;&amp; shift_status_id.touched">Shift Status</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shift_status"
+                                                    bindLabel="shift_status"
+                                                    bindValue="id" #shift_status_id="ngModel" name="shift_status_id"
+                                                    [(ngModel)]="obj.shift_status_id"
+                                                    [class.is-invalid]="shift_status_id.invalid &amp;&amp; shift_status_id.touched"
+                                                    placeholder="Select Shift Status..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_status_id.invalid &amp;&amp; shift_status_id.touched">
+                                                    <small *ngIf="shift_status_id.errors?.required"
+                                                        class="text-danger">Shift Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_id"
+                                                    [class.text-danger]="shift_id.invalid &amp;&amp; shift_id.touched">Shift</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shifts"
+                                                    bindLabel="shift_name"
+                                                    bindValue="id" #shift_id="ngModel" name="shift_id"
+                                                    [(ngModel)]="obj.shift_id"
+                                                    [class.is-invalid]="shift_id.invalid &amp;&amp; shift_id.touched"
+                                                    placeholder="Select Shift..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_id.invalid &amp;&amp; shift_id.touched">
+                                                    <small *ngIf="shift_id.errors?.required"
+                                                        class="text-danger">Shift is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_schedule_id"
+                                                    [class.text-danger]="shift_schedule_id.invalid &amp;&amp; shift_schedule_id.touched">Shift Schedule</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shift_schedules"
+                                                    bindLabel="shift_template_id"
+                                                    bindValue="id" #shift_schedule_id="ngModel" name="shift_schedule_id"
+                                                    [(ngModel)]="obj.shift_schedule_id"
+                                                    [class.is-invalid]="shift_schedule_id.invalid &amp;&amp; shift_schedule_id.touched"
+                                                    placeholder="Select Shift Schedule..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_schedule_id.invalid &amp;&amp; shift_schedule_id.touched">
+                                                    <small *ngIf="shift_schedule_id.errors?.required"
+                                                        class="text-danger">Shift Schedule is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="isAbsent"
+                                                    [class.text-danger]="isAbsent.invalid &amp;&amp; isAbsent.touched">Is Absent</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="isAbsent"
+                                                    name="isAbsent" #isAbsent="ngModel"
+                                                    [(ngModel)]="obj.isAbsent"
+                                                    [class.is-invalid]="isAbsent.invalid &amp;&amp; isAbsent.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is Absent..."
+                                                    required>
+                                                <div *ngIf="isAbsent.invalid &amp;&amp; isAbsent.touched">
+                                                    <small *ngIf="isAbsent.errors?.required"
+                                                        class="text-danger">Is Absent is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="isLeave"
+                                                    [class.text-danger]="isLeave.invalid &amp;&amp; isLeave.touched">Is Leave</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="isLeave"
+                                                    name="isLeave" #isLeave="ngModel"
+                                                    [(ngModel)]="obj.isLeave"
+                                                    [class.is-invalid]="isLeave.invalid &amp;&amp; isLeave.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is Leave..."
+                                                    required>
+                                                <div *ngIf="isLeave.invalid &amp;&amp; isLeave.touched">
+                                                    <small *ngIf="isLeave.errors?.required"
+                                                        class="text-danger">Is Leave is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="isLate"
+                                                    [class.text-danger]="isLate.invalid &amp;&amp; isLate.touched">Is Late</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="isLate"
+                                                    name="isLate" #isLate="ngModel"
+                                                    [(ngModel)]="obj.isLate"
+                                                    [class.is-invalid]="isLate.invalid &amp;&amp; isLate.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is Late..."
+                                                    required>
+                                                <div *ngIf="isLate.invalid &amp;&amp; isLate.touched">
+                                                    <small *ngIf="isLate.errors?.required"
+                                                        class="text-danger">Is Late is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="isCloseEarly"
+                                                    [class.text-danger]="isCloseEarly.invalid &amp;&amp; isCloseEarly.touched">Is Close Early</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="isCloseEarly"
+                                                    name="isCloseEarly" #isCloseEarly="ngModel"
+                                                    [(ngModel)]="obj.isCloseEarly"
+                                                    [class.is-invalid]="isCloseEarly.invalid &amp;&amp; isCloseEarly.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is Close Early..."
+                                                    required>
+                                                <div *ngIf="isCloseEarly.invalid &amp;&amp; isCloseEarly.touched">
+                                                    <small *ngIf="isCloseEarly.errors?.required"
+                                                        class="text-danger">Is Close Early is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="isPunctual"
+                                                    [class.text-danger]="isPunctual.invalid &amp;&amp; isPunctual.touched">Is Punctual</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="isPunctual"
+                                                    name="isPunctual" #isPunctual="ngModel"
+                                                    [(ngModel)]="obj.isPunctual"
+                                                    [class.is-invalid]="isPunctual.invalid &amp;&amp; isPunctual.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is Punctual..."
+                                                    required>
+                                                <div *ngIf="isPunctual.invalid &amp;&amp; isPunctual.touched">
+                                                    <small *ngIf="isPunctual.errors?.required"
+                                                        class="text-danger">Is Punctual is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_template_id"
+                                                    [class.text-danger]="shift_template_id.invalid &amp;&amp; shift_template_id.touched">Shift Template</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shift_templates"
+                                                    bindLabel="shift_template"
+                                                    bindValue="id" #shift_template_id="ngModel" name="shift_template_id"
+                                                    [(ngModel)]="obj.shift_template_id"
+                                                    [class.is-invalid]="shift_template_id.invalid &amp;&amp; shift_template_id.touched"
+                                                    placeholder="Select Shift Template..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_template_id.invalid &amp;&amp; shift_template_id.touched">
+                                                    <small *ngIf="shift_template_id.errors?.required"
+                                                        class="text-danger">Shift Template is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="smsSent"
+                                                    [class.text-danger]="smsSent.invalid &amp;&amp; smsSent.touched">Sms Sent</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="smsSent"
+                                                    name="smsSent" #smsSent="ngModel"
+                                                    [(ngModel)]="obj.smsSent"
+                                                    [class.is-invalid]="smsSent.invalid &amp;&amp; smsSent.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Sms Sent..."
+                                                    required>
+                                                <div *ngIf="smsSent.invalid &amp;&amp; smsSent.touched">
+                                                    <small *ngIf="smsSent.errors?.required"
+                                                        class="text-danger">Sms Sent is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="smsresponse"
+                                                    [class.text-danger]="smsresponse.invalid &amp;&amp; smsresponse.touched">SMS Response</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="smsresponse"
+                                                    name="smsresponse" #smsresponse="ngModel"
+                                                    [(ngModel)]="obj.smsresponse"
+                                                    [class.is-invalid]="smsresponse.invalid &amp;&amp; smsresponse.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter SMS Response..."
+                                                    required>
+                                                <div *ngIf="smsresponse.invalid &amp;&amp; smsresponse.touched">
+                                                    <small *ngIf="smsresponse.errors?.required"
+                                                        class="text-danger">SMS Response is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="smsSentdate"
+                                                    [class.text-danger]="smsSentdate.invalid &amp;&amp; smsSentdate.touched">SMS Sent Date</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="date" id="smsSentdate"
+                                                    name="smsSentdate" #smsSentdate="ngModel"
+                                                    [(ngModel)]="obj.smsSentdate"
+                                                    [class.is-invalid]="smsSentdate.invalid &amp;&amp; smsSentdate.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter SMS Sentdate..."
+                                                    required>
+                                                <div *ngIf="smsSentdate.invalid &amp;&amp; smsSentdate.touched">
+                                                    <small *ngIf="smsSentdate.errors?.required"
+                                                        class="text-danger">SMS Sent Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="isTour"
+                                                    [class.text-danger]="isTour.invalid &amp;&amp; isTour.touched">Is Tour</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="isTour"
+                                                    name="isTour" #isTour="ngModel"
+                                                    [(ngModel)]="obj.isTour"
+                                                    [class.is-invalid]="isTour.invalid &amp;&amp; isTour.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is Tour..."
+                                                    required>
+                                                <div *ngIf="isTour.invalid &amp;&amp; isTour.touched">
+                                                    <small *ngIf="isTour.errors?.required"
+                                                        class="text-danger">Is Tour is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Shift Schedule Details</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="EmployeeID"
+                                        caption="Employee">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_date"
+                                        caption="Shift Date">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_status"
+                                        caption="Shift Status">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_name"
+                                        caption="Shift Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_template_id"
+                                        caption="Shift Template">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="isAbsent"
+                                        caption="Is Absent">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="isLeave"
+                                        caption="Is Leave">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="isLate"
+                                        caption="Is Late">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="isCloseEarly"
+                                        caption="Is Close Early">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="isPunctual"
+                                        caption="Is Punctual">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_template"
+                                        caption="Shift Template">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="smsSent"
+                                        caption="SMS Sent">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="smsresponse"
+                                        caption="SMS Response">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="smsSentdate"
+                                        caption="SMS Sentdate">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="isTour"
+                                        caption="Is Tour">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

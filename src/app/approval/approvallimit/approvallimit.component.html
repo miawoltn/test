@@ -1,0 +1,120 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Amount"
+                                                    [class.text-danger]="Amount.invalid &amp;&amp; Amount.touched">Amount</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Amount"
+                                                    name="Amount" #Amount="ngModel"
+                                                    [(ngModel)]="obj.Amount"
+                                                    [class.is-invalid]="Amount.invalid &amp;&amp; Amount.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Amount..."
+                                                    required>
+                                                <div *ngIf="Amount.invalid &amp;&amp; Amount.touched">
+                                                    <small *ngIf="Amount.errors?.required"
+                                                        class="text-danger">Amount is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DesignationID"
+                                                    [class.text-danger]="DesignationID.invalid &amp;&amp; DesignationID.touched">Designation</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="DesignationID"
+                                                    name="DesignationID" #DesignationID="ngModel"
+                                                    [(ngModel)]="obj.DesignationID"
+                                                    [class.is-invalid]="DesignationID.invalid &amp;&amp; DesignationID.touched"
+                                                    placeholder="Select Designation..."
+                                                    required [items]="Designation" bindValue="id" bindLabel="DesignationName"></ng-select>
+                                                <div *ngIf="DesignationID.invalid &amp;&amp; DesignationID.touched">
+                                                    <small *ngIf="DesignationID.errors?.required"
+                                                        class="text-danger">Designation is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Approvallimit</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="Amount"
+                                        caption="Amount">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DesignationID"
+                                        caption="Designation">
+                                        <dxo-lookup [dataSource]="Designation" valueExpr="id" displayExpr="DesignationName"></dxo-lookup>
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

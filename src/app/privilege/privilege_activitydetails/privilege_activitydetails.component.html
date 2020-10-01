@@ -1,0 +1,178 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PrivilegeID"
+                                                    [class.text-danger]="PrivilegeID.invalid &amp;&amp; PrivilegeID.touched">Privilege</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="Privileges" bindValue="id" bindLabel="privilege_name" id="PrivilegeID" name="PrivilegeID"
+                                                    #PrivilegeID="ngModel" [(ngModel)]="obj.PrivilegeID"
+                                                    [class.is-invalid]="PrivilegeID.invalid &amp;&amp; PrivilegeID.touched"
+                                                    placeholder="Select Privilege..." required></ng-select>
+                                                <div *ngIf="PrivilegeID.invalid &amp;&amp; PrivilegeID.touched">
+                                                    <small *ngIf="PrivilegeID.errors?.required"
+                                                        class="text-danger">Privilege is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ActivityPrivID"
+                                                    [class.text-danger]="ActivityPrivID.invalid &amp;&amp; ActivityPrivID.touched">Activity
+                                                    Privilege Activity</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="PrivilegeActivity" bindValue="id" bindLabel="Activity_Name" id="ActivityPrivID" name="ActivityPrivID"
+                                                    #ActivityPrivID="ngModel" [(ngModel)]="obj.ActivityPrivID"
+                                                    [class.is-invalid]="ActivityPrivID.invalid &amp;&amp; ActivityPrivID.touched"
+                                                    placeholder="Select Privilege Activity..."
+                                                    required></ng-select>
+                                                <div *ngIf="ActivityPrivID.invalid &amp;&amp; ActivityPrivID.touched">
+                                                    <small *ngIf="ActivityPrivID.errors?.required"
+                                                        class="text-danger">Privilege Activity is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="canInsert"
+                                                    [class.text-danger]="canInsert.invalid &amp;&amp; canInsert.touched">Can
+                                                    Insert</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="choices" bindValue="value" bindLabel="label" id="canInsert" name="canInsert" #canInsert="ngModel"
+                                                    [(ngModel)]="obj.canInsert"
+                                                    [class.is-invalid]="canInsert.invalid &amp;&amp; canInsert.touched"
+                                                    placeholder="Can Insert?" required></ng-select>
+                                                <div *ngIf="canInsert.invalid &amp;&amp; canInsert.touched">
+                                                    <small *ngIf="canInsert.errors?.required" class="text-danger">Can
+                                                        Insert is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="canView"
+                                                    [class.text-danger]="canView.invalid &amp;&amp; canView.touched">Can
+                                                    View</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="choices" bindValue="value" bindLabel="label" id="canView" name="canView" #canView="ngModel"
+                                                    [(ngModel)]="obj.canView"
+                                                    [class.is-invalid]="canView.invalid &amp;&amp; canView.touched"
+                                                    placeholder="Can View?" required></ng-select>
+                                                <div *ngIf="canView.invalid &amp;&amp; canView.touched">
+                                                    <small *ngIf="canView.errors?.required" class="text-danger">Can View
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="canDelete"
+                                                    [class.text-danger]="canDelete.invalid &amp;&amp; canDelete.touched">Can
+                                                    Delete</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="choices" bindValue="value" bindLabel="label" id="canDelete" name="canDelete" #canDelete="ngModel"
+                                                    [(ngModel)]="obj.canDelete"
+                                                    [class.is-invalid]="canDelete.invalid &amp;&amp; canDelete.touched"
+                                                    placeholder="Can Delete?" required></ng-select>
+                                                <div *ngIf="canDelete.invalid &amp;&amp; canDelete.touched">
+                                                    <small *ngIf="canDelete.errors?.required" class="text-danger">Can
+                                                        Delete is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="canUpdate"
+                                                    [class.text-danger]="canUpdate.invalid &amp;&amp; canUpdate.touched">Can
+                                                    Update</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="choices" bindValue="value" bindLabel="label" id="canUpdate" name="canUpdate" #canUpdate="ngModel"
+                                                    [(ngModel)]="obj.canUpdate"
+                                                    [class.is-invalid]="canUpdate.invalid &amp;&amp; canUpdate.touched"
+                                                    placeholder="Can Update?" required></ng-select>
+                                                <div *ngIf="canUpdate.invalid &amp;&amp; canUpdate.touched">
+                                                    <small *ngIf="canUpdate.errors?.required" class="text-danger">Can
+                                                        Update is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Privilege_activitydetails</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="PrivilegeID" caption="Privilege ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="ActivityPrivID" caption="Activity Priv ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="canInsert" caption="Can Insert">
+                                    </dxi-column>
+                                    <dxi-column dataField="canView" caption="Can View">
+                                    </dxi-column>
+                                    <dxi-column dataField="canDelete" caption="Can Delete">
+                                    </dxi-column>
+                                    <dxi-column dataField="canUpdate" caption="Can Update">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

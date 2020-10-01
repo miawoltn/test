@@ -1,0 +1,375 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApplicantSurname"
+                                                    [class.text-danger]="ApplicantSurname.invalid &amp;&amp; ApplicantSurname.touched">Applicant Surname</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApplicantSurname"
+                                                    name="ApplicantSurname" #ApplicantSurname="ngModel"
+                                                    [(ngModel)]="obj.ApplicantSurname"
+                                                    [class.is-invalid]="ApplicantSurname.invalid &amp;&amp; ApplicantSurname.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Applicant Surname..."
+                                                    required>
+                                                <div *ngIf="ApplicantSurname.invalid &amp;&amp; ApplicantSurname.touched">
+                                                    <small *ngIf="ApplicantSurname.errors?.required"
+                                                        class="text-danger">Applicant Surname is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApplicantFirstName"
+                                                    [class.text-danger]="ApplicantFirstName.invalid &amp;&amp; ApplicantFirstName.touched">Applicant First Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApplicantFirstName"
+                                                    name="ApplicantFirstName" #ApplicantFirstName="ngModel"
+                                                    [(ngModel)]="obj.ApplicantFirstName"
+                                                    [class.is-invalid]="ApplicantFirstName.invalid &amp;&amp; ApplicantFirstName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Applicant First Name..."
+                                                    required>
+                                                <div *ngIf="ApplicantFirstName.invalid &amp;&amp; ApplicantFirstName.touched">
+                                                    <small *ngIf="ApplicantFirstName.errors?.required"
+                                                        class="text-danger">Applicant First Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApplicantMiddleName"
+                                                    [class.text-danger]="ApplicantMiddleName.invalid &amp;&amp; ApplicantMiddleName.touched">Applicant Middle Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApplicantMiddleName"
+                                                    name="ApplicantMiddleName" #ApplicantMiddleName="ngModel"
+                                                    [(ngModel)]="obj.ApplicantMiddleName"
+                                                    [class.is-invalid]="ApplicantMiddleName.invalid &amp;&amp; ApplicantMiddleName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Applicant Middle Name..."
+                                                    required>
+                                                <div *ngIf="ApplicantMiddleName.invalid &amp;&amp; ApplicantMiddleName.touched">
+                                                    <small *ngIf="ApplicantMiddleName.errors?.required"
+                                                        class="text-danger">Applicant Middle Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="GenderID"
+                                                    [class.text-danger]="GenderID.invalid &amp;&amp; GenderID.touched">Gender</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="gender"
+                                                    bindLabel="Gender"
+                                                    bindValue="id" #GenderID="ngModel" name="GenderID"
+                                                    [(ngModel)]="obj.GenderID"
+                                                    [class.is-invalid]="GenderID.invalid &amp;&amp; GenderID.touched"
+                                                    placeholder="Select Gender..."
+                                                    required></ng-select>
+                                                <div *ngIf="GenderID.invalid &amp;&amp; GenderID.touched">
+                                                    <small *ngIf="GenderID.errors?.required"
+                                                        class="text-danger">Gender is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateofBirth"
+                                                    [class.text-danger]="DateofBirth.invalid &amp;&amp; DateofBirth.touched">Dateof Birth</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="DateofBirth"
+                                                    name="DateofBirth" #DateofBirth="ngModel"
+                                                    [(ngModel)]="obj.DateofBirth"
+                                                    [class.is-invalid]="DateofBirth.invalid &amp;&amp; DateofBirth.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Dateof Birth..."
+                                                    required>
+                                                <div *ngIf="DateofBirth.invalid &amp;&amp; DateofBirth.touched">
+                                                    <small *ngIf="DateofBirth.errors?.required"
+                                                        class="text-danger">Dateof Birth is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Email"
+                                                    [class.text-danger]="Email.invalid &amp;&amp; Email.touched">Email</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Email"
+                                                    name="Email" #Email="ngModel"
+                                                    [(ngModel)]="obj.Email"
+                                                    [class.is-invalid]="Email.invalid &amp;&amp; Email.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Email..."
+                                                    required>
+                                                <div *ngIf="Email.invalid &amp;&amp; Email.touched">
+                                                    <small *ngIf="Email.errors?.required"
+                                                        class="text-danger">Email is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PhoneNumber"
+                                                    [class.text-danger]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">Phone Number</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="PhoneNumber"
+                                                    name="PhoneNumber" #PhoneNumber="ngModel"
+                                                    [(ngModel)]="obj.PhoneNumber"
+                                                    [class.is-invalid]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Phone Number..."
+                                                    required>
+                                                <div *ngIf="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">
+                                                    <small *ngIf="PhoneNumber.errors?.required"
+                                                        class="text-danger">Phone Number is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CurrentEmployer"
+                                                    [class.text-danger]="CurrentEmployer.invalid &amp;&amp; CurrentEmployer.touched">Current Employer</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CurrentEmployer"
+                                                    name="CurrentEmployer" #CurrentEmployer="ngModel"
+                                                    [(ngModel)]="obj.CurrentEmployer"
+                                                    [class.is-invalid]="CurrentEmployer.invalid &amp;&amp; CurrentEmployer.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Current Employer..."
+                                                    required>
+                                                <div *ngIf="CurrentEmployer.invalid &amp;&amp; CurrentEmployer.touched">
+                                                    <small *ngIf="CurrentEmployer.errors?.required"
+                                                        class="text-danger">Current Employer is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployerName"
+                                                    [class.text-danger]="EmployerName.invalid &amp;&amp; EmployerName.touched">Employer Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="EmployerName"
+                                                    name="EmployerName" #EmployerName="ngModel"
+                                                    [(ngModel)]="obj.EmployerName"
+                                                    [class.is-invalid]="EmployerName.invalid &amp;&amp; EmployerName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Employer Name..."
+                                                    required>
+                                                <div *ngIf="EmployerName.invalid &amp;&amp; EmployerName.touched">
+                                                    <small *ngIf="EmployerName.errors?.required"
+                                                        class="text-danger">Employer Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployerAddress"
+                                                    [class.text-danger]="EmployerAddress.invalid &amp;&amp; EmployerAddress.touched">EmployerAddress</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="EmployerAddress"
+                                                    name="EmployerAddress" #EmployerAddress="ngModel"
+                                                    [(ngModel)]="obj.EmployerAddress"
+                                                    [class.is-invalid]="EmployerAddress.invalid &amp;&amp; EmployerAddress.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter EmployerAddress..."
+                                                    required>
+                                                <div *ngIf="EmployerAddress.invalid &amp;&amp; EmployerAddress.touched">
+                                                    <small *ngIf="EmployerAddress.errors?.required"
+                                                        class="text-danger">EmployerAddress is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="NationalityID"
+                                                    [class.text-danger]="NationalityID.invalid &amp;&amp; NationalityID.touched">Nationality</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="NationalityID"
+                                                    name="NationalityID" #NationalityID="ngModel"
+                                                    [(ngModel)]="obj.NationalityID"
+                                                    [class.is-invalid]="NationalityID.invalid &amp;&amp; NationalityID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Nationality..."
+                                                    required>
+                                                <div *ngIf="NationalityID.invalid &amp;&amp; NationalityID.touched">
+                                                    <small *ngIf="NationalityID.errors?.required"
+                                                        class="text-danger">Nationality is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SateofOriginID"
+                                                    [class.text-danger]="SateofOriginID.invalid &amp;&amp; SateofOriginID.touched">Sateof Origin</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="SateofOriginID"
+                                                    name="SateofOriginID" #SateofOriginID="ngModel"
+                                                    [(ngModel)]="obj.SateofOriginID"
+                                                    [class.is-invalid]="SateofOriginID.invalid &amp;&amp; SateofOriginID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Sateof Origin..."
+                                                    required>
+                                                <div *ngIf="SateofOriginID.invalid &amp;&amp; SateofOriginID.touched">
+                                                    <small *ngIf="SateofOriginID.errors?.required"
+                                                        class="text-danger">Sateof Origin is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApplicantPic"
+                                                    [class.text-danger]="ApplicantPic.invalid &amp;&amp; ApplicantPic.touched">Applicant Pic</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApplicantPic"
+                                                    name="ApplicantPic" #ApplicantPic="ngModel"
+                                                    [(ngModel)]="obj.ApplicantPic"
+                                                    [class.is-invalid]="ApplicantPic.invalid &amp;&amp; ApplicantPic.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Applicant Pic..."
+                                                    required>
+                                                <div *ngIf="ApplicantPic.invalid &amp;&amp; ApplicantPic.touched">
+                                                    <small *ngIf="ApplicantPic.errors?.required"
+                                                        class="text-danger">Applicant Pic is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Property Applicant</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="ApplicantSurname"
+                                        caption="Applicant Surname">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApplicantFirstName"
+                                        caption="Applicant First Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApplicantMiddleName"
+                                        caption="Applicant Middle Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Gender"
+                                        caption="Gender">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DateofBirth"
+                                        caption="Dateof Birth">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Email"
+                                        caption="Email">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PhoneNumber"
+                                        caption="Phone Number">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CurrentEmployer"
+                                        caption="Current Employer">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="EmployerName"
+                                        caption="Employer Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="EmployerAddress"
+                                        caption="EmployerAddress">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="NationalityID"
+                                        caption="Nationality">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="SateofOriginID"
+                                        caption="Sateof Origin">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApplicantPic"
+                                        caption="Applicant Pic">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

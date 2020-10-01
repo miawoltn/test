@@ -1,0 +1,432 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card">
+                <div class="card-header">
+                    {{operation}} Evaluation
+                </div>
+
+                <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                        <mat-step #leave="ngModelGroup" ngModelGroup="leave" [stepControl]="form.controls.leave"
+                            [editable]="isEditable">
+                            <ng-template matStepLabel>Evaluation Info</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="appraisal_date">Evaluaton
+                                                Date</label>
+                                            <div class="col-md-8">
+                                                {{ info.appraisal_date | date:'longDate' }}
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="appraisee_id">Employee Name<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{info.FullName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="designation_id">Current
+                                                Designation<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.DesignationName }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="department_id">Current
+                                                Department<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.DepartmentName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="approving_officer"
+                                                [class.text-danger]="approving_officer.invalid && approving_officer.touched">Evaluation
+                                                By<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <ng-select id="approving_officer" name="approving_officer"
+                                                    [(ngModel)]="obj.order.appraiser_id" required
+                                                    #approving_officer="ngModel"
+                                                    [class.is-invalid]="approving_officer.invalid && approving_officer.touched"
+                                                    placeholder="Select Appraiser ..." [items]="supervisors"
+                                                    bindValue="id" bindLabel="FullName"></ng-select>
+                                                <div *ngIf="approving_officer.invalid && approving_officer.touched">
+                                                    <small *ngIf="approving_officer.errors?.required"
+                                                        class="text-danger">Appraiser
+                                                        is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- <h4 class="col-md-12"> PERFOMANCE EVALUATION BY EMPLOYEE</h4>
+                                     -->
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-md-12 control-label" for="comment_peers"
+                                                [class.text-danger]="comment_peers.invalid && comment_peers.touched">What
+                                                were your key achievements during this period (Think about your tasks,
+                                                activities, projects and objectives completed)?<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-12">
+                                                <textarea type="text" id="comment_peers" name="comment_peers"
+                                                    class="form-control" 
+                                                    [(ngModel)]="obj.order.comment_peers" required
+                                                    #comment_peers="ngModel"
+                                                    [class.is-invalid]="comment_peers.invalid && comment_peers.touched"
+                                                    placeholder="Enter Achievement..."></textarea>
+                                                <div *ngIf="comment_peers.invalid && comment_peers.touched">
+                                                    <small *ngIf="comment_peers.errors?.required"
+                                                        class="text-danger">Achievement is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-md-12 control-label" for="comment_peers_alt"
+                                                [class.text-danger]="comment_peers_alt.invalid && comment_peers_alt.touched">What
+                                                are your strengths (Think about what went well, your key learnings and
+                                                your evidence)?<i class="text-danger">*</i></label>
+                                            <div class="col-md-12">
+                                                <textarea type="text" id="comment_peers_alt" name="comment_peers_alt"
+                                                    class="form-control" 
+                                                    [(ngModel)]="obj.order.comment_peers_alt" required
+                                                    #comment_peers_alt="ngModel"
+                                                    [class.is-invalid]="comment_peers_alt.invalid && comment_peers_alt.touched"
+                                                    placeholder="Enter Strengths ..."></textarea>
+                                                <div *ngIf="comment_peers_alt.invalid && comment_peers_alt.touched">
+                                                    <small *ngIf="comment_peers_alt.errors?.required"
+                                                        class="text-danger">Strengths is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-md-12 control-label" for="comment_sup"
+                                                [class.text-danger]="comment_sup.invalid && comment_sup.touched">
+                                                Have you identified areas for improvement (Think about your most
+                                                challenging experiences, which areas did not go according to plan and
+                                                actions taken to address any underperformance)?<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-12">
+                                                <textarea type="text" id="comment_sup" name="comment_sup"
+                                                    class="form-control" 
+                                                    [(ngModel)]="obj.order.comment_sup" required #comment_sup="ngModel"
+                                                    [class.is-invalid]="comment_sup.invalid && comment_sup.touched"
+                                                    placeholder="Select mprovement..."></textarea>
+                                                <div *ngIf="comment_sup.invalid && comment_sup.touched">
+                                                    <small *ngIf="comment_sup.errors?.required"
+                                                        class="text-danger">Improvement
+                                                         is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-md-12 control-label" for="comment_sup_alt"
+                                                [class.text-danger]="comment_sup_alt.invalid && comment_sup_alt.touched">
+                                                List your personal development goals for the next quarter<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-12">
+                                                <textarea type="text" id="comment_sup_alt" name="comment_sup_alt"
+                                                    class="form-control" 
+                                                    [(ngModel)]="obj.order.comment_sup_alt" required
+                                                    #comment_sup_alt="ngModel"
+                                                    [class.is-invalid]="comment_sup_alt.invalid && comment_sup_alt.touched"
+                                                    placeholder="Enter Personal Development..."></textarea>
+                                                <div *ngIf="comment_sup_alt.invalid && comment_sup_alt.touched">
+                                                    <small *ngIf="comment_sup_alt.errors?.required"
+                                                        class="text-danger">Personal Development is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer ">
+                                <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                    <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                <button type="button" matStepperNext class="btn btn-sm btn-primary pull-right"
+                                    [disabled]="leave.invalid">
+                                    <i class="fa fa-dot-circle-o"></i> Next</button>
+                            </div>
+                        </mat-step>
+                        <mat-step [editable]="isEditable" #scoring="ngModelGroup" ngModelGroup="scoring"
+                            [stepControl]="form.controls.scoring">
+                            <ng-template matStepLabel>Evaluation</ng-template>
+                            <div class="card-body">
+                                <div class="col-sm-12 table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Criteria</th>
+                                                <th>Rating</th>
+                                                <!-- <th>Comment</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of obj.detail, index as i">
+                                                <td>{{i+1}}</td>
+                                                <!-- <td>{{item.kpi_type}}</td> -->
+                                                <td>{{item.kpi_name}}</td>
+                                                <td>
+                                                    <mat-radio-group aria-label="Select an option"
+                                                        [(ngModel)]="item.selfscoreId" name="dad{{i}}" required="true">
+                                                        <mat-radio-button value="{{opt.id}}"
+                                                            *ngFor="let opt of options, index as j">{{opt.ratingName}}
+                                                            &nbsp;</mat-radio-button>
+                                                    </mat-radio-group>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                    <i class="fa fa-dot-circle-o"></i> Back</button>
+                                <button type="button" matStepperNext class="btn btn-sm btn-primary pull-right"
+                                    [disabled]="scoring.invalid" (click)="onConfirm()">
+                                    <i class="fa fa-dot-circle-o"></i>Next</button>
+                            </div>
+                        </mat-step>
+                        <mat-step [editable]="isEditable">
+                            <ng-template matStepLabel>Confirmation</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="appraisal_date">Appraisal
+                                                date</label>
+                                            <div class="col-md-8">
+                                                {{ info.appraisal_date | date:'longDate' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="appraisee_id">Appraisee<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{info.FullName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="designation_id">Current
+                                                Designation<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.DesignationName }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="department_id">Current
+                                                Department<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.DepartmentName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="approving_officer">Appraiser<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.approving_officer }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
+                                <div class="col-sm-12 table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Criteria</th>
+                                                <th>Self Rating</th>
+                                                <!-- <th>Supervisor Rating</th> -->
+                                                <!-- <th>Comment</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of obj.detail, index as i">
+                                                <td>{{i+1}}</td>
+                                                <!-- <td>{{item.kpi_type}}</td> -->
+                                                <td>{{item.kpi_name}}</td>
+                                                <td>
+                                                    {{item.option_name}}
+                                                </td>
+                                                <!-- <td>
+                                                    {{item.option_name}}
+                                                </td> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-footer ">
+                                <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                    <i class="fa fa-dot-circle-o"></i> Back</button>
+                                <button type="submit" matStepperNext class="btn btn-sm btn-primary pull-right"
+                                    [disabled]="scoring.invalid">
+                                    <i class="fa fa-dot-circle-o"></i> {{operation}}</button>
+                            </div>
+                        </mat-step>
+                        <mat-step [editable]="isEditable">
+                            <ng-template matStepLabel>Completion</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="appraisal_date">Appraisal
+                                                date</label>
+                                            <div class="col-md-8">
+                                                {{ info.appraisal_date | date:'longDate' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="appraisee_id">Appraisee<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{info.FullName}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="designation_id">Current
+                                                Designation<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.DesignationName }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="department_id">Current
+                                                Department<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.DepartmentName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 control-label" for="approving_officer">Appraiser<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                {{ info.approving_officer }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>Self Evaluation</th>
+                                                <!-- <th>Supervisor Evaluation</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr *ngFor="let item of scores.class_scores, index as i">
+                                                <td>{{item.kpiclass}}</td>
+                                                <td class="text-right">
+                                                    {{item.SelfScoreClassEquivalent | number:'1.2-2' }}
+                                                </td>
+                                                <!-- <td class="text-right">{{item.ScoreClassEquivalent | number:'1.2-2'}}
+                                                </td> -->
+                                            </tr>
+                                            <tr>
+                                                <th>Total Score</th>
+                                                <th class="text-right">
+                                                    {{scores.scores.selfscore_final | number:'1.2-2' }}
+                                                </th>
+                                                <!-- <th class="text-right">{{scores.scores.score_final | number:'1.2-2'}}
+                                                </th> -->
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                    <div class="col-sm-12 table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Criteria</th>
+                                                    <th>Self Rating</th>
+                                                    <!-- <th>Supervisor Rating</th> -->
+
+                                                    <!-- <th>Comment</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let item of obj.detail, index as i">
+                                                    <td>{{i+1}}</td>
+                                                    <!-- <td>{{item.kpi_type}}</td> -->
+                                                    <td>{{item.kpi_name}}</td>
+                                                    <td>
+                                                        {{item.option_name}}
+                                                    </td>
+                                                    <!-- <td>
+                                                        {{item.option_name}}
+                                                    </td> -->
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                </form>
+
+            </div>
+            <!--  -->
+            <!-- end box -->
+        </div>
+    </div>
+</section>

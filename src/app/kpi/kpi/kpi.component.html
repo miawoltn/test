@@ -1,0 +1,326 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpitype_id"
+                                        [class.text-danger]="kpitype_id.invalid && kpitype_id.touched">Kpitype<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpi_type" bindLabel="kpitype" bindValue="id"
+                                            [(ngModel)]="obj.kpitype_id" name="kpitype_id" required
+                                            #kpitype_id="ngModel"
+                                            [class.is-invalid]="kpitype_id.invalid && kpitype_id.touched"
+                                            placeholder="Select Kpitype..."></ng-select>
+                                        <div *ngIf="kpitype_id.invalid && kpitype_id.touched">
+                                            <small *ngIf="kpitype_id.errors?.required" class="text-danger">Kpitype is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpiclass_id"
+                                        [class.text-danger]="kpiclass_id.invalid && kpiclass_id.touched">Kpiclass<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpiclass" bindLabel="kpiclass" bindValue="id"
+                                            [(ngModel)]="obj.kpiclass_id" name="kpiclass_id" required
+                                            #kpiclass_id="ngModel"
+                                            [class.is-invalid]="kpiclass_id.invalid && kpiclass_id.touched"
+                                            placeholder="Select Kpiclass..."></ng-select>
+                                        <div *ngIf="kpiclass_id.invalid && kpiclass_id.touched">
+                                            <small *ngIf="kpiclass_id.errors?.required" class="text-danger">Kpiclass id
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpi_name"
+                                        [class.text-danger]="kpi_name.invalid && kpi_name.touched">Kpi name<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="kpi_name" name="kpi_name" class="form-control"
+                                            placeholder="Enter Kpi name .." [(ngModel)]="obj.kpi_name" required
+                                            #kpi_name="ngModel"
+                                            [class.is-invalid]="kpi_name.invalid && kpi_name.touched"
+                                            placeholder="Select Kpi name...">
+                                        <div *ngIf="kpi_name.invalid && kpi_name.touched">
+                                            <small *ngIf="kpi_name.errors?.required" class="text-danger">Kpi name is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="Kpi_desc"
+                                        [class.text-danger]="Kpi_desc.invalid && Kpi_desc.touched">Kpi desc<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Kpi_desc" name="Kpi_desc" class="form-control"
+                                            placeholder="Enter Kpi desc .." [(ngModel)]="obj.Kpi_desc" required
+                                            #Kpi_desc="ngModel"
+                                            [class.is-invalid]="Kpi_desc.invalid && Kpi_desc.touched"
+                                            placeholder="Select Kpi desc...">
+                                        <div *ngIf="Kpi_desc.invalid && Kpi_desc.touched">
+                                            <small *ngIf="Kpi_desc.errors?.required" class="text-danger">Kpi desc is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="maxWeight"
+                                        [class.text-danger]="maxWeight.invalid && maxWeight.touched">Max Weight<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="maxWeight" name="maxWeight" class="form-control"
+                                            placeholder="Enter Max Weight .." [(ngModel)]="obj.maxWeight" required
+                                            #maxWeight="ngModel"
+                                            [class.is-invalid]="maxWeight.invalid && maxWeight.touched"
+                                            placeholder="Select Max Weight...">
+                                        <div *ngIf="maxWeight.invalid && maxWeight.touched">
+                                            <small *ngIf="maxWeight.errors?.required" class="text-danger">Max Weight is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="config_id"
+                                        [class.text-danger]="config_id.invalid && config_id.touched">Config<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpiconfig" bindLabel="period_id" bindValue="id"
+                                            [(ngModel)]="obj.config_id" name="config_id" required #config_id="ngModel"
+                                            [class.is-invalid]="config_id.invalid && config_id.touched"
+                                            placeholder="Select Config..."></ng-select>
+                                        <div *ngIf="config_id.invalid && config_id.touched">
+                                            <small *ngIf="config_id.errors?.required" class="text-danger">Config is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="transID"
+                                        [class.text-danger]="transID.invalid && transID.touched">Trans<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="transID" name="transID" class="form-control"
+                                            placeholder="Enter Trans ID .." [(ngModel)]="obj.transID" required
+                                            #transID="ngModel" [class.is-invalid]="transID.invalid && transID.touched"
+                                            placeholder="Select Trans...">
+                                        <div *ngIf="transID.invalid && transID.touched">
+                                            <small *ngIf="transID.errors?.required" class="text-danger">Trans is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpi_general_id"
+                                        [class.text-danger]="kpi_general_id.invalid && kpi_general_id.touched">Kpi
+                                        general<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="kpi_general_id" name="kpi_general_id"
+                                            class="form-control" placeholder="Enter Kpi general id .."
+                                            [(ngModel)]="obj.kpi_general_id" required #kpi_general_id="ngModel"
+                                            [class.is-invalid]="kpi_general_id.invalid && kpi_general_id.touched"
+                                            placeholder="Select Kpi general...">
+                                        <div *ngIf="kpi_general_id.invalid && kpi_general_id.touched">
+                                            <small *ngIf="kpi_general_id.errors?.required" class="text-danger">Kpi
+                                                general is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpi_criteria"
+                                        [class.text-danger]="kpi_criteria.invalid && kpi_criteria.touched">Kpi
+                                        criteria<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="kpi_criteria" name="kpi_criteria" class="form-control"
+                                            placeholder="Enter Kpi criteria .." [(ngModel)]="obj.kpi_criteria" required
+                                            #kpi_criteria="ngModel"
+                                            [class.is-invalid]="kpi_criteria.invalid && kpi_criteria.touched"
+                                            placeholder="Select Kpi criteria...">
+                                        <div *ngIf="kpi_criteria.invalid && kpi_criteria.touched">
+                                            <small *ngIf="kpi_criteria.errors?.required" class="text-danger">Kpi
+                                                criteria is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="systemsID"
+                                        [class.text-danger]="systemsID.invalid && systemsID.touched">Systems<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="systemsID" name="systemsID" class="form-control"
+                                            placeholder="Enter Systems ID .." [(ngModel)]="obj.systemsID" required
+                                            #systemsID="ngModel"
+                                            [class.is-invalid]="systemsID.invalid && systemsID.touched"
+                                            placeholder="Select Systems...">
+                                        <div *ngIf="systemsID.invalid && systemsID.touched">
+                                            <small *ngIf="systemsID.errors?.required" class="text-danger">Systems is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="systemDetailsID"
+                                        [class.text-danger]="systemDetailsID.invalid && systemDetailsID.touched">System
+                                        Details<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="systemDetailsID" name="systemDetailsID"
+                                            class="form-control" placeholder="Enter System Details ID .."
+                                            [(ngModel)]="obj.systemDetailsID" required #systemDetailsID="ngModel"
+                                            [class.is-invalid]="systemDetailsID.invalid && systemDetailsID.touched"
+                                            placeholder="Select System Details...">
+                                        <div *ngIf="systemDetailsID.invalid && systemDetailsID.touched">
+                                            <small *ngIf="systemDetailsID.errors?.required" class="text-danger">System
+                                                Details is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="storycategory_id"
+                                        [class.text-danger]="storycategory_id.invalid && storycategory_id.touched">Storycategory
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="storycategory_id" name="storycategory_id"
+                                            class="form-control" placeholder="Enter Storycategory id .."
+                                            [(ngModel)]="obj.storycategory_id" required #storycategory_id="ngModel"
+                                            [class.is-invalid]="storycategory_id.invalid && storycategory_id.touched"
+                                            placeholder="Select Storycategory...">
+                                        <div *ngIf="storycategory_id.invalid && storycategory_id.touched">
+                                            <small *ngIf="storycategory_id.errors?.required"
+                                                class="text-danger">Storycategory is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="targetvalue"
+                                        [class.text-danger]="targetvalue.invalid && targetvalue.touched">Targetvalue<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="targetvalue" name="targetvalue" class="form-control"
+                                            placeholder="Enter Targetvalue .." [(ngModel)]="obj.targetvalue" required
+                                            #targetvalue="ngModel"
+                                            [class.is-invalid]="targetvalue.invalid && targetvalue.touched"
+                                            placeholder="Select Targetvalue...">
+                                        <div *ngIf="targetvalue.invalid && targetvalue.touched">
+                                            <small *ngIf="targetvalue.errors?.required" class="text-danger">Targetvalue
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="EdStoryCategory_groupID"
+                                        [class.text-danger]="EdStoryCategory_groupID.invalid && EdStoryCategory_groupID.touched">Ed
+                                        Story Category group<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="EdStoryCategory_groupID" name="EdStoryCategory_groupID"
+                                            class="form-control" placeholder="Enter Ed Story Category group ID .."
+                                            [(ngModel)]="obj.EdStoryCategory_groupID" required
+                                            #EdStoryCategory_groupID="ngModel"
+                                            [class.is-invalid]="EdStoryCategory_groupID.invalid && EdStoryCategory_groupID.touched"
+                                            placeholder="Select Ed Story Category group...">
+                                        <div *ngIf="EdStoryCategory_groupID.invalid && EdStoryCategory_groupID.touched">
+                                            <small *ngIf="EdStoryCategory_groupID.errors?.required"
+                                                class="text-danger">Ed Story Category group is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of KPI</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="kpitype" caption="KPI Type"></dxi-column>
+                            <dxi-column dataField="kpiclass" caption="KPI Class"></dxi-column>
+                            <dxi-column dataField="kpi_name" caption="KPI Name"></dxi-column>
+                            <dxi-column dataField="Kpi_desc" caption="KPI Desc"></dxi-column>
+                            <dxi-column dataField="maxWeight" caption="Max Weight"></dxi-column>
+                            <dxi-column dataField="period_id" caption="Period"></dxi-column>
+                            <dxi-column dataField="transID" caption="Trans"></dxi-column>
+                            <dxi-column dataField="kpi_general_id" caption="KPI General"></dxi-column>
+                            <dxi-column dataField="kpi_criteria" caption="KPI Criteria"></dxi-column>
+                            <dxi-column dataField="systemsID" caption="Systems"></dxi-column>
+                            <dxi-column dataField="systemDetailsID" caption="System Details"></dxi-column>
+                            <dxi-column dataField="storycategory_id" caption="Story Category"></dxi-column>
+                            <dxi-column dataField="targetvalue" caption="Target Value"></dxi-column>
+                            <dxi-column dataField="EdStoryCategory_groupID" caption="Ed Story Category group">
+                            </dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

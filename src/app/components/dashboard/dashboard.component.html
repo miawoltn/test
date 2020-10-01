@@ -1,0 +1,199 @@
+<!-- <section id="text-alignment">
+  <div class="row bmar">
+    <div class="col-lg-3 col-md-12" *ngFor="let item of data">
+      <a href="{{item.url}}" (click)="loadMenu(item.moduleId,'')" style="color: black;">
+        <div class="flip-box">
+          <div class="flip-box-inner">
+            <div class="flip-box-front">
+              <div class="card-content">
+                <div class="card-body">
+                  <h4 class="modt">{{item.moduleName}}</h4>
+                  <div class="modimg">
+                    <i class="fas fa-{{item.icon}}"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flip-box-back {{item.bgclass}}">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <div class="card-content">
+                <div class="card-body">
+                  <h4 class="modt">{{item.moduleName}}</h4>
+                  <div class="modimg">
+                    <i class="fas fa-{{item.icon}}"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    </div>
+</section> -->
+
+
+<section class=" primary-bg">
+  <div class="container">
+    <div class="mdp">Choose a Module</div>
+    <!--start app screen carousel-->
+    <div class="screen-slider-content">
+      <!-- <div class="screenshot-frame"></div> -->
+      <div class="screen-carousel owl-carousel owl-theme dot-indicator">
+        <div class="img-fluid" *ngFor="let item of data">
+          <div class="scimg">
+            <img src="../../../assets/img/icons/{{item.icon}}.png">
+          </div>
+          <p class="ptx">{{item.moduleName}}</p>
+          <div class="full-dot">
+            <img src="../../../assets/img/full-dot.png">
+          </div>
+          <div class="enttask">
+            <a href="{{item.url}}" (click)="loadMenu(item.moduleId,'')" style="color: white !important; font-weight: bold !important;">Enter</a>
+          </div>
+        </div>
+
+        <!--
+          <div class="img-fluid">
+              <div class="scimg">
+                <img src="../../../assets/img/icons/task.png">
+              </div>
+              <p class="ptx">Task<br>Manager</p>
+              <div class="full-dot">
+                <img src="../../../assets/img/full-dot.png">
+              </div>
+              <div class="enttask">
+                Enter
+              </div>
+          </div>
+
+
+          <div class="img-fluid">
+              <div class="scimg">
+                <img src="../../../assets/img/icons/Self.png">
+              </div>
+              <p class="ptx">Self<br>Service</p>
+              <div class="full-dot">
+                <img src="../../../assets/img/full-dot.png">
+              </div>
+              <div class="enttask">
+                Enter
+              </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Project.png">
+            </div>
+            <p class="ptx">Project<br>Management</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Accounts.png">
+            </div>
+            <p class="ptx">Account<br>Management</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Inventory.png">
+            </div>
+            <p class="ptx">Inventory<br>Management</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Logistics.png">
+            </div>
+            <p class="ptx">Logistics<br>Management</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Purchase.png">
+            </div>
+            <p class="ptx">Purchase<br>Management</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Report.png">
+            </div>
+            <p class="ptx">General<br>Report</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/live-chat.png">
+            </div>
+            <p class="ptx">Live<br>Chat</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+
+          <div class="img-fluid">
+            <div class="scimg">
+              <img src="../../../assets/img/icons/Approval.png">
+            </div>
+            <p class="ptx">Approval<br>System</p>
+            <div class="full-dot">
+              <img src="../../../assets/img/full-dot.png">
+            </div>
+            <div class="enttask">
+              Enter
+            </div>
+          </div>
+        -->
+
+
+
+
+      </div>
+    </div>
+    <!--end app screen carousel-->
+  </div>
+</section>

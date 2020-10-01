@@ -1,0 +1,270 @@
+<div style="margin-top: 1rem;" class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <!-- <div class="panel-heading ">
+                    {{operation}} Record
+                </div> -->
+                    <form #form="ngForm" (submit)="processForm()">
+                        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                            <mat-step #order="ngModelGroup" ngModelGroup="order" [stepControl]="form.controls.order"
+                                [editable]="isEditable">
+                                <ng-template matStepLabel>Add Task Info</ng-template>
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="Task"
+                                                    [class.text-danger]="Task.invalid &amp;&amp; Task.touched">Task</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="Task" name="Task" class="form-control"
+                                                        [(ngModel)]="obj.Task" required #Task="ngModel"
+                                                        [class.is-invalid]="Task.invalid &amp;&amp; Task.touched"
+                                                        placeholder="Enter Task...">
+                                                    <div *ngIf="Task.invalid &amp;&amp; Task.touched">
+                                                        <small *ngIf="Task.errors?.required" class="text-danger">Task is
+                                                            Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="PriorityID"
+                                                    [class.text-danger]="PriorityID.invalid &amp;&amp; PriorityID.touched">Priority</label>
+                                                <div class="col-md-8">
+                                                    <ng-select [items]="taskpriority" bindLabel="TaskPriority"
+                                                        bindValue="id" [(ngModel)]="obj.PriorityID" name="PriorityID"
+                                                        required #PriorityID="ngModel"
+                                                        [class.is-invalid]="PriorityID.invalid &amp;&amp; PriorityID.touched"
+                                                        placeholder="Select Priority..."></ng-select>
+                                                    <div *ngIf="PriorityID.invalid &amp;&amp; PriorityID.touched">
+                                                        <small *ngIf="PriorityID.errors?.required"
+                                                            class="text-danger">Priorityis Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="TaskStatusID"
+                                                    [class.text-danger]="TaskStatusID.invalid &amp;&amp; TaskStatusID.touched">Task
+                                                    Status</label>
+                                                <div class="col-md-8">
+                                                    <ng-select [items]="taskstatus" bindLabel="TaskStatus"
+                                                        bindValue="id" [(ngModel)]="obj.TaskStatusID"
+                                                        name="TaskStatusID" required #TaskStatusID="ngModel"
+                                                        [class.is-invalid]="TaskStatusID.invalid &amp;&amp; TaskStatusID.touched"
+                                                        placeholder="Select Task Status..."></ng-select>
+                                                    <div *ngIf="TaskStatusID.invalid &amp;&amp; TaskStatusID.touched">
+                                                        <small *ngIf="TaskStatusID.errors?.required"
+                                                            class="text-danger">Task Statusis Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="AssignTo"
+                                                    [class.text-danger]="AssignTo.invalid &amp;&amp; AssignTo.touched">Assign
+                                                    To</label>
+                                                <div class="col-md-8">
+                                                    <ng-select [items]="employee" bindLabel="FullName" bindValue="id"
+                                                        [(ngModel)]="obj.AssignTo" name="AssignTo" required
+                                                        #AssignTo="ngModel"
+                                                        [class.is-invalid]="AssignTo.invalid &amp;&amp; AssignTo.touched"
+                                                        placeholder="Assign To..."></ng-select>
+                                                    <div *ngIf="AssignTo.invalid &amp;&amp; AssignTo.touched">
+                                                        <small *ngIf="AssignTo.errors?.required"
+                                                            class="text-danger">Assign
+                                                            To is Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="ProjectID"
+                                                    [class.text-danger]="ProjectID.invalid &amp;&amp; ProjectID.touched">Project</label>
+                                                <div class="col-md-8">
+                                                    <ng-select [items]="project" bindLabel="ProjectDescription"
+                                                        bindValue="id" [(ngModel)]="obj.ProjectID" name="ProjectID"
+                                                        required #ProjectID="ngModel"
+                                                        [class.is-invalid]="ProjectID.invalid &amp;&amp; ProjectID.touched"
+                                                        placeholder="Select Project..."></ng-select>
+                                                    <div *ngIf="ProjectID.invalid &amp;&amp; ProjectID.touched">
+                                                        <small *ngIf="ProjectID.errors?.required"
+                                                            class="text-danger">Project is Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="DueDate"
+                                                    [class.text-danger]="DueDate.invalid &amp;&amp; DueDate.touched">Due
+                                                    Date</label>
+                                                <div class="col-md-8">
+                                                    <input type="datetime-local" id="DueDate" name="DueDate"
+                                                        class="form-control" [(ngModel)]="obj.DueDate" required
+                                                        #DueDate="ngModel"
+                                                        [class.is-invalid]="DueDate.invalid &amp;&amp; DueDate.touched"
+                                                        placeholder="Enter Task...">
+                                                    <div *ngIf="DueDate.invalid &amp;&amp; DueDate.touched">
+                                                        <small *ngIf="DueDate.errors?.required" class="text-danger">Due
+                                                            Date
+                                                            is Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="button" class="btn btn-default" (click)="stepper.reset()">Cancel</button>
+                                    &nbsp;
+                                    <button type="button" matStepperNext class="btn btn-primary pull-right"
+                                        (click)="onConfirm()" [disabled]="order.invalid">Next</button>&nbsp;
+                                </div>
+                            </mat-step>
+                            <mat-step [editable]="isEditable">
+                                <ng-template matStepLabel>Confirmation</ng-template>
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="Task">Task</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.Task }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="PriorityID">Priority
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ obj.TaskPriority }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="TaskStatusID">Task
+                                                    Status</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.TaskStatus }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="AssignTo">Assigned
+                                                    To</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.SurName }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectID">Project</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.CustomerID }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectID">Due Date</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.DueDate | date: 'EEEE, MMMM d, y' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="button" matStepperPrevious class="btn btn-primary">Back</button>&nbsp;
+                                    <button type="submit" matStepperNext class="btn btn-primary pull-right">Confirm
+                                        Application</button>&nbsp;
+                                </div>
+                            </mat-step>
+                            <mat-step>
+                                <ng-template matStepLabel>Completed</ng-template>
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="Task">Task</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.Task }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="PriorityID">Priority
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ obj.TaskPriority }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="TaskStatusID">Task
+                                                    Status</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.TaskStatus }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="AssignTo">Assigned
+                                                    To</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.SurName }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectID">Project</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.CustomerID }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectID">Due Date</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.DueDate | date: 'EEEE, MMMM d, y' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <button type="button" class="btn btn-primary pull-right"
+                                        (click)="stepper.reset()">New
+                                        Application</button>&nbsp;
+                                </div>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

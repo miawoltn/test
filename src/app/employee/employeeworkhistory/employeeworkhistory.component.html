@@ -1,0 +1,227 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card card-info" *ngIf="displayForm">
+            <div class="card-header">
+                {{operation}} Record
+            </div>
+
+            <div class="card-body">
+                <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="EmployeeName"
+                                    [class.text-danger]="EmployeeName.invalid && EmployeeName.touched">Employer<i
+                                        class="text-danger">*</i></label>
+                                <input type="text" id="EmployeeName" name="EmployeeName" class="form-control"
+                                    placeholder="Enter Employee Name .." [(ngModel)]="obj.EmployeeName" required
+                                    #EmployeeName="ngModel"
+                                    [class.is-invalid]="EmployeeName.invalid && EmployeeName.touched"
+                                    placeholder="Enter Employee Name...">
+                                <div *ngIf="EmployeeName.invalid && EmployeeName.touched">
+                                    <small *ngIf="EmployeeName.errors?.required" class="text-danger">Employee Name
+                                        is Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="Address"
+                                    [class.text-danger]="Address.invalid && Address.touched">Address<i
+                                        class="text-danger">*</i></label>
+                                <input type="text" id="Address" name="Address" class="form-control"
+                                    placeholder="Enter Address .." [(ngModel)]="obj.Address" required #Address="ngModel"
+                                    [class.is-invalid]="Address.invalid && Address.touched"
+                                    placeholder="Enter Address...">
+                                <div *ngIf="Address.invalid && Address.touched">
+                                    <small *ngIf="Address.errors?.required" class="text-danger">Address is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="PhoneNumber"
+                                    [class.text-danger]="PhoneNumber.invalid && PhoneNumber.touched">Phone Number<i
+                                        class="text-danger">*</i></label>
+                                <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control"
+                                    placeholder="Enter Phone Number .." [(ngModel)]="obj.PhoneNumber" required
+                                    #PhoneNumber="ngModel"
+                                    [class.is-invalid]="PhoneNumber.invalid && PhoneNumber.touched"
+                                    placeholder="Enter Phone Number...">
+                                <div *ngIf="PhoneNumber.invalid && PhoneNumber.touched">
+                                    <small *ngIf="PhoneNumber.errors?.required" class="text-danger">Phone Number is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="EmailAddress"
+                                    [class.text-danger]="EmailAddress.invalid && EmailAddress.touched">EmailAddress<i
+                                        class="text-danger">*</i></label>
+                                <input type="text" id="EmailAddress" name="EmailAddress" class="form-control"
+                                    placeholder="Enter EmailAddress .." [(ngModel)]="obj.EmailAddress" required
+                                    #EmailAddress="ngModel"
+                                    [class.is-invalid]="EmailAddress.invalid && EmailAddress.touched"
+                                    placeholder="Enter EmailAddress...">
+                                <div *ngIf="EmailAddress.invalid && EmailAddress.touched">
+                                    <small *ngIf="EmailAddress.errors?.required" class="text-danger">EmailAddress is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="JobTitle"
+                                    [class.text-danger]="JobTitle.invalid && JobTitle.touched">Job Title<i
+                                        class="text-danger">*</i></label>
+                                <input type="text" id="JobTitle" name="JobTitle" class="form-control"
+                                    placeholder="Enter Job Title .." [(ngModel)]="obj.JobTitle" required
+                                    #JobTitle="ngModel" [class.is-invalid]="JobTitle.invalid && JobTitle.touched"
+                                    placeholder="Enter Job Title...">
+                                <div *ngIf="JobTitle.invalid && JobTitle.touched">
+                                    <small *ngIf="JobTitle.errors?.required" class="text-danger">Job Title is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="JobDescription"
+                                    [class.text-danger]="JobDescription.invalid && JobDescription.touched">Job
+                                    Description<i class="text-danger">*</i></label>
+                                <input type="text" id="JobDescription" name="JobDescription" class="form-control"
+                                    placeholder="Enter Job Description .." [(ngModel)]="obj.JobDescription" required
+                                    #JobDescription="ngModel"
+                                    [class.is-invalid]="JobDescription.invalid && JobDescription.touched"
+                                    placeholder="Enter Job Description...">
+                                <div *ngIf="JobDescription.invalid && JobDescription.touched">
+                                    <small *ngIf="JobDescription.errors?.required" class="text-danger">Job
+                                        Description is Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="StartDate"
+                                    [class.text-danger]="StartDate.invalid && StartDate.touched">Start Date<i
+                                        class="text-danger">*</i></label>
+                                <input type="date" id="StartDate" name="StartDate" class="form-control"
+                                    placeholder="Enter Start Date .." [(ngModel)]="obj.StartDate" required
+                                    #StartDate="ngModel" [class.is-invalid]="StartDate.invalid && StartDate.touched"
+                                    placeholder="Enter Start Date...">
+                                <div *ngIf="StartDate.invalid && StartDate.touched">
+                                    <small *ngIf="StartDate.errors?.required" class="text-danger">Start Date is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" *ngIf="!obj.IsPresent">
+                            <div class="form-group">
+                                <label class="form-control-label" for="EndDate"
+                                    [class.text-danger]="EndDate.invalid && EndDate.touched">End Date<i
+                                        class="text-danger">*</i></label>
+                                <input type="date" id="EndDate" name="EndDate" class="form-control"
+                                    placeholder="Enter End Date .." [(ngModel)]="obj.EndDate"
+                                    [required]="!obj.IsPresent" #EndDate="ngModel"
+                                    [class.is-invalid]="EndDate.invalid && EndDate.touched"
+                                    placeholder="Enter End Date...">
+                                <div *ngIf="EndDate.invalid && EndDate.touched">
+                                    <small *ngIf="EndDate.errors?.required" class="text-danger">End Date is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="IsPresent"
+                                    [class.text-danger]="IsPresent.invalid && IsPresent.touched">Present Employment</label>
+                                    <input type="checkbox" id="IsPresent" name="IsPresent" class="form-control"
+                                    placeholder="Enter Is Present .." [(ngModel)]="obj.IsPresent"
+                                    #IsPresent="ngModel" [class.is-invalid]="IsPresent.invalid && IsPresent.touched"
+                                    placeholder="Enter Is Present...">
+                                <div *ngIf="IsPresent.invalid && IsPresent.touched">
+                                    <small *ngIf="IsPresent.errors?.required" class="text-danger">Is Present is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <label for="IsPresent" class="col-form-label"
+                                    [class.text-danger]="IsPresent.invalid &amp;&amp; IsPresent.touched">Is
+                                    Present Job?</label><i class="text-danger">*</i>
+                                <div class="kt-radio-inline">
+                                    <mat-radio-group aria-label="Select an option" name="IsPresent" #IsPresent="ngModel"
+                                        [(ngModel)]="obj.IsPresent">
+                                        <mat-radio-button [value]="1">Yes</mat-radio-button>
+                                        <mat-radio-button [value]="0">No</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{operation}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="form">
+            <div class="form-heading">
+                <h3>Work History</h3>
+                <div class="form-tools pull-right">
+                    <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                            class="fa fa-plus"></span>
+                        Add New</button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-body">
+
+                <div class="table-responsive">
+
+                    <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                        [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                        [columnHidingEnabled]=false>
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxi-column dataField="EmployeeName" caption="Employer Name"></dxi-column>
+                        <dxi-column dataField="Address" caption="Address"></dxi-column>
+                        <dxi-column dataField="PhoneNumber" caption="Phone Number"></dxi-column>
+                        <dxi-column dataField="EmailAddress" caption="Email Address"></dxi-column>
+                        <dxi-column dataField="JobTitle" caption="Job Title"></dxi-column>
+                        <dxi-column dataField="JobDescription" caption="Job Description"></dxi-column>
+                        <dxi-column dataField="StartDate" caption="Start Date" dataType="date"></dxi-column>
+                        <dxi-column dataField="EndDate" caption="End Date" dataType="date"></dxi-column>
+                        <!-- <dxi-column dataField="IsPresent" caption="Is Present"></dxi-column> -->
+
+                        <dxi-column type="buttons">
+                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                        </dxi-column>
+                    </dx-data-grid>
+
+                </div>
+            </div>
+            <!-- end box-body -->
+        </div>
+        <!-- end box -->
+    </div>
+</div>

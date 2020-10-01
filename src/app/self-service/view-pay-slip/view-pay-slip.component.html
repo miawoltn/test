@@ -1,0 +1,159 @@
+<section class="card">
+
+    <div id="invoice-template" class="card-body" style="page-break-after: always !important;">
+        <!-- Invoice Company Details -->
+        <div id="invoice-company-details" class="row">
+            <div class="col-md-6 col-sm-12 text-center text-md-left">
+                <div class="media">
+                    <img src="assets/img/logo.png" alt="company logo" >
+                    <div class="media-body">
+                        <ul class="ml-2 px-0 list-unstyled">
+                            <li class="text-bold-800">Team Nigeria</li>
+                            <li>Central Business District,</li>
+                            <li>Abuja</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 text-center text-md-right">
+                <h2> {{data[0].PayrollPeriod | uppercase }} PAY SLIP</h2>
+
+
+            </div>
+        </div>
+        <!--/ Invoice Company Details -->
+
+        <!-- Invoice Customer Details -->
+        <div id="invoice-customer-details" class="row pt-2">
+            <div class="col-sm-12 text-center text-md-left">
+                <p class="text-muted">EMPLOYEE INFOMATION</p>
+            </div>
+            <div class="col-md-6 col-sm-12 text-center text-md-left">
+                <ul class="px-0 list-unstyled">
+                    <li class="text-bold">Employee Name: {{data[0].FullName}}</li>
+                    <li>Department: {{data[0].DepartmentName}}</li>
+                    <li>Grade/Level: {{data[0].GradeName}}/{{data[0].GradeLevelName}}</li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-sm-12 text-center text-md-right">
+                <p><span class="text-muted">Payroll Month: {{ data[0].PayrollPeriod }} </span> </p>
+            </div>
+        </div>
+        <!--/ Invoice Customer Details -->
+
+        <!-- Invoice Items Details -->
+        <div id="invoice-items-details" class="pt-2">
+            <div class="row">
+                <div class="table-responsive col-sm-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Earnings</th>
+                                <th>Deductions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <table class="table">
+                                        <tr *ngFor="let item2 of filterData(data, 1), index as i">
+                                            <td>
+                                                {{item2.SalaryComponent }}
+                                            </td>
+                                            <td class="text-right">&#8358; {{item2.Amount | number:"1.2-2"}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td>
+                                    <table class="table">
+                                        <tr *ngFor="let item2 of filterData(data, 2), index as i">
+                                            <td>
+                                                {{item2.SalaryComponent }}
+                                            </td>
+                                            <td class="text-right">&#8358; {{item2.Amount | number:"1.2-2"}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-sm-12 text-center text-md-left">
+                    <p class="lead">Payment Methods:</p>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="table-responsive">
+                                <table class="table table-borderless table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <td>Bank Name:</td>
+                                            <td class="text-right">{{data[0].BankName}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Account Number:</td>
+                                            <td class="text-right">{{data[0].BankAccountNumber}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <p class="lead">Total Due</p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Total Earnings</td>
+                                    <td class="text-right">&#8358; {{earnings | number:"1.2-2"}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Total Deductions</td>
+                                    <td class="text-right">&#8358; {{deductions | number:"1.2-2"}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Total Relief</td>
+                                    <td class="text-right">&#8358; {{reliefs | number:"1.2-2"}}</td>
+                                </tr>
+
+                                <tr class="bg-grey bg-lighten-4">
+                                    <td class="text-bold-800">Net Pay</td>
+                                    <td class="text-bold-800 text-right">&#8358; {{netpay | number:"1.2-2"}} </td>
+                                </tr>
+                                <tr class="bg-grey bg-lighten-4">
+                                    <td class="text-bold-800">Net Taxable Pay</td>
+                                    <td class="text-bold-800 text-right">&#8358; {{nettaxable | number:"1.2-2"}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="text-center col-md-6">
+                    <p class="text-center"></p>
+                    <img class="height-100">
+                    <p class="text-muted text-center ">{{data[0].FullName}}</p>
+                </div>
+                <div class=" col-md-6">
+                    <p class="text-center"></p>
+                    <img class="height-100">
+                    <p class="text-muted text-center"> Managing Director</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!--/ Invoice Footer -->
+    </div>
+    <!-- {{obj | json}} -->
+</section>

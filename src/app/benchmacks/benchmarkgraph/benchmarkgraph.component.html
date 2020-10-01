@@ -1,0 +1,138 @@
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="benchmark"
+                                        [class.text-danger]="benchmark.invalid && benchmark.touched">Benchmark<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="benchmark" name="benchmark" class="form-control"
+                                            placeholder="Enter Benchmark .." [(ngModel)]="obj.benchmark" required
+                                            #benchmark="ngModel"
+                                            [class.is-invalid]="benchmark.invalid && benchmark.touched"
+                                            placeholder="Select Benchmark...">
+                                        <div *ngIf="benchmark.invalid && benchmark.touched">
+                                            <small *ngIf="benchmark.errors?.required" class="text-danger">Benchmark is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="scale_from"
+                                        [class.text-danger]="scale_from.invalid && scale_from.touched">Scale from<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="scale_from" name="scale_from" class="form-control"
+                                            placeholder="Enter Scale from .." [(ngModel)]="obj.scale_from" required
+                                            #scale_from="ngModel"
+                                            [class.is-invalid]="scale_from.invalid && scale_from.touched"
+                                            placeholder="Select Scale from...">
+                                        <div *ngIf="scale_from.invalid && scale_from.touched">
+                                            <small *ngIf="scale_from.errors?.required" class="text-danger">Scale from is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="scale_to"
+                                        [class.text-danger]="scale_to.invalid && scale_to.touched">Scale to<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="scale_to" name="scale_to" class="form-control"
+                                            placeholder="Enter Scale to .." [(ngModel)]="obj.scale_to" required
+                                            #scale_to="ngModel"
+                                            [class.is-invalid]="scale_to.invalid && scale_to.touched"
+                                            placeholder="Select Scale to...">
+                                        <div *ngIf="scale_to.invalid && scale_to.touched">
+                                            <small *ngIf="scale_to.errors?.required" class="text-danger">Scale to is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="activeId"
+                                        [class.text-danger]="activeId.invalid && activeId.touched">Active<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="activeId" name="activeId" class="form-control"
+                                            placeholder="Enter Active Id .." [(ngModel)]="obj.activeId" required
+                                            #activeId="ngModel"
+                                            [class.is-invalid]="activeId.invalid && activeId.touched"
+                                            placeholder="Select Active...">
+                                        <div *ngIf="activeId.invalid && activeId.touched">
+                                            <small *ngIf="activeId.errors?.required" class="text-danger">Active is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Benchmarkgraph</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="benchmark" caption="Benchmark"></dxi-column>
+                            <dxi-column dataField="scale_from" caption="Scale from"></dxi-column>
+                            <dxi-column dataField="scale_to" caption="Scale to"></dxi-column>
+                            <dxi-column dataField="activeId" caption="Active"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

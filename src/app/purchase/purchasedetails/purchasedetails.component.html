@@ -1,0 +1,191 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PurchaseID"
+                                                    [class.text-danger]="PurchaseID.invalid &amp;&amp; PurchaseID.touched">Purchase</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="purchase"
+                                                    bindLabel="ProcurementID"
+                                                    bindValue="id" #PurchaseID="ngModel" name="PurchaseID"
+                                                    [(ngModel)]="obj.PurchaseID"
+                                                    [class.is-invalid]="PurchaseID.invalid &amp;&amp; PurchaseID.touched"
+                                                    placeholder="Select Purchase..."
+                                                    required></ng-select>
+                                                <div *ngIf="PurchaseID.invalid &amp;&amp; PurchaseID.touched">
+                                                    <small *ngIf="PurchaseID.errors?.required"
+                                                        class="text-danger">Purchase is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ItemID"
+                                                    [class.text-danger]="ItemID.invalid &amp;&amp; ItemID.touched">Item</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="items"
+                                                    bindLabel="ItemCategoryID"
+                                                    bindValue="id" #ItemID="ngModel" name="ItemID"
+                                                    [(ngModel)]="obj.ItemID"
+                                                    [class.is-invalid]="ItemID.invalid &amp;&amp; ItemID.touched"
+                                                    placeholder="Select Item..."
+                                                    required></ng-select>
+                                                <div *ngIf="ItemID.invalid &amp;&amp; ItemID.touched">
+                                                    <small *ngIf="ItemID.errors?.required"
+                                                        class="text-danger">Item is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Price"
+                                                    [class.text-danger]="Price.invalid &amp;&amp; Price.touched">Price</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Price"
+                                                    name="Price" #Price="ngModel"
+                                                    [(ngModel)]="obj.Price"
+                                                    [class.is-invalid]="Price.invalid &amp;&amp; Price.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Price..."
+                                                    required>
+                                                <div *ngIf="Price.invalid &amp;&amp; Price.touched">
+                                                    <small *ngIf="Price.errors?.required"
+                                                        class="text-danger">Price is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Quantity"
+                                                    [class.text-danger]="Quantity.invalid &amp;&amp; Quantity.touched">Quantity</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Quantity"
+                                                    name="Quantity" #Quantity="ngModel"
+                                                    [(ngModel)]="obj.Quantity"
+                                                    [class.is-invalid]="Quantity.invalid &amp;&amp; Quantity.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Quantity..."
+                                                    required>
+                                                <div *ngIf="Quantity.invalid &amp;&amp; Quantity.touched">
+                                                    <small *ngIf="Quantity.errors?.required"
+                                                        class="text-danger">Quantity is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Description"
+                                                    [class.text-danger]="Description.invalid &amp;&amp; Description.touched">Description</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Description"
+                                                    name="Description" #Description="ngModel"
+                                                    [(ngModel)]="obj.Description"
+                                                    [class.is-invalid]="Description.invalid &amp;&amp; Description.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Description..."
+                                                    required>
+                                                <div *ngIf="Description.invalid &amp;&amp; Description.touched">
+                                                    <small *ngIf="Description.errors?.required"
+                                                        class="text-danger">Description is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Purchase Details</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="ProcurementID"
+                                        caption="Procurement">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ItemCategoryID"
+                                        caption="Item Category">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Price"
+                                        caption="Price">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Quantity"
+                                        caption="Quantity">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Description"
+                                        caption="Description">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

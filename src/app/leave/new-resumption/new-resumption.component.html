@@ -1,0 +1,283 @@
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div> -->
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #order="ngModelGroup" ngModelGroup="order"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Step I: Leave Resumption Application </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="LeaveTypeID">Leave Type</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.LeaveType }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label  class="col-md-4 form-control-label" for="PayLeaveGrant">Pay Leave Grant</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.PayLeaveGrant  }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="DateFrom">Date From</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.DateFrom | date:'longDate' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="DateFrom">Expected Resumption Date</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.DateBack | date:'longDate' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="DateFrom">Number of Days Applied</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.NoDayApplied }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="DateTo"
+                                                            [class.text-danger]="DateTo.invalid &amp;&amp; DateTo.touched">Resumption
+                                                            Date</label><i class="text-danger">*</i>
+                                                        <input type="date" id="DateTo" name="DateTo" #DateTo="ngModel"
+                                                            [(ngModel)]="obj.ResumptionDate"
+                                                            [class.is-invalid]="DateTo.invalid &amp;&amp; DateTo.touched"
+                                                            class="form-control" placeholder="Enter Date To..."
+                                                            required>
+                                                        <div *ngIf="DateTo.invalid &amp;&amp; DateTo.touched">
+                                                            <small *ngIf="DateTo.errors?.required"
+                                                                class="text-danger">Resumption Date To
+                                                                is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="RelieveOfficerID">Relieving Officer</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.RelieveOfficer }}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="ApprovalOfficerID"
+                                                            [class.text-danger]="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched">Approving
+                                                            Officer</label><i class="text-danger">*</i>
+                                                        <ng-select [items]="approver" bindLabel="FullName"
+                                                            bindValue="id" [(ngModel)]="obj.ApprovalOfficerID"
+                                                            name="ApprovalOfficerID" required
+                                                            #ApprovalOfficerID="ngModel"
+                                                            [class.is-invalid]="ApprovalOfficerID.invalid && ApprovalOfficerID.touched"
+                                                            placeholder="Select Approving Officer ..."></ng-select>
+                                                        <div
+                                                            *ngIf="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched">
+                                                            <small *ngIf="ApprovalOfficerID.errors?.required"
+                                                                class="text-danger">Approving Officer is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="button" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="button" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right" [disabled]="order.invalid"
+                                                (click)="onConfirm()">
+                                                <i class="fa fa-dot-circle-o"></i> Next</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 2: Confirmation</ng-template>
+                                        <div class="card-body">
+                                            <h3>Leave Application Information</h3>
+                                            <div class="row">
+                                               
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Leave
+                                                            Type</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.LeaveType}}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Date
+                                                            From</label>
+                                                        <div class="col-md-8">{{obj.DateFrom | date:'longDate'}}</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Expected Resumption Date</label>
+                                                        <div class="col-md-8">{{obj.DateBack | date:'longDate'}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Resumption
+                                                            Date</label>
+                                                        <div class="col-md-8">{{obj.ResumptionDate | date:'longDate'}}</div>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Pay
+                                                            Leave Grant</label>
+                                                        <div class="col-md-8">{{obj.PayLeaveGrant }}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Relieving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.RelieveOfficer}}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Approving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.ApprovalOfficerName}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer ">
+                                            <button type="button"  class="btn btn-sm btn-danger ">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button> &nbsp;
+                                            <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Back</button>
+                                            <button type="submit" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right">
+                                                <i class="fa fa-dot-circle-o"></i> Confirm</button>
+                                        </div>
+
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 3: Completion</ng-template>
+                                        <div class="card-body">
+                                            <h3>Leave Application Information</h3>
+                                            <div class="row">
+                                               
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Leave
+                                                            Type</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.LeaveType}}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Date
+                                                            From</label>
+                                                        <div class="col-md-8">{{obj.DateFrom | date:'longDate'}}</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Expected Resumption
+                                                            Date</label>
+                                                        <div class="col-md-8">{{obj.DateBack | date:'longDate'}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Resumption
+                                                            Date</label>
+                                                        <div class="col-md-8">{{obj.ResumptionDate | date:'longDate'}}</div>
+                                                    </div>
+                                                </div>
+                                                
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Pay
+                                                            Leave Grant</label>
+                                                        <div class="col-md-8">{{obj.PayLeaveGrant }}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Relieving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj.RelieveOfficer}}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Approving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.ApprovalOfficerName}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer pull-right">
+                                            
+                                            <a [routerLink]="['/leave/pending-resumption']" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-list"></i> Back to Pending Leave Resumption Request</a>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

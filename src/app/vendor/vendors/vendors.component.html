@@ -1,0 +1,214 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="VendorCategoryID"
+                                                    [class.text-danger]="VendorCategoryID.invalid &amp;&amp; VendorCategoryID.touched">Vendor Category</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="vendorcategory"
+                                                    bindLabel="VendorCategory"
+                                                    bindValue="id" #VendorCategoryID="ngModel" name="VendorCategoryID"
+                                                    [(ngModel)]="obj.VendorCategoryID"
+                                                    [class.is-invalid]="VendorCategoryID.invalid &amp;&amp; VendorCategoryID.touched"
+                                                    placeholder="Select Vendor Category..."
+                                                    required></ng-select>
+                                                <div *ngIf="VendorCategoryID.invalid &amp;&amp; VendorCategoryID.touched">
+                                                    <small *ngIf="VendorCategoryID.errors?.required"
+                                                        class="text-danger">Vendor Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="VendorName"
+                                                    [class.text-danger]="VendorName.invalid &amp;&amp; VendorName.touched">Vendor Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="VendorName"
+                                                    name="VendorName" #VendorName="ngModel"
+                                                    [(ngModel)]="obj.VendorName"
+                                                    [class.is-invalid]="VendorName.invalid &amp;&amp; VendorName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Vendor Name..."
+                                                    required>
+                                                <div *ngIf="VendorName.invalid &amp;&amp; VendorName.touched">
+                                                    <small *ngIf="VendorName.errors?.required"
+                                                        class="text-danger">Vendor Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Address"
+                                                    [class.text-danger]="Address.invalid &amp;&amp; Address.touched">Address</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Address"
+                                                    name="Address" #Address="ngModel"
+                                                    [(ngModel)]="obj.Address"
+                                                    [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Address..."
+                                                    required>
+                                                <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                                                    <small *ngIf="Address.errors?.required"
+                                                        class="text-danger">Address is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="TIN"
+                                                    [class.text-danger]="TIN.invalid &amp;&amp; TIN.touched">TIN</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="TIN"
+                                                    name="TIN" #TIN="ngModel"
+                                                    [(ngModel)]="obj.TIN"
+                                                    [class.is-invalid]="TIN.invalid &amp;&amp; TIN.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter TIN..."
+                                                    required>
+                                                <div *ngIf="TIN.invalid &amp;&amp; TIN.touched">
+                                                    <small *ngIf="TIN.errors?.required"
+                                                        class="text-danger">TIN is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountNumber"
+                                                    [class.text-danger]="AccountNumber.invalid &amp;&amp; AccountNumber.touched">Account Number</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="AccountNumber"
+                                                    name="AccountNumber" #AccountNumber="ngModel"
+                                                    [(ngModel)]="obj.AccountNumber"
+                                                    [class.is-invalid]="AccountNumber.invalid &amp;&amp; AccountNumber.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Account Number..."
+                                                    required>
+                                                <div *ngIf="AccountNumber.invalid &amp;&amp; AccountNumber.touched">
+                                                    <small *ngIf="AccountNumber.errors?.required"
+                                                        class="text-danger">Account Number is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Bank"
+                                                    [class.text-danger]="Bank.invalid &amp;&amp; Bank.touched">Bank</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Bank"
+                                                    name="Bank" #Bank="ngModel"
+                                                    [(ngModel)]="obj.Bank"
+                                                    [class.is-invalid]="Bank.invalid &amp;&amp; Bank.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Bank..."
+                                                    required>
+                                                <div *ngIf="Bank.invalid &amp;&amp; Bank.touched">
+                                                    <small *ngIf="Bank.errors?.required"
+                                                        class="text-danger">Bank is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Vendors</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="VendorCategory"
+                                        caption="Vendor Category">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="VendorName"
+                                        caption="Vendor Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Address"
+                                        caption="Address">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="TIN"
+                                        caption="TIN">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="AccountNumber"
+                                        caption="Account Number">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Bank"
+                                        caption="Bank">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

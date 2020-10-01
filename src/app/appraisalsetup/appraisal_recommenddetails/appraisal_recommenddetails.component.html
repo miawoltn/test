@@ -1,0 +1,117 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="appraisal_id"
+                                        [class.text-danger]="appraisal_id.invalid && appraisal_id.touched">Appraisal
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="appraisalheader" bindLabel="period_id" bindValue="id"
+                                            [(ngModel)]="obj.appraisal_id" name="appraisal_id" required
+                                            #appraisal_id="ngModel"
+                                            [class.is-invalid]="appraisal_id.invalid && appraisal_id.touched"
+                                            placeholder="Select Appraisal..."></ng-select>
+                                        <div *ngIf="appraisal_id.invalid && appraisal_id.touched">
+                                            <small *ngIf="appraisal_id.errors?.required" class="text-danger">Appraisal
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="optionID"
+                                        [class.text-danger]="optionID.invalid && optionID.touched">Option<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="optionID" name="optionID" class="form-control"
+                                            placeholder="Enter Option .." [(ngModel)]="obj.optionID" required
+                                            #optionID="ngModel"
+                                            [class.is-invalid]="optionID.invalid && optionID.touched"
+                                            placeholder="Select Option...">
+                                        <div *ngIf="optionID.invalid && optionID.touched">
+                                            <small *ngIf="optionID.errors?.required" class="text-danger">Option is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="action_id"
+                                        [class.text-danger]="action_id.invalid && action_id.touched">Action<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="action_id" name="action_id" class="form-control"
+                                            placeholder="Enter Action .." [(ngModel)]="obj.action_id" required
+                                            #action_id="ngModel"
+                                            [class.is-invalid]="action_id.invalid && action_id.touched"
+                                            placeholder="Select Action...">
+                                        <div *ngIf="action_id.invalid && action_id.touched">
+                                            <small *ngIf="action_id.errors?.required" class="text-danger">Action is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Appraisal recommenddetails</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="period_id" caption="Period"></dxi-column>
+                            <dxi-column dataField="optionID" caption="Option"></dxi-column>
+                            <dxi-column dataField="action_id" caption="Action"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

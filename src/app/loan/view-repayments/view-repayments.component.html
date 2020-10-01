@@ -1,0 +1,191 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="LoanID"
+                                                    [class.text-danger]="LoanID.invalid &amp;&amp; LoanID.touched">Loan</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="LoanID"
+                                                    name="LoanID" #LoanID="ngModel"
+                                                    [(ngModel)]="obj.LoanID"
+                                                    [class.is-invalid]="LoanID.invalid &amp;&amp; LoanID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Loan..."
+                                                    required>
+                                                <div *ngIf="LoanID.invalid &amp;&amp; LoanID.touched">
+                                                    <small *ngIf="LoanID.errors?.required"
+                                                        class="text-danger">Loan is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Amount"
+                                                    [class.text-danger]="Amount.invalid &amp;&amp; Amount.touched">Amount</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Amount"
+                                                    name="Amount" #Amount="ngModel"
+                                                    [(ngModel)]="obj.Amount"
+                                                    [class.is-invalid]="Amount.invalid &amp;&amp; Amount.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Amount..."
+                                                    required>
+                                                <div *ngIf="Amount.invalid &amp;&amp; Amount.touched">
+                                                    <small *ngIf="Amount.errors?.required"
+                                                        class="text-danger">Amount is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PayrollPeriodID"
+                                                    [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Payroll Period</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="PayrollPeriodID"
+                                                    name="PayrollPeriodID" #PayrollPeriodID="ngModel"
+                                                    [(ngModel)]="obj.PayrollPeriodID"
+                                                    [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Payroll Period..."
+                                                    required>
+                                                <div *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                                    <small *ngIf="PayrollPeriodID.errors?.required"
+                                                        class="text-danger">Payroll Period is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RepaymentTypeID"
+                                                    [class.text-danger]="RepaymentTypeID.invalid &amp;&amp; RepaymentTypeID.touched">Repayment Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="RepaymentTypeID"
+                                                    name="RepaymentTypeID" #RepaymentTypeID="ngModel"
+                                                    [(ngModel)]="obj.RepaymentTypeID"
+                                                    [class.is-invalid]="RepaymentTypeID.invalid &amp;&amp; RepaymentTypeID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Repayment Type..."
+                                                    required>
+                                                <div *ngIf="RepaymentTypeID.invalid &amp;&amp; RepaymentTypeID.touched">
+                                                    <small *ngIf="RepaymentTypeID.errors?.required"
+                                                        class="text-danger">Repayment Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RepaymentSourceID"
+                                                    [class.text-danger]="RepaymentSourceID.invalid &amp;&amp; RepaymentSourceID.touched">Repayment Source</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="RepaymentSourceID"
+                                                    name="RepaymentSourceID" #RepaymentSourceID="ngModel"
+                                                    [(ngModel)]="obj.RepaymentSourceID"
+                                                    [class.is-invalid]="RepaymentSourceID.invalid &amp;&amp; RepaymentSourceID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Repayment Source..."
+                                                    required>
+                                                <div *ngIf="RepaymentSourceID.invalid &amp;&amp; RepaymentSourceID.touched">
+                                                    <small *ngIf="RepaymentSourceID.errors?.required"
+                                                        class="text-danger">Repayment Source is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Loan Repayment</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="LoanID"
+                                        caption="Loan ID">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Amount"
+                                        caption="Amount">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PayrollPeriodID"
+                                        caption="Payroll Period ID">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="RepaymentTypeID"
+                                        caption="Repayment Type ID">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="RepaymentSourceID"
+                                        caption="Repayment Source ID">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,243 @@
+
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="CustomerID"
+                          [class.text-danger]="CustomerID.invalid &amp;&amp; CustomerID.touched">Customer
+                         </label><i class="text-danger">*</i>
+                        <ng-select [items]="customer" bindLabel="CustomerTypeID" bindValue="id" #CustomerID="ngModel"
+                          name="CustomerID" [(ngModel)]="obj.CustomerID"
+                          [class.is-invalid]="CustomerID.invalid &amp;&amp; CustomerID.touched"
+                          placeholder="Select Customer..." required></ng-select>
+                        <div *ngIf="CustomerID.invalid &amp;&amp; CustomerID.touched">
+                          <small *ngIf="CustomerID.errors?.required" class="text-danger">Customer is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectTypeID"
+                          [class.text-danger]="ProjectTypeID.invalid &amp;&amp; ProjectTypeID.touched">Project
+                          Type</label><i class="text-danger">*</i>
+                        <ng-select [items]="projecttype" bindLabel="ProjectType" bindValue="id" #ProjectTypeID="ngModel"
+                          name="ProjectTypeID" [(ngModel)]="obj.ProjectTypeID"
+                          [class.is-invalid]="ProjectTypeID.invalid &amp;&amp; ProjectTypeID.touched"
+                          placeholder="Select Project Type..." required></ng-select>
+                        <div *ngIf="ProjectTypeID.invalid &amp;&amp; ProjectTypeID.touched">
+                          <small *ngIf="ProjectTypeID.errors?.required" class="text-danger">Project Type is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectSubTypeID"
+                          [class.text-danger]="ProjectSubTypeID.invalid &amp;&amp; ProjectSubTypeID.touched">Project
+                          Sub Type</label><i class="text-danger">*</i>
+                        <ng-select [items]="projectsubtype" bindLabel="ProjectTypeID" bindValue="id"
+                          #ProjectSubTypeID="ngModel" name="ProjectSubTypeID" [(ngModel)]="obj.ProjectSubTypeID"
+                          [class.is-invalid]="ProjectSubTypeID.invalid &amp;&amp; ProjectSubTypeID.touched"
+                          placeholder="Select Project Sub Type..." required></ng-select>
+                        <div *ngIf="ProjectSubTypeID.invalid &amp;&amp; ProjectSubTypeID.touched">
+                          <small *ngIf="ProjectSubTypeID.errors?.required" class="text-danger">Project Sub Type is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectStatusID"
+                          [class.text-danger]="ProjectStatusID.invalid &amp;&amp; ProjectStatusID.touched">Project
+                          Status</label><i class="text-danger">*</i>
+                        <ng-select [items]="projectstatus" bindLabel="ProjectStatus" bindValue="id"
+                          #ProjectStatusID="ngModel" name="ProjectStatusID" [(ngModel)]="obj.ProjectStatusID"
+                          [class.is-invalid]="ProjectStatusID.invalid &amp;&amp; ProjectStatusID.touched"
+                          placeholder="Select Project Status..." required></ng-select>
+                        <div *ngIf="ProjectStatusID.invalid &amp;&amp; ProjectStatusID.touched">
+                          <small *ngIf="ProjectStatusID.errors?.required" class="text-danger">Project Status is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectDescription"
+                          [class.text-danger]="ProjectDescription.invalid &amp;&amp; ProjectDescription.touched">Project
+                          Description</label><i class="text-danger">*</i>
+                        <input type="text" id="ProjectDescription" name="ProjectDescription"
+                          #ProjectDescription="ngModel" [(ngModel)]="obj.ProjectDescription"
+                          [class.is-invalid]="ProjectDescription.invalid &amp;&amp; ProjectDescription.touched"
+                          class="form-control" placeholder="Enter Project Description..." required>
+                        <div *ngIf="ProjectDescription.invalid &amp;&amp; ProjectDescription.touched">
+                          <small *ngIf="ProjectDescription.errors?.required" class="text-danger">Project Description is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectLocation"
+                          [class.text-danger]="ProjectLocation.invalid &amp;&amp; ProjectLocation.touched">Project
+                          Location</label><i class="text-danger">*</i>
+                        <input type="text" id="ProjectLocation" name="ProjectLocation" #ProjectLocation="ngModel"
+                          [(ngModel)]="obj.ProjectLocation"
+                          [class.is-invalid]="ProjectLocation.invalid &amp;&amp; ProjectLocation.touched"
+                          class="form-control" placeholder="Enter Project Location..." required>
+                        <div *ngIf="ProjectLocation.invalid &amp;&amp; ProjectLocation.touched">
+                          <small *ngIf="ProjectLocation.errors?.required" class="text-danger">Project Location is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectApprovedBudget"
+                          [class.text-danger]="ProjectApprovedBudget.invalid &amp;&amp; ProjectApprovedBudget.touched">ProjectApproved
+                          Budget</label><i class="text-danger">*</i>
+                        <input type="number" id="ProjectApprovedBudget" name="ProjectApprovedBudget"
+                          #ProjectApprovedBudget="ngModel" [(ngModel)]="obj.ProjectApprovedBudget"
+                          [class.is-invalid]="ProjectApprovedBudget.invalid &amp;&amp; ProjectApprovedBudget.touched"
+                          class="form-control" placeholder="Enter ProjectApproved Budget..." required>
+                        <div *ngIf="ProjectApprovedBudget.invalid &amp;&amp; ProjectApprovedBudget.touched">
+                          <small *ngIf="ProjectApprovedBudget.errors?.required" class="text-danger">ProjectApproved
+                            Budget is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectDuration"
+                          [class.text-danger]="ProjectDuration.invalid &amp;&amp; ProjectDuration.touched">Project
+                          Duration</label><i class="text-danger">*</i>
+                        <input type="text" id="ProjectDuration" name="ProjectDuration" #ProjectDuration="ngModel"
+                          [(ngModel)]="obj.ProjectDuration"
+                          [class.is-invalid]="ProjectDuration.invalid &amp;&amp; ProjectDuration.touched"
+                          class="form-control" placeholder="Enter Project Duration..." required>
+                        <div *ngIf="ProjectDuration.invalid &amp;&amp; ProjectDuration.touched">
+                          <small *ngIf="ProjectDuration.errors?.required" class="text-danger">Project Duration is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectAwardDate"
+                          [class.text-danger]="ProjectAwardDate.invalid &amp;&amp; ProjectAwardDate.touched">ProjectAward
+                          Date</label><i class="text-danger">*</i>
+                        <input type="text" id="ProjectAwardDate" name="ProjectAwardDate" #ProjectAwardDate="ngModel"
+                          [(ngModel)]="obj.ProjectAwardDate"
+                          [class.is-invalid]="ProjectAwardDate.invalid &amp;&amp; ProjectAwardDate.touched"
+                          class="form-control" placeholder="Enter ProjectAward Date..." required>
+                        <div *ngIf="ProjectAwardDate.invalid &amp;&amp; ProjectAwardDate.touched">
+                          <small *ngIf="ProjectAwardDate.errors?.required" class="text-danger">ProjectAward Date is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ProjectStartDate"
+                          [class.text-danger]="ProjectStartDate.invalid &amp;&amp; ProjectStartDate.touched">Project
+                          Start Date</label><i class="text-danger">*</i>
+                        <input type="text" id="ProjectStartDate" name="ProjectStartDate" #ProjectStartDate="ngModel"
+                          [(ngModel)]="obj.ProjectStartDate"
+                          [class.is-invalid]="ProjectStartDate.invalid &amp;&amp; ProjectStartDate.touched"
+                          class="form-control" placeholder="Enter Project Start Date..." required>
+                        <div *ngIf="ProjectStartDate.invalid &amp;&amp; ProjectStartDate.touched">
+                          <small *ngIf="ProjectStartDate.errors?.required" class="text-danger">Project Start Date is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Project</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="CustomerName" caption="Customer Name">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectType" caption="Project Type">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectStatus" caption="Project Status">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectDescription" caption="Project Description">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectLocation" caption="Project Location">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectApprovedBudget" caption="ProjectApproved Budget">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectDuration" caption="Project Duration">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectAwardDate" caption="ProjectAward Date">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectStartDate" caption="Project Start Date">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+
+                  <dxi-column type="buttons" caption="Overview">
+                    <dxi-button text="Overview" [onClick]="overview"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

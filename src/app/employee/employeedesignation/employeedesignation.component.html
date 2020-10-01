@@ -1,0 +1,122 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployeeDesignation"
+                                                    [class.text-danger]="EmployeeDesignation.invalid &amp;&amp; EmployeeDesignation.touched">Employee Designation</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="EmployeeDesignation"
+                                                    name="EmployeeDesignation" #EmployeeDesignation="ngModel"
+                                                    [(ngModel)]="obj.EmployeeDesignation"
+                                                    [class.is-invalid]="EmployeeDesignation.invalid &amp;&amp; EmployeeDesignation.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Employee Designation..."
+                                                    required>
+                                                <div *ngIf="EmployeeDesignation.invalid &amp;&amp; EmployeeDesignation.touched">
+                                                    <small *ngIf="EmployeeDesignation.errors?.required"
+                                                        class="text-danger">Employee Designation is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ReportToID"
+                                                    [class.text-danger]="ReportToID.invalid &amp;&amp; ReportToID.touched">Report To</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ReportToID"
+                                                    name="ReportToID" #ReportToID="ngModel"
+                                                    [(ngModel)]="obj.ReportToID"
+                                                    [class.is-invalid]="ReportToID.invalid &amp;&amp; ReportToID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Report To..."
+                                                    required>
+                                                <div *ngIf="ReportToID.invalid &amp;&amp; ReportToID.touched">
+                                                    <small *ngIf="ReportToID.errors?.required"
+                                                        class="text-danger">Report To is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Employee Designation</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="EmployeeDesignation"
+                                        caption="Employee Designation">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ReportToID"
+                                        caption="Report To">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

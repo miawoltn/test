@@ -1,0 +1,103 @@
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Employees</h4>
+                        <div class="box-tools pull-right">
+                            <!-- <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button> -->
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <!-- <dxi-column dataField="EmployeeTitle" caption="Employee Title">
+                                    </dxi-column> -->
+                                    <dxi-column dataField="id" caption="#">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Full Name">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateOfBirth" caption="Date Of Birth">
+                                    </dxi-column>
+                                    <dxi-column dataField="Gender" caption="Gender">
+                                    </dxi-column>
+                                    <dxi-column dataField="Email" caption="Email">
+                                    </dxi-column>
+                                    <dxi-column dataField="MaritalStatus" caption="Marital Status">
+                                    </dxi-column>
+                                    <dxi-column dataField="MobileNum" caption="Mobile Num">
+                                    </dxi-column>
+                                    <dxi-column dataField="EmployeeType" caption="Employee Type">
+                                    </dxi-column>
+                                    <dxi-column dataField="EmployeeNumber" caption="Employee Number">
+                                    </dxi-column>
+                                    <dxi-column dataField="StatusName" caption="Employee Status">
+                                    </dxi-column>
+                                    <dxi-column dataField="Religion" caption="Religion">
+                                    </dxi-column>
+                                    <!-- <dxi-column dataField="Grade" caption="Grade">
+                                    </dxi-column>
+                                    <dxi-column dataField="GradeLevel" caption="Grade Level">
+                                    </dxi-column> -->
+                                    <dxi-column dataField="CompanyName" caption="Company">
+                                    </dxi-column>
+                                    <dxi-column dataField="UnitName" caption="Unit">
+                                    </dxi-column>
+                                    <dxi-column dataField="BranchName" caption="Branch">
+                                    </dxi-column>
+                                    <dxi-column dataField="DepartmentName" caption="Department">
+                                    </dxi-column>
+                                    <dxi-column dataField="DesignationName" caption="Designation">
+                                    </dxi-column>
+
+                                    <!-- <dxi-column dataField="StateID" caption="State">
+                                    </dxi-column> -->
+                                    <!-- <dxi-column dataField="StatusID" caption="Status">
+                                    </dxi-column> -->
+                                    <dxi-column dataField="Name" caption="Nationality">
+                                    </dxi-column>
+                                    <dxi-column dataField="state" caption="State of Origin">
+                                    </dxi-column>
+                                    <dxi-column dataField="local_govt" caption="Local Government">
+                                    </dxi-column>
+
+                                    <dxi-column dataField="ResidentialAddress" caption="Residential Address">
+                                    </dxi-column>
+                                    <!-- <dxi-column dataField="Tribe" caption="Tribe">
+                                    </dxi-column>
+                                    <dxi-column dataField="Hobbies" caption="Hobbies">
+                                    </dxi-column> -->
+
+                                    <!-- <dxi-column dataField="NHFNo" caption="N H F No">
+                                    </dxi-column> -->
+                                    <dxi-column dataField="PensionProvider" caption="Pension Provider">
+                                    </dxi-column>
+                                    <dxi-column dataField="BankName" caption="Bank">
+                                    </dxi-column>
+                                    <dxi-column dataField="BankAccountNo" caption="BankAccount No">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="fa fa-user" text="Profile" [onClick]="loadProfile"></dxi-button>
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

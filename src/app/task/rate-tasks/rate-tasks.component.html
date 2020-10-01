@@ -1,0 +1,150 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }}</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <form #form="ngForm" (ngSubmit)="processForm()">
+                            <div class="card-body">
+                                <div class="row">
+                    
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Task">Task</label>
+                                            <div class="col-md-8">
+                                                {{obj.Task }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="PriorityID">Priority</label>
+                                            <div class="col-md-8">
+                                                {{obj.TaskPriority}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="TaskStatusID">Task
+                                                Status</label>
+                                            <div class="col-md-8">
+                                                {{obj.TaskStatus}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="AssignTo">Assigned
+                                                To</label>
+                                            <div class="col-md-8">
+                                                {{ obj.FullName }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="ProjectID"
+                                                [class.text-danger]="ProjectID.invalid &amp;&amp; ProjectID.touched">Score</label>
+                                            <div class="col-md-8">
+                                                <ng-select [items]="project" bindLabel="title"
+                                                    bindValue="id" [(ngModel)]="obj.ratingScore" name="ProjectID"
+                                                    required #ProjectID="ngModel"
+                                                    [class.is-invalid]="ProjectID.invalid &amp;&amp; ProjectID.touched"
+                                                    placeholder="Select Score..."></ng-select>
+                                                <div *ngIf="ProjectID.invalid &amp;&amp; ProjectID.touched">
+                                                    <small *ngIf="ProjectID.errors?.required"
+                                                        class="text-danger">Score is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="ProjectID">Project</label>
+                                            <div class="col-md-8">
+                                                {{ obj.ProjectDescription}}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="DueDate">Due
+                                                Date</label>
+                                            <div class="col-md-8">
+                                                {{obj.DueDate | date: 'longDate'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Description">Description
+                                                </label>
+                                            <div class="col-md-12">
+                                                {{obj.Description}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" class="btn btn-default" (click)="hideForm()">Cancel</button>
+                                &nbsp;
+                                <button type="submit" class="btn btn-primary pull-right"
+                                    [disabled]="form.invalid">Submit</button>&nbsp;
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Task Pending Rating</h4>
+
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" 
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="Task" caption="Task">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectDescription" caption="Project">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Assigned To">
+                                    </dxi-column>
+                                    <dxi-column dataField="TaskStatus" caption="Task Status">
+                                    </dxi-column>
+                                    <dxi-column dataField="TaskPriority" caption="Task Priority">
+                                    </dxi-column>
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Rate Task" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

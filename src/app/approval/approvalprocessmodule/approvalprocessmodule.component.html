@@ -1,0 +1,120 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalProcessModule"
+                                                    [class.text-danger]="ApprovalProcessModule.invalid &amp;&amp; ApprovalProcessModule.touched">Approval Process Module</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApprovalProcessModule"
+                                                    name="ApprovalProcessModule" #ApprovalProcessModule="ngModel"
+                                                    [(ngModel)]="obj.ApprovalProcessModule"
+                                                    [class.is-invalid]="ApprovalProcessModule.invalid &amp;&amp; ApprovalProcessModule.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approval Process Module..."
+                                                    required>
+                                                <div *ngIf="ApprovalProcessModule.invalid &amp;&amp; ApprovalProcessModule.touched">
+                                                    <small *ngIf="ApprovalProcessModule.errors?.required"
+                                                        class="text-danger">Approval Process Module is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="MaxApprovalCount"
+                                                    [class.text-danger]="MaxApprovalCount.invalid &amp;&amp; MaxApprovalCount.touched">MaxApproval Count</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="MaxApprovalCount"
+                                                    name="MaxApprovalCount" #MaxApprovalCount="ngModel"
+                                                    [(ngModel)]="obj.MaxApprovalCount"
+                                                    [class.is-invalid]="MaxApprovalCount.invalid &amp;&amp; MaxApprovalCount.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Max Approval Count..."
+                                                    required>
+                                                <div *ngIf="MaxApprovalCount.invalid &amp;&amp; MaxApprovalCount.touched">
+                                                    <small *ngIf="MaxApprovalCount.errors?.required"
+                                                        class="text-danger">Max Approval Count is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Approval Process Module</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="ApprovalProcessModule"
+                                        caption="Approval Process Module">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="MaxApprovalCount"
+                                        caption="Max Approval Count">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

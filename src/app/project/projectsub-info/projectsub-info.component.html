@@ -1,0 +1,338 @@
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6"> 
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="CustomerID">Parent Project
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ obj.ProjectDescription }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="ProjectTypeID">Sub Project
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ obj.ProjectSubTitle }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectSubTypeID">Resident Engineer</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.FullName }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="ProjectStatusID">Duration</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.Duration }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectStartDate">Project
+                                                    Start Date</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.StartDate | date: 'EEEE, MMMM d, y' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-primary" (click)="showAddSub()">
+                                        Add Sub Project
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- <div class="content-body" *ngIf="this.sub.length > 0"> -->
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Project</h4>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="CustomerName" caption="Customer Name">
+                                    </dxi-column>
+                                    <!-- <dxi-column dataField="ProjectType" caption="Project Type">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectStatus" caption="Project Status">
+                                    </dxi-column> -->
+                                    <dxi-column dataField="ProjectDescription" caption="Project Description">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectLocation" caption="Project Location">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectApprovedBudget" caption="ProjectApproved Budget">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectDuration" caption="Project Duration">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectAwardDate" caption="ProjectAward Date">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectStartDate" caption="Project Start Date">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="View" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">Sub Projects</h4>
+                    </div>
+                    <div class="card-content collpase show" *ngFor="let obj of this.sub">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="CustomerID">Project Sub Title
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ obj.ProjectSubTitle }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="ProjectTypeID">Resident Engineer
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ obj.FirstName }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="ProjectSubTypeID">Duration
+                                                    Sub Type</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.Duration }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectAwardDate">ProjectAward Date</label>
+                                                <div class="col-md-8">
+                                                    {{ obj.StartDate | date: 'EEEE, MMMM d, y' }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-primary" (click)="showAddSub()">
+                                        Add Sub Project
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+</div>
+
+<div class="content-body" *ngIf="addSub">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectSubTitle"
+                                                    [class.text-danger]="ProjectSubTitle.invalid &amp;&amp; ProjectSubTitle.touched">Project
+                                                    Sub Title</label><i class="text-danger">*</i>
+                                                <input type="text" id="ProjectSubTitle" name="ProjectSubTitle"
+                                                    #ProjectSubTitle="ngModel" [(ngModel)]="obj.ProjectSubTitle"
+                                                    [class.is-invalid]="ProjectSubTitle.invalid &amp;&amp; ProjectSubTitle.touched"
+                                                    class="form-control" placeholder="Enter Project Sub Title..."
+                                                    required>
+                                                <div *ngIf="ProjectSubTitle.invalid &amp;&amp; ProjectSubTitle.touched">
+                                                    <small *ngIf="ProjectSubTitle.errors?.required"
+                                                        class="text-danger">Project Sub Title is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ResidentEngineerID"
+                                                    [class.text-danger]="ResidentEngineerID.invalid &amp;&amp; ResidentEngineerID.touched">Resident
+                                                    Engineer</label><i class="text-danger">*</i>
+                                                <ng-select [items]="employees" bindValue="EmployeeID"
+                                                    bindLabel="FullName" id="ResidentEngineerID"
+                                                    name="ResidentEngineerID" #ResidentEngineerID="ngModel"
+                                                    [(ngModel)]="obj.ResidentEngineerID"
+                                                    [class.is-invalid]="ResidentEngineerID.invalid &amp;&amp; ResidentEngineerID.touched"
+                                                    placeholder="Select Resident Engineer..." required></ng-select>
+                                                <div
+                                                    *ngIf="ResidentEngineerID.invalid &amp;&amp; ResidentEngineerID.touched">
+                                                    <small *ngIf="ResidentEngineerID.errors?.required"
+                                                        class="text-danger">Resident Engineer is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Duration"
+                                                    [class.text-danger]="Duration.invalid &amp;&amp; Duration.touched">Duration</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="number" id="Duration" name="Duration" #Duration="ngModel"
+                                                    [(ngModel)]="obj.Duration"
+                                                    [class.is-invalid]="Duration.invalid &amp;&amp; Duration.touched"
+                                                    class="form-control" placeholder="Enter Duration..." required>
+                                                <div *ngIf="Duration.invalid &amp;&amp; Duration.touched">
+                                                    <small *ngIf="Duration.errors?.required"
+                                                        class="text-danger">Duration is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StartDate"
+                                                    [class.text-danger]="StartDate.invalid &amp;&amp; StartDate.touched">Start
+                                                    Date</label><i class="text-danger">*</i>
+                                                <input type="date" id="StartDate" name="StartDate" #StartDate="ngModel"
+                                                    [(ngModel)]="obj.StartDate"
+                                                    [class.is-invalid]="StartDate.invalid &amp;&amp; StartDate.touched"
+                                                    class="form-control" placeholder="Enter Start Date..." required>
+                                                <div *ngIf="StartDate.invalid &amp;&amp; StartDate.touched">
+                                                    <small *ngIf="StartDate.errors?.required" class="text-danger">Start
+                                                        Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectID"
+                                                    [class.text-danger]="ProjectID.invalid &amp;&amp; ProjectID.touched">Project
+                                                   </label><i class="text-danger">*</i>
+                                                <ng-select [items]="project" bindLabel="CustomerID" bindValue="id"
+                                                    #ProjectID="ngModel" name="ProjectID" [(ngModel)]="obj.ProjectID"
+                                                    [class.is-invalid]="ProjectID.invalid &amp;&amp; ProjectID.touched"
+                                                    placeholder="Select Project..." required></ng-select>
+                                                <div *ngIf="ProjectID.invalid &amp;&amp; ProjectID.touched">
+                                                    <small *ngIf="ProjectID.errors?.required"
+                                                        class="text-danger">Project is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ParentProjectSubID"
+                                                    [class.text-danger]="ParentProjectSubID.invalid &amp;&amp; ParentProjectSubID.touched">Parent
+                                                    Project Sub</label><i class="text-danger">*</i>
+                                                <input type="number" id="ParentProjectSubID" name="ParentProjectSubID"
+                                                    #ParentProjectSubID="ngModel" [(ngModel)]="obj.ParentProjectSubID"
+                                                    [class.is-invalid]="ParentProjectSubID.invalid &amp;&amp; ParentProjectSubID.touched"
+                                                    class="form-control" placeholder="Enter Parent Project Sub..."
+                                                    required>
+                                                <div
+                                                    *ngIf="ParentProjectSubID.invalid &amp;&amp; ParentProjectSubID.touched">
+                                                    <small *ngIf="ParentProjectSubID.errors?.required"
+                                                        class="text-danger">Parent Project Sub is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

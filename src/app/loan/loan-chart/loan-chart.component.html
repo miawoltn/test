@@ -1,0 +1,48 @@
+<div class="content-body">
+    <div class="card">
+
+        <div class="card-content collpase show">
+            <div class="card-body">
+                <dx-chart id="sales-chart">
+                    <dxo-common-series-settings [type]="bar">
+                        <dxo-label [visible]="true" [format]="{
+                            type: 'fixedPoint',
+                            precision: '0'
+                        }" position="outside">
+                        </dxo-label>
+                    </dxo-common-series-settings>
+                    <dxo-size [height]="400"></dxo-size>
+                    <dxo-adaptive-layout [width]="450"></dxo-adaptive-layout>
+                    <dxo-tooltip [enabled]="true" format="currency" [customizeTooltip]="customizeTooltip"></dxo-tooltip>
+                    <dxo-export [enabled]="true"></dxo-export>
+                    <dxi-value-axis valueType="numeric"></dxi-value-axis>
+                </dx-chart>
+                <br />
+                <br />
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <div class="col-md-4">
+                            <label for="EmployeeDesignation">Series Type</label>
+                        </div>
+                        <div class="col-md-8">
+                            <dx-select-box [dataSource]="bars" [(value)]="bar">
+                            </dx-select-box>
+                        </div>
+                    </div>
+                </div>
+
+                <dx-pivot-grid id="pivotgrid" [allowSortingBySummary]="true" [allowFiltering]="true"
+                    [showBorders]="true" [allowSortingBySummary]="true" [showColumnGrandTotals]="false"
+                    [showRowGrandTotals]="false" [showRowTotals]="false" [showColumnTotals]="false"
+                    [dataSource]="pivotGridDataSource">
+                    <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
+                    <dxo-field-panel [showDataFields]="showDataFields" [showRowFields]="showRowFields"
+                        [showColumnFields]="showColumnFields" [showFilterFields]="showFilterFields"
+                        [allowFieldDragging]="true" [visible]="true">
+                    </dxo-field-panel>
+                    <dxo-scrolling mode="virtual"></dxo-scrolling>
+                </dx-pivot-grid>
+            </div>
+        </div>
+    </div>
+</div>

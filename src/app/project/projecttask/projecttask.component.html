@@ -1,0 +1,146 @@
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProjectMilestoneID"
+                                                    [class.text-danger]="ProjectMilestoneID.invalid &amp;&amp; ProjectMilestoneID.touched">Project
+                                                    Milestone</label><i class="text-danger">*</i>
+                                                <ng-select [items]="projectmilestone" bindLabel="ProjectID"
+                                                    bindValue="id" #ProjectMilestoneID="ngModel"
+                                                    name="ProjectMilestoneID" [(ngModel)]="obj.ProjectMilestoneID"
+                                                    [class.is-invalid]="ProjectMilestoneID.invalid &amp;&amp; ProjectMilestoneID.touched"
+                                                    placeholder="Select Project Milestone..." required></ng-select>
+                                                <div
+                                                    *ngIf="ProjectMilestoneID.invalid &amp;&amp; ProjectMilestoneID.touched">
+                                                    <small *ngIf="ProjectMilestoneID.errors?.required"
+                                                        class="text-danger">Project Milestone is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Task"
+                                                    [class.text-danger]="Task.invalid &amp;&amp; Task.touched">Task</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="text" id="Task" name="Task" #Task="ngModel"
+                                                    [(ngModel)]="obj.Task"
+                                                    [class.is-invalid]="Task.invalid &amp;&amp; Task.touched"
+                                                    class="form-control" placeholder="Enter Task..." required>
+                                                <div *ngIf="Task.invalid &amp;&amp; Task.touched">
+                                                    <small *ngIf="Task.errors?.required" class="text-danger">Task is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StartDate"
+                                                    [class.text-danger]="StartDate.invalid &amp;&amp; StartDate.touched">Start
+                                                    Date</label><i class="text-danger">*</i>
+                                                <input type="text" id="StartDate" name="StartDate" #StartDate="ngModel"
+                                                    [(ngModel)]="obj.StartDate"
+                                                    [class.is-invalid]="StartDate.invalid &amp;&amp; StartDate.touched"
+                                                    class="form-control" placeholder="Enter Start Date..." required>
+                                                <div *ngIf="StartDate.invalid &amp;&amp; StartDate.touched">
+                                                    <small *ngIf="StartDate.errors?.required" class="text-danger">Start
+                                                        Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EndDate"
+                                                    [class.text-danger]="EndDate.invalid &amp;&amp; EndDate.touched">End
+                                                    Date</label><i class="text-danger">*</i>
+                                                <input type="text" id="EndDate" name="EndDate" #EndDate="ngModel"
+                                                    [(ngModel)]="obj.EndDate"
+                                                    [class.is-invalid]="EndDate.invalid &amp;&amp; EndDate.touched"
+                                                    class="form-control" placeholder="Enter End Date..." required>
+                                                <div *ngIf="EndDate.invalid &amp;&amp; EndDate.touched">
+                                                    <small *ngIf="EndDate.errors?.required" class="text-danger">End Date
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Project Task</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="ProjectID" caption="Project">
+                                    </dxi-column>
+                                    <dxi-column dataField="Task" caption="Task">
+                                    </dxi-column>
+                                    <dxi-column dataField="StartDate" caption="Start Date">
+                                    </dxi-column>
+                                    <dxi-column dataField="EndDate" caption="End Date">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

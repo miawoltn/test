@@ -1,0 +1,191 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_day_id"
+                                                    [class.text-danger]="shift_day_id.invalid &amp;&amp; shift_day_id.touched">Shift Day</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shift_days"
+                                                    bindLabel="shift_day_name"
+                                                    bindValue="id" #shift_day_id="ngModel" name="shift_day_id"
+                                                    [(ngModel)]="obj.shift_day_id"
+                                                    [class.is-invalid]="shift_day_id.invalid &amp;&amp; shift_day_id.touched"
+                                                    placeholder="Select Shift Day..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_day_id.invalid &amp;&amp; shift_day_id.touched">
+                                                    <small *ngIf="shift_day_id.errors?.required"
+                                                        class="text-danger">Shift day is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_template_id"
+                                                    [class.text-danger]="shift_template_id.invalid &amp;&amp; shift_template_id.touched">Shift Template</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shift_templates"
+                                                    bindLabel="shift_template"
+                                                    bindValue="id" #shift_template_id="ngModel" name="shift_template_id"
+                                                    [(ngModel)]="obj.shift_template_id"
+                                                    [class.is-invalid]="shift_template_id.invalid &amp;&amp; shift_template_id.touched"
+                                                    placeholder="Select Shift Template..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_template_id.invalid &amp;&amp; shift_template_id.touched">
+                                                    <small *ngIf="shift_template_id.errors?.required"
+                                                        class="text-danger">Shift Template is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="shift_status_id"
+                                                    [class.text-danger]="shift_status_id.invalid &amp;&amp; shift_status_id.touched">Shift Status</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="shift_status"
+                                                    bindLabel="shift_status"
+                                                    bindValue="id" #shift_status_id="ngModel" name="shift_status_id"
+                                                    [(ngModel)]="obj.shift_status_id"
+                                                    [class.is-invalid]="shift_status_id.invalid &amp;&amp; shift_status_id.touched"
+                                                    placeholder="Select Shift Status..."
+                                                    required></ng-select>
+                                                <div *ngIf="shift_status_id.invalid &amp;&amp; shift_status_id.touched">
+                                                    <small *ngIf="shift_status_id.errors?.required"
+                                                        class="text-danger">Shift Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="time_from"
+                                                    [class.text-danger]="time_from.invalid &amp;&amp; time_from.touched">Time from</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="time_from"
+                                                    name="time_from" #time_from="ngModel"
+                                                    [(ngModel)]="obj.time_from"
+                                                    [class.is-invalid]="time_from.invalid &amp;&amp; time_from.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Time from..."
+                                                    required>
+                                                <div *ngIf="time_from.invalid &amp;&amp; time_from.touched">
+                                                    <small *ngIf="time_from.errors?.required"
+                                                        class="text-danger">Time from is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="time_to"
+                                                    [class.text-danger]="time_to.invalid &amp;&amp; time_to.touched">Time to</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="time_to"
+                                                    name="time_to" #time_to="ngModel"
+                                                    [(ngModel)]="obj.time_to"
+                                                    [class.is-invalid]="time_to.invalid &amp;&amp; time_to.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Time to..."
+                                                    required>
+                                                <div *ngIf="time_to.invalid &amp;&amp; time_to.touched">
+                                                    <small *ngIf="time_to.errors?.required"
+                                                        class="text-danger">Time to is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Shift Template Details</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="shift_day_name"
+                                        caption="Shift Day Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_template"
+                                        caption="Shift Template">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="shift_status"
+                                        caption="Shift Status">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="time_from"
+                                        caption="Time from">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="time_to"
+                                        caption="Time to">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

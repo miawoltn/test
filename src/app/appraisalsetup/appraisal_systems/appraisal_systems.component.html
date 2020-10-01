@@ -1,0 +1,136 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="systemname"
+                                        [class.text-danger]="systemname.invalid && systemname.touched">System Name<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="systemname" name="systemname" class="form-control"
+                                            placeholder="Enter System Name .." [(ngModel)]="obj.systemname" required
+                                            #systemname="ngModel"
+                                            [class.is-invalid]="systemname.invalid && systemname.touched"
+                                            placeholder="Select System Name...">
+                                        <div *ngIf="systemname.invalid && systemname.touched">
+                                            <small *ngIf="systemname.errors?.required" class="text-danger">System Name is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="measurements"
+                                        [class.text-danger]="measurements.invalid && measurements.touched">Measurements<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="measurements" name="measurements" class="form-control"
+                                            placeholder="Enter Measurements .." [(ngModel)]="obj.measurements" required
+                                            #measurements="ngModel"
+                                            [class.is-invalid]="measurements.invalid && measurements.touched"
+                                            placeholder="Select Measurements...">
+                                        <div *ngIf="measurements.invalid && measurements.touched">
+                                            <small *ngIf="measurements.errors?.required"
+                                                class="text-danger">Measurements is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="activeID"
+                                        [class.text-danger]="activeID.invalid && activeID.touched">Active<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="activeID" name="activeID" class="form-control"
+                                            placeholder="Enter Active .." [(ngModel)]="obj.activeID" required
+                                            #activeID="ngModel"
+                                            [class.is-invalid]="activeID.invalid && activeID.touched"
+                                            placeholder="Select Active...">
+                                        <div *ngIf="activeID.invalid && activeID.touched">
+                                            <small *ngIf="activeID.errors?.required" class="text-danger">Active is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpitype_id"
+                                        [class.text-danger]="kpitype_id.invalid && kpitype_id.touched">KPI Type<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpi_type" bindLabel="kpitype" bindValue="id"
+                                            [(ngModel)]="obj.kpitype_id" name="kpitype_id" required
+                                            #kpitype_id="ngModel"
+                                            [class.is-invalid]="kpitype_id.invalid && kpitype_id.touched"
+                                            placeholder="Select KPI Type..."></ng-select>
+                                        <div *ngIf="kpitype_id.invalid && kpitype_id.touched">
+                                            <small *ngIf="kpitype_id.errors?.required" class="text-danger">KPI Type is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Appraisal systems</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="systemname" caption="System Name"></dxi-column>
+                            <dxi-column dataField="measurements" caption="Measurements"></dxi-column>
+                            <dxi-column dataField="activeID" caption="Active"></dxi-column>
+                            <dxi-column dataField="kpitype" caption="KPI Type"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

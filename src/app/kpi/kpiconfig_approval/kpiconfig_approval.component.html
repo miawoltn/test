@@ -1,0 +1,229 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpi_id"
+                                        [class.text-danger]="kpi_id.invalid && kpi_id.touched">Kpi<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="kpi_id" name="kpi_id" class="form-control"
+                                            placeholder="Enter Kpi..." [(ngModel)]="obj.kpi_id" required
+                                            #kpi_id="ngModel" [class.is-invalid]="kpi_id.invalid && kpi_id.touched"
+                                            placeholder="Select Kpi...">
+                                        <div *ngIf="kpi_id.invalid && kpi_id.touched">
+                                            <small *ngIf="kpi_id.errors?.required" class="text-danger">Kpi is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="approve_id"
+                                        [class.text-danger]="approve_id.invalid && approve_id.touched">Approve<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="approve_id" name="approve_id" class="form-control"
+                                            placeholder="Enter Approve..." [(ngModel)]="obj.approve_id" required
+                                            #approve_id="ngModel"
+                                            [class.is-invalid]="approve_id.invalid && approve_id.touched"
+                                            placeholder="Select Approve...">
+                                        <div *ngIf="approve_id.invalid && approve_id.touched">
+                                            <small *ngIf="approve_id.errors?.required" class="text-danger">Approve is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="date_approve"
+                                        [class.text-danger]="date_approve.invalid && date_approve.touched">Date
+                                        approve<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="date_approve" name="date_approve" class="form-control"
+                                            placeholder="Enter Date approve .." [(ngModel)]="obj.date_approve" required
+                                            #date_approve="ngModel"
+                                            [class.is-invalid]="date_approve.invalid && date_approve.touched"
+                                            placeholder="Select Date approve...">
+                                        <div *ngIf="date_approve.invalid && date_approve.touched">
+                                            <small *ngIf="date_approve.errors?.required" class="text-danger">Date
+                                                approve is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="time_approve"
+                                        [class.text-danger]="time_approve.invalid && time_approve.touched">Time
+                                        approve<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="time_approve" name="time_approve" class="form-control"
+                                            placeholder="Enter Time approve..." [(ngModel)]="obj.time_approve" required
+                                            #time_approve="ngModel"
+                                            [class.is-invalid]="time_approve.invalid && time_approve.touched"
+                                            placeholder="Select Time approve...">
+                                        <div *ngIf="time_approve.invalid && time_approve.touched">
+                                            <small *ngIf="time_approve.errors?.required" class="text-danger">Time
+                                                approve is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="approve_by"
+                                        [class.text-danger]="approve_by.invalid && approve_by.touched">Approve by<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="approve_by" name="approve_by" class="form-control"
+                                            placeholder="Enter Approve by .." [(ngModel)]="obj.approve_by" required
+                                            #approve_by="ngModel"
+                                            [class.is-invalid]="approve_by.invalid && approve_by.touched"
+                                            placeholder="Select Approve by...">
+                                        <div *ngIf="approve_by.invalid && approve_by.touched">
+                                            <small *ngIf="approve_by.errors?.required" class="text-danger">Approve by is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="comments"
+                                        [class.text-danger]="comments.invalid && comments.touched">Comments<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="comments" name="comments" class="form-control"
+                                            placeholder="Enter Comments..." [(ngModel)]="obj.comments" required
+                                            #comments="ngModel"
+                                            [class.is-invalid]="comments.invalid && comments.touched"
+                                            placeholder="Select Comments...">
+                                        <div *ngIf="comments.invalid && comments.touched">
+                                            <small *ngIf="comments.errors?.required" class="text-danger">Comments is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="transID"
+                                        [class.text-danger]="transID.invalid && transID.touched">Trans<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="transID" name="transID" class="form-control"
+                                            placeholder="Enter Trans..." [(ngModel)]="obj.transID" required
+                                            #transID="ngModel" [class.is-invalid]="transID.invalid && transID.touched"
+                                            placeholder="Select Trans...">
+                                        <div *ngIf="transID.invalid && transID.touched">
+                                            <small *ngIf="transID.errors?.required" class="text-danger">Trans is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="config_id"
+                                        [class.text-danger]="config_id.invalid && config_id.touched">Config<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpiconfig" bindLabel="period_id" bindValue="id"
+                                            [(ngModel)]="obj.config_id" name="config_id" required #config_id="ngModel"
+                                            [class.is-invalid]="config_id.invalid && config_id.touched"
+                                            placeholder="Select Config..."></ng-select>
+                                        <div *ngIf="config_id.invalid && config_id.touched">
+                                            <small *ngIf="config_id.errors?.required" class="text-danger">Config is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="nextapprovingofficer"
+                                        [class.text-danger]="nextapprovingofficer.invalid && nextapprovingofficer.touched">Nextapprovingofficer<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="nextapprovingofficer" name="nextapprovingofficer"
+                                            class="form-control" placeholder="Enter Nextapprovingofficer .."
+                                            [(ngModel)]="obj.nextapprovingofficer" required
+                                            #nextapprovingofficer="ngModel"
+                                            [class.is-invalid]="nextapprovingofficer.invalid && nextapprovingofficer.touched"
+                                            placeholder="Select Nextapprovingofficer...">
+                                        <div *ngIf="nextapprovingofficer.invalid && nextapprovingofficer.touched">
+                                            <small *ngIf="nextapprovingofficer.errors?.required"
+                                                class="text-danger">Nextapprovingofficer is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of KPI Config Approval</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="kpi_id" caption="KPI"></dxi-column>
+                            <dxi-column dataField="approve_id" caption="Approve"></dxi-column>
+                            <dxi-column dataField="date_approve" caption="Date approve"></dxi-column>
+                            <dxi-column dataField="time_approve" caption="Time approve"></dxi-column>
+                            <dxi-column dataField="approve_by" caption="Approve by"></dxi-column>
+                            <dxi-column dataField="comments" caption="Comments"></dxi-column>
+                            <dxi-column dataField="transID" caption="Trans"></dxi-column>
+                            <dxi-column dataField="period_id" caption="Period"></dxi-column>
+                            <dxi-column dataField="nextapprovingofficer" caption="Next Approving Officer"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

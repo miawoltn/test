@@ -1,0 +1,117 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="DataName"
+                                        [class.text-danger]="DataName.invalid && DataName.touched">Data Name<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="DataName" name="DataName" class="form-control"
+                                            placeholder="Enter Data Name .." [(ngModel)]="obj.DataName" required
+                                            #DataName="ngModel"
+                                            [class.is-invalid]="DataName.invalid && DataName.touched"
+                                            placeholder="Select Data Name...">
+                                        <div *ngIf="DataName.invalid && DataName.touched">
+                                            <small *ngIf="DataName.errors?.required" class="text-danger">Data Name is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="DataSource"
+                                        [class.text-danger]="DataSource.invalid && DataSource.touched">Data Source<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="DataSource" name="DataSource" class="form-control"
+                                            placeholder="Enter Data Source .." [(ngModel)]="obj.DataSource" required
+                                            #DataSource="ngModel"
+                                            [class.is-invalid]="DataSource.invalid && DataSource.touched"
+                                            placeholder="Select Data Source...">
+                                        <div *ngIf="DataSource.invalid && DataSource.touched">
+                                            <small *ngIf="DataSource.errors?.required" class="text-danger">Data Source
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="ActiveID"
+                                        [class.text-danger]="ActiveID.invalid && ActiveID.touched">Active<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="ActiveID" name="ActiveID" class="form-control"
+                                            placeholder="Enter Active .." [(ngModel)]="obj.ActiveID" required
+                                            #ActiveID="ngModel"
+                                            [class.is-invalid]="ActiveID.invalid && ActiveID.touched"
+                                            placeholder="Select Active...">
+                                        <div *ngIf="ActiveID.invalid && ActiveID.touched">
+                                            <small *ngIf="ActiveID.errors?.required" class="text-danger">Active is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Appraisal dynamic Source</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="DataName" caption="Data Name"></dxi-column>
+                            <dxi-column dataField="DataSource" caption="Data Source"></dxi-column>
+                            <dxi-column dataField="ActiveID" caption="Active"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

@@ -1,0 +1,214 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="LeaveApplicationID"
+                                                    [class.text-danger]="LeaveApplicationID.invalid &amp;&amp; LeaveApplicationID.touched">LeaveApplication</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="LeaveApplicationID"
+                                                    name="LeaveApplicationID" #LeaveApplicationID="ngModel"
+                                                    [(ngModel)]="obj.LeaveApplicationID"
+                                                    [class.is-invalid]="LeaveApplicationID.invalid &amp;&amp; LeaveApplicationID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter LeaveApplication..."
+                                                    required>
+                                                <div *ngIf="LeaveApplicationID.invalid &amp;&amp; LeaveApplicationID.touched">
+                                                    <small *ngIf="LeaveApplicationID.errors?.required"
+                                                        class="text-danger">LeaveApplication is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ResumptionDate"
+                                                    [class.text-danger]="ResumptionDate.invalid &amp;&amp; ResumptionDate.touched">Resumption Date</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ResumptionDate"
+                                                    name="ResumptionDate" #ResumptionDate="ngModel"
+                                                    [(ngModel)]="obj.ResumptionDate"
+                                                    [class.is-invalid]="ResumptionDate.invalid &amp;&amp; ResumptionDate.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Resumption Date..."
+                                                    required>
+                                                <div *ngIf="ResumptionDate.invalid &amp;&amp; ResumptionDate.touched">
+                                                    <small *ngIf="ResumptionDate.errors?.required"
+                                                        class="text-danger">Resumption Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateFrom"
+                                                    [class.text-danger]="DateFrom.invalid &amp;&amp; DateFrom.touched">Date From</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="DateFrom"
+                                                    name="DateFrom" #DateFrom="ngModel"
+                                                    [(ngModel)]="obj.DateFrom"
+                                                    [class.is-invalid]="DateFrom.invalid &amp;&amp; DateFrom.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Date From..."
+                                                    required>
+                                                <div *ngIf="DateFrom.invalid &amp;&amp; DateFrom.touched">
+                                                    <small *ngIf="DateFrom.errors?.required"
+                                                        class="text-danger">Date From is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateTo"
+                                                    [class.text-danger]="DateTo.invalid &amp;&amp; DateTo.touched">Date To</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="DateTo"
+                                                    name="DateTo" #DateTo="ngModel"
+                                                    [(ngModel)]="obj.DateTo"
+                                                    [class.is-invalid]="DateTo.invalid &amp;&amp; DateTo.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Date To..."
+                                                    required>
+                                                <div *ngIf="DateTo.invalid &amp;&amp; DateTo.touched">
+                                                    <small *ngIf="DateTo.errors?.required"
+                                                        class="text-danger">Date To is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovingOfficerID"
+                                                    [class.text-danger]="ApprovingOfficerID.invalid &amp;&amp; ApprovingOfficerID.touched">Approving Officer</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ApprovingOfficerID"
+                                                    name="ApprovingOfficerID" #ApprovingOfficerID="ngModel"
+                                                    [(ngModel)]="obj.ApprovingOfficerID"
+                                                    [class.is-invalid]="ApprovingOfficerID.invalid &amp;&amp; ApprovingOfficerID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approving Officer..."
+                                                    required>
+                                                <div *ngIf="ApprovingOfficerID.invalid &amp;&amp; ApprovingOfficerID.touched">
+                                                    <small *ngIf="ApprovingOfficerID.errors?.required"
+                                                        class="text-danger">Approving Officer is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalStagesID"
+                                                    [class.text-danger]="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched">Approval Stages</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ApprovalStagesID"
+                                                    name="ApprovalStagesID" #ApprovalStagesID="ngModel"
+                                                    [(ngModel)]="obj.ApprovalStagesID"
+                                                    [class.is-invalid]="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approval Stages..."
+                                                    required>
+                                                <div *ngIf="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched">
+                                                    <small *ngIf="ApprovalStagesID.errors?.required"
+                                                        class="text-danger">Approval Stages is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Leave Resumption</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="LeaveApplicationID"
+                                        caption="LeaveApplication">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ResumptionDate"
+                                        caption="Resumption Date">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DateFrom"
+                                        caption="Date From">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DateTo"
+                                        caption="Date To">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovingOfficerID"
+                                        caption="Approving Officer">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalStagesID"
+                                        caption="Approval Stages">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,172 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="maxweight"
+                                        [class.text-danger]="maxweight.invalid && maxweight.touched">Max Weight<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="maxweight" name="maxweight" class="form-control"
+                                            placeholder="Enter Max Weight .." [(ngModel)]="obj.maxweight" required
+                                            #maxweight="ngModel"
+                                            [class.is-invalid]="maxweight.invalid && maxweight.touched"
+                                            placeholder="Select Max Weight...">
+                                        <div *ngIf="maxweight.invalid && maxweight.touched">
+                                            <small *ngIf="maxweight.errors?.required" class="text-danger">Max Weight is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="work_id"
+                                        [class.text-danger]="work_id.invalid && work_id.touched">Work<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="work_id" name="work_id" class="form-control"
+                                            placeholder="Enter Work .." [(ngModel)]="obj.work_id" required
+                                            #work_id="ngModel" [class.is-invalid]="work_id.invalid && work_id.touched"
+                                            placeholder="Select Work...">
+                                        <div *ngIf="work_id.invalid && work_id.touched">
+                                            <small *ngIf="work_id.errors?.required" class="text-danger">Work is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="IDColumn"
+                                        [class.text-danger]="IDColumn.invalid && IDColumn.touched">I D Column<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="IDColumn" name="IDColumn" class="form-control"
+                                            placeholder="Enter Column .." [(ngModel)]="obj.IDColumn" required
+                                            #IDColumn="ngModel"
+                                            [class.is-invalid]="IDColumn.invalid && IDColumn.touched"
+                                            placeholder="Select Column...">
+                                        <div *ngIf="IDColumn.invalid && IDColumn.touched">
+                                            <small *ngIf="IDColumn.errors?.required" class="text-danger">I D Column is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="systemcategoryID"
+                                        [class.text-danger]="systemcategoryID.invalid && systemcategoryID.touched">System Category
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="appraisal_systemcategory" bindLabel="systemcategory"
+                                            bindValue="id" [(ngModel)]="obj.systemcategoryID" name="systemcategoryID"
+                                            required #systemcategoryID="ngModel"
+                                            [class.is-invalid]="systemcategoryID.invalid && systemcategoryID.touched"
+                                            placeholder="Select System Category..."></ng-select>
+                                        <div *ngIf="systemcategoryID.invalid && systemcategoryID.touched">
+                                            <small *ngIf="systemcategoryID.errors?.required"
+                                                class="text-danger">System Category is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="system_typeID"
+                                        [class.text-danger]="system_typeID.invalid && system_typeID.touched">System Type
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="appraisal_systemtypes" bindLabel="systems_type"
+                                            bindValue="id" [(ngModel)]="obj.system_typeID" name="system_typeID" required
+                                            #system_typeID="ngModel"
+                                            [class.is-invalid]="system_typeID.invalid && system_typeID.touched"
+                                            placeholder="Select System Type..."></ng-select>
+                                        <div *ngIf="system_typeID.invalid && system_typeID.touched">
+                                            <small *ngIf="system_typeID.errors?.required" class="text-danger">System
+                                                Type is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="systemsID"
+                                        [class.text-danger]="systemsID.invalid && systemsID.touched">Systems<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="appraisal_systems" bindLabel="systemname" bindValue="id"
+                                            [(ngModel)]="obj.systemsID" name="systemsID" required #systemsID="ngModel"
+                                            [class.is-invalid]="systemsID.invalid && systemsID.touched"
+                                            placeholder="Select Systems..."></ng-select>
+                                        <div *ngIf="systemsID.invalid && systemsID.touched">
+                                            <small *ngIf="systemsID.errors?.required" class="text-danger">Systems is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Appraisal System Details</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="maxweight" caption="Max Weight"></dxi-column>
+                            <dxi-column dataField="work_id" caption="Work id"></dxi-column>
+                            <dxi-column dataField="IDColumn" caption="I D Column"></dxi-column>
+                            <dxi-column dataField="systemcategory" caption="System Category"></dxi-column>
+                            <dxi-column dataField="systems_type" caption="Systems Type"></dxi-column>
+                            <dxi-column dataField="systemname" caption="System Name"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

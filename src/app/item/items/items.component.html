@@ -1,0 +1,237 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ItemCategoryID"
+                                                    [class.text-danger]="ItemCategoryID.invalid &amp;&amp; ItemCategoryID.touched">Item Category</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="itemcategory"
+                                                    bindLabel="ItemCategory"
+                                                    bindValue="id" #ItemCategoryID="ngModel" name="ItemCategoryID"
+                                                    [(ngModel)]="obj.ItemCategoryID"
+                                                    [class.is-invalid]="ItemCategoryID.invalid &amp;&amp; ItemCategoryID.touched"
+                                                    placeholder="Select Item Category..."
+                                                    required></ng-select>
+                                                <div *ngIf="ItemCategoryID.invalid &amp;&amp; ItemCategoryID.touched">
+                                                    <small *ngIf="ItemCategoryID.errors?.required"
+                                                        class="text-danger">Item Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ItemTypeID"
+                                                    [class.text-danger]="ItemTypeID.invalid &amp;&amp; ItemTypeID.touched">Item Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="itemtype"
+                                                    bindLabel="ItemType"
+                                                    bindValue="id" #ItemTypeID="ngModel" name="ItemTypeID"
+                                                    [(ngModel)]="obj.ItemTypeID"
+                                                    [class.is-invalid]="ItemTypeID.invalid &amp;&amp; ItemTypeID.touched"
+                                                    placeholder="Select Item Type..."
+                                                    required></ng-select>
+                                                <div *ngIf="ItemTypeID.invalid &amp;&amp; ItemTypeID.touched">
+                                                    <small *ngIf="ItemTypeID.errors?.required"
+                                                        class="text-danger">Item Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ItemName"
+                                                    [class.text-danger]="ItemName.invalid &amp;&amp; ItemName.touched">Item Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ItemName"
+                                                    name="ItemName" #ItemName="ngModel"
+                                                    [(ngModel)]="obj.ItemName"
+                                                    [class.is-invalid]="ItemName.invalid &amp;&amp; ItemName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Item Name..."
+                                                    required>
+                                                <div *ngIf="ItemName.invalid &amp;&amp; ItemName.touched">
+                                                    <small *ngIf="ItemName.errors?.required"
+                                                        class="text-danger">Item Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CostPrice"
+                                                    [class.text-danger]="CostPrice.invalid &amp;&amp; CostPrice.touched">Cost Price</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="CostPrice"
+                                                    name="CostPrice" #CostPrice="ngModel"
+                                                    [(ngModel)]="obj.CostPrice"
+                                                    [class.is-invalid]="CostPrice.invalid &amp;&amp; CostPrice.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Cost Price..."
+                                                    required>
+                                                <div *ngIf="CostPrice.invalid &amp;&amp; CostPrice.touched">
+                                                    <small *ngIf="CostPrice.errors?.required"
+                                                        class="text-danger">Cost Price is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ReorderLevel"
+                                                    [class.text-danger]="ReorderLevel.invalid &amp;&amp; ReorderLevel.touched">Reorder Level</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ReorderLevel"
+                                                    name="ReorderLevel" #ReorderLevel="ngModel"
+                                                    [(ngModel)]="obj.ReorderLevel"
+                                                    [class.is-invalid]="ReorderLevel.invalid &amp;&amp; ReorderLevel.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Reorder Level..."
+                                                    required>
+                                                <div *ngIf="ReorderLevel.invalid &amp;&amp; ReorderLevel.touched">
+                                                    <small *ngIf="ReorderLevel.errors?.required"
+                                                        class="text-danger">Reorder Level is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SellingPrice"
+                                                    [class.text-danger]="SellingPrice.invalid &amp;&amp; SellingPrice.touched">Selling Price</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="SellingPrice"
+                                                    name="SellingPrice" #SellingPrice="ngModel"
+                                                    [(ngModel)]="obj.SellingPrice"
+                                                    [class.is-invalid]="SellingPrice.invalid &amp;&amp; SellingPrice.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Selling Price..."
+                                                    required>
+                                                <div *ngIf="SellingPrice.invalid &amp;&amp; SellingPrice.touched">
+                                                    <small *ngIf="SellingPrice.errors?.required"
+                                                        class="text-danger">Selling Price is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="OpenStock"
+                                                    [class.text-danger]="OpenStock.invalid &amp;&amp; OpenStock.touched">Open Stock</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="OpenStock"
+                                                    name="OpenStock" #OpenStock="ngModel"
+                                                    [(ngModel)]="obj.OpenStock"
+                                                    [class.is-invalid]="OpenStock.invalid &amp;&amp; OpenStock.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Open Stock..."
+                                                    required>
+                                                <div *ngIf="OpenStock.invalid &amp;&amp; OpenStock.touched">
+                                                    <small *ngIf="OpenStock.errors?.required"
+                                                        class="text-danger">Open Stock is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Items</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="ItemCategory"
+                                        caption="Item Category">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ItemType"
+                                        caption="Item Type">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ItemName"
+                                        caption="Item Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CostPrice"
+                                        caption="Cost Price">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ReorderLevel"
+                                        caption="Reorder Level">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="SellingPrice"
+                                        caption="Selling Price">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="OpenStock"
+                                        caption="Open Stock">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

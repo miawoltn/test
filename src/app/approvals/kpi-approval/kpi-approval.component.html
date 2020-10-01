@@ -1,0 +1,286 @@
+
+<!-- <div class="content-body" *ngIf="displayForm"> -->
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4> -->
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #leave="ngModelGroup" ngModelGroup="leave"
+                                        [stepControl]="form.controls.leave" [editable]="isEditable">
+                                        <ng-template matStepLabel>KPI Approval </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Employee:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{leaveInfo.FullName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Appraisal Period:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{leaveInfo.period_name }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Designation:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{leaveInfo.DesignationName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Work Location:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{leaveInfo.WorkLocation }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <dx-data-grid class="dx-card wide-card" [dataSource]="detail"
+                                                        [showBorders]="false" keyExpr="id" [focusedRowEnabled]="true"
+                                                        [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                                        [columnHidingEnabled]="true">
+                                                        <dxo-paging [pageSize]="10"></dxo-paging>
+                                                        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true">
+                                                        </dxo-pager>
+                                                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                                        <dxi-column dataField="kpi_name" caption="KPI"></dxi-column>
+                                                        <dxi-column dataField="Kpi_desc" caption="KPI Description">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="kpitype" [groupIndex]="1"
+                                                            caption="KPI Type"></dxi-column>
+                                                        <dxi-column dataField="kpiclass" [groupIndex]="0"
+                                                            caption="KPI Class"></dxi-column>
+                                                        <dxi-column dataField="targetvalue" caption="Target ">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="maxWeight" caption="Weight"></dxi-column>
+                                                        <dxo-summary>
+                                                            <dxi-group-item column="maxWeight" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Total: {0}"
+                                                                [showInGroupFooter]="true">
+                                                            </dxi-group-item>
+                                                            <dxi-total-item column="maxWeight" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Total: {0}">
+                                                            </dxi-total-item>
+                                                        </dxo-summary>
+                                                    </dx-data-grid>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovedBy">Approving
+                                                                Officer: </label>
+                                                            {{ user_name }}
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovalInstancesID"
+                                                                [class.text-danger]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">Action</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="ApprovalInstances" bindValue="id"
+                                                                bindLabel="ApprovalType" id="ApprovalInstancesID"
+                                                                name="ApprovalInstancesID"
+                                                                #ApprovalInstancesID="ngModel"
+                                                                [(ngModel)]="obj.ApprovalInstancesID"
+                                                                [class.is-invalid]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched"
+                                                                placeholder="Select Action ..." required
+                                                                (change)="loadEvent($event)">
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">
+                                                                <small *ngIf="ApprovalInstancesID.errors?.required"
+                                                                    class="text-danger">Approval Action is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label for="NextApprovalOfficerID"
+                                                                [class.text-danger]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">Next
+                                                                Approving Officer</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Employee" bindValue="id"
+                                                                bindLabel="FullName" id="NextApprovalOfficerID"
+                                                                name="NextApprovalOfficerID"
+                                                                #NextApprovalOfficerID="ngModel"
+                                                                [(ngModel)]="obj.NextApprovalOfficerID"
+                                                                [class.is-invalid]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched"
+                                                                placeholder="Select Next Approving Officer..."
+                                                                [required]="isRequired">
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">
+                                                                <small *ngIf="NextApprovalOfficerID.errors?.required"
+                                                                    class="text-danger">Next Approving Officer is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="Comment"
+                                                                [class.text-danger]="Comment.invalid &amp;&amp; Comment.touched">Comment</label><i
+                                                                class="text-danger">*</i>
+                                                            <textarea id="Comment" name="Comment" #Comment="ngModel"
+                                                                [(ngModel)]="obj.Comment"
+                                                                [class.is-invalid]="Comment.invalid &amp;&amp; Comment.touched"
+                                                                class="form-control" placeholder="Enter Comment..."
+                                                                [required]="!isRequired"></textarea>
+                                                            <div *ngIf="Comment.invalid &amp;&amp; Comment.touched">
+                                                                <small *ngIf="Comment.errors?.required"
+                                                                    class="text-danger">Comment is Required</small>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer ">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="submit" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right" [disabled]="leave.invalid">
+                                                <i class="fa fa-dot-circle-o"></i> Submit</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable" #leaveApproval="ngModelGroup"
+                                        ngModelGroup="leaveApproval" [stepControl]="form.controls.leaveApproval">
+                                        <ng-template matStepLabel>Completion</ng-template>
+                                        <h3>KPI Application Treated</h3>
+                                        <div class="card-body">
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date"><b>Employee:</b></label>
+                                                        <div class="col-md-8">
+                                                            {{leaveInfo.FullName }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date"><b>Appraisal Period:</b></label>
+                                                        <div class="col-md-8">
+                                                            {{leaveInfo.period_name }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date"><b>Designation:</b></label>
+                                                        <div class="col-md-8">
+                                                            {{leaveInfo.DesignationName }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date"><b>Work
+                                                                Location:</b></label>
+                                                        <div class="col-md-8">
+                                                            {{leaveInfo.WorkLocation }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            
+                                            <dx-data-grid class="dx-card wide-card" [dataSource]="detail"
+                                            [showBorders]="false" keyExpr="id" [focusedRowEnabled]="true"
+                                            [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                            [columnHidingEnabled]="true">
+                                            <dxo-paging [pageSize]="10"></dxo-paging>
+                                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true">
+                                            </dxo-pager>
+                                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                            <dxi-column dataField="kpi_name" caption="KPI"></dxi-column>
+                                            <dxi-column dataField="Kpi_desc" caption="KPI Description">
+                                            </dxi-column>
+                                            <dxi-column dataField="kpitype" [groupIndex]="1"
+                                                caption="KPI Type"></dxi-column>
+                                            <dxi-column dataField="kpiclass" [groupIndex]="0"
+                                                caption="KPI Class"></dxi-column>
+                                            <dxi-column dataField="targetvalue" caption="Target ">
+                                            </dxi-column>
+                                            <dxi-column dataField="maxWeight" caption="Weight"></dxi-column>
+                                            <dxo-summary>
+                                                <dxi-group-item column="maxWeight" summaryType="sum"
+                                                    valueFormat="fixedPoint" displayFormat="Total: {0}"
+                                                    [showInGroupFooter]="true">
+                                                </dxi-group-item>
+                                                <dxi-total-item column="maxWeight" summaryType="sum"
+                                                    valueFormat="fixedPoint" displayFormat="Total: {0}">
+                                                </dxi-total-item>
+                                            </dxo-summary>
+                                        </dx-data-grid>
+                                        </div>
+
+                                        <div class="card-footer ">
+
+                                            <a [routerLink]="['/appraisal/kpi-bin']"
+                                                class="btn btn-sm btn-primary pull-right">
+                                                <i class="fa fa-dot-circle-o"></i> Back to Approval Bin</a>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+
+                            </form>
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h3>KPI Approval History</h3>
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="ApprovalDate" caption="Approval Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Approved By">
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

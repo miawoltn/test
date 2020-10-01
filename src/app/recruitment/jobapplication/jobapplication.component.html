@@ -1,0 +1,199 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApplicantID"
+                                                    [class.text-danger]="ApplicantID.invalid &amp;&amp; ApplicantID.touched">Applicant
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="applicants" bindLabel="FirsName" bindValue="id"
+                                                    #ApplicantID="ngModel" name="ApplicantID"
+                                                    [(ngModel)]="obj.ApplicantID"
+                                                    [class.is-invalid]="ApplicantID.invalid &amp;&amp; ApplicantID.touched"
+                                                    placeholder="Select Applicant..." required></ng-select>
+                                                <div *ngIf="ApplicantID.invalid &amp;&amp; ApplicantID.touched">
+                                                    <small *ngIf="ApplicantID.errors?.required"
+                                                        class="text-danger">Applicant is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="VacancyID"
+                                                    [class.text-danger]="VacancyID.invalid &amp;&amp; VacancyID.touched">Vacancy
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="Vacancy" bindLabel="Title" bindValue="VacancyID"
+                                                    #VacancyID="ngModel" name="VacancyID" [(ngModel)]="obj.VacancyID"
+                                                    [class.is-invalid]="VacancyID.invalid &amp;&amp; VacancyID.touched"
+                                                    placeholder="Select Vacancy..." required></ng-select>
+                                                <div *ngIf="VacancyID.invalid &amp;&amp; VacancyID.touched">
+                                                    <small *ngIf="VacancyID.errors?.required"
+                                                        class="text-danger">Vacancy is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateofApplication"
+                                                    [class.text-danger]="DateofApplication.invalid &amp;&amp; DateofApplication.touched">Date
+                                                    Of Application</label><i class="text-danger">*</i>
+                                                <input type="date" id="DateofApplication" name="DateofApplication"
+                                                    #DateofApplication="ngModel" [(ngModel)]="obj.DateofApplication"
+                                                    [class.is-invalid]="DateofApplication.invalid &amp;&amp; DateofApplication.touched"
+                                                    class="form-control" placeholder="Enter Date Of Application..."
+                                                    required>
+                                                <div
+                                                    *ngIf="DateofApplication.invalid &amp;&amp; DateofApplication.touched">
+                                                    <small *ngIf="DateofApplication.errors?.required"
+                                                        class="text-danger">Date Of Application is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RecruitmentStageID"
+                                                    [class.text-danger]="RecruitmentStageID.invalid &amp;&amp; RecruitmentStageID.touched">Recruitment
+                                                    Stage</label><i class="text-danger">*</i>
+                                                <ng-select [items]="recruitmentstage" bindLabel="RequirementStage"
+                                                    bindValue="id" #RecruitmentStageID="ngModel"
+                                                    name="RecruitmentStageID" [(ngModel)]="obj.RecruitmentStageID"
+                                                    [class.is-invalid]="RecruitmentStageID.invalid &amp;&amp; RecruitmentStageID.touched"
+                                                    placeholder="Select Recruitment Stage..." required></ng-select>
+                                                <div
+                                                    *ngIf="RecruitmentStageID.invalid &amp;&amp; RecruitmentStageID.touched">
+                                                    <small *ngIf="RecruitmentStageID.errors?.required"
+                                                        class="text-danger">Recruitment Stage is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RecruitmentStatusID"
+                                                    [class.text-danger]="RecruitmentStatusID.invalid &amp;&amp; RecruitmentStatusID.touched">Recruitment
+                                                    Status</label><i class="text-danger">*</i>
+                                                <ng-select [items]="recruitmentstatus" bindLabel="RecruitmentStatus"
+                                                    bindValue="id" #RecruitmentStatusID="ngModel"
+                                                    name="RecruitmentStatusID" [(ngModel)]="obj.RecruitmentStatusID"
+                                                    [class.is-invalid]="RecruitmentStatusID.invalid &amp;&amp; RecruitmentStatusID.touched"
+                                                    placeholder="Select Recruitment Status..." required></ng-select>
+                                                <div
+                                                    *ngIf="RecruitmentStatusID.invalid &amp;&amp; RecruitmentStatusID.touched">
+                                                    <small *ngIf="RecruitmentStatusID.errors?.required"
+                                                        class="text-danger">Recruitment Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApplicantCVID"
+                                                    [class.text-danger]="ApplicantCVID.invalid &amp;&amp; ApplicantCVID.touched">Applicant
+                                                    C V</label><i class="text-danger">*</i>
+                                                <ng-select [items]="applicantcv" bindLabel="CV" bindValue="id"
+                                                    #ApplicantCVID="ngModel" name="ApplicantCVID"
+                                                    [(ngModel)]="obj.ApplicantCVID"
+                                                    [class.is-invalid]="ApplicantCVID.invalid &amp;&amp; ApplicantCVID.touched"
+                                                    placeholder="Select Applicant C V..."></ng-select>
+                                                <div *ngIf="ApplicantCVID.invalid &amp;&amp; ApplicantCVID.touched">
+                                                    <small *ngIf="ApplicantCVID.errors?.required"
+                                                        class="text-danger">Applicant C V is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Job Applications</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="false" [columnHidingEnabled]="true">
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="VacancyID" caption="Job Title">
+                                        <dxo-lookup [dataSource]="Vacancy" valueExpr="VacancyID" displayExpr="Title"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Applicant"></dxi-column>
+                                    <!-- <dxi-column dataField="GenderID" caption="Gender">
+                                        <dxo-lookup [dataSource]="gender" valueExpr="GenderID" displayExpr="Gender"></dxo-lookup>
+                                    </dxi-column> -->
+                                    <dxi-column caption="Years of Experience" dataField="ApplicantYearsofExperienceID">
+                                        <dxo-lookup [dataSource]="yearsofexperience" valueExpr="YearsofExperienceID" displayExpr="YearsofExperience"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column caption="Qualification" dataField="ApplicantQualificationID">
+                                        <dxo-lookup  [dataSource]="qualifications" valueExpr="QualificationID" displayExpr="QualificationName"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column caption="Profession" dataField="ApplicantProfessionID">
+                                        <dxo-lookup [dataSource]="professionlist" valueExpr="ProfessionID" displayExpr="Profession"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataType="date" format="MMMM d, yyy" caption="Date of Birth" dataField="DOB"></dxi-column>
+                                    <dxi-column dataField="Email"></dxi-column>
+                                    <dxi-column dataField="Phone" caption="Phone"></dxi-column>
+                                    <dxi-column dataField="Address"></dxi-column>
+                                    <dxi-column dataType="date" format="MMMM d, yyy" caption="Application Date" dataField="dateCreated"></dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Profile" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

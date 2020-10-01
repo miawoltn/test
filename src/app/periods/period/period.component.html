@@ -1,0 +1,193 @@
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="period_name"
+                                        [class.text-danger]="period_name.invalid && period_name.touched">Period name<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="period_name" name="period_name" class="form-control"
+                                            placeholder="Enter Period name .." [(ngModel)]="obj.period_name" required
+                                            #period_name="ngModel"
+                                            [class.is-invalid]="period_name.invalid && period_name.touched"
+                                            placeholder="Select Period name...">
+                                        <div *ngIf="period_name.invalid && period_name.touched">
+                                            <small *ngIf="period_name.errors?.required" class="text-danger">Period name
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="Description"
+                                        [class.text-danger]="Description.invalid && Description.touched">Description<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Description" name="Description" class="form-control"
+                                            placeholder="Enter Description .." [(ngModel)]="obj.Description" required
+                                            #Description="ngModel"
+                                            [class.is-invalid]="Description.invalid && Description.touched"
+                                            placeholder="Select Description...">
+                                        <div *ngIf="Description.invalid && Description.touched">
+                                            <small *ngIf="Description.errors?.required" class="text-danger">Description
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="date_from"
+                                        [class.text-danger]="date_from.invalid && date_from.touched">Date from<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="date_from" name="date_from" class="form-control"
+                                            placeholder="Enter Date from .." [(ngModel)]="obj.date_from" required
+                                            #date_from="ngModel"
+                                            [class.is-invalid]="date_from.invalid && date_from.touched"
+                                            placeholder="Select Date from...">
+                                        <div *ngIf="date_from.invalid && date_from.touched">
+                                            <small *ngIf="date_from.errors?.required" class="text-danger">Date from is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="date_to"
+                                        [class.text-danger]="date_to.invalid && date_to.touched">Date to<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="date_to" name="date_to" class="form-control"
+                                            placeholder="Enter Date to .." [(ngModel)]="obj.date_to" required
+                                            #date_to="ngModel" [class.is-invalid]="date_to.invalid && date_to.touched"
+                                            placeholder="Select Date to...">
+                                        <div *ngIf="date_to.invalid && date_to.touched">
+                                            <small *ngIf="date_to.errors?.required" class="text-danger">Date to is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="periodType_id"
+                                        [class.text-danger]="periodType_id.invalid && periodType_id.touched">Period Type
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="periodtype" bindLabel="periodType_name" bindValue="id"
+                                            [(ngModel)]="obj.periodType_id" name="periodType_id" required
+                                            #periodType_id="ngModel"
+                                            [class.is-invalid]="periodType_id.invalid && periodType_id.touched"
+                                            placeholder="Select Period Type..."></ng-select>
+                                        <div *ngIf="periodType_id.invalid && periodType_id.touched">
+                                            <small *ngIf="periodType_id.errors?.required" class="text-danger">Period
+                                                Type is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="year_id"
+                                        [class.text-danger]="year_id.invalid && year_id.touched">Year<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="years" bindLabel="year_name" bindValue="id"
+                                            [(ngModel)]="obj.year_id" name="year_id" required #year_id="ngModel"
+                                            [class.is-invalid]="year_id.invalid && year_id.touched"
+                                            placeholder="Select Year..."></ng-select>
+                                        <div *ngIf="year_id.invalid && year_id.touched">
+                                            <small *ngIf="year_id.errors?.required" class="text-danger">Year is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="periodStatus_id"
+                                        [class.text-danger]="periodStatus_id.invalid && periodStatus_id.touched">Period
+                                        Status<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="periodStatus_id" name="periodStatus_id"
+                                            class="form-control" placeholder="Enter Period Status id .."
+                                            [(ngModel)]="obj.periodStatus_id" required #periodStatus_id="ngModel"
+                                            [class.is-invalid]="periodStatus_id.invalid && periodStatus_id.touched"
+                                            placeholder="Select Period Status...">
+                                        <div *ngIf="periodStatus_id.invalid && periodStatus_id.touched">
+                                            <small *ngIf="periodStatus_id.errors?.required" class="text-danger">Period
+                                                Status is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Period</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="period_name" caption="Period name"></dxi-column>
+                            <dxi-column dataField="Description" caption="Description"></dxi-column>
+                            <dxi-column dataField="date_from" caption="Date from"></dxi-column>
+                            <dxi-column dataField="date_to" caption="Date to"></dxi-column>
+                            <dxi-column dataField="periodType_name" caption="Period Type name"></dxi-column>
+                            <dxi-column dataField="year_name" caption="Year name"></dxi-column>
+                            <dxi-column dataField="periodStatus_id" caption="Period Status id"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

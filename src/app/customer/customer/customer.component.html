@@ -1,0 +1,214 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CustomerTypeID"
+                                                    [class.text-danger]="CustomerTypeID.invalid &amp;&amp; CustomerTypeID.touched">Customer Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="customertype"
+                                                    bindLabel="CustomerType"
+                                                    bindValue="id" #CustomerTypeID="ngModel" name="CustomerTypeID"
+                                                    [(ngModel)]="obj.CustomerTypeID"
+                                                    [class.is-invalid]="CustomerTypeID.invalid &amp;&amp; CustomerTypeID.touched"
+                                                    placeholder="Select Customer Type..."
+                                                    required></ng-select>
+                                                <div *ngIf="CustomerTypeID.invalid &amp;&amp; CustomerTypeID.touched">
+                                                    <small *ngIf="CustomerTypeID.errors?.required"
+                                                        class="text-danger">Customer Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CustomerName"
+                                                    [class.text-danger]="CustomerName.invalid &amp;&amp; CustomerName.touched">Customer Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CustomerName"
+                                                    name="CustomerName" #CustomerName="ngModel"
+                                                    [(ngModel)]="obj.CustomerName"
+                                                    [class.is-invalid]="CustomerName.invalid &amp;&amp; CustomerName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Customer Name..."
+                                                    required>
+                                                <div *ngIf="CustomerName.invalid &amp;&amp; CustomerName.touched">
+                                                    <small *ngIf="CustomerName.errors?.required"
+                                                        class="text-danger">Customer Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CustomerRM"
+                                                    [class.text-danger]="CustomerRM.invalid &amp;&amp; CustomerRM.touched">Customer RM</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CustomerRM"
+                                                    name="CustomerRM" #CustomerRM="ngModel"
+                                                    [(ngModel)]="obj.CustomerRM"
+                                                    [class.is-invalid]="CustomerRM.invalid &amp;&amp; CustomerRM.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Customer RM..."
+                                                    required>
+                                                <div *ngIf="CustomerRM.invalid &amp;&amp; CustomerRM.touched">
+                                                    <small *ngIf="CustomerRM.errors?.required"
+                                                        class="text-danger">Customer RM is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CustomerPhoneNo"
+                                                    [class.text-danger]="CustomerPhoneNo.invalid &amp;&amp; CustomerPhoneNo.touched">Customer Phone No</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CustomerPhoneNo"
+                                                    name="CustomerPhoneNo" #CustomerPhoneNo="ngModel"
+                                                    [(ngModel)]="obj.CustomerPhoneNo"
+                                                    [class.is-invalid]="CustomerPhoneNo.invalid &amp;&amp; CustomerPhoneNo.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Customer Phone No..."
+                                                    required>
+                                                <div *ngIf="CustomerPhoneNo.invalid &amp;&amp; CustomerPhoneNo.touched">
+                                                    <small *ngIf="CustomerPhoneNo.errors?.required"
+                                                        class="text-danger">Customer Phone No is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CustomerEmail"
+                                                    [class.text-danger]="CustomerEmail.invalid &amp;&amp; CustomerEmail.touched">Customer Email</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CustomerEmail"
+                                                    name="CustomerEmail" #CustomerEmail="ngModel"
+                                                    [(ngModel)]="obj.CustomerEmail"
+                                                    [class.is-invalid]="CustomerEmail.invalid &amp;&amp; CustomerEmail.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Customer Email..."
+                                                    required>
+                                                <div *ngIf="CustomerEmail.invalid &amp;&amp; CustomerEmail.touched">
+                                                    <small *ngIf="CustomerEmail.errors?.required"
+                                                        class="text-danger">Customer Email is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CustomerAddress"
+                                                    [class.text-danger]="CustomerAddress.invalid &amp;&amp; CustomerAddress.touched">CustomerAddress</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CustomerAddress"
+                                                    name="CustomerAddress" #CustomerAddress="ngModel"
+                                                    [(ngModel)]="obj.CustomerAddress"
+                                                    [class.is-invalid]="CustomerAddress.invalid &amp;&amp; CustomerAddress.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter CustomerAddress..."
+                                                    required>
+                                                <div *ngIf="CustomerAddress.invalid &amp;&amp; CustomerAddress.touched">
+                                                    <small *ngIf="CustomerAddress.errors?.required"
+                                                        class="text-danger">Customer Address is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Customer</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="CustomerType"
+                                        caption="Customer Type">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CustomerName"
+                                        caption="Customer Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CustomerRM"
+                                        caption="Customer RM">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CustomerPhoneNo"
+                                        caption="Customer Phone No">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CustomerEmail"
+                                        caption="Customer Email">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CustomerAddress"
+                                        caption="Customer Address">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

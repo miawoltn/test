@@ -1,0 +1,223 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="menu_title"
+                                                    [class.text-danger]="menu_title.invalid &amp;&amp; menu_title.touched">Menu
+                                                    Title</label><i class="text-danger">*</i>
+                                                <input type="text" id="menu_title" name="menu_title" #menu_title="ngModel"
+                                                    [(ngModel)]="obj.menu_title"
+                                                    [class.is-invalid]="menu_title.invalid &amp;&amp; menu_title.touched"
+                                                    class="form-control" placeholder="Enter Menu Title..." required>
+                                                <div *ngIf="menu_title.invalid &amp;&amp; menu_title.touched">
+                                                    <small *ngIf="menu_title.errors?.required" class="text-danger">Menu
+                                                        Title is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="menu_href"
+                                                    [class.text-danger]="menu_href.invalid &amp;&amp; menu_href.touched">Menu
+                                                    Url</label><i class="text-danger">*</i>
+                                                <input type="text" id="menu_href" name="menu_href" #menu_href="ngModel"
+                                                    [(ngModel)]="obj.menu_href"
+                                                    [class.is-invalid]="menu_href.invalid &amp;&amp; menu_href.touched"
+                                                    class="form-control" placeholder="Enter Menu Url..." required>
+                                                <div *ngIf="menu_href.invalid &amp;&amp; menu_href.touched">
+                                                    <small *ngIf="menu_href.errors?.required" class="text-danger">Menu Url
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="parent_menu_id"
+                                                    [class.text-danger]="parent_menu_id.invalid &amp;&amp; parent_menu_id.touched">Parent Menu
+                                                    </label><i class="text-danger">*</i>
+                                                    <ng-select [items]="ParentMenus" bindValue="id" bindLabel="menu_title" id="parent_menu_id" name="parent_menu_id" #parent_menu_id="ngModel"
+                                                    [(ngModel)]="obj.parent_menu_id"
+                                                    [class.is-invalid]="parent_menu_id.invalid &amp;&amp; parent_menu_id.touched"
+                                                    placeholder="Select Parent Menu..." ></ng-select>
+                                                <div *ngIf="parent_menu_id.invalid &amp;&amp; parent_menu_id.touched">
+                                                    <small *ngIf="parent_menu_id.errors?.required" class="text-danger">Parent Menu
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Icon"
+                                                    [class.text-danger]="order_by.invalid &amp;&amp; order_by.touched">Sequence</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="text" id="order_by" name="order_by" #order_by="ngModel"
+                                                    [(ngModel)]="obj.order_by"
+                                                    [class.is-invalid]="order_by.invalid &amp;&amp; order_by.touched"
+                                                    class="form-control" placeholder="Enter Sequence..." required>
+                                                <div *ngIf="order_by.invalid &amp;&amp; order_by.touched">
+                                                    <small *ngIf="order_by.errors?.required" class="text-danger">Sequence is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Icon"
+                                                    [class.text-danger]="Icon.invalid &amp;&amp; Icon.touched">Icon</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="text" id="Icon" name="Icon" #Icon="ngModel"
+                                                    [(ngModel)]="obj.menu_img"
+                                                    [class.is-invalid]="Icon.invalid &amp;&amp; Icon.touched"
+                                                    class="form-control" placeholder="Enter Icon..." >
+                                                <div *ngIf="Icon.invalid &amp;&amp; Icon.touched">
+                                                    <small *ngIf="Icon.errors?.required" class="text-danger">Icon is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="active_id"
+                                                    [class.text-danger]="active_id.invalid &amp;&amp; active_id.touched">Status
+                                                    </label><i class="text-danger">*</i>
+                                                    <ng-select [items]="statuses" bindValue="value" bindLabel="label" id="active_id" name="active_id" #active_id="ngModel"
+                                                    [(ngModel)]="obj.active_id"
+                                                    [class.is-invalid]="active_id.invalid &amp;&amp; active_id.touched"
+                                                    placeholder="Is Active..." required></ng-select>
+                                                <div *ngIf="active_id.invalid &amp;&amp; active_id.touched">
+                                                    <small *ngIf="active_id.errors?.required" class="text-danger">Status
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="moduleId"
+                                                    [class.text-danger]="moduleId.invalid &amp;&amp; moduleId.touched">Module
+                                                    </label><i class="text-danger">*</i>
+                                                    <ng-select [items]="Modules" bindValue="moduleId" bindLabel="moduleName" id="moduleId" name="moduleId" #moduleId="ngModel"
+                                                    [(ngModel)]="obj.moduleId"
+                                                    [class.is-invalid]="moduleId.invalid &amp;&amp; moduleId.touched"
+                                                    placeholder="Select Module..." required></ng-select>
+                                                <div *ngIf="moduleId.invalid &amp;&amp; moduleId.touched">
+                                                    <small *ngIf="moduleId.errors?.required" class="text-danger">Module
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Menu</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <dx-tree-list id="tasks" [dataSource]="data" keyExpr="menu_id"
+                                    parentIdExpr="parent_menu_id" [expandedRowKeys]="[1, 2]"
+                                    [selectedRowKeys]="[1, 29, 42]" [columnAutoWidth]="true" [wordWrapEnabled]="true"
+                                    [showBorders]="true">
+
+                                    <dxo-search-panel [visible]="true" width="250"></dxo-search-panel>
+                                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+
+                                    <dxi-column dataField="menu_title" [width]="300"></dxi-column>
+                                    <dxi-column dataField="parent_menu_id" caption="Parent Menu">
+                                        <dxo-lookup [dataSource]="data" valueExpr="menu_id"
+                                            displayExpr="menu_title"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="menu_href" caption="Menu Url">
+                                    </dxi-column>
+                                    <dxi-column dataField="moduleName" caption="Module">
+                                    </dxi-column>
+                                    <dxi-column dataField="Status" caption="Status">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-tree-list>
+
+                                <!-- <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="menu_title" caption="Menu Title">
+                                    </dxi-column>
+                                    <dxi-column dataField="menu_href" caption="Menu Url">
+                                    </dxi-column>
+                                    <dxi-column dataField="order_by" caption="Order By">
+                                    </dxi-column>
+                                    <dxi-column dataField="icon" caption="Icon">
+                                    </dxi-column>
+                                    <dxi-column dataField="moduleName" caption="Module">
+                                    </dxi-column>
+                                    <dxi-column dataField="Status" caption="Status">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

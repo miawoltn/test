@@ -1,0 +1,932 @@
+<div>
+    <section id="user-profile">
+        <div class="row">
+            <div class="col-12">
+                <div class="card profile-with-cover">
+                    <div class="card-img-top img-fluid bg-cover height-300"
+                        style="background: url('../../../assets//img/photos/14.jpg') 50%;"></div>
+                    <div class="media profil-cover-details row">
+                        <div class="col-1">
+                            <div class="align-self-center halfway-fab text-center">
+                                <a *ngIf="obj.ProfilePhoto == null" class="profile-image">
+                                    <img src="../../../assets/img/portrait/avatars/avatar-08.png"
+                                        class="rounded-circle img-border gradient-summer w-150" alt="Card image">
+                                </a>
+                                <a *ngIf="obj.ProfilePhoto != null" class="profile-image">
+                                    <img src="{{ API_URL2 }}{{ obj.ProfilePhoto }}"
+                                        class="rounded-circle img-border gradient-summer w-150" alt="Card image">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-5 pad-t" style="margin-left: 29px;">
+                            <form *ngIf="showProfileUpdate" role="form" #passwordForm="ngForm" (ngSubmit)="processChangePassword()">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-8">
+                                            <div id="fileuploader-container">
+                                                <dx-file-uploader selectButtonText="Upload Profile Picture"
+                                                    labelText="" accept="image/*" uploadMode="useForm"
+                                                    id="ContractLetter" name="ContractLetter"
+                                                    (change)="handleFileInputProfilePhoto($event)" required>
+                                                </dx-file-uploader>
+                                            </div>
+                                            <button type="button" (click)="hideProfileUpdateForm()" class="btn btn-danger">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <p class="m-b"><span class="text-bold-500 trackhub-blue">{{ obj.FullName }}</span></p>
+                            <p><span>{{ obj.PersonalEmail }}</span></p>
+
+                            <p *ngIf="obj.JobDescription != null" class="m-b"><span
+                                    class="text-bold-500 trackhub-blue">Job Description</span></p>
+                            <p><span>{{ obj.JobDescription }}</span></p>
+
+                        </div>
+
+                        <div class="col-5 pad-t d-print-none" style="margin-right: 1px;">
+                            <div class="media-body halfway-fab align-self-end">
+                                <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                                    <button (click)="showProfileUpdateForm()" type="button" class="btn btn-primary btn-raised mr-2"
+                                        style="background-color: #15537d;">Change Profile Picture
+                                    </button>
+
+                                    <button (click)="onPrint()" type="button" class="btn btn-primary btn-raised mr-2"
+                                        style="background-color: #15537d;"><i class="fa fa-print"></i> Print
+                                    </button>
+
+                                    <a *ngIf="obj.ContractLetter != null" href="{{ API_URL2 }}{{ obj.ContractLetter }}"
+                                        class="btn btn-primary btn-raised mr-2" target="_blank"
+                                        style="background-color: #15537d;">View Contract Letter</a>
+
+                                    <button type="button" class="btn btn-primary btn-raised mr-2"
+                                        style="background-color: #15537d;" (click)="showForm2()">
+                                        Change Password
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- change password -->
+    <section id="about" *ngIf="displayPasswordForm">
+        <div class="row d-print-none">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Change Password</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <form role="form" #passwordForm="ngForm" (ngSubmit)="processChangePassword()">
+                                <div class="row">
+                                    <!-- <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="currentPassword"
+                                                [class.text-danger]="currentPassword.invalid &amp;&amp; currentPassword.touched">Old
+                                                Password:</label><i class="text-danger">*</i>
+                                            <div class="input-group">
+                                                <input #currentPassword type="password" id="currentPassword"
+                                                    name="currentPassword" #currentPassword="ngModel"
+                                                    [(ngModel)]="obj2.currentPassword"
+                                                    [class.is-invalid]="currentPassword.invalid &amp;&amp; currentPassword.touched"
+                                                    class="form-control border-right-0"
+                                                    placeholder="Enter New Password..." required>
+                                                <span class="input-group-append bg-white border-left-0"
+                                                    (click)="showCurrentPassword()">
+                                                    <span class="input-group-text bg-transparent">
+                                                        <i class="fa fa-eye-slash icon"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                            <div *ngIf="currentPassword.invalid &amp;&amp; currentPassword.touched">
+                                                <small *ngIf="currentPassword.errors?.required"
+                                                    class="text-danger">Current Password
+                                                    is Required</small>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="currentPassword"
+                                                [class.text-danger]="currentPassword.invalid &amp;&amp; currentPassword.touched">Old
+                                                Password:</label><i class="text-danger">*</i>
+                                            <div class="input-group">
+                                                <input #currentPassword type="password" id="currentPassword"
+                                                    name="currentPassword" #currentPassword="ngModel"
+                                                    [(ngModel)]="obj2.currentPassword"
+                                                    [class.is-invalid]="currentPassword.invalid &amp;&amp; currentPassword.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter New Password..." required>
+                                                <!-- <span class="input-group-append bg-white border-left-0"
+                                                    (click)="showCurrentPassword()">
+                                                    <span class="input-group-text bg-transparent">
+                                                        <i class="fa fa-eye-slash icon"></i>
+                                                    </span>
+                                                </span> -->
+                                            </div>
+                                            <div *ngIf="currentPassword.invalid &amp;&amp; currentPassword.touched">
+                                                <small *ngIf="currentPassword.errors?.required"
+                                                    class="text-danger">Current Password
+                                                    is Required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="newPassword"
+                                                [class.text-danger]="newPassword.invalid &amp;&amp; newPassword.touched">New
+                                                Password:</label><i class="text-danger">*</i>
+                                            <div class="input-group">
+                                                <input #newPassword type="password" id="newPassword" name="newPassword"
+                                                    #newPassword="ngModel" [(ngModel)]="obj2.newPassword"
+                                                    [class.is-invalid]="newPassword.invalid &amp;&amp; newPassword.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter New Password..." required>
+                                                <!-- <span class="input-group-append bg-white border-left-0"
+                                                    (click)="showNewPassword()">
+                                                    <span class="input-group-text bg-transparent">
+                                                        <i class="fa fa-eye-slash icon"></i>
+                                                    </span>
+                                                </span> -->
+                                            </div>
+                                            <div *ngIf="newPassword.invalid &amp;&amp; newPassword.touched">
+                                                <small *ngIf="newPassword.errors?.required" class="text-danger">Password
+                                                    is Required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="confirmPassword"
+                                                [class.text-danger]="confirmPassword.invalid &amp;&amp; confirmPassword.touched">Confirm
+                                                Password</label><i class="text-danger">*</i>
+
+                                            <div class="input-group">
+                                                <input #confirmPassword type="password" id="confirmPassword"
+                                                    name="confirmPassword" #confirmPassword="ngModel"
+                                                    [(ngModel)]="obj2.confirmPassword"
+                                                    [class.is-invalid]="confirmPassword.invalid &amp;&amp; confirmPassword.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Account Number..." required>
+                                                <!-- <span class="input-group-append bg-white border-left-0"
+                                                    (click)="showConfirmPassword()">
+                                                    <span class="input-group-text bg-transparent">
+                                                        <i class="fa fa-eye-slash icon"></i>
+                                                    </span>
+                                                </span> -->
+                                            </div>
+                                            <div *ngIf="confirmPassword.invalid &amp;&amp; confirmPassword.touched">
+                                                <small *ngIf="confirmPassword.errors?.required"
+                                                    class="text-danger">Confirm Password is
+                                                    Required</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-t-lg">
+                                    <div style="text-align: right;">
+                                        <button type="button" (click)="resetForm2()" class="btn btn-danger"
+                                            style="margin-right: 1.0rem;">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: #15537d;"
+                                            [disabled]="passwordForm.invalid">Change Password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- merchant info --> 
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Basic Information</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Surname:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.SurName }}</span>
+                                            <span *ngIf="obj.SurName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Personal Email:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.PersonalEmail }}</span>
+                                            <span *ngIf="obj.PersonalEmail == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Identification Number:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.PersonalEmail }}</span>
+                                            <span *ngIf="obj.PersonalEmail == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Date Of Birth:</span>
+                                            <span
+                                                class="d-block overflow-hidden">{{ obj.DateOfBirth | date: 'MMM d, y' }}</span>
+                                            <span *ngIf="obj.DateOfBirth == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Current Address:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.ResidentialAddress }}</span>
+                                            <span *ngIf="obj.ResidentialAddress == null"
+                                                class="d-block overflow-hidden">Not Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Mobile:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.MobileNum }}</span>
+                                            <span *ngIf="obj.MobileNum == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Nationality:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Country }}</span>
+                                            <span *ngIf="obj.Country == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li *ngIf="obj.ResidencyCheckFlag == 1" class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Tribe:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Tribe }}</span>
+                                            <span *ngIf="obj.Tribe == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">First Name:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.FirstName }}</span>
+                                            <span *ngIf="obj.FirstName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Residency:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Residency }}</span>
+                                            <span *ngIf="obj.Residency == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Identification Start Date:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Residency }}</span>
+                                            <span *ngIf="obj.Residency == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Gender:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Gender }}</span>
+                                            <span *ngIf="obj.Gender == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Permanent Address:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.ResidentialAddress }}</span>
+                                            <span *ngIf="obj.ResidentialAddress == null"
+                                                class="d-block overflow-hidden">Not Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Religion:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Religion }}</span>
+                                            <span *ngIf="obj.Religion == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li *ngIf="obj.ResidencyCheckFlag == 1" class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">State of Origin:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.State }}</span>
+                                            <span *ngIf="obj.State == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Middle Name:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.MiddleName }}</span>
+                                            <span *ngIf="obj.MiddleName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Means Of Identification:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.MiddleName }}</span>
+                                            <span *ngIf="obj.MiddleName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Identification Expiry Date:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.MiddleName }}</span>
+                                            <span *ngIf="obj.MiddleName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Marital Status:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.MaritalStatus }}</span>
+                                            <span *ngIf="obj.MaritalStatus == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Home:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.HomeNum }}</span>
+                                            <span *ngIf="obj.HomeNum == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Hobbies:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Hobbies }}</span>
+                                            <span *ngIf="obj.Hobbies == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li *ngIf="obj.ResidencyCheckFlag == 1" class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Lga:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.local_govt }}</span>
+                                            <span *ngIf="obj.local_govt == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- emploment info -->
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Employment Information</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Staff Category:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.local_govt }}</span>
+                                            <span *ngIf="obj.local_govt == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Employee Number:</span>
+                                            <span class="d-block overflow-hidden">{{obj.EmployeeNumber}}</span>
+                                            <span *ngIf="obj.EmployeeNumber == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Department:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.DepartmentName }}</span>
+                                            <span *ngIf="obj.DepartmentName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Office Location:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.BranchName }}</span>
+                                            <span *ngIf="obj.BranchName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Project:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.local_govt }}</span>
+                                            <span *ngIf="obj.local_govt == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Email:</span>
+                                            <span class="d-block overflow-hidden">{{obj.Email}}</span>
+                                            <span *ngIf="obj.Email == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Unit:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.UnitName }}</span>
+                                            <span *ngIf="obj.UnitName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Annual Salary:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.UnitName }}</span>
+                                            <span *ngIf="obj.UnitName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Employee Type:</span>
+                                            <span class="d-block overflow-hidden">{{obj.EmployeeType}}</span>
+                                            <span *ngIf="obj.EmployeeType == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Company:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.CompanyName }}</span>
+                                            <span *ngIf="obj.CompanyName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Designation:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.DesignationName }}</span>
+                                            <span *ngIf="obj.DesignationName == null"
+                                                class="d-block overflow-hidden">Not Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Employee Employment History</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div *ngFor="let obj of empworkhistory, index as i" class="row">
+                                <div style="margin-left: 1rem;">
+                                    {{ i + 1 }}
+                                </div>
+                                <br>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Employee</span>
+                                            <span *ngIf="obj.EmployeeName != null"
+                                                class="d-block overflow-hidden">{{obj.EmployeeName}}</span>
+                                            <span *ngIf="obj.EmployeeName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Phone Number</span>
+                                            <span class="d-block overflow-hidden">{{obj.PhoneNumber}}</span>
+                                            <span *ngIf="obj.PhoneNumber == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Address</span>
+                                            <span class="d-block overflow-hidden">{{obj.Address}}</span>
+                                            <span *ngIf="obj.Address == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Start Date</span>
+                                            <span class="d-block overflow-hidden">{{obj.StartDate}}</span>
+                                            <span *ngIf="obj.StartDate == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Job Description</span>
+                                            <span class="d-block overflow-hidden">{{obj.JobDescription}}</span>
+                                            <span *ngIf="obj.JobDescription == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Job Title</span>
+                                            <span class="d-block overflow-hidden">{{obj.JobTitle}}</span>
+                                            <span *ngIf="obj.JobTitle == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Email Address:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.EmailAddress }}</span>
+                                            <span *ngIf="obj.EmailAddress == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue"></span>
+                                            <span class="d-block overflow-hidden"></span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">End Date:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.EndDate }}</span>
+                                            <span *ngIf="obj.EndDate == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Employee Education</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div *ngFor="let obj of empedu, index as i" class="row">
+                                <div style="margin-left: 1rem;">
+                                    {{ i + 1 }}
+                                </div>
+                                <br>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">School</span>
+                                            <span class="d-block overflow-hidden">{{obj.SchoolName}}</span>
+                                            <span *ngIf="obj.SchoolName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Program</span>
+                                            <span class="d-block overflow-hidden">{{obj.ProgrammeType}}</span>
+                                            <span *ngIf="obj.ProgrammeType == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Qualification Grade</span>
+                                            <span class="d-block overflow-hidden">{{obj.QualificationGradeName}}</span>
+                                            <span *ngIf="obj.QualificationGradeName == null"
+                                                class="d-block overflow-hidden">Not Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Start Date</span>
+                                            <span class="d-block overflow-hidden">{{obj.StartDate}}</span>
+                                            <span *ngIf="obj.StartDate == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">School:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.SchoolType }}</span>
+                                            <span *ngIf="obj.SchoolType == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Qualification:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.QualificationName }}</span>
+                                            <span *ngIf="obj.QualificationName == null"
+                                                class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">.</span>
+                                            <span class="d-block overflow-hidden">.</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">End Date:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.EndDate }}</span>
+                                            <span *ngIf="obj.EndDate == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Employee Family</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div *ngFor="let obj of empfam, index as i" class="row">
+                                <div style="margin-left: 1rem;">
+                                    {{ i + 1 }}
+                                </div>
+                                <br>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">FullName</span>
+                                            <span class="d-block overflow-hidden">{{obj.FullName}}</span>
+                                            <span *ngIf="obj.FullName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">PhoneNumber</span>
+                                            <span class="d-block overflow-hidden">{{obj.PhoneNumber}}</span>
+                                            <span *ngIf="obj.PhoneNumber == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Occupation</span>
+                                            <span class="d-block overflow-hidden">{{obj.Occupation}}</span>
+                                            <span *ngIf="obj.Occupation == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Address:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Address }}</span>
+                                            <span *ngIf="obj.Address == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">RelationshipName:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.RelationshipName }}</span>
+                                            <span *ngIf="obj.RelationshipName == null"
+                                                class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Email:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Email }}</span>
+                                            <span *ngIf="obj.Email == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">.</span>
+                                            <span class="d-block overflow-hidden">.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Employee Dependent</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div *ngFor="let obj of empdependent, index as i" class="row">
+                                <div style="margin-left: 1rem;">
+                                    {{ i + 1 }}
+                                </div>
+                                <br>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">FullName</span>
+                                            <span class="d-block overflow-hidden">{{ obj.FullName }}</span>
+                                            <span *ngIf="obj.FullName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Date of Birth</span>
+                                            <span class="d-block overflow-hidden">{{obj.DateofBirth}}</span>
+                                            <span *ngIf="obj.DateofBirth == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Address</span>
+                                            <span class="d-block overflow-hidden">{{obj.Address}}</span>
+                                            <span *ngIf="obj.Address == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Relationship:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.RelationshipName }}</span>
+                                            <span *ngIf="obj.RelationshipName == null"
+                                                class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">.</span>
+                                            <span class="d-block overflow-hidden">.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Employee Health Insurance</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div *ngFor="let obj of emphealth, index as i" class="row">
+                                <div style="margin-left: 1rem;">
+                                    {{ i + 1 }}
+                                </div>
+                                <br>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Health Insurance Provider</span>
+                                            <span
+                                                class="d-block overflow-hidden">{{ obj.HealthInsuranceProvider }}</span>
+                                            <span *ngIf="obj.HealthInsuranceProvider == null"
+                                                class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Start Date</span>
+                                            <span class="d-block overflow-hidden">{{obj.StartDate}}</span>
+                                            <span *ngIf="obj.StartDate == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Address</span>
+                                            <span class="d-block overflow-hidden">{{obj.Address}}</span>
+                                            <span *ngIf="obj.Address == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Hospital:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.Hospital }}</span>
+                                            <span *ngIf="obj.Hospital == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">End Date:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.EndDate }}</span>
+                                            <span *ngIf="obj.EndDate == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Contact:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.ContactNumber }}</span>
+                                            <span *ngIf="obj.ContactNumber == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">.</span>
+                                            <span class="d-block overflow-hidden">.</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Account Information</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Bank</span>
+                                            <span class="d-block overflow-hidden">{{obj.BankName}}</span>
+                                            <span *ngIf="obj.BankName == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Bank Account No</span>
+                                            <span class="d-block overflow-hidden">{{obj.BankAccountNo}}</span>
+                                            <span *ngIf="obj.BankAccountNo == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Pension Provider</span>
+                                            <span class="d-block overflow-hidden">{{obj.PensionProvider}}</span>
+                                            <span *ngIf="obj.PensionProvider == null"
+                                                class="d-block overflow-hidden">Not Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Pension PIN:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.PensionPIN }}</span>
+                                            <span *ngIf="obj.PensionPIN == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">NHF No:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.NHFNo }}</span>
+                                            <span *ngIf="obj.NHFNo == null" class="d-block overflow-hidden">Not
+                                                Available</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

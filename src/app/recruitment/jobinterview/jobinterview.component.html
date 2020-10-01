@@ -1,0 +1,335 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-primary">
+
+        <form #form="ngForm" (submit)="processForm()">
+          <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step #order="ngModelGroup" ngModelGroup="order" [stepControl]="form.controls.order"
+              [editable]="isEditable">
+              <ng-template matStepLabel>Job Interview Info</ng-template>
+              <div class="panel-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="JobShortlistID"
+                        [class.text-danger]="JobShortlistID.invalid &amp;&amp; JobShortlistID.touched">Job Shortlist
+                      </label>
+                      <div class="col-md-8">
+                        <ng-select [items]="jobshortlist" bindLabel="Title" bindValue="id"
+                          [(ngModel)]="obj.JobShortlistID" name="JobShortlistID" required
+                          #JobShortlistID="ngModel"
+                          [class.is-invalid]="JobShortlistID.invalid &amp;&amp; JobShortlistID.touched"
+                          placeholder="Select Job Shortlist..." (change)="onJobShortList($event)">
+                          <ng-template ng-option-tmp let-item="item">
+                            {{item.Title}} <br />
+                            <small>Date Created: {{ item.dateCreated | date: 'EEEE, MMMM d, y' }}</small><br />
+                          </ng-template>
+                        </ng-select>
+                        <div *ngIf="JobShortlistID.invalid &amp;&amp; JobShortlistID.touched">
+                          <small *ngIf="JobShortlistID.errors?.required" class="text-danger">Job Shortlist is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="InterviewDate"
+                        [class.text-danger]="InterviewDate.invalid &amp;&amp; InterviewDate.touched">Interview
+                        Date</label>
+                      <div class="col-md-8">
+                        <input type="datetime-local" id="InterviewDate" name="InterviewDate" class="form-control"
+                          [(ngModel)]="obj.InterviewDate" required #InterviewDate="ngModel"
+                          [class.is-invalid]="InterviewDate.invalid &amp;&amp; InterviewDate.touched"
+                          placeholder="Enter Interview Date...">
+                        <div *ngIf="InterviewDate.invalid &amp;&amp; InterviewDate.touched">
+                          <small *ngIf="InterviewDate.errors?.required" class="text-danger">Interview Date is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="Location"
+                        [class.text-danger]="Location.invalid &amp;&amp; Location.touched">Interview
+                        Venue</label>
+                      <div class="col-md-8">
+                        <textarea id="Location" name="Location" class="form-control" [(ngModel)]="obj.Location" required
+                          #Location="ngModel" [class.is-invalid]="Location.invalid &amp;&amp; Location.touched"
+                          placeholder="Enter Interview Venue..." cols="3" rows="2"></textarea>
+                        <div *ngIf="Location.invalid &amp;&amp; Location.touched">
+                          <small *ngIf="Location.errors?.required" class="text-danger">Interview Location is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="RecruitmentStageID"
+                        [class.text-danger]="RecruitmentStageID.invalid &amp;&amp; RecruitmentStageID.touched">Recruitment
+                        Stage</label>
+                      <div class="col-md-8">
+                        <ng-select [items]="recruitmentstage" bindLabel="RequirementStage" bindValue="id"
+                          [(ngModel)]="obj.RecruitmentStageID" name="RecruitmentStageID" required
+                          #RecruitmentStageID="ngModel"
+                          [class.is-invalid]="RecruitmentStageID.invalid &amp;&amp; RecruitmentStageID.touched"
+                          placeholder="Select Recruitment Stage..."></ng-select>
+                        <div *ngIf="RecruitmentStageID.invalid &amp;&amp; RecruitmentStageID.touched">
+                          <small *ngIf="RecruitmentStageID.errors?.required" class="text-danger">Recruitment Stage is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="Remark"
+                        [class.text-danger]="Remark.invalid &amp;&amp; Remark.touched">Internal Remark</label>
+                      <div class="col-md-8">
+                        <textarea id="Remark" name="Remark" class="form-control" [(ngModel)]="obj.Remark" required
+                          #Remark="ngModel" [class.is-invalid]="Remark.invalid &amp;&amp; Remark.touched"
+                          placeholder="Internal Remark..." cols="3" rows="2"></textarea>
+                        <div *ngIf="Remark.invalid &amp;&amp; Remark.touched">
+                          <small *ngIf="Remark.errors?.required" class="text-danger">Internal Remark is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div *ngIf="showList">
+
+                  <div class="card-header">
+                    <h4 class="card-title">Job Applicants</h4>
+                  </div>
+
+                  <div>
+                    <div class="box-tools pull-right" style="margin-top: 15px;">
+                      <button class="btn btn-primary btn-sm" type="button" (click)="applyDate()"><span
+                          class="fa fa-plus"></span>Apply Date</button>
+                    </div>
+                    <form #form="ngForm" (submit)="processForm()">
+                      <table class="table">
+                        <thead class="thead-inverse">
+                          <tr>
+                            <th class="cd1"><input type="checkbox" name="selectAll" [(ngModel)]="allSelected"
+                                (change)="SelectAll()" id="Selected1"></th>
+                            <th class="cd2">#</th>
+                            <th class="cd3">Job Applicant</th>
+                            <th class="cd4">Alternative Venue</th>
+                            <th class="cd5">Date</th>
+                            <th class="cd5">Profile</th>
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr *ngFor="let item of jobshortlistdetailList, index as i">
+                            <th class="cd1"><input type="checkbox" name="Selected{{i}}" [(ngModel)]="item.Selected"
+                                (change)="addToDetails(item, $event.target.value, i)" id="Selected{{i}}"></th>
+                            <th class="cd2">{{ i + 1 }}.</th>
+                            <td class="cd3">{{item.Applicant }}</td>
+                            <td class="cd4">
+                              <textarea name="Venue" #Venue="ngModel" name="Venue{{i}}" [(ngModel)]="item.Venue"
+                                id="Venue" class="form-control" cols="5" rows="3"></textarea>
+                            </td>
+                            <td class="cd5"><input type="datetime-local" #InterviewDate="ngModel"
+                                name="InterviewDate{{i}}" [(ngModel)]="item.InterviewDate" id="InterviewDate"
+                                class="form-control"></td>
+                            <td><a (click)="openDialog(item)">Profile</a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="panel-footer">
+                <button type="button" class="btn btn-default">Cancel</button> &nbsp;
+                <button type="button" matStepperNext class="btn btn-primary pull-right" (click)="onConfirm()"
+                  [disabled]="order.invalid">Next</button>&nbsp;
+              </div>
+            </mat-step>
+            <mat-step [editable]="isEditable">
+              <ng-template matStepLabel>Confirmation</ng-template>
+              <div class="panel-body">
+                <div class="row">
+
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="JobShortlistID">Job Shortlist</label>
+                      <div class="col-md-8">
+                        {{ obj.Description }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="InterviewDate">Interview Date</label>
+                      <div class="col-md-8">
+                        {{ obj.InterviewDate | date: 'EEEE, MMMM d, y' }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="RecruitmentStageID">Recruitment Stage</label>
+                      <div class="col-md-8">
+                        {{ obj.RequirementStage }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="RecruitmentStageID">Interview Location</label>
+                      <div class="col-md-8">
+                        {{ obj.Location }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group row">
+                      <label class="col-md-4 form-control-label" for="RecruitmentStageID">Remark</label>
+                      <div class="col-md-8">
+                        {{ obj.Remark }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <h4 class="card-title">Job Applicants</h4>
+                  </div>
+                  <div class="card-content">
+                    <div class="card-body">
+                      <form>
+                        <table class="table">
+                          <thead class="thead-inverse">
+                            <tr>
+                              <th width="5px">#</th>
+                              <th width="70px">Job Applicant</th>
+                              <th width="30px">Venue</th>
+                              <th width="30px">Date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of details, index as i">
+                              <th width="5px">{{ i + 1 }}.</th>
+                              <td width="70px">{{ item.Applicant }}</td>
+                              <td width="70px">{{ item.Venue }}</td>
+                              <td width="3rem">{{ item.InterviewDate | date: 'EEEE, MMMM d, y' }}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="panel-footer">
+                <button type="button" matStepperPrevious class="btn btn-primary">Back</button>&nbsp;
+                <button type="submit" matStepperNext class="btn btn-primary pull-right">Confirm
+                  Application</button>&nbsp;
+              </div>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Completed</ng-template>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="JobShortlistID">Job Shortlist</label>
+                    <div class="col-md-8">
+                      {{ obj.Description }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="InterviewDate">Interview Date</label>
+                    <div class="col-md-8">
+                      {{ obj.InterviewDate | date: 'EEEE, MMMM d, y' }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="RecruitmentStageID">Recruitment Stage</label>
+                    <div class="col-md-8">
+                      {{ obj.RequirementStage }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="RecruitmentStageID">Interview Location</label>
+                    <div class="col-md-8">
+                      {{ obj.Location }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="RecruitmentStageID">Remark</label>
+                    <div class="col-md-8">
+                      {{ obj.Remark }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">Job Applicants</h4>
+                </div>
+                <div class="card-content">
+                  <div class="card-body">
+                    <form>
+                      <table class="table">
+                        <thead class="thead-inverse">
+                          <tr>
+                            <th width="5px">#</th>
+                            <th width="70px">Job Applicant</th>
+                            <th width="70px">Venue</th>
+                            <th width="30px">Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of details, index as i">
+                            <th width="5px">{{ i + 1 }}.</th>
+                            <td width="70px">{{item.Applicant }}</td>
+                            <td width="70px">{{ item.Venue }}</td>
+                            <td width="70px">{{item.InterviewDate | date: 'EEEE, MMMM d, y' }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-footer">
+                <button type="button" class="btn btn-primary pull-right" (click)="stepper.reset()">New
+                  Application</button>&nbsp;
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+          <!-- /.box-footer -->
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+    <!--/.col (right) -->
+  </div>
+  <!-- /.row -->
+</section>

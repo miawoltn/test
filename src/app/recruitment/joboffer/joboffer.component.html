@@ -1,0 +1,230 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="JobApplicationID">Job
+                                                    Application
+                                                </label><i class="text-danger">*</i>
+                                                <input type="text" id="Applicant" name="Applicant"
+                                                    #Applicant="ngModel" [(ngModel)]="obj.Applicant"
+                                                    class="form-control" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="DesignationName">Designation
+                                                </label><i class="text-danger">*</i>
+                                                <input type="text" id="DesignationName" name="DesignationName"
+                                                    #DesignationName="ngModel" [(ngModel)]="obj.DesignationName"
+                                                    class="form-control" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="AnnualSalary"
+                                                    [class.text-danger]="AnnualSalary.invalid &amp;&amp; AnnualSalary.touched">Annual
+                                                    Salary</label><i class="text-danger">*</i>
+                                                <input type="number" id="AnnualSalary" name="AnnualSalary"
+                                                    #AnnualSalary="ngModel" [(ngModel)]="obj.AnnualSalary"
+                                                    [class.is-invalid]="AnnualSalary.invalid &amp;&amp; AnnualSalary.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="AnnualSalary.invalid &amp;&amp; AnnualSalary.touched">
+                                                    <small *ngIf="AnnualSalary.errors?.required"
+                                                        class="text-danger">Annual Salary is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="HousingAllowance"
+                                                    [class.text-danger]="HousingAllowance.invalid &amp;&amp; HousingAllowance.touched">Housing Allowance</label><i class="text-danger">*</i>
+                                                <input type="number" id="HousingAllowance" name="HousingAllowance"
+                                                    #HousingAllowance="ngModel" [(ngModel)]="obj.HousingAllowance"
+                                                    [class.is-invalid]="HousingAllowance.invalid &amp;&amp; HousingAllowance.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="HousingAllowance.invalid &amp;&amp; HousingAllowance.touched">
+                                                    <small *ngIf="HousingAllowance.errors?.required"
+                                                        class="text-danger">Housing Allowance is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="TransportAllowance"
+                                                    [class.text-danger]="TransportAllowance.invalid &amp;&amp; TransportAllowance.touched">Transport Allowance</label><i class="text-danger">*</i>
+                                                <input type="number" id="TransportAllowance" name="TransportAllowance"
+                                                    #TransportAllowance="ngModel" [(ngModel)]="obj.TransportAllowance"
+                                                    [class.is-invalid]="TransportAllowance.invalid &amp;&amp; TransportAllowance.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="TransportAllowance.invalid &amp;&amp; TransportAllowance.touched">
+                                                    <small *ngIf="TransportAllowance.errors?.required"
+                                                        class="text-danger">Transport Allowance is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="UtilityAllowance"
+                                                    [class.text-danger]="UtilityAllowance.invalid &amp;&amp; UtilityAllowance.touched">Utility Allowance</label><i class="text-danger">*</i>
+                                                <input type="number" id="UtilityAllowance" name="UtilityAllowance"
+                                                    #UtilityAllowance="ngModel" [(ngModel)]="obj.UtilityAllowance"
+                                                    [class.is-invalid]="UtilityAllowance.invalid &amp;&amp; UtilityAllowance.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="UtilityAllowance.invalid &amp;&amp; UtilityAllowance.touched">
+                                                    <small *ngIf="UtilityAllowance.errors?.required"
+                                                        class="text-danger">Utility Allowance is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="MealSubsidy"
+                                                    [class.text-danger]="MealSubsidy.invalid &amp;&amp; MealSubsidy.touched">Meal Subsidy</label><i class="text-danger">*</i>
+                                                <input type="number" id="MealSubsidy" name="MealSubsidy"
+                                                    #MealSubsidy="ngModel" [(ngModel)]="obj.MealSubsidy"
+                                                    [class.is-invalid]="MealSubsidy.invalid &amp;&amp; MealSubsidy.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="MealSubsidy.invalid &amp;&amp; MealSubsidy.touched">
+                                                    <small *ngIf="MealSubsidy.errors?.required"
+                                                        class="text-danger">Meal Subsidy is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="FixedOverTime"
+                                                    [class.text-danger]="FixedOverTime.invalid &amp;&amp; FixedOverTime.touched">Fixed Over Time</label><i class="text-danger">*</i>
+                                                <input type="number" id="FixedOverTime" name="FixedOverTime"
+                                                    #FixedOverTime="ngModel" [(ngModel)]="obj.FixedOverTime"
+                                                    [class.is-invalid]="FixedOverTime.invalid &amp;&amp; FixedOverTime.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="FixedOverTime.invalid &amp;&amp; FixedOverTime.touched">
+                                                    <small *ngIf="FixedOverTime.errors?.required"
+                                                        class="text-danger">Fixed Over Time is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="OfferDate"
+                                                    [class.text-danger]="OfferDate.invalid &amp;&amp; OfferDate.touched">Date of Engagement</label><i class="text-danger">*</i>
+                                                <input type="date" id="OfferDate" name="OfferDate" #OfferDate="ngModel"
+                                                    [(ngModel)]="obj.OfferDate"
+                                                    [class.is-invalid]="OfferDate.invalid &amp;&amp; OfferDate.touched"
+                                                    class="form-control" placeholder="Enter Offer Date..." required>
+                                                <div *ngIf="OfferDate.invalid &amp;&amp; OfferDate.touched">
+                                                    <small *ngIf="OfferDate.errors?.required" class="text-danger">Offer
+                                                        Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="refNumber"
+                                                    [class.text-danger]="refNumber.invalid &amp;&amp; refNumber.touched">Reference Number</label><i class="text-danger">*</i>
+                                                <input type="text" id="refNumber" name="refNumber" #refNumber="ngModel"
+                                                    [(ngModel)]="obj.refNumber"
+                                                    [class.is-invalid]="refNumber.invalid &amp;&amp; refNumber.touched"
+                                                    class="form-control" placeholder="Enter Reference Number..." required>
+                                                <div *ngIf="refNumber.invalid &amp;&amp; refNumber.touched">
+                                                    <small *ngIf="refNumber.errors?.required" class="text-danger">Reference Number is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div *ngIf="obj.Attachment != null" class="col-md-12">
+                                            <br>
+                                            <a href="{{API_URL2}}{{obj.Attachment}}" target="_blank" class="btn btn-primary">View Interview Report</a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">Job Offer Bin</h4>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="id" caption="#"></dxi-column>
+                                    <dxi-column dataField="Title" caption="Job Vacancy">
+                                    </dxi-column>
+                                    <dxi-column dataField="Applicant" caption="Applicant">
+                                    </dxi-column>
+                                    <dxi-column dataField="InterviewDate" caption="Interview Date">
+                                    </dxi-column>
+                                    <dxi-column dataField="RequirementStage" caption="Recruitment Stage">
+                                    </dxi-column>
+
+                                    <!-- <dxi-column type="buttons">
+                                        <dxi-button text="Comment" [onClick]="process"></dxi-button>
+                                    </dxi-column> -->
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Create Offer" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

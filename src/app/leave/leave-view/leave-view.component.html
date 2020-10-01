@@ -1,0 +1,148 @@
+<!-- <div class="content-body" *ngIf="displayForm"> -->
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4> -->
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <!-- <div class="card-text">
+                                    <p>This is the basic horizontal form with labels on left and form
+                                        controls on right in one line. Add <code>.form-horizontal</code> class to
+                                        the form tag to have horizontal form styling. To
+                                        define form sections use <code>form-section</code> class
+                                        with any heading tags.</p>
+                                </div> -->
+
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date">Leave
+                                                        Application Number:</label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.LeaveApplicationID }}
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Leave
+                                                            Applicant:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.Employee }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Leave
+                                                            Type:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.LeaveType }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Leave
+                                                            Date:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.DateFrom | date:'longDate' }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Resumption
+                                                            Date:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.DateBack | date:'longDate' }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Leave
+                                                            Days:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.NoDayApplied }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Pay
+                                                            Leave Grant?:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.PayLeaveGrant  }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Relieve
+                                                            Officer:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.RelieveOfficer }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Contact
+                                                            Address:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.ContactAddress }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="date"><b>Handover
+                                                            Notes:</b></label>
+                                                    <div class="col-md-8">
+                                                        {{leaveInfo.handover }}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h3>Leave Approval History</h3>
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="ApprovalDate" caption="Approval Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Approved By">
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

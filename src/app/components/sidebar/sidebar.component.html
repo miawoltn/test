@@ -1,0 +1,156 @@
+<!-- main menu-->
+<!--.main-menu(class="#{menuColor} #{menuOpenType}", class=(menuShadow == true ? 'menu-shadow' : ''))-->
+<div data-active-color="white" data-background-color="success" data-image="./assets/img/sidebar-bg/01.jpg"
+  class="app-sidebar expanded d-print-none">
+
+  <!-- <div class="app-sidebar menu-fixed expanded" data-background-color="success" data-image="./assets/img/sidebar-bg/01.jpg" data-scroll-to-active="true"> Don't remove -->
+
+  <!-- main menu header-->
+  <!-- Sidebar Header starts-->
+  <!-- <div class="sidebar-header">
+    <div class="logo clearfix"><a href="#" class="logo-text float-left">
+        <div class="logo-img"><img src="./assets/img/logo.png" /></div>
+      </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i
+          data-toggle="expanded" class="toggle-icon fas fa-toggle-right"></i></a><a id="sidebarClose"
+        href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="fas fa-x"></i></a></div>
+  </div> -->
+  <!-- Sidebar Header Ends-->
+
+
+  <div class="sidebar-header d-print-none">
+    <div class="logo clearfix"><a class="logo-text float-left" href="#">
+        <div class="logo-img"><img src="./assets/img/gallery/favicon.png" class="logh" alt="T.E.A.M"></div><span class="text"> T.E.A.M</span></a><a class="nav-toggle d-none d-lg-none d-xl-block is-active" id="sidebarToggle" href="javascript:;"><i class="toggle-icon ft-toggle-right" data-toggle="expanded"></i></a><a class="nav-close d-block d-lg-block d-xl-none" id="sidebarClose" href="javascript:;"><i class="ft-x"></i></a></div>
+  </div>
+
+
+
+  <!-- / main menu header-->
+  <!-- main menu content-->
+  <div class="sidebar-content d-print-none">
+    <div class="nav-container">
+      <ul id="main-menu-navigation" data-menu="menu-navigation" data-scroll-to-active="true"
+        class="navigation navigation-main">
+        <ng-container *ngIf=" menu_title !== '' ">
+          <!-- <li class="navigation-header">
+            <span data-i18n="nav.category.pages" class="menu-item">{{menu_title}}</span><i class="fas fa-minus"
+              data-toggle="tooltip" data-placement="right" data-original-title="Pages"></i>
+          </li> -->
+
+          <li class="nav-item">
+            <a class="menu-item">
+              <!-- <i class="fas fa-minus"></i> -->
+              <span class="menu-title mism">{{menu_title}}</span>
+            </a>
+           
+          </li>
+          
+        </ng-container>
+
+        <!-- First Level -->
+        <ng-container *ngFor="let item of links ">
+          <!-- HEADER -->
+          <ng-container *ngIf="item.header">
+            <li class="header">{{item.header}}</li>
+          </ng-container>
+          <!-- COMPONENT -->
+
+          <!-- LINK -->
+          <ng-container *ngIf="item.sublinks.length==0">
+            <li class="nav-item" [class.active]="item.link === currentUrl">
+              <a class="menu-item" *ngIf="item.external==0" [routerLink]="item.link">
+                <i class="fas fa-{{item.icon}}"></i>
+                <span class="menu-title">{{item.title}}</span>
+              </a>
+              <a class="menu-item" *ngIf="item.external==1" [href]="item.link" [target]="item.target">
+                <i class="fas fa-{{item.icon}}"></i>
+                <span class="menu-title">{{item.title}}</span>
+              </a>
+            </li>
+          </ng-container>
+          <!-- LINK WITH SUBLINKS -->
+          <!-- Second Level -->
+          <ng-container *ngIf="item.sublinks.length>0">
+            <li class="nav-item has-sub">
+              <a>
+                <i *ngIf="item.icon" class="fas fa-{{item.icon}}"></i>
+                <span class="menu-title">{{item.title}}</span>
+              </a>
+              <ul class="menu-content">
+                <ng-container *ngFor="let subitem of item.sublinks">
+
+                  <!--- Third Level-->
+                  <ng-container *ngIf="subitem.sublinks.length==0">
+                    <li class="nav-item" [class.active]="subitem.link === currentUrl">
+                      <a class="menu-item" *ngIf="subitem.external==0" [routerLink]="subitem.link">
+                        <i class="fas fa-{{subitem.icon}}"></i>
+                        <span class="menu-title">{{subitem.title}}</span>
+                      </a>
+                      <a class="menu-item" *ngIf="subitem.external==1" [href]="subitem.link" [target]="subitem.target">
+                        <i class="fas fa-{{subitem.icon}}"></i>
+                        <span class="menu-title">{{subitem.title}}</span>
+                      </a>
+                    </li>
+                  </ng-container>
+
+                  <ng-container *ngIf="subitem.sublinks.length>0">
+                    <li class="nav-item has-sub">
+                      <a>
+                        <i *ngIf="subitem.icon" class="fas fa-{{subitem.icon}}"></i>
+                        <span class="subitem-title">{{subitem.title}}</span>
+                      </a>
+                      <ul class="menu-content">
+                        <ng-container *ngFor="let subitem3 of subitem.sublinks">
+                          <li [class.active]="subitem3.link === currentUrl" *ngIf="subitem3.sublinks.length==0">
+                            <a class="menu-item" *ngIf="subitem3.external==0" [routerLink]="subitem3.link">
+                              <i *ngIf="subitem3.icon" class="fas fa-{{subitem3.icon}}"></i>
+                              <span>{{subitem3.title}}</span>
+                            </a>
+                            <a class="menu-item" *ngIf="subitem3.external==1" [href]="subitem3.link"
+                              [target]="subitem3.target">
+                              <i *ngIf="subitem3.icon" class="fas fa-{{subitem3.icon}}"></i>
+                              <span>{{subitem3.title}}</span>
+                            </a>
+                          </li>
+                          <li class="has-sub" *ngIf="subitem3.sublinks.length>0">
+                            <a class="menu-item">
+                              <i *ngIf="subitem3.icon" class="fas fa-{{subitem3.icon}}"></i>
+                              <span>{{subitem3.title}}</span>
+
+                            </a>
+                            <ul class="menu-content">
+                              <ng-container *ngFor="let subitem4 of subitem3.sublinks">
+                                <li [class.active]="subitem4.link === currentUrl">
+                                  <a class="menu-item" *ngIf="subitem4.external==0" [routerLink]="subitem4.link">
+                                    <i *ngIf="subitem4.icon" class="fas fa-{{subitem4.icon}}"></i>
+                                    <span>{{subitem4.title}}</span>
+                                  </a>
+                                  <a class="menu-item" *ngIf="subitem4.external==1" [href]="subitem4.link"
+                                    [target]="subitem4.target">
+                                    <i *ngIf="subitem4.icon" class="fas fa-{{subitem4.icon}}"></i>
+                                    <span>{{subitem4.title}}</span>
+                                  </a>
+                                </li>
+                              </ng-container>
+
+                            </ul>
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </li>
+                  </ng-container>
+
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+  <!-- main menu content-->
+  <div class="sidebar-background d-print-none"></div>
+  <!-- main menu footer-->
+  <!-- include includes/menu-footer-->
+  <!-- main menu footer-->
+</div>
+<!-- / main menu-->

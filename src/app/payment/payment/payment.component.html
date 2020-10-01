@@ -1,0 +1,260 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PVNumber"
+                                                    [class.text-danger]="PVNumber.invalid &amp;&amp; PVNumber.touched">P V Number</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="PVNumber"
+                                                    name="PVNumber" #PVNumber="ngModel"
+                                                    [(ngModel)]="obj.PVNumber"
+                                                    [class.is-invalid]="PVNumber.invalid &amp;&amp; PVNumber.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter P V Number..."
+                                                    required>
+                                                <div *ngIf="PVNumber.invalid &amp;&amp; PVNumber.touched">
+                                                    <small *ngIf="PVNumber.errors?.required"
+                                                        class="text-danger">P V Number is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CompanyID"
+                                                    [class.text-danger]="CompanyID.invalid &amp;&amp; CompanyID.touched">Company</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="company"
+                                                    bindLabel="CompanyName"
+                                                    bindValue="id" #CompanyID="ngModel" name="CompanyID"
+                                                    [(ngModel)]="obj.CompanyID"
+                                                    [class.is-invalid]="CompanyID.invalid &amp;&amp; CompanyID.touched"
+                                                    placeholder="Select Company..."
+                                                    required></ng-select>
+                                                <div *ngIf="CompanyID.invalid &amp;&amp; CompanyID.touched">
+                                                    <small *ngIf="CompanyID.errors?.required"
+                                                        class="text-danger">Company is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PayingAccountID"
+                                                    [class.text-danger]="PayingAccountID.invalid &amp;&amp; PayingAccountID.touched">PayingAccount</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="PayingAccountID"
+                                                    name="PayingAccountID" #PayingAccountID="ngModel"
+                                                    [(ngModel)]="obj.PayingAccountID"
+                                                    [class.is-invalid]="PayingAccountID.invalid &amp;&amp; PayingAccountID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter PayingAccount..."
+                                                    required>
+                                                <div *ngIf="PayingAccountID.invalid &amp;&amp; PayingAccountID.touched">
+                                                    <small *ngIf="PayingAccountID.errors?.required"
+                                                        class="text-danger">PayingAccount is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PaymentMethodID"
+                                                    [class.text-danger]="PaymentMethodID.invalid &amp;&amp; PaymentMethodID.touched">Payment Method</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="paymentmethod"
+                                                    bindLabel="PaymentMethod"
+                                                    bindValue="id" #PaymentMethodID="ngModel" name="PaymentMethodID"
+                                                    [(ngModel)]="obj.PaymentMethodID"
+                                                    [class.is-invalid]="PaymentMethodID.invalid &amp;&amp; PaymentMethodID.touched"
+                                                    placeholder="Select Payment Method..."
+                                                    required></ng-select>
+                                                <div *ngIf="PaymentMethodID.invalid &amp;&amp; PaymentMethodID.touched">
+                                                    <small *ngIf="PaymentMethodID.errors?.required"
+                                                        class="text-danger">Payment Method is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ChequeNo"
+                                                    [class.text-danger]="ChequeNo.invalid &amp;&amp; ChequeNo.touched">Cheque No</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ChequeNo"
+                                                    name="ChequeNo" #ChequeNo="ngModel"
+                                                    [(ngModel)]="obj.ChequeNo"
+                                                    [class.is-invalid]="ChequeNo.invalid &amp;&amp; ChequeNo.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Cheque No..."
+                                                    required>
+                                                <div *ngIf="ChequeNo.invalid &amp;&amp; ChequeNo.touched">
+                                                    <small *ngIf="ChequeNo.errors?.required"
+                                                        class="text-danger">Cheque No is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PaymentDate"
+                                                    [class.text-danger]="PaymentDate.invalid &amp;&amp; PaymentDate.touched">Payment Date</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="PaymentDate"
+                                                    name="PaymentDate" #PaymentDate="ngModel"
+                                                    [(ngModel)]="obj.PaymentDate"
+                                                    [class.is-invalid]="PaymentDate.invalid &amp;&amp; PaymentDate.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Payment Date..."
+                                                    required>
+                                                <div *ngIf="PaymentDate.invalid &amp;&amp; PaymentDate.touched">
+                                                    <small *ngIf="PaymentDate.errors?.required"
+                                                        class="text-danger">Payment Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PaymentTypeID"
+                                                    [class.text-danger]="PaymentTypeID.invalid &amp;&amp; PaymentTypeID.touched">Payment Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="paymenttype"
+                                                    bindLabel="PaymentType"
+                                                    bindValue="id" #PaymentTypeID="ngModel" name="PaymentTypeID"
+                                                    [(ngModel)]="obj.PaymentTypeID"
+                                                    [class.is-invalid]="PaymentTypeID.invalid &amp;&amp; PaymentTypeID.touched"
+                                                    placeholder="Select Payment Type..."
+                                                    required></ng-select>
+                                                <div *ngIf="PaymentTypeID.invalid &amp;&amp; PaymentTypeID.touched">
+                                                    <small *ngIf="PaymentTypeID.errors?.required"
+                                                        class="text-danger">Payment Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PayeeID"
+                                                    [class.text-danger]="PayeeID.invalid &amp;&amp; PayeeID.touched">Payee</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="PayeeID"
+                                                    name="PayeeID" #PayeeID="ngModel"
+                                                    [(ngModel)]="obj.PayeeID"
+                                                    [class.is-invalid]="PayeeID.invalid &amp;&amp; PayeeID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Payee..."
+                                                    required>
+                                                <div *ngIf="PayeeID.invalid &amp;&amp; PayeeID.touched">
+                                                    <small *ngIf="PayeeID.errors?.required"
+                                                        class="text-danger">Payee is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Payment</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="PVNumber"
+                                        caption="P V Number">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CompanyName"
+                                        caption="Company Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PayingAccountID"
+                                        caption="PayingAccount ID">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PaymentMethod"
+                                        caption="Payment Method">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ChequeNo"
+                                        caption="Cheque No">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PaymentDate"
+                                        caption="Payment Date">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PaymentType"
+                                        caption="Payment Type">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PayeeID"
+                                        caption="Payee ID">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

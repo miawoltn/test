@@ -1,0 +1,60 @@
+<div class="content-body" id="resetPage">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{obj.title}}</h4>
+        </div>
+
+        <div class="card-content collpase show">
+            <div class="media-body halfway-fab align-self-end">
+                <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                    <a (click)="printMe()" class="btn btn-primary btn-raised mr-2 d-print-none"
+                    target="_blank" style="background-color: #15537d; color: white;">Print</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true"
+                    [showBorders]="true" (onContentReady)="contentReady()">
+                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxi-column dataField="FullName" Caption="Employee Name"></dxi-column>
+                    <dxi-column dataField="DepartmentName" caption="Department" ></dxi-column>
+                    <dxi-column dataField="UnitName" Caption="Unit"></dxi-column>
+                    <dxi-column dataField="DesignationName" Caption="Designation"></dxi-column>
+                    <dxi-column dataField="Email" [visible]="false"></dxi-column>
+                    <dxi-column dataField="EmployeeNumber" Caption="Employee Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="DateOfBirth" caption="Date Of Birth" [visible]="false" dataType="date"
+                        format="MMMM d, yyyy"></dxi-column>
+                    <dxi-column dataField="Gender" caption="Gender" [visible]="false"></dxi-column>
+                    <dxi-column dataField="MaritalStatus" caption="Marital Status" [visible]="false"></dxi-column>
+                    <dxi-column dataField="MobileNum" caption="Mobile Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="EmployeeType" caption="Employee Type" [visible]="false"></dxi-column>
+                    <dxi-column dataField="EmployeeStatus" caption="Employee Status" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Religion" caption="Religion" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Grade" caption="Grade" [visible]="false"></dxi-column>
+                    <dxi-column dataField="GradeLevel" caption="Grade Level" [visible]="false"></dxi-column>
+                    <dxi-column dataField="BranchName" caption="Office Location"></dxi-column>
+                    <dxi-column dataField="HomeNum" caption="Home Number" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Category" caption="Staff Category" ></dxi-column>
+                    <dxi-column dataField="Project" caption="Project" ></dxi-column>
+                    <dxi-column dataField="Experiate/Native" ></dxi-column>
+                    
+                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                    <dxo-paging [pageSize]="15"></dxo-paging>
+                    <dxo-group-panel [visible]="true"></dxo-group-panel>
+                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+
+                    <dxo-export [enabled]="true" fileName="Employee Report"></dxo-export>
+                </dx-data-grid>
+                <div class="options">
+                    <div class="caption">Options</div>
+                    <div class="option">
+                        <dx-check-box [(value)]="expand.autoExpandAll" text="Expand All Groups">
+                        </dx-check-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

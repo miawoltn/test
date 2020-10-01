@@ -1,0 +1,56 @@
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">Payroll Cancellation</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="PayrollPeriodID"
+                                                        [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Payroll
+                                                        Period <i class=" text-danger">*</i></label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <ng-select [items]="payrollperiod" bindLabel="PayrollPeriod"
+                                                        bindValue="id" #PayrollPeriodID="ngModel" name="PayrollPeriodID"
+                                                        [(ngModel)]="obj.PayrollPeriodID"
+                                                        [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                                        placeholder="Select Payroll Period..." required></ng-select>
+                                                    <div
+                                                        *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                                        <small *ngIf="PayrollPeriodID.errors?.required"
+                                                            class="text-danger">Payroll Period is
+                                                            Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        Cancel Payroll
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

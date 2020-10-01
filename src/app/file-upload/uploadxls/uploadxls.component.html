@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-sm-12 mt-2">
+    <div class="content-header">Send Bulk Notification</div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Upload Excel File</h4>
+    <a href="/assets/files/SampleExcelUploadFile.xlsx" class="btn btn-warning">Download Sample Excel Sheet Here</a>    
+  </div>
+  <div class="card-content">
+    <div class="card-body">
+<div class="row">        
+    <div class="col-md-6">    
+      <input type="file" class="form-control" (change)="uploadedFile($event)" placeholder="Upload file" accept=".xlsx">    
+    </div>    
+    <div class="col-md-6">    
+      <button type="button" class="btn btn-info btn-dropbox" (click)="readAsJson()">Upload File & Send Notification</button>    
+    </div>   
+    <!-- <div class="col-md-2 form-group">    
+      <button type="button" class="btn btn-info" (click)="readAsHTML()">Read as HTML</button>    
+    </div>    
+    <div class="col-md-2 form-group">    
+      <button type="button" class="btn btn-info" (click)="readAsText()">Read as Text</button>    
+    </div>   -->  
+</div> 
+</div>
+</div>
+
+<div class="card-content" *ngIf="data">
+  <div class="card-body">
+  <div class="table-responsive">
+      <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+          [columnAutoWidth]="true" [columnHidingEnabled]="true">
+          <dxo-paging [pageSize]="100"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+          <dxo-filter-row [visible]="false"></dxo-filter-row>
+          <dxi-column dataField="application_id" caption="Application ID"></dxi-column>
+          <dxi-column dataField="surname" caption="Surname"></dxi-column>
+          <dxi-column dataField="firstname" caption="Firstname"></dxi-column>
+          <dxi-column dataField="middlename" caption="Middle Name"></dxi-column>
+          <dxi-column dataField="email" caption="Email"></dxi-column>
+          <dxi-column dataField="mobile" caption="Mobile Number"></dxi-column>
+          <dxi-column dataField="branch" caption="branch"></dxi-column>
+      </dx-data-grid>
+  </div>
+</div>
+</div>
+</div>

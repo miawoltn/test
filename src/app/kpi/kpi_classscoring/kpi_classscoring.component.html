@@ -1,0 +1,158 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="period_id"
+                                        [class.text-danger]="period_id.invalid && period_id.touched">Period<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="period" bindLabel="period_name" bindValue="id"
+                                            [(ngModel)]="obj.period_id" name="period_id" required #period_id="ngModel"
+                                            [class.is-invalid]="period_id.invalid && period_id.touched"
+                                            placeholder="Select Period..."></ng-select>
+                                        <div *ngIf="period_id.invalid && period_id.touched">
+                                            <small *ngIf="period_id.errors?.required" class="text-danger">Period is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="percentage"
+                                        [class.text-danger]="percentage.invalid && percentage.touched">Percentage<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="percentage" min="0" max="100" name="percentage"
+                                            class="form-control" placeholder="Enter Percentage .."
+                                            [(ngModel)]="obj.percentage" required #percentage="ngModel"
+                                            [class.is-invalid]="percentage.invalid && percentage.touched"
+                                            placeholder="Select Percentage...">
+                                        <div *ngIf="percentage.invalid && percentage.touched">
+                                            <small *ngIf="percentage.errors?.required" class="text-danger">Percentage is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="posted_by" [class.text-danger]="posted_by.invalid && posted_by.touched">Posted by<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="number" id="posted_by" name="posted_by" class="form-control" placeholder="Enter Posted by .." [(ngModel)]="obj.posted_by" required #posted_by="ngModel" [class.is-invalid]="posted_by.invalid && posted_by.touched" placeholder="Select Posted by...">
+						<div *ngIf="posted_by.invalid && posted_by.touched">
+                            <small *ngIf="posted_by.errors?.required"
+                                class="text-danger">Posted by is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="posted_date" [class.text-danger]="posted_date.invalid && posted_date.touched">Posted date<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="date" id="posted_date" name="posted_date" class="form-control" placeholder="Enter Posted date .." [(ngModel)]="obj.posted_date" required #posted_date="ngModel" [class.is-invalid]="posted_date.invalid && posted_date.touched" placeholder="Select Posted date...">
+						<div *ngIf="posted_date.invalid && posted_date.touched">
+                            <small *ngIf="posted_date.errors?.required"
+                                class="text-danger">Posted date is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="supervisortypeID" [class.text-danger]="supervisortypeID.invalid && supervisortypeID.touched">Supervisortype<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="number" id="supervisortypeID" name="supervisortypeID" class="form-control" placeholder="Enter Supervisortype ID .." [(ngModel)]="obj.supervisortypeID" required #supervisortypeID="ngModel" [class.is-invalid]="supervisortypeID.invalid && supervisortypeID.touched" placeholder="Select Supervisortype...">
+						<div *ngIf="supervisortypeID.invalid && supervisortypeID.touched">
+                            <small *ngIf="supervisortypeID.errors?.required"
+                                class="text-danger">Supervisortype is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div> -->
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpiclass_id"
+                                        [class.text-danger]="kpiclass_id.invalid && kpiclass_id.touched">KPI Class<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpiclass" bindLabel="kpiclass" bindValue="id"
+                                            [(ngModel)]="obj.kpiclass_id" name="kpiclass_id" required
+                                            #kpiclass_id="ngModel"
+                                            [class.is-invalid]="kpiclass_id.invalid && kpiclass_id.touched"
+                                            placeholder="Select KPI Class..."></ng-select>
+                                        <div *ngIf="kpiclass_id.invalid && kpiclass_id.touched">
+                                            <small *ngIf="kpiclass_id.errors?.required" class="text-danger">KPI class is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of {{title}}</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="period_name" caption="Appraisal Period"></dxi-column>
+                            <dxi-column dataField="kpiclass" caption="KPI Class"></dxi-column>
+                            <dxi-column dataField="percentage" caption="Score"></dxi-column>
+                            <!-- <dxi-column dataField="posted_by"
+                          caption="Posted by"></dxi-column>
+      				<dxi-column dataField="posted_date"
+                          caption="Posted date"></dxi-column>
+      				<dxi-column dataField="supervisortypeID"
+                          caption="Supervisortype ID"></dxi-column> -->
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!-- <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+                        </dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

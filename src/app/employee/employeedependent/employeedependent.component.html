@@ -1,0 +1,157 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="DependentSurName"
+                                                    [class.text-danger]="Surname.invalid &amp;&amp; Surname.touched">Surname
+                                                    <i class="text-danger">*</i></label>
+                                                <input type="text" id="DependentSurname" name="Surname"
+                                                    class="form-control" [(ngModel)]="obj.Surname" required
+                                                    #Surname="ngModel"
+                                                    [class.is-invalid]="Surname.invalid &amp;&amp; Surname.touched"
+                                                    placeholder="Enter Surname...">
+                                                <div *ngIf="Surname.invalid &amp;&amp; Surname.touched">
+                                                    <small *ngIf="Surname.errors?.required" class="text-danger">Surname
+                                                        is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="DependentFirstName"
+                                                    [class.text-danger]="FirstName.invalid &amp;&amp; FirstName.touched">First
+                                                    Name <i class="text-danger">*</i></label>
+                                                <input type="text" id="DependentFirstName" name="FirstName"
+                                                    class="form-control" [(ngModel)]="obj.FirstName" required
+                                                    #FirstName="ngModel"
+                                                    [class.is-invalid]="FirstName.invalid &amp;&amp; FirstName.touched"
+                                                    placeholder="Enter First Name...">
+                                                <div *ngIf="FirstName.invalid &amp;&amp; FirstName.touched">
+                                                    <small *ngIf="FirstName.errors?.required" class="text-danger">First
+                                                        Name
+                                                        is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="DependentDateofBirth"
+                                                    [class.text-danger]="DateofBirth.invalid &amp;&amp; DateofBirth.touched">Date
+                                                    of Birth <i class="text-danger">*</i></label>
+                                                <input type="date" id="DependentDateofBirth" name="DateofBirth"
+                                                    class="form-control" [(ngModel)]="obj.DateofBirth" required
+                                                    #DateofBirth="ngModel"
+                                                    [class.is-invalid]="DateofBirth.invalid &amp;&amp; DateofBirth.touched"
+                                                    placeholder="Enter DateofBirth Address...">
+                                                <div *ngIf="DateofBirth.invalid &amp;&amp; DateofBirth.touched">
+                                                    <small *ngIf="DateofBirth.errors?.required" class="text-danger">Date
+                                                        of Birth
+                                                        is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="DependentAddress"
+                                                    [class.text-danger]="Address.invalid &amp;&amp; Address.touched">Address
+                                                    <i class="text-danger">*</i></label>
+                                                <textarea id="DependentAddress" name="Address" class="form-control"
+                                                    [(ngModel)]="obj.Address" required #Address="ngModel"
+                                                    [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                                                    placeholder="Enter Address..." cols="3" rows="2"></textarea>
+                                                <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                                                    <small *ngIf="Address.errors?.required" class="text-danger">Personal
+                                                        Email is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="FullName"
+                                                    [class.text-danger]="FullName.invalid &amp;&amp; FullName.touched">Full
+                                                    Name</label><i class="text-danger">*</i>
+                                                <div *ngIf="FullName.invalid &amp;&amp; FullName.touched">
+                                                    <small *ngIf="FullName.errors?.required"
+                                                        class="text-danger">FullRequired</small>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="form">
+                    <div class="form-heading">
+                        <h3>Dependent & Relationship</h3>
+                        <div class="form-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="form-body">
+                        <div class="table-responsive">
+
+                            <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                keyExpr="EmployeeDependentID" [focusedRowEnabled]="false" [focusedRowIndex]="0"
+                                [columnAutoWidth]="true" [columnHidingEnabled]="false">
+                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxi-column dataField="Surname" caption="Full Name">
+                                </dxi-column>
+                                <dxi-column dataField="FirstName" caption="Phone Number">
+                                </dxi-column>
+                                <dxi-column dataField="DateofBirth" caption="DOB">
+                                </dxi-column>
+                                <dxi-column dataField="Address" caption="Address">
+                                </dxi-column>
+                                <dxi-column type="buttons">
+                                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

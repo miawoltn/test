@@ -1,0 +1,556 @@
+
+<!-- <div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">
+                            {{ operation }} RECORD
+                        </h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProcurementID"
+                                                    [class.text-danger]="ProcurementID.invalid &amp;&amp; ProcurementID.touched">Procurement</label><i
+                                                    class="text-danger">*</i>
+                                                <ng-select [items]="
+                                                        procurementDetails2
+                                                    " bindLabel="ProcurementTitle" bindValue="ProcurementID"
+                                                    #ProcurementID="ngModel" name="ProcurementID" [(ngModel)]="
+                                                        obj.ProcurementID
+                                                    "
+                                                    [class.is-invalid]="ProcurementID.invalid &amp;&amp; ProcurementID.touched"
+                                                    placeholder="Select Procurement..." required
+                                                    (change)="loadData($event)"></ng-select>
+                                                <div *ngIf="ProcurementID.invalid &amp;&amp; ProcurementID.touched">
+                                                    <small *ngIf="
+                                                            ProcurementID.errors
+                                                                ?.required
+                                                        " class="text-danger">Procurement is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PurchaseTypeID"
+                                                    [class.text-danger]="PurchaseTypeID.invalid &amp;&amp; PurchaseTypeID.touched">Purchase
+                                                    Type</label><i class="text-danger">*</i>
+                                                <ng-select [items]="purchasetype" bindLabel="PurchaseType"
+                                                    bindValue="id" #PurchaseTypeID="ngModel" name="PurchaseTypeID"
+                                                    [(ngModel)]="
+                                                        obj.PurchaseTypeID
+                                                    "
+                                                    [class.is-invalid]="PurchaseTypeID.invalid &amp;&amp; PurchaseTypeID.touched"
+                                                    placeholder="Select Purchase Type..." required></ng-select>
+                                                <div *ngIf="PurchaseTypeID.invalid &amp;&amp; PurchaseTypeID.touched">
+                                                    <small *ngIf="
+                                                            PurchaseTypeID
+                                                                .errors
+                                                                ?.required
+                                                        " class="text-danger">Purchase Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
+
+<!-- <div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form>
+                                <div class="card-body">
+                                    <h3>
+                                        <strong>Procurement Information</strong>
+                                    </h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="date"><b>Procurement
+                                                        Title</b></label>
+                                                <div class="col-md-8">
+                                                    {{info.ProcurementTitle }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="date"><b>Procurement
+                                                        Date:</b></label>
+                                                <div class="col-md-8">
+                                                    {{ info.ProcurementDate }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="date"><b>Initiator:</b></label>
+                                                <div class="col-md-8">
+                                                    {{info.RequestBy }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="date"><b>Approval
+                                                        Stage:</b></label>
+                                                <div class="col-md-8">
+                                                    {{info.ApprovalStagesID }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #order="ngModelGroup" ngModelGroup="order"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Step I: Purchase Information </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="ProcurementID"
+                                                            [class.text-danger]="ProcurementID.invalid &amp;&amp; ProcurementID.touched">Procurement</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="
+                                                                procurementDetails2
+                                                            " bindLabel="ProcurementTitle" bindValue="ProcurementID"
+                                                            #ProcurementID="ngModel" name="ProcurementID" [(ngModel)]="
+                                                                obj.ProcurementID
+                                                            "
+                                                            [class.is-invalid]="ProcurementID.invalid &amp;&amp; ProcurementID.touched"
+                                                            placeholder="Select Procurement..." required
+                                                            (change)="loadData($event)"></ng-select>
+                                                        <div
+                                                            *ngIf="ProcurementID.invalid &amp;&amp; ProcurementID.touched">
+                                                            <small *ngIf="
+                                                                    ProcurementID.errors
+                                                                        ?.required
+                                                                " class="text-danger">Procurement is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="PurchaseTypeID"
+                                                            [class.text-danger]="PurchaseTypeID.invalid &amp;&amp; PurchaseTypeID.touched">Purchase
+                                                            Type</label><i class="text-danger">*</i>
+                                                        <ng-select [items]="purchasetype" bindLabel="PurchaseType"
+                                                            bindValue="id" #PurchaseTypeID="ngModel"
+                                                            name="PurchaseTypeID" [(ngModel)]="
+                                                                obj.PurchaseTypeID
+                                                            "
+                                                            [class.is-invalid]="PurchaseTypeID.invalid &amp;&amp; PurchaseTypeID.touched"
+                                                            placeholder="Select Purchase Type..." required></ng-select>
+                                                        <div
+                                                            *ngIf="PurchaseTypeID.invalid &amp;&amp; PurchaseTypeID.touched">
+                                                            <small *ngIf="
+                                                                    PurchaseTypeID
+                                                                        .errors
+                                                                        ?.required
+                                                                " class="text-danger">Purchase Type is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" *ngIf="showProcurementInfo">
+                                                <hr>
+                                                <div class="card-body">
+                                                    <h3>
+                                                        <strong>Procurement Information</strong>
+                                                    </h3>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Procurement
+                                                                        Title</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.ProcurementTitle }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Procurement
+                                                                        Date:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{ info.DateCreated | date:'fullDate' }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Initiator:</b></label>
+                                                                <div class="col-md-8">
+                                                                    <!-- {{info.RequestBy }} -->
+                                                                    Keston Timson
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Approval
+                                                                        Stage:</b></label>
+                                                                <div class="col-md-8">
+                                                                    <!-- {{info.ApprovalStagesID }} -->
+                                                                    Approval Stage
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <hr>
+                                                <div class="card-body">
+                                                    <h3>
+                                                        <strong>Procurement Details</strong>
+                                                    </h3>
+                                                    <div class="row">
+                                                        <table class="table" *ngFor="let vendor of vendors">
+                                                            <thead>
+                                                                <div class="card-header">
+                                                                    <h5 class="box-title">
+                                                                        <strong>{{ vendor.VendorName }}</strong>
+                                                                    </h5>
+                                                                </div>
+                                                                <tr>
+                                                                    <th>Equipment</th>
+                                                                    <th>Price</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of filterData(vendor.VendorID)">
+                                                                    <td>{{ item.Equipment }}</td>
+                                                                    <td>{{ item.Price }}</td>
+                                                                    <td>{{ item.Quantity }}</td>
+                                                                    <td>{{ item.Price * item.Quantity }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-actions right">
+                                            <button type="button" class="btn btn-sm btn-warning mr-1"
+                                                (click)="resetForm()">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" matStepperNext class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Generate Purchase Order</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable" #employment_info="ngModelGroup"
+                                        ngModelGroup="employment_info" [stepControl]="form.controls.employment_info">
+                                        <ng-template matStepLabel>Step II: Purchase Approval</ng-template>
+                                        <div class="card-body">
+                                            <div class="row" *ngIf="showProcurementInfo">
+                                                <div class="col-md-8">
+                                                    <h3>
+                                                        <strong>Procurement Information</strong>
+                                                    </h3>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Procurement
+                                                                        Title</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.ProcurementTitle }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Procurement
+                                                                        Date:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{ info.DateCreated | date:'fullDate' }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Initiator:</b></label>
+                                                                <div class="col-md-8">
+                                                                    <!-- {{info.RequestBy }} -->
+                                                                    Joseph Onyilo
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Approval
+                                                                        Stage:</b></label>
+                                                                <div class="col-md-8">
+                                                                    <!-- {{info.ApprovalStagesID }} -->
+                                                                    Approval
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr>
+                                                    <h3>
+                                                        <strong>Procurement Details</strong>
+                                                    </h3>
+                                                    <div class="row">
+                                                        <table class="table" *ngFor="let vendor of vendors">
+                                                            <thead>
+                                                                <div class="card-header">
+                                                                    <h5 class="box-title">
+                                                                        <strong>{{ vendor.VendorName }}</strong>
+                                                                    </h5>
+                                                                </div>
+                                                                <tr>
+                                                                    <th>Equipment</th>
+                                                                    <th>Price</th>
+                                                                    <th>Quantity</th>
+                                                                    <th>Amount</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of filterData(vendor.VendorID)">
+                                                                    <td>{{ item.Equipment }}</td>
+                                                                    <td>{{ item.Price }}</td>
+                                                                    <td>{{ item.Quantity }}</td>
+                                                                    <td>{{ item.Price * item.Quantity }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4" style="text-align: left;">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovedBy">Approving
+                                                                Officer: </label>
+                                                            <!-- {{ user_name }} -->
+                                                            John Andason
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Action</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="" bindValue="id"
+                                                                bindLabel="ApprovalType">
+                                                            </ng-select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-md-12" *ngIf="show"> -->
+                                                    <div class="form-group">
+                                                        <label>Next Approving Officer</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="" bindValue="id" bindLabel="FullName">
+                                                        </ng-select>
+                                                    </div>
+                                                    <!-- </div> -->
+
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Comment</label><i class="text-danger">*</i>
+                                                            <textarea class="form-control"></textarea>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <button type="button" class="btn btn-sm btn-warning mr-1"
+                                                (click)="resetForm()">
+                                                Cancel
+                                            </button>
+                                            <button type="submit" matStepperNext class="btn btn-sm btn-primary"
+                                                (click)="onConfirm()">
+                                                Confirm</button>
+                                        </div>
+
+                                    </mat-step>
+
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 3: Completion</ng-template>
+                                        <div class="card-body">
+                                            <div class="row" *ngIf="showProcurementInfo2">
+                                                <h5>
+                                                    <strong>Procurement Information</strong>
+                                                </h5>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-4 form-control-label"
+                                                                for="date"><b>Procurement
+                                                                    Title</b></label>
+                                                            <div class="col-md-8">
+                                                                {{info.ProcurementTitle }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-4 form-control-label"
+                                                                for="date"><b>Procurement
+                                                                    Date:</b></label>
+                                                            <div class="col-md-8">
+                                                                {{ info.DateCreated | date:'fullDate' }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-4 form-control-label"
+                                                                for="date"><b>Initiator:</b></label>
+                                                            <div class="col-md-8">
+                                                                <!-- {{info.RequestBy }} -->
+                                                                Joseph Onyilo
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group row">
+                                                            <label class="col-md-4 form-control-label"
+                                                                for="date"><b>Approval
+                                                                    Stage:</b></label>
+                                                            <div class="col-md-8">
+                                                                <!-- {{info.ApprovalStagesID }} -->
+                                                                Approval
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5><strong>Procurement Details</strong></h5>
+                                                    <table class="table" *ngFor="let vendor of vendors">
+                                                        <thead>
+                                                            <div class="card-header">
+                                                                <h5 class="box-title">
+                                                                    <strong>{{ vendor.VendorName }}</strong>
+                                                                </h5>
+                                                            </div>
+                                                            <tr>
+                                                                <th>Equipment</th>
+                                                                <th>Price</th>
+                                                                <th>Quantity</th>
+                                                                <th>Amount</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of filterData(vendor.VendorID)">
+                                                                <td>{{ item.Equipment }}</td>
+                                                                <td>{{ item.Price }}</td>
+                                                                <td>{{ item.Quantity }}</td>
+                                                                <td>{{ item.Price * item.Quantity }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-actions right">
+                                            <button type="button" class="btn btn-sm btn-warning mr-1"
+                                                (click)="resetForm()">
+                                                Cancel
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                (click)="stepper.reset()"> New Purchase Order</button>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+                            </form>
+
+                            <!-- <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm(info)">
+                                <div class="card-body">
+                                    <table class="table" *ngFor="let vendor of vendors">
+                                        <thead>
+                                            <div class="card-header">
+                                                <h5 class="box-title">
+                                                    <strong>{{ vendor.VendorName }}</strong>
+                                                </h5>
+                                            </div>
+                                            <tr>
+                                                <th>Equipment</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of filterData(vendor.VendorID)">
+                                                <td>{{ item.Equipment }}</td>
+                                                <td>{{ item.Price }}</td>
+                                                <td>{{ item.Quantity }}</td>
+                                                <td>{{ item.Price * item.Quantity }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        Generate Purchase Order
+                                    </button>
+                                </div>
+                            </form> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

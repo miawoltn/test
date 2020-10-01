@@ -1,0 +1,143 @@
+
+
+
+<section class="content">
+<div class="row">
+   <div class="col-md-12">
+    
+	<div class="card card-info" *ngIf="displayForm">
+        <div class="card-header">
+		  {{operation}} Record
+        </div>
+        
+        
+        <div class="card-body">
+			<form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="chart_title" [class.text-danger]="chart_title.invalid && chart_title.touched">Chart title<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="text" id="chart_title" name="chart_title" class="form-control" placeholder="Enter Chart title .." [(ngModel)]="obj.chart_title" required #chart_title="ngModel" [class.is-invalid]="chart_title.invalid && chart_title.touched" placeholder="Enter Chart title...">
+						<div *ngIf="chart_title.invalid && chart_title.touched">
+                            <small *ngIf="chart_title.errors?.required"
+                                class="text-danger">Chart title is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="chart_type_id" [class.text-danger]="chart_type_id.invalid && chart_type_id.touched">Chart type id<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="number" id="chart_type_id" name="chart_type_id" class="form-control" placeholder="Enter Chart type id .." [(ngModel)]="obj.chart_type_id" required #chart_type_id="ngModel" [class.is-invalid]="chart_type_id.invalid && chart_type_id.touched" placeholder="Enter Chart type id...">
+						<div *ngIf="chart_type_id.invalid && chart_type_id.touched">
+                            <small *ngIf="chart_type_id.errors?.required"
+                                class="text-danger">Chart type is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="chart_category_id" [class.text-danger]="chart_category_id.invalid && chart_category_id.touched">Chart category id<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="number" id="chart_category_id" name="chart_category_id" class="form-control" placeholder="Enter Chart category id .." [(ngModel)]="obj.chart_category_id" required #chart_category_id="ngModel" [class.is-invalid]="chart_category_id.invalid && chart_category_id.touched" placeholder="Enter Chart category id...">
+						<div *ngIf="chart_category_id.invalid && chart_category_id.touched">
+                            <small *ngIf="chart_category_id.errors?.required"
+                                class="text-danger">Chart category id is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="sql_query" [class.text-danger]="sql_query.invalid && sql_query.touched">Sql query<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="text" id="sql_query" name="sql_query" class="form-control" placeholder="Enter Sql query .." [(ngModel)]="obj.sql_query" required #sql_query="ngModel" [class.is-invalid]="sql_query.invalid && sql_query.touched" placeholder="Enter Sql query...">
+						<div *ngIf="sql_query.invalid && sql_query.touched">
+                            <small *ngIf="sql_query.errors?.required"
+                                class="text-danger">Sql query is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="isActive" [class.text-danger]="isActive.invalid && isActive.touched">IsActive<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="number" id="isActive" name="isActive" class="form-control" placeholder="Enter IsActive .." [(ngModel)]="obj.isActive" required #isActive="ngModel" [class.is-invalid]="isActive.invalid && isActive.touched" placeholder="Enter IsActive...">
+						<div *ngIf="isActive.invalid && isActive.touched">
+                            <small *ngIf="isActive.errors?.required"
+                                class="text-danger">IsActive is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="module_id" [class.text-danger]="module_id.invalid && module_id.touched">Module id<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="number" id="module_id" name="module_id" class="form-control" placeholder="Enter Module id .." [(ngModel)]="obj.module_id" required #module_id="ngModel" [class.is-invalid]="module_id.invalid && module_id.touched" placeholder="Enter Module id...">
+						<div *ngIf="module_id.invalid && module_id.touched">
+                            <small *ngIf="module_id.errors?.required"
+                                class="text-danger">Module id is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        
+		<div class="col-md-12">
+            <button type="button" class="btn btn-default" (click)="hideForm()">Cancel</button>&nbsp;
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{operation}}</button>
+         </div>
+      </form>
+	  </div>
+    </div>
+    
+	<div class="card">
+        <div class="card-header">
+          <h3>List of Charts</h3>
+          <!--<div class="card-tools pull-right">
+            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+              Add New</button>
+          </div>-->
+        </div>
+        <!-- /.box-header -->
+        <div class="card-body">
+
+        <div class="table-responsive" >
+         
+             <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+					[focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true" [columnHidingEnabled]="true">
+					<dxo-paging [pageSize]="10"></dxo-paging>
+					<dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+					<dxo-filter-row [visible]="true"></dxo-filter-row>
+					<dxi-column dataField="chart_title"
+                          caption="Chart title"></dxi-column>
+      				<dxi-column dataField="chart_type_id"
+                          caption="Chart type"></dxi-column>
+      				<dxi-column dataField="chart_category_id"
+                          caption="Chart category"></dxi-column>
+      				<dxi-column dataField="sql_query"
+                          caption="Sql query"></dxi-column>
+      				<dxi-column dataField="isActive"
+                          caption="IsActive"></dxi-column>
+      				<dxi-column dataField="module_id"
+                          caption="Module"></dxi-column>
+      				
+						<dxi-column type="buttons">
+							<dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+						</dxi-column>
+                </dx-data-grid>
+            <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action>
+        
+     </div>
+    </div>
+    <!-- end box-body -->
+</div>
+<!-- end box -->
+</div>
+</div>
+</section>
+

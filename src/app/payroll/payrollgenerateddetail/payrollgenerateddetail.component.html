@@ -1,0 +1,214 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PayrollGeneratedID"
+                                                    [class.text-danger]="PayrollGeneratedID.invalid &amp;&amp; PayrollGeneratedID.touched">Payroll Generated</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="PayrollGeneratedID"
+                                                    name="PayrollGeneratedID" #PayrollGeneratedID="ngModel"
+                                                    [(ngModel)]="obj.PayrollGeneratedID"
+                                                    [class.is-invalid]="PayrollGeneratedID.invalid &amp;&amp; PayrollGeneratedID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Payroll Generated..."
+                                                    required>
+                                                <div *ngIf="PayrollGeneratedID.invalid &amp;&amp; PayrollGeneratedID.touched">
+                                                    <small *ngIf="PayrollGeneratedID.errors?.required"
+                                                        class="text-danger">Payroll Generated is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SalaryComponent"
+                                                    [class.text-danger]="SalaryComponent.invalid &amp;&amp; SalaryComponent.touched">Salary Component</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="SalaryComponent"
+                                                    name="SalaryComponent" #SalaryComponent="ngModel"
+                                                    [(ngModel)]="obj.SalaryComponent"
+                                                    [class.is-invalid]="SalaryComponent.invalid &amp;&amp; SalaryComponent.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Salary Component..."
+                                                    required>
+                                                <div *ngIf="SalaryComponent.invalid &amp;&amp; SalaryComponent.touched">
+                                                    <small *ngIf="SalaryComponent.errors?.required"
+                                                        class="text-danger">Salary Component is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Debit"
+                                                    [class.text-danger]="Debit.invalid &amp;&amp; Debit.touched">Debit</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Debit"
+                                                    name="Debit" #Debit="ngModel"
+                                                    [(ngModel)]="obj.Debit"
+                                                    [class.is-invalid]="Debit.invalid &amp;&amp; Debit.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Debit..."
+                                                    required>
+                                                <div *ngIf="Debit.invalid &amp;&amp; Debit.touched">
+                                                    <small *ngIf="Debit.errors?.required"
+                                                        class="text-danger">Debit is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Credit"
+                                                    [class.text-danger]="Credit.invalid &amp;&amp; Credit.touched">Credit</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Credit"
+                                                    name="Credit" #Credit="ngModel"
+                                                    [(ngModel)]="obj.Credit"
+                                                    [class.is-invalid]="Credit.invalid &amp;&amp; Credit.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Credit..."
+                                                    required>
+                                                <div *ngIf="Credit.invalid &amp;&amp; Credit.touched">
+                                                    <small *ngIf="Credit.errors?.required"
+                                                        class="text-danger">Credit is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Amount"
+                                                    [class.text-danger]="Amount.invalid &amp;&amp; Amount.touched">Amount</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="Amount"
+                                                    name="Amount" #Amount="ngModel"
+                                                    [(ngModel)]="obj.Amount"
+                                                    [class.is-invalid]="Amount.invalid &amp;&amp; Amount.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Amount..."
+                                                    required>
+                                                <div *ngIf="Amount.invalid &amp;&amp; Amount.touched">
+                                                    <small *ngIf="Amount.errors?.required"
+                                                        class="text-danger">Amount is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SalaryComponentID"
+                                                    [class.text-danger]="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched">Salary Component</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="SalaryComponentID"
+                                                    name="SalaryComponentID" #SalaryComponentID="ngModel"
+                                                    [(ngModel)]="obj.SalaryComponentID"
+                                                    [class.is-invalid]="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Salary Component..."
+                                                    required>
+                                                <div *ngIf="SalaryComponentID.invalid &amp;&amp; SalaryComponentID.touched">
+                                                    <small *ngIf="SalaryComponentID.errors?.required"
+                                                        class="text-danger">Salary Component is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Payroll Generated Details</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="PayrollGeneratedID"
+                                        caption="Payroll Generated ID">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="SalaryComponent"
+                                        caption="Salary Component">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Debit"
+                                        caption="Debit">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Credit"
+                                        caption="Credit">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Amount"
+                                        caption="Amount">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="SalaryComponentID"
+                                        caption="Salary Component ID">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

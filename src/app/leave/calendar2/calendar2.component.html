@@ -1,0 +1,97 @@
+
+
+<div class="content-body">
+   
+        <section id="basic-form-layouts">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" id="horz-layout-basic">Filter </h4>
+                        </div>
+                        <div class="card-content collpase show">
+                            <div class="card-body">
+                                
+                                <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                    <div class="form-body">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="LeaveTypeID"
+                                                        [class.text-danger]="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">Leave
+                                                        Type</label><i class="text-danger">*</i>
+                                                    <ng-select [items]="LeaveTypes" bindLabel="LeaveType"
+                                                        bindValue="id" [(ngModel)]="obj.LeaveTypeID"
+                                                        name="LeaveTypeID" required #LeaveTypeID="ngModel"
+                                                        [class.is-invalid]="LeaveTypeID.invalid && LeaveTypeID.touched"
+                                                        placeholder="Select Leave Type..."></ng-select>
+
+                                                    <div *ngIf="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">
+                                                        <small *ngIf="LeaveTypeID.errors?.required"
+                                                            class="text-danger">Leave Type is
+                                                            Required</small>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="DepartmentID"
+                                                        [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Department</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="departments" bindLabel="DepartmentName"
+                                                            bindValue="id" [(ngModel)]="obj.DepartmentID" name="DepartmentID"
+                                                            required #DepartmentID="ngModel"
+                                                            [class.is-invalid]="DepartmentID.invalid &amp;&amp; DepartmentID.touched"
+                                                            placeholder="Select Department..." >
+                                                        </ng-select>
+                                                        <div *ngIf="DepartmentID.invalid &amp;&amp; DepartmentID.touched">
+                                                            <small *ngIf="DepartmentID.errors?.required"
+                                                                class="text-danger">Department is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+                                    <div class="form-actions right">
+                                        <button type="button" class="btn btn-warning mr-1">
+    
+                                            Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                            Search
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+  
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <dx-pivot-grid id="pivotgrid" [allowSortingBySummary]="true" [allowFiltering]="true"
+                                [showBorders]="true" [allowSortingBySummary]="true" [showColumnGrandTotals]="true"
+                                [showRowGrandTotals]="false" [showRowTotals]="true" [showColumnTotals]="false"
+                                [dataSource]="pivotGridDataSource">
+                                <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
+                                <dxo-scrolling mode="virtual"></dxo-scrolling>
+                                <dxo-export [enabled]="true" [printingEnabled]="true"></dxo-export>
+                            </dx-pivot-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,69 @@
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <!-- <h4 class="card-title" id="horz-layout-basic">Procurement Approval</h4> -->
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <!-- <div id="surveyElement"></div> -->
+              <!-- Procurement Details -->
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group row">
+                            <!-- <label class="col-lg-4 col-md-4 col-sm-4 form-control-label" style="color: blue;"><strong>Procurement Title:</strong></label> -->
+                            <h5 class="card-title col-lg-4 col-md-4 col-sm-4" id="horz-layout-basic" style="color: blue;">Procurement Title:</h5>
+                            <br>
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <p>{{ ProcurementTitle }}</p>
+                            </div>
+                        </div>
+                        <!-- /.form group -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="card-header">
+                      <h4 class="card-title" id="horz-layout-basic">Procurement Detail</h4>
+                    </div>
+                    <table class="table">
+                      <thead>
+                        <tr >
+                          <th>#</th>
+                          <th>Equipment</th>
+                          <!-- <th>Qty</th> -->
+                          <th *ngFor="let item of Vendors, index as i">{{ item }}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let items of EquipmentVendorLis, index as i">
+                          <th scope="row">{{ i + 1 }}</th>
+                          <td style="width: 20%">{{ items.equipment.equipment }}</td>
+                          <!-- <td style="width: 7%">{{ items.equipment.qty }}</td> -->
+                          <td *ngFor="let item of items.vendors, index as x">{{ item.Quantity }} x {{ item.Price }}<input type="radio" id="Action{{i}}{{x}}" [value]="item.VendorID" name="Action{{i}}"
+                            [(ngModel)]="item.Action" (change)="changeAction(i,x)" ></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

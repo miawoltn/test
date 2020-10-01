@@ -1,0 +1,116 @@
+.content-wrapper {
+    padding: 0 100px;
+}
+
+.card-content{
+    min-height: 250px;
+}
+
+.card-text {
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.dropic{
+    border: 1px solid white;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.09), 0 15px 32px 0 rgba(0, 0, 0, 0.06);
+}
+
+.modimg{
+    height: 85px;
+    margin-bottom: 10px;
+}
+
+.pdl{
+
+    padding-left: 0px !important;
+}
+
+.teambg{
+    background-color: #BE2C6C;
+    padding: 3px 30px;
+}
+
+.headbg{
+    background-image: url(../../../assets/img/gallery/headbg2.svg);
+    padding: 110px 5px 160px 5px;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.teamt{
+    font-size: 55px;
+    color: white;
+    font-weight: 800;
+    line-height: 60px;
+    text-align: center;
+}
+
+.teamsub{
+    color: white;
+    margin-top: 15px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.margint{
+    margin-top: -100px;
+}
+
+.logo{
+    height: 70px;
+}
+
+.modt{
+    font-weight: 600;
+    letter-spacing: 0.03rem;
+    font-size: 17px;
+    margin-bottom: 0.60rem;
+}
+
+@media (max-width: 576px) {
+    .content-wrapper {
+        padding: 0 30px;
+    }
+
+    .logo{
+        height: 50px;
+    }
+
+    .teamt{
+        font-size: 30px;
+        color: white;
+        font-weight: 800;
+        line-height: 5px;
+        text-align: center;
+    }
+
+    .teamsub{
+        color: white;
+        margin-top: 20px;
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .headbg{
+        background-image: url(../../../assets/img/gallery/headbg.svg);
+        padding: 50px 5px 100px 5px;
+        background-size: cover;
+        background-position: bottom;
+    }
+}
+.w-text{
+    color: white;
+    padding: 5px 10px;
+}
+
+.dropic{
+    border: 1px solid white;
+    border-radius: 50px;
+    background: white;
+    box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.09), 0 15px 32px 0 rgba(0, 0, 0, 0.06);
+}

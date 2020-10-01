@@ -1,0 +1,214 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountCode"
+                                                    [class.text-danger]="AccountCode.invalid &amp;&amp; AccountCode.touched">Account Code</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="AccountCode"
+                                                    name="AccountCode" #AccountCode="ngModel"
+                                                    [(ngModel)]="obj.AccountCode"
+                                                    [class.is-invalid]="AccountCode.invalid &amp;&amp; AccountCode.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Account Code..."
+                                                    required>
+                                                <div *ngIf="AccountCode.invalid &amp;&amp; AccountCode.touched">
+                                                    <small *ngIf="AccountCode.errors?.required"
+                                                        class="text-danger">Account Code is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountTitle"
+                                                    [class.text-danger]="AccountTitle.invalid &amp;&amp; AccountTitle.touched">Account Title</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="AccountTitle"
+                                                    name="AccountTitle" #AccountTitle="ngModel"
+                                                    [(ngModel)]="obj.AccountTitle"
+                                                    [class.is-invalid]="AccountTitle.invalid &amp;&amp; AccountTitle.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Account Title..."
+                                                    required>
+                                                <div *ngIf="AccountTitle.invalid &amp;&amp; AccountTitle.touched">
+                                                    <small *ngIf="AccountTitle.errors?.required"
+                                                        class="text-danger">Account Title is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountGroupID"
+                                                    [class.text-danger]="AccountGroupID.invalid &amp;&amp; AccountGroupID.touched">Account Group</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="accountgroup"
+                                                    bindLabel="AccountGroup"
+                                                    bindValue="id" #AccountGroupID="ngModel" name="AccountGroupID"
+                                                    [(ngModel)]="obj.AccountGroupID"
+                                                    [class.is-invalid]="AccountGroupID.invalid &amp;&amp; AccountGroupID.touched"
+                                                    placeholder="Select Account Group..."
+                                                    required></ng-select>
+                                                <div *ngIf="AccountGroupID.invalid &amp;&amp; AccountGroupID.touched">
+                                                    <small *ngIf="AccountGroupID.errors?.required"
+                                                        class="text-danger">Account Group is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountTypeID"
+                                                    [class.text-danger]="AccountTypeID.invalid &amp;&amp; AccountTypeID.touched">Account Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="accounttype"
+                                                    bindLabel="AccountType"
+                                                    bindValue="id" #AccountTypeID="ngModel" name="AccountTypeID"
+                                                    [(ngModel)]="obj.AccountTypeID"
+                                                    [class.is-invalid]="AccountTypeID.invalid &amp;&amp; AccountTypeID.touched"
+                                                    placeholder="Select Account Type..."
+                                                    required></ng-select>
+                                                <div *ngIf="AccountTypeID.invalid &amp;&amp; AccountTypeID.touched">
+                                                    <small *ngIf="AccountTypeID.errors?.required"
+                                                        class="text-danger">Account Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountsSubTypeID"
+                                                    [class.text-danger]="AccountsSubTypeID.invalid &amp;&amp; AccountsSubTypeID.touched">Accounts Sub Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="accountssubtype"
+                                                    bindLabel="AccountsSubType"
+                                                    bindValue="id" #AccountsSubTypeID="ngModel" name="AccountsSubTypeID"
+                                                    [(ngModel)]="obj.AccountsSubTypeID"
+                                                    [class.is-invalid]="AccountsSubTypeID.invalid &amp;&amp; AccountsSubTypeID.touched"
+                                                    placeholder="Select Accounts Sub Type..."
+                                                    required></ng-select>
+                                                <div *ngIf="AccountsSubTypeID.invalid &amp;&amp; AccountsSubTypeID.touched">
+                                                    <small *ngIf="AccountsSubTypeID.errors?.required"
+                                                        class="text-danger">Accounts Sub Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="AccountOwnerID"
+                                                    [class.text-danger]="AccountOwnerID.invalid &amp;&amp; AccountOwnerID.touched">Account Owner</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="AccountOwnerID"
+                                                    name="AccountOwnerID" #AccountOwnerID="ngModel"
+                                                    [(ngModel)]="obj.AccountOwnerID"
+                                                    [class.is-invalid]="AccountOwnerID.invalid &amp;&amp; AccountOwnerID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Account Owner..."
+                                                    required>
+                                                <div *ngIf="AccountOwnerID.invalid &amp;&amp; AccountOwnerID.touched">
+                                                    <small *ngIf="AccountOwnerID.errors?.required"
+                                                        class="text-danger">Account Owner is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Account</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="AccountCode"
+                                        caption="Account Code">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="AccountTitle"
+                                        caption="Account Title">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="AccountGroup"
+                                        caption="Account Group">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="AccountType"
+                                        caption="Account Type">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="AccountsSubType"
+                                        caption="Accounts Sub Type">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="AccountOwnerID"
+                                        caption="Account Owner">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

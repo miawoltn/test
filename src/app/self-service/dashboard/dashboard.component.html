@@ -1,0 +1,159 @@
+<!-- <div class="row">
+
+    <div class="col-lg-3 col-md-12">
+        <div class="card cdc">
+            <div class="card-content">
+                <div class="card-body">
+                    <h4 class="modt">Leave <br>Days</h4>
+                    <div class="modimg">
+                        45
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="card cdc">
+            <div class="card-content">
+                <div class="card-body">
+                    <h4 class="modt">Tasks<br></h4>
+                    <div class="modimg">
+                        100
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12">
+        <div class="card cdc">
+            <div class="card-content">
+                <div class="card-body">
+                    <h4 class="modt">Loans<br></h4>
+                    <div class="modimg">
+                        100
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-12">
+        <div class="card cdc">
+            <div class="card-content">
+                <div class="card-body">
+                    <h4 class="modt">Attendance<br></h4>
+                    <div class="modimg">
+                        90%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="row match-height">
+    <div class="col-xl-6 col-md-6" *ngFor="let item of data; index as i">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">{{item.title}}</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-data-grid class="dx-card wide-card" *ngIf="item.chart_category == 'Grid'" [dataSource]="item.data"
+                        [showBorders]="false" 
+                        [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                        <dxo-paging [pageSize]="5"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                        <!-- <dxo-filter-row [visible]="true"></dxo-filter-row> -->
+                    </dx-data-grid>
+
+                    <dx-chart id="chartx{{i}}" *ngIf="item.chart_category == 'RangeBar'" [dataSource]="item.data"
+                        [rotated]="true" [barGroupPadding]="0.2">
+                        <dxo-animation [enabled]="false"></dxo-animation>
+                        <dxo-series-template nameField="name2"></dxo-series-template>
+                        <dxo-common-series-settings argumentField="name" [type]="item.chart_type"
+                            rangeValue1Field="start" rangeValue2Field="end" barOverlapGroup="names">
+                        </dxo-common-series-settings>
+                    </dx-chart>
+
+                    <dx-chart *ngIf="item.chart_category == 'Bar' && item.isGroup == 0 " id="chart{{i}}"
+                        [dataSource]="item.data" style="height: 300px;"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)">
+                        <dxi-series valueField="total" argumentField="name" [type]="item.chart_type">
+                            <dxo-label [visible]="true" [format]="{
+                                type: 'fixedPoint',
+                                precision: '0'
+                            }" position="outside">
+                            </dxo-label>
+                        </dxi-series>
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+                        <dxo-argument-axis>
+                            <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                            <dxo-label overlappingBehavior="rotate" [rotationAngle]="45">
+                            </dxo-label>
+                        </dxo-argument-axis>
+                        <dxo-legend [visible]="false" verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+
+                    <dx-pie-chart id="pie{{i}}" *ngIf="item.chart_category == 'Pie' && item.isGroup == 0 "
+                        [type]="item.chart_type" style="height: 300px;" [dataSource]="item.data"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)"
+                        resolveLabelOverlapping="shift">
+                        <dxi-series argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxi-series>
+
+                        <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right" verticalAlignment="top">
+                        </dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" format="millions">
+                        </dxo-tooltip>
+                    </dx-pie-chart>
+
+                    <dx-chart id="chart{{i}}" [dataSource]="item.data"
+                        *ngIf="item.chart_category == 'Bar' && item.isGroup == 1 " style="height: 300px;"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)">
+                        <dxo-common-series-settings argumentField="name2" valueField="total" [type]="item.chart_type"
+                            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                            <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: '0'
+                                }"></dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="name">
+                        </dxo-series-template>
+
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+                        <dxo-argument-axis>
+                            <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                            <dxo-label overlappingBehavior="rotate" [rotationAngle]="45">
+                            </dxo-label>
+                        </dxo-argument-axis>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+
+                    <dx-pie-chart *ngIf="item.chart_category == 'Pie' && item.isGroup == 1 " id="pie{{i}}"
+                        [type]="item.chart_type" innerRadius="0.2" [dataSource]="item.data"
+                        resolveLabelOverlapping="shift"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)"
+                        resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true"></dxo-legend>
+                        <dxo-common-series-settings argumentField="name2" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel2" format="fixedPoint">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="false" [customizeTooltip]="customizeTooltip2">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="name">
+                        </dxo-series-template>
+                    </dx-pie-chart>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

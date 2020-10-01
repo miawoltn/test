@@ -1,0 +1,183 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpiclass_id"
+                                        [class.text-danger]="kpiclass_id.invalid && kpiclass_id.touched">KPI Class<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpiclass" bindLabel="kpiclass" bindValue="id"
+                                            [(ngModel)]="obj.kpiclass_id" name="kpiclass_id" required
+                                            #kpiclass_id="ngModel"
+                                            [class.is-invalid]="kpiclass_id.invalid && kpiclass_id.touched"
+                                            placeholder="Select KPI Class..." (change)="loadType($event)"></ng-select>
+                                        <div *ngIf="kpiclass_id.invalid && kpiclass_id.touched">
+                                            <small *ngIf="kpiclass_id.errors?.required" class="text-danger">KPI Class
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpitype_id"
+                                        [class.text-danger]="kpitype_id.invalid && kpitype_id.touched">KPI Type<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="kpi_type" bindLabel="kpitype" bindValue="id"
+                                            [(ngModel)]="obj.kpitype_id" name="kpitype_id" required
+                                            #kpitype_id="ngModel"
+                                            [class.is-invalid]="kpitype_id.invalid && kpitype_id.touched"
+                                            placeholder="Select KPI Type..."></ng-select>
+                                        <div *ngIf="kpitype_id.invalid && kpitype_id.touched">
+                                            <small *ngIf="kpitype_id.errors?.required" class="text-danger">KPI Type is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="kpi_name"
+                                        [class.text-danger]="kpi_name.invalid && kpi_name.touched">KPI<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="kpi_name" name="kpi_name" class="form-control"
+                                            placeholder="Enter Kpi name .." [(ngModel)]="obj.kpi_name" required
+                                            #kpi_name="ngModel"
+                                            [class.is-invalid]="kpi_name.invalid && kpi_name.touched"
+                                            placeholder="Enter KPI...">
+                                        <div *ngIf="kpi_name.invalid && kpi_name.touched">
+                                            <small *ngIf="kpi_name.errors?.required" class="text-danger">KPI is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="Kpi_desc"
+                                        [class.text-danger]="Kpi_desc.invalid && Kpi_desc.touched">KPI Description<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <textarea type="text" id="Kpi_desc" name="Kpi_desc" class="form-control"
+                                            placeholder="Enter KPI Description .." [(ngModel)]="obj.Kpi_desc" required
+                                            #Kpi_desc="ngModel"
+                                            [class.is-invalid]="Kpi_desc.invalid && Kpi_desc.touched"
+                                            placeholder="Enter Kpi desc..."></textarea>
+                                        <div *ngIf="Kpi_desc.invalid && Kpi_desc.touched">
+                                            <small *ngIf="Kpi_desc.errors?.required" class="text-danger">KPI Description
+                                                is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="maxWeight"
+                                        [class.text-danger]="maxWeight.invalid && maxWeight.touched">Weight<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="maxWeight" name="maxWeight" class="form-control"
+                                            [(ngModel)]="obj.maxWeight" required #maxWeight="ngModel"
+                                            [class.is-invalid]="maxWeight.invalid && maxWeight.touched"
+                                            placeholder="Enter Weight...">
+                                        <div *ngIf="maxWeight.invalid && maxWeight.touched">
+                                            <small *ngIf="maxWeight.errors?.required" class="text-danger">Weight is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="targetvalue"
+                                        [class.text-danger]="targetvalue.invalid && targetvalue.touched">Target<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" min="0" id="targetvalue" name="targetvalue"
+                                            class="form-control" [(ngModel)]="obj.targetvalue" required
+                                            #targetvalue="ngModel"
+                                            [class.is-invalid]="targetvalue.invalid && targetvalue.touched"
+                                            placeholder="Enter Target...">
+                                        <div *ngIf="targetvalue.invalid && targetvalue.touched">
+                                            <small *ngIf="targetvalue.errors?.required" class="text-danger">Target is
+                                                Required</small>
+                                            <small *ngIf="targetvalue.value>0" class="text-danger">Target must be a
+                                                number</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of My KPIs</h3>
+                    <div class="card-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button> &nbsp;
+                        <button class="btn btn-primary btn-sm" *ngIf="data.length>0"  type="button"
+                            (click)="showForm()"><span class="fa fa-envelope"></span>
+                            Forward For Approval</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="kpi_name" caption="KPI"></dxi-column>
+                            <dxi-column dataField="Kpi_desc" caption="KPI Description"></dxi-column>
+                            <dxi-column dataField="kpitype" [groupIndex]="1" caption="KPI Type"></dxi-column>
+                            <dxi-column dataField="kpiclass" [groupIndex]="0" caption="KPI Class"></dxi-column>
+                            <dxi-column dataField="targetvalue" caption="Target "></dxi-column>
+                            <dxi-column dataField="maxWeight" caption="Weight"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                            <dxo-summary>
+                                <dxi-group-item column="maxWeight" summaryType="sum" valueFormat="fixedPoint"
+                                    displayFormat="Total: {0}" [showInGroupFooter]="true">
+                                </dxi-group-item>
+                                <dxi-total-item column="maxWeight" summaryType="sum" valueFormat="fixedPoint"
+                                    displayFormat="Total: {0}">
+                                </dxi-total-item>
+                            </dxo-summary>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

@@ -1,0 +1,168 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="UsersName"
+                                                    [class.text-danger]="UsersName.invalid &amp;&amp; UsersName.touched">Users Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="UsersName"
+                                                    name="UsersName" #UsersName="ngModel"
+                                                    [(ngModel)]="obj.UsersName"
+                                                    [class.is-invalid]="UsersName.invalid &amp;&amp; UsersName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Users Name..."
+                                                    required>
+                                                <div *ngIf="UsersName.invalid &amp;&amp; UsersName.touched">
+                                                    <small *ngIf="UsersName.errors?.required"
+                                                        class="text-danger">Users Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Password"
+                                                    [class.text-danger]="Password.invalid &amp;&amp; Password.touched">Password</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Password"
+                                                    name="Password" #Password="ngModel"
+                                                    [(ngModel)]="obj.Password"
+                                                    [class.is-invalid]="Password.invalid &amp;&amp; Password.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Password..."
+                                                    required>
+                                                <div *ngIf="Password.invalid &amp;&amp; Password.touched">
+                                                    <small *ngIf="Password.errors?.required"
+                                                        class="text-danger">Password is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployeeID"
+                                                    [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="EmployeeID"
+                                                    name="EmployeeID" #EmployeeID="ngModel"
+                                                    [(ngModel)]="obj.EmployeeID"
+                                                    [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Employee..."
+                                                    required>
+                                                <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                                                    <small *ngIf="EmployeeID.errors?.required"
+                                                        class="text-danger">Employee is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StatusID"
+                                                    [class.text-danger]="StatusID.invalid &amp;&amp; StatusID.touched">Status</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="StatusID"
+                                                    name="StatusID" #StatusID="ngModel"
+                                                    [(ngModel)]="obj.StatusID"
+                                                    [class.is-invalid]="StatusID.invalid &amp;&amp; StatusID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Status..."
+                                                    required>
+                                                <div *ngIf="StatusID.invalid &amp;&amp; StatusID.touched">
+                                                    <small *ngIf="StatusID.errors?.required"
+                                                        class="text-danger">Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Users</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="UsersName"
+                                        caption="Users Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Password"
+                                        caption="Password">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="EmployeeID"
+                                        caption="Employee">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StatusID"
+                                        caption="Status">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

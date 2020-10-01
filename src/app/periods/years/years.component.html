@@ -1,0 +1,135 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="year_name"
+                                        [class.text-danger]="year_name.invalid && year_name.touched">Year name<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="year_name" name="year_name" class="form-control"
+                                            placeholder="Enter Year name .." [(ngModel)]="obj.year_name" required
+                                            #year_name="ngModel"
+                                            [class.is-invalid]="year_name.invalid && year_name.touched"
+                                            placeholder="Select Year name...">
+                                        <div *ngIf="year_name.invalid && year_name.touched">
+                                            <small *ngIf="year_name.errors?.required" class="text-danger">Year name is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="Description"
+                                        [class.text-danger]="Description.invalid && Description.touched">Description<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="Description" name="Description" class="form-control"
+                                            placeholder="Enter Description .." [(ngModel)]="obj.Description" required
+                                            #Description="ngModel"
+                                            [class.is-invalid]="Description.invalid && Description.touched"
+                                            placeholder="Select Description...">
+                                        <div *ngIf="Description.invalid && Description.touched">
+                                            <small *ngIf="Description.errors?.required" class="text-danger">Description
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="date_from"
+                                        [class.text-danger]="date_from.invalid && date_from.touched">Date from<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="date_from" name="date_from" class="form-control"
+                                            placeholder="Enter Date from .." [(ngModel)]="obj.date_from" required
+                                            #date_from="ngModel"
+                                            [class.is-invalid]="date_from.invalid && date_from.touched"
+                                            placeholder="Select Date from...">
+                                        <div *ngIf="date_from.invalid && date_from.touched">
+                                            <small *ngIf="date_from.errors?.required" class="text-danger">Date from is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="date_to"
+                                        [class.text-danger]="date_to.invalid && date_to.touched">Date to<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="date_to" name="date_to" class="form-control"
+                                            placeholder="Enter Date to .." [(ngModel)]="obj.date_to" required
+                                            #date_to="ngModel" [class.is-invalid]="date_to.invalid && date_to.touched"
+                                            placeholder="Select Date to...">
+                                        <div *ngIf="date_to.invalid && date_to.touched">
+                                            <small *ngIf="date_to.errors?.required" class="text-danger">Date to is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Years</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="year_name" caption="Year name"></dxi-column>
+                            <dxi-column dataField="Description" caption="Description"></dxi-column>
+                            <dxi-column dataField="date_from" caption="Date from"></dxi-column>
+                            <dxi-column dataField="date_to" caption="Date to"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

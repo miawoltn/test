@@ -1,0 +1,116 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="DataId"
+                                        [class.text-danger]="DataId.invalid && DataId.touched">Data<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="DataId" name="DataId" class="form-control"
+                                            placeholder="Enter Data Id .." [(ngModel)]="obj.DataId" required
+                                            #DataId="ngModel" [class.is-invalid]="DataId.invalid && DataId.touched"
+                                            placeholder="Select Data...">
+                                        <div *ngIf="DataId.invalid && DataId.touched">
+                                            <small *ngIf="DataId.errors?.required" class="text-danger">Data is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="SystemdetailsID"
+                                        [class.text-danger]="SystemdetailsID.invalid && SystemdetailsID.touched">System Details
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="SystemdetailsID" name="SystemdetailsID"
+                                            class="form-control" placeholder="Enter Systemdetails ID .."
+                                            [(ngModel)]="obj.SystemdetailsID" required #SystemdetailsID="ngModel"
+                                            [class.is-invalid]="SystemdetailsID.invalid && SystemdetailsID.touched"
+                                            placeholder="Select System Details...">
+                                        <div *ngIf="SystemdetailsID.invalid && SystemdetailsID.touched">
+                                            <small *ngIf="SystemdetailsID.errors?.required"
+                                                class="text-danger">System Details is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="systemsID"
+                                        [class.text-danger]="systemsID.invalid && systemsID.touched">Systems<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="systemsID" name="systemsID" class="form-control"
+                                            placeholder="Enter Systems .." [(ngModel)]="obj.systemsID" required
+                                            #systemsID="ngModel"
+                                            [class.is-invalid]="systemsID.invalid && systemsID.touched"
+                                            placeholder="Select Systems...">
+                                        <div *ngIf="systemsID.invalid && systemsID.touched">
+                                            <small *ngIf="systemsID.errors?.required" class="text-danger">Systems is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Appraisal dynamicdatamapping</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="DataId" caption="Data"></dxi-column>
+                            <dxi-column dataField="SystemdetailsID" caption="System Details"></dxi-column>
+                            <dxi-column dataField="systemsID" caption="Systems"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

@@ -1,0 +1,526 @@
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <div class="card-text">
+                                <!-- <p>This is the basic horizontal form with labels on left and form
+                                    controls on right in one line. Add <code>.form-horizontal</code> class to
+                                    the form tag to have horizontal form styling. To
+                                    define form sections use <code>form-section</code> class
+                                    with any heading tags.</p> -->
+                            </div>
+                            <!-- <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="EmployeeID"
+                                                    [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="EmployeeID" name="EmployeeID"
+                                                    #EmployeeID="ngModel" [(ngModel)]="obj.EmployeeID"
+                                                    [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                                                    class="form-control" placeholder="Enter Employee..." required>
+                                                <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                                                    <small *ngIf="EmployeeID.errors?.required"
+                                                        class="text-danger">Employee is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CompanyID"
+                                                    [class.text-danger]="CompanyID.invalid &amp;&amp; CompanyID.touched">Company
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="CompanyID" name="CompanyID"
+                                                    #CompanyID="ngModel" [(ngModel)]="obj.CompanyID"
+                                                    [class.is-invalid]="CompanyID.invalid &amp;&amp; CompanyID.touched"
+                                                    class="form-control" placeholder="Enter Company..." required>
+                                                <div *ngIf="CompanyID.invalid &amp;&amp; CompanyID.touched">
+                                                    <small *ngIf="CompanyID.errors?.required"
+                                                        class="text-danger">Company is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="BranchID"
+                                                    [class.text-danger]="BranchID.invalid &amp;&amp; BranchID.touched">Branch
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="BranchID" name="BranchID" #BranchID="ngModel"
+                                                    [(ngModel)]="obj.BranchID"
+                                                    [class.is-invalid]="BranchID.invalid &amp;&amp; BranchID.touched"
+                                                    class="form-control" placeholder="Enter Branch..." required>
+                                                <div *ngIf="BranchID.invalid &amp;&amp; BranchID.touched">
+                                                    <small *ngIf="BranchID.errors?.required" class="text-danger">Branch
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DepartmentID"
+                                                    [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Department
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="DepartmentID" name="DepartmentID"
+                                                    #DepartmentID="ngModel" [(ngModel)]="obj.DepartmentID"
+                                                    [class.is-invalid]="DepartmentID.invalid &amp;&amp; DepartmentID.touched"
+                                                    class="form-control" placeholder="Enter Department..." required>
+                                                <div *ngIf="DepartmentID.invalid &amp;&amp; DepartmentID.touched">
+                                                    <small *ngIf="DepartmentID.errors?.required"
+                                                        class="text-danger">Department is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="UnitID"
+                                                    [class.text-danger]="UnitID.invalid &amp;&amp; UnitID.touched">Unit
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="UnitID" name="UnitID" #UnitID="ngModel"
+                                                    [(ngModel)]="obj.UnitID"
+                                                    [class.is-invalid]="UnitID.invalid &amp;&amp; UnitID.touched"
+                                                    class="form-control" placeholder="Enter Unit..." required>
+                                                <div *ngIf="UnitID.invalid &amp;&amp; UnitID.touched">
+                                                    <small *ngIf="UnitID.errors?.required" class="text-danger">Unit ID
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DesignationID"
+                                                    [class.text-danger]="DesignationID.invalid &amp;&amp; DesignationID.touched">Designation
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="DesignationID" name="DesignationID"
+                                                    #DesignationID="ngModel" [(ngModel)]="obj.DesignationID"
+                                                    [class.is-invalid]="DesignationID.invalid &amp;&amp; DesignationID.touched"
+                                                    class="form-control" placeholder="Enter Designation..." required>
+                                                <div *ngIf="DesignationID.invalid &amp;&amp; DesignationID.touched">
+                                                    <small *ngIf="DesignationID.errors?.required"
+                                                        class="text-danger">Designation is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="GradeID"
+                                                    [class.text-danger]="GradeID.invalid &amp;&amp; GradeID.touched">Grade
+                                                   </label><i class="text-danger">*</i>
+                                                <input type="number" id="GradeID" name="GradeID" #GradeID="ngModel"
+                                                    [(ngModel)]="obj.GradeID"
+                                                    [class.is-invalid]="GradeID.invalid &amp;&amp; GradeID.touched"
+                                                    class="form-control" placeholder="Enter Grade..." required>
+                                                <div *ngIf="GradeID.invalid &amp;&amp; GradeID.touched">
+                                                    <small *ngIf="GradeID.errors?.required" class="text-danger">Grade ID
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="JobDescription"
+                                                    [class.text-danger]="JobDescription.invalid &amp;&amp; JobDescription.touched">Job
+                                                    Description</label><i class="text-danger">*</i>
+                                                <input type="text" id="JobDescription" name="JobDescription"
+                                                    #JobDescription="ngModel" [(ngModel)]="obj.JobDescription"
+                                                    [class.is-invalid]="JobDescription.invalid &amp;&amp; JobDescription.touched"
+                                                    class="form-control" placeholder="Enter Job Description..."
+                                                    required>
+                                                <div *ngIf="JobDescription.invalid &amp;&amp; JobDescription.touched">
+                                                    <small *ngIf="JobDescription.errors?.required"
+                                                        class="text-danger">Job Description is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form> -->
+
+                            <form #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #order="ngModelGroup" ngModelGroup="order"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Step I: Employee Info </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="EmployeeID"
+                                                            [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Employees" bindValue="EmployeeID" bindLabel="FullName" id="EmployeeID" name="EmployeeID"
+                                                            #EmployeeID="ngModel" [(ngModel)]="obj.EmployeeID"
+                                                            [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                                                            placeholder="Select Employee..." required></ng-select>
+                                                        <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                                                            <small *ngIf="EmployeeID.errors?.required"
+                                                                class="text-danger">Employee is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="CompanyID"
+                                                            [class.text-danger]="CompanyID.invalid &amp;&amp; CompanyID.touched">Company</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Company" bindValue="CompanyID" bindLabel="CompanyName" id="CompanyID" name="CompanyID"
+                                                            #CompanyID="ngModel" [(ngModel)]="obj.CompanyID"
+                                                            [class.is-invalid]="CompanyID.invalid &amp;&amp; CompanyID.touched"
+                                                            placeholder="Select Company..." (change)="filterBranch($event)" required></ng-select>
+                                                        <div *ngIf="CompanyID.invalid &amp;&amp; CompanyID.touched">
+                                                            <small *ngIf="CompanyID.errors?.required"
+                                                                class="text-danger">Company is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="BranchID"
+                                                            [class.text-danger]="BranchID.invalid &amp;&amp; BranchID.touched">Branch
+                                                            </label><i class="text-danger">*</i>
+                                                            <ng-select [items]="FilteredBranches" bindValue="BranchID" bindLabel="BranchName" id="BranchID" name="BranchID" #BranchID="ngModel"
+                                                            [(ngModel)]="obj.BranchID"
+                                                            [class.is-invalid]="BranchID.invalid &amp;&amp; BranchID.touched"
+                                                            placeholder="Select Branch..." required></ng-select>
+                                                        <div *ngIf="BranchID.invalid &amp;&amp; BranchID.touched">
+                                                            <small *ngIf="BranchID.errors?.required" class="text-danger">Branch is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="DepartmentID"
+                                                            [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Department</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Departments" bindValue="DepartmentID" bindLabel="DepartmentName" id="DepartmentID" name="DepartmentID"
+                                                            #DepartmentID="ngModel" [(ngModel)]="obj.DepartmentID"
+                                                            [class.is-invalid]="DepartmentID.invalid &amp;&amp; DepartmentID.touched"
+                                                            placeholder="Select Department..." (change)="filterUnits($event)" required></ng-select>
+                                                        <div *ngIf="DepartmentID.invalid &amp;&amp; DepartmentID.touched">
+                                                            <small *ngIf="DepartmentID.errors?.required"
+                                                                class="text-danger">Department is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="UnitID"
+                                                            [class.text-danger]="UnitID.invalid &amp;&amp; UnitID.touched">Unit
+                                                            </label><i class="text-danger">*</i>
+                                                            <ng-select [items]="FilteredUnits" bindValue="UnitID" bindLabel="UnitName" id="UnitID" name="UnitID" #UnitID="ngModel"
+                                                            [(ngModel)]="obj.UnitID"
+                                                            [class.is-invalid]="UnitID.invalid &amp;&amp; UnitID.touched"
+                                                            placeholder="Select Unit..." required></ng-select>
+                                                        <div *ngIf="UnitID.invalid &amp;&amp; UnitID.touched">
+                                                            <small *ngIf="UnitID.errors?.required" class="text-danger">Unit is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="DesignationID"
+                                                            [class.text-danger]="DesignationID.invalid &amp;&amp; DesignationID.touched">Designation</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Designations" bindValue="DesignationID" bindLabel="DesignationName" id="DesignationID" name="DesignationID"
+                                                            #DesignationID="ngModel" [(ngModel)]="obj.DesignationID"
+                                                            [class.is-invalid]="DesignationID.invalid &amp;&amp; DesignationID.touched"
+                                                            placeholder="Select Designation..." required></ng-select>
+                                                        <div *ngIf="DesignationID.invalid &amp;&amp; DesignationID.touched">
+                                                            <small *ngIf="DesignationID.errors?.required"
+                                                                class="text-danger">Designation is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="GradeID"
+                                                            [class.text-danger]="GradeID.invalid &amp;&amp; GradeID.touched">Grade
+                                                            </label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Grades" bindValue="GradeID" bindLabel="GradeName" id="GradeID" name="GradeID" #GradeID="ngModel"
+                                                            [(ngModel)]="obj.GradeID"
+                                                            [class.is-invalid]="GradeID.invalid &amp;&amp; GradeID.touched"
+                                                            placeholder="Select Grade..." required></ng-select>
+                                                        <div *ngIf="GradeID.invalid &amp;&amp; GradeID.touched">
+                                                            <small *ngIf="GradeID.errors?.required" class="text-danger">Grade is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="JobDescription"
+                                                            [class.text-danger]="JobDescription.invalid &amp;&amp; JobDescription.touched">Job
+                                                            Description</label><i class="text-danger">*</i>
+                                                            <textarea id="JobDescription" name="JobDescription"
+                                                            #JobDescription="ngModel" [(ngModel)]="obj.JobDescription"
+                                                            [class.is-invalid]="JobDescription.invalid &amp;&amp; JobDescription.touched"
+                                                            class="form-control" placeholder="Enter Job Description..."
+                                                            required cols="1" rows="1"></textarea>
+                                                        <div *ngIf="JobDescription.invalid &amp;&amp; JobDescription.touched">
+                                                            <small *ngIf="JobDescription.errors?.required"
+                                                                class="text-danger">Job Description is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+        
+                                            </div>
+                                        </div>
+                                        <div class="card-footer pull-right">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="button" matStepperNext class="btn btn-sm btn-primary"
+                                                [disabled]="order.invalid" (click)="onConfirm()">
+                                                <i class="fa fa-dot-circle-o"></i> Next</button>
+                                        </div>
+                                    </mat-step>
+
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 2: Confirmation</ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Employee:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Employee }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Company:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Company }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Branch:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Branch }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Department:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Department }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Unit:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Unit }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Designation:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Designation }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Grade:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Grade }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Job Description:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.JobDescription }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="card-footer pull-right">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Back</button>
+                                            <button type="submit" matStepperNext class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Confirm</button>
+                                        </div>
+
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 4: Completion</ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Employee:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Employee }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Company:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Company }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Branch:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Branch }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Department:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Department }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Unit:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Unit }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Designation:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Designation }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Grade:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.Grade }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="date">Job Description:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj.JobDescription }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer pull-right">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                (click)="stepper.reset()">
+                                                <i class="fa fa-plus"></i> New Deployment Request</button>
+                                        </div>
+
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- <div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Employeedeployment</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="EmployeeID" caption="Employee ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="CompanyID" caption="Company ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="BranchID" caption="Branch ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="DepartmentID" caption="Department ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="UnitID" caption="Unit ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="DesignationID" caption="Designation ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="GradeID" caption="Grade ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="JobDescription" caption="Job Description">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->

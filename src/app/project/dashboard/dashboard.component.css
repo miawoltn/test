@@ -1,0 +1,52 @@
+.tct{
+    text-align: center;
+}
+
+.card{
+    border: 0;
+    margin: 18px 0;
+    box-shadow: none;
+    border-radius: 0;
+    background-color: transparent !important;
+}
+
+.prjmbg{
+    border: 0;
+    margin: 1px 0;
+    box-shadow: 0 6px 0px 0 rgba(0, 0, 0, 0.01), 0 15px 32px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    background-image: linear-gradient(45deg, #1FDBDA, #5A7FE7) !important;
+    color: white !important;
+    height: 285px;
+    
+}
+
+.dsbg{
+    border: 0;
+    margin: 1px 0;
+    box-shadow: 0 6px 0px 0 rgba(0, 0, 0, 0.01), 0 15px 32px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    background-image: linear-gradient(45deg, #F6519E, #FA6B7F) !important;
+    color: white !important;
+    
+}
+
+.tskbg{
+    border: 0;
+    margin: 1px 0;
+    box-shadow: 0 6px 0px 0 rgba(0, 0, 0, 0.01), 0 15px 32px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    background-image: linear-gradient(45deg, #41E397, #3CBBB0) !important;
+    color: white !important;
+    
+}
+
+.rfibg{
+    border: 0;
+    margin: 1px 0;
+    box-shadow: 0 6px 0px 0 rgba(0, 0, 0, 0.01), 0 15px 32px 0 rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    background-image: linear-gradient(45deg, #00AFF0, #00AFF0) !important;
+    color: white !important;
+    
+}

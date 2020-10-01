@@ -1,0 +1,29 @@
+
+
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <dx-scheduler
+                            [dataSource]="data"
+                            [views]='["month"]'
+                            currentView="month"
+                            [currentDate]="currentDate"
+                            [startDayHour]="8"
+                            [endDayHour]="17"
+                            [height]="600">
+                            <dxo-editing [allowDeleting]="false"></dxo-editing>
+                        </dx-scheduler>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

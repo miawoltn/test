@@ -1,0 +1,286 @@
+<div>
+    <section id="user-profile">
+        <div class="row">
+            <div class="col-12">
+                <div class="card profile-with-cover">
+                    <div class="card-img-top img-fluid bg-cover height-300"
+                        style="background: url('../../../assets//img/photos/14.jpg') 50%;"></div>
+                    <div class="media profil-cover-details row">
+                        <div class="col-1">
+                            <div class="align-self-center halfway-fab text-center">
+                                <a *ngIf="obj.applicant.Photo == null" class="profile-image">
+                                    <img src="../../../assets/img/can-5.jpg"
+                                        class="rounded-circle img-border gradient-summer w-150" alt="Card image">
+                                </a>
+                                <a *ngIf="obj.applicant.Photo != null" class="profile-image">
+                                    <img [src]="API_URL2+obj.applicant.Photo"
+                                        class="rounded-circle img-border gradient-summer w-150" alt="Card image">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-5 pad-t" style="margin-left: 29px;">
+                            <p class="m-b"><span class="text-bold-500 trackhub-blue"><a>{{ obj.applicant.Applicant }}, {{ obj.applicant.Age }}</a></span></p>
+                            <p><span>{{ obj.applicant.Email }}</span></p>
+                        </div>
+                        <div class="profile-cover-buttons">
+                            <div class="media-body halfway-fab align-self-end">
+                                <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                                    <a *ngIf="obj.applicant.ApplicantCV != null" href="{{API_URL2}}{{obj.applicant.ApplicantCV}}" class="btn btn-primary btn-raised mr-2"
+                                    target="_blank" style="background-color: #15537d;">View Applicant's CV</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- merchant info -->
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Basic Information</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                Full Name:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.Applicant }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Email:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.Email }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue"> Date of Birth:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.DOB }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue"> Nationality:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.Name }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                Employment Type:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.EmploymentType }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">Experience Level:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.ExperienceLevel }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue"> 
+                                                        Minimum Qualification:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.QualificationName }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                        Years of Experience:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.YearsofExperience }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                        Profession:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.Profession }}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                        Residential Address:</span>
+                                            <span class="d-block overflow-hidden">{{ obj.applicant.Address }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- skill info -->
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Skills</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row" *ngFor="let item of obj.appskills, index as i">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Skill {{ i + 1 }}:</span>
+                                            <span class="d-block overflow-hidden">{{item.Skill}}</span>
+                                        </li>
+                                        <!-- <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue"><a><i
+                                                        class="icon-user font-small-3 trackhub-blue"></i>
+                                                    Percent:</span>
+                                            <span class="d-block overflow-hidden">{{item.Percent}}</span>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- skill info -->
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Experience</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row" *ngFor="let item of obj.appexp" style="margin-top: 2rem">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Title:</span>
+                                            <span class="d-block overflow-hidden">{{item.ExpTitle}}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Date From:</span>
+                                            <span class="d-block overflow-hidden">{{item.DateFrom}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Company:</span>
+                                            <span class="d-block overflow-hidden">{{item.CompanyName}}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Date To:</span>
+                                            <span class="d-block overflow-hidden">{{item.DateTo}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- edu info -->
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Education</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row" *ngFor="let item of obj.appedu" style="margin-top: 2rem">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Title:</span>
+                                            <span class="d-block overflow-hidden">{{item.EduTitle}}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Date From:</span>
+                                            <span class="d-block overflow-hidden">{{item.DateFrom}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Institution:</span>
+                                            <span class="d-block overflow-hidden">{{item.SchoolName}}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Date To:</span>
+                                            <span class="d-block overflow-hidden">{{item.DateTo}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- award info -->
+    <section id="about">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><strong>Award & Honors</strong></h5>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row" *ngFor="let item of obj.appawards" style="margin-top: 2rem">
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                    Title:</span>
+                                            <span class="d-block overflow-hidden">{{item.Title}}</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                        Year:</span>
+                                            <span class="d-block overflow-hidden">{{item.Year}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <ul class="no-list-style">
+                                        <li class="mb-2">
+                                            <span class="text-bold-500 trackhub-blue">
+                                                        Description:</span>
+                                            <span class="d-block overflow-hidden">{{item.Description}}</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,151 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="privilege_id"
+                                                    [class.text-danger]="privilege_id.invalid &amp;&amp; privilege_id.touched">Privilege
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="Privileges" bindValue="PrivilegeID"
+                                                    bindLabel="privilege_name" id="privilege_id" name="privilege_id"
+                                                    #privilege_id="ngModel" [(ngModel)]="obj.privilege_id"
+                                                    [class.is-invalid]="privilege_id.invalid &amp;&amp; privilege_id.touched"
+                                                    placeholder="Select Privilege..." 
+                                                    (change)="assignedMenus($event)"></ng-select>
+                                                <div *ngIf="privilege_id.invalid &amp;&amp; privilege_id.touched">
+                                                    <small *ngIf="privilege_id.errors?.required"
+                                                        class="text-danger">Privilege is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="parent_menu_id"
+                                                    [class.text-danger]="parent_menu_id.invalid &amp;&amp; parent_menu_id.touched">Parent
+                                                    Menu
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="Menu" bindValue="id" bindLabel="menu_title"
+                                                    id="parent_menu_id" name="parent_menu_id" #parent_menu_id="ngModel"
+                                                    [(ngModel)]="obj.parent_menu_id"
+                                                    [class.is-invalid]="parent_menu_id.invalid &amp;&amp; parent_menu_id.touched"
+                                                    placeholder="Select Parent Menu..." required
+                                                    (change)="filterSub($event)">
+                                                </ng-select>
+                                                <div *ngIf="parent_menu_id.invalid &amp;&amp; parent_menu_id.touched">
+                                                    <small *ngIf="parent_menu_id.errors?.required"
+                                                        class="text-danger">Parent Menu
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="child_menu_id"
+                                                    [class.text-danger]="child_menu_id.invalid &amp;&amp; child_menu_id.touched">Child Menu
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="SubMenus" bindValue="id" bindLabel="menu_title"
+                                                    id="child_menu_id" name="child_menu_id" #child_menu_id="ngModel"
+                                                    [(ngModel)]="obj.child_menu_id"
+                                                    [class.is-invalid]="child_menu_id.invalid &amp;&amp; child_menu_id.touched"
+                                                    placeholder="Select Child Menu..." (change)="filterSub2($event)">
+                                                </ng-select>
+                                                <div *ngIf="child_menu_id.invalid &amp;&amp; child_menu_id.touched">
+                                                    <small *ngIf="child_menu_id.errors?.required"
+                                                        class="text-danger">Child Menu is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="SubMenus2.length != 0" class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="child_menu_id2"
+                                                    [class.text-danger]="child_menu_id2.invalid &amp;&amp; child_menu_id2.touched">Child Menu II
+                                                </label><i class="text-danger">*</i>
+                                                <ng-select [items]="SubMenus2" bindValue="id" bindLabel="menu_title"
+                                                    id="child_menu_id2" name="child_menu_id2" #child_menu_id2="ngModel"
+                                                    [(ngModel)]="obj.child_menu_id2"
+                                                    [class.is-invalid]="child_menu_id2.invalid &amp;&amp; child_menu_id2.touched"
+                                                    placeholder="Select Child Menu..."></ng-select>
+                                                <div *ngIf="child_menu_id2.invalid &amp;&amp; child_menu_id2.touched">
+                                                    <small *ngIf="child_menu_id2.errors?.required"
+                                                        class="text-danger">Child Menu II is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Menu Authorization</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="privilege_name" caption="Privileges">
+                                    </dxi-column>
+                                    <dxi-column dataField="menu_title" caption="Menu Title">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        <dxi-button icon="fas fa-close" text="Delete" [onClick]="deleteItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

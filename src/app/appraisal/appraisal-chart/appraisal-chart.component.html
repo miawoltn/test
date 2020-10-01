@@ -1,0 +1,103 @@
+<div class="content-header row">
+    <div class="content-header-left col-md-6 col-12 mb-2">
+        <h4 class="content-header-title mb-0">Appraisal Dashboard</h4>
+    </div>
+</div>
+<!-- <div class="content-body" *ngIf="displayForm"> -->
+<div class="content">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="loadData()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3" for="PayrollPeriodID"
+                                                    [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Appraisal
+                                                    Period <i class="text-danger">*</i></label>
+                                                <div class="col-md-9">
+                                                    <ng-select [items]="PayrollPeriod" bindLabel="period_name"
+                                                        bindValue="id" #PayrollPeriodID="ngModel" name="PayrollPeriodID"
+                                                        [(ngModel)]="obj.id"
+                                                        [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                                        placeholder="Select Payroll Period ..." required></ng-select>
+
+                                                    <div
+                                                        *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                                        <small *ngIf="PayrollPeriodID.errors?.required"
+                                                            class="text-danger">Appraisal Period
+                                                            is
+                                                            Required</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+        
+                                                Generate Report
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" *ngIf="displayChart">
+                    <div class="col-md-6">
+                        <dx-pie-chart style="height:450px" id="pie" type="doughnut" title="Grade Summary"
+                            palette="Soft Pastel" [dataSource]="data">
+                            <dxi-series argumentField="benchmark" valueField="total">
+                                <dxo-label [visible]="true" format="decimal " [customizeText]="customizeLabel">
+                                    <dxo-connector [visible]="true"></dxo-connector>
+                                </dxo-label>
+                            </dxi-series>
+                            <!-- <dxo-export [enabled]="true"></dxo-export> -->
+                            <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right"
+                                verticalAlignment="top"></dxo-legend>
+
+                            <dxo-tooltip [enabled]="true" format="decimal" [customizeTooltip]="customizeTooltip">
+                            </dxo-tooltip>
+
+                        </dx-pie-chart>
+                    </div>
+                    <div class="col-md-6">
+
+                        <dx-chart title="Grade Summary" style="height:450px" [dataSource]="data"
+                            [valueAxis]="{ valueType: 'numeric' }" [customizeLabel]="customizeText">
+                            <dxo-common-series-settings argumentField="benchmark_desc" valueField="total" type="bar"
+                                hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                                <dxo-label [visible]="true" [format]="{
+                    type: 'fixedPoint',
+                    precision: '0'
+                }">
+                                </dxo-label>
+                            </dxo-common-series-settings>
+
+                            <!-- <dxo-export [enabled]="true"></dxo-export> -->
+                            <dxo-series-template nameField="benchmark_desc">
+
+                            </dxo-series-template>
+                            <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                            </dxo-legend>
+
+                        </dx-chart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

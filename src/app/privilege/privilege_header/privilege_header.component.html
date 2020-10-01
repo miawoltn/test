@@ -1,0 +1,181 @@
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                            
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #order="ngModelGroup" ngModelGroup="order"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Step I </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date">Operation</label>
+                                                        <div class="col-md-8">
+                                                            <ng-select [items]="PrivilegeClass" name="privilege_class"
+                                                                placeholder="Select Operation" bindValue="id"
+                                                                bindLabel="PrivilegeClass"
+                                                                [(ngModel)]="obj.PrivilegeClassID"
+                                                                (change)="fetchUsers()"></ng-select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date">Privilege</label>
+                                                        <div class="col-md-8">
+                                                            <ng-select [items]="Privileges" name="privileges"
+                                                                placeholder="Select Privilege" bindValue="id"
+                                                                bindLabel="privilege_name" [(ngModel)]="obj.PrivilegeID"
+                                                                (change)="fetchUsers()"></ng-select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 form-control-label"
+                                                            for="date">Users</label>
+                                                        <div class="col-md-10">
+                                                            <ng-select [items]="staff" [multiple]="true" name="staff"
+                                                                placeholder="Select Users" bindValue="EmployeeID"
+                                                                bindLabel="staff_name" [(ngModel)]="obj.detail">
+                                                            </ng-select>
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer pull-right">
+                                            <button type="button" matStepperNext class="btn btn-sm btn-primary"
+                                                [disabled]="order.invalid" (click)="onConfirm()">
+                                                <i class="fa fa-dot-circle-o"></i> Next</button>
+
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step II</ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date">Operation:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.PrivilegeClass }}
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date"><b>Privilege:</b></label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.Privilege }}
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 form-control-label"
+                                                            for="date"><b>Users:</b></label>
+                                                        <div class="col-md-10">
+                                                            {{ obj2.detail.join(", ") }}
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer pull-right">
+                                            <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Back</button>
+                                            <button type="submit" matStepperNext class="btn btn-sm btn-primary"
+                                                [disabled]="form.invalid">
+                                                <i class="fa fa-dot-circle-o"></i> Confirm</button>
+                                        </div>
+
+                                    </mat-step>
+
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Completion</ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date">Operation:</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.PrivilegeClass }}
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="date"><b>Privilege:</b></label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.Privilege }}
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-2 form-control-label"
+                                                            for="date"><b>Users:</b></label>
+                                                        <div class="col-md-10">
+                                                            {{ obj2.detail.join(", ") }}
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.form group -->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer pull-right">
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                (click)="stepper.reset()">
+                                                <i class="fa fa-plus"></i> New Privilege Request</button>
+                                        </div>
+
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+
+
+                                <!-- <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div> -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

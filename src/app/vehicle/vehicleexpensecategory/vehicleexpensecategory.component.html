@@ -1,0 +1,122 @@
+<!--  -->
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="VehicleExpenseCategory"
+                          [class.text-danger]="VehicleExpenseCategory.invalid &amp;&amp; VehicleExpenseCategory.touched">Vehicle
+                          Expense Category</label><i class="text-danger">*</i>
+                        <input type="text" id="VehicleExpenseCategory" name="VehicleExpenseCategory"
+                          #VehicleExpenseCategory="ngModel" [(ngModel)]="obj.VehicleExpenseCategory"
+                          [class.is-invalid]="VehicleExpenseCategory.invalid &amp;&amp; VehicleExpenseCategory.touched"
+                          class="form-control" placeholder="Enter Vehicle Expense Category..." required>
+                        <div *ngIf="VehicleExpenseCategory.invalid &amp;&amp; VehicleExpenseCategory.touched">
+                          <small *ngIf="VehicleExpenseCategory.errors?.required" class="text-danger">Vehicle Expense
+                            Category is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="FrequencyID"
+                          [class.text-danger]="FrequencyID.invalid &amp;&amp; FrequencyID.touched">Frequency
+                          </label><i class="text-danger">*</i>
+                        <ng-select [items]="frequency" bindLabel="Frequency" bindValue="id" #FrequencyID="ngModel"
+                          name="FrequencyID" [(ngModel)]="obj.FrequencyID"
+                          [class.is-invalid]="FrequencyID.invalid &amp;&amp; FrequencyID.touched"
+                          placeholder="Select Frequency..." required></ng-select>
+                        <div *ngIf="FrequencyID.invalid &amp;&amp; FrequencyID.touched">
+                          <small *ngIf="FrequencyID.errors?.required" class="text-danger">Frequency is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ExpenseCost"
+                          [class.text-danger]="ExpenseCost.invalid &amp;&amp; ExpenseCost.touched">Expense
+                          Cost</label><i class="text-danger">*</i>
+                        <input type="number" id="ExpenseCost" name="ExpenseCost" #ExpenseCost="ngModel"
+                          [(ngModel)]="obj.ExpenseCost"
+                          [class.is-invalid]="ExpenseCost.invalid &amp;&amp; ExpenseCost.touched" class="form-control"
+                          placeholder="Enter Expense Cost..." required>
+                        <div *ngIf="ExpenseCost.invalid &amp;&amp; ExpenseCost.touched">
+                          <small *ngIf="ExpenseCost.errors?.required" class="text-danger">Expense Cost is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Vehicle Expense Category</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="VehicleExpenseCategory" caption="Vehicle Expense Category">
+                  </dxi-column>
+                  <dxi-column dataField="Frequency" caption="Frequency">
+                  </dxi-column>
+                  <dxi-column dataField="ExpenseCost" caption="Expense Cost">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,47 @@
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">Job Shortlist History</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button"
+                                routerLink="/recruitment/jobshortlist"><span class="fa fa-plus"></span>
+                                New Job Shortlist</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid id="gridContainer" [dataSource]="data" keyExpr="id"
+                                    [showBorders]="true">
+
+                                    <dxo-selection mode="single"></dxo-selection>
+                                    <!-- <dxi-column dataField="OrderDate" [width]="160" dataType="date"></dxi-column> -->
+                                    <dxi-column dataField="Title" [groupIndex]="0"></dxi-column>
+
+                                    <!-- <dxi-column dataField="Vacancy" [groupIndex]="0"></dxi-column> -->
+                                    <dxi-column dataField="Applicant" caption="Applicant"></dxi-column>
+                                    <dxi-column dataField="Note" caption="Remark"></dxi-column>
+                                    <dxi-column dataField="ShortlistedBy" caption="Shortlisted By"></dxi-column>
+                                    <dxi-column dataField="dateCreated" dataType="date" format="MMMM d, yyy" caption="Date Shortlisted"></dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Vacancy" [onClick]="viewVacancy"></dxi-button>
+                                        <dxi-button text="Profile" [onClick]="viewProfile"></dxi-button>
+                                    </dxi-column>
+
+                                    <dxi-sort-by-group-summary-info summaryItem="count">
+                                    </dxi-sort-by-group-summary-info>
+                                </dx-data-grid>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

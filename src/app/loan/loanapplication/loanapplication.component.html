@@ -1,0 +1,609 @@
+<section class="content-body">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="card">
+                <div class="card-header d-print-none">
+                    {{operation}} Record
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form #form="ngForm" (submit)="processForm()">
+                    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                        <mat-step #order="ngModelGroup" ngModelGroup="order" [stepControl]="form.controls.order"
+                            [editable]="isEditable">
+                            <ng-template matStepLabel>Loan Info</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanDate"
+                                                [class.text-danger]="LoanDate.invalid &amp;&amp; LoanDate.touched">Loan
+                                                Date</label>
+                                            <div class="col-md-8">
+                                                <input type="date" id="LoanDate" name="LoanDate" class="form-control"
+                                                    [(ngModel)]="obj.LoanDate" required #LoanDate="ngModel"
+                                                    [class.is-invalid]="LoanDate.invalid &amp;&amp; LoanDate.touched"
+                                                    placeholder="Enter Loan Date...">
+                                                <div *ngIf="LoanDate.invalid &amp;&amp; LoanDate.touched">
+                                                    <small *ngIf="LoanDate.errors?.required" class="text-danger">Loan
+                                                        Date is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanTypeID"
+                                                [class.text-danger]="LoanTypeID.invalid &amp;&amp; LoanTypeID.touched">Loan
+                                                Type </label>
+                                            <div class="col-md-8">
+                                                <ng-select [items]="loantypes" bindLabel="LoanType" bindValue="id"
+                                                    [(ngModel)]="obj.LoanTypeID" name="LoanTypeID" required
+                                                    #LoanTypeID="ngModel"
+                                                    [class.is-invalid]="LoanTypeID.invalid &amp;&amp; LoanTypeID.touched"
+                                                    placeholder="Select Loan Type..."></ng-select>
+                                                <div *ngIf="LoanTypeID.invalid &amp;&amp; LoanTypeID.touched">
+                                                    <small *ngIf="LoanTypeID.errors?.required" class="text-danger">Loan
+                                                        Type is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Amount"
+                                                [class.text-danger]="(Amount.invalid &amp;&amp; Amount.touched) || (Amount.valid && Amount.value<0)">Loan
+                                                Amount</label>
+                                            <div class="col-md-8">
+                                                <input type="number" id="Amount" name="Amount" class="form-control"
+                                                    (change)="calculateAmount()" [(ngModel)]="obj.Amount" required
+                                                    #Amount="ngModel"
+                                                    [class.is-invalid]="(Amount.invalid &amp;&amp; Amount.touched) || (Amount.valid && Amount.value<0)"
+                                                    placeholder="Enter Amount...">
+                                                <div *ngIf="Amount.invalid &amp;&amp; Amount.touched">
+                                                    <small *ngIf="Amount.errors?.required" class="text-danger">Amount is
+                                                        Required</small>
+                                                </div>
+                                                <div *ngIf="Amount.valid">
+                                                    <small *ngIf="Amount.value < 0" class="text-danger">Loan Amount must
+                                                        be a
+                                                        minimum
+                                                        of Zero </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="InterestRate"
+                                                [class.text-danger]="(InterestRate.invalid &amp;&amp; InterestRate.touched) || (InterestRate.valid && InterestRate.value<0)">Interest
+                                                Rate</label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="InterestRate" name="InterestRate"
+                                                    (change)="calculateAmount()" class="form-control"
+                                                    [(ngModel)]="obj.InterestRate" required #InterestRate="ngModel"
+                                                    [class.is-invalid]="(InterestRate.invalid &amp;&amp; InterestRate.touched) || (InterestRate.valid && InterestRate.value<0)"
+                                                    placeholder="Enter Interest Rate...">
+                                                <div *ngIf="InterestRate.invalid &amp;&amp; InterestRate.touched">
+                                                    <small *ngIf="InterestRate.errors?.required"
+                                                        class="text-danger">Interest Rate is Required</small>
+                                                </div>
+                                                <div *ngIf="InterestRate.valid">
+                                                    <small *ngIf="InterestRate.value < 0" class="text-danger">Interest
+                                                        Rate must be a
+                                                        minimum
+                                                        of Zero </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Tenor"
+                                                [class.text-danger]="(Tenor.invalid &amp;&amp; Tenor.touched) || (Tenor.valid && Tenor.value<1)">Tenor
+                                                Period (in months)</label>
+                                            <div class="col-md-8">
+                                                <input type="number" id="Tenor" min="1" name="Tenor"
+                                                    (change)="calculateAmount()" class="form-control"
+                                                    [(ngModel)]="obj.Tenor" required #Tenor="ngModel"
+                                                    [class.is-invalid]="(Tenor.invalid &amp;&amp; Tenor.touched) || (Tenor.valid && Tenor.value<1)"
+                                                    placeholder="Enter Tenor...">
+                                                <div *ngIf="Tenor.invalid && Tenor.touched ">
+                                                    <small *ngIf="Tenor.errors?.required" class="text-danger">Tenor is
+                                                        Required</small>
+                                                </div>
+                                                <div *ngIf="Tenor.valid">
+                                                    <small *ngIf="Tenor.value < 1" class="text-danger">Tenor must be a
+                                                        minimum
+                                                        of 1 </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentAmount"
+                                                [class.text-danger]="RepaymentAmount.invalid &amp;&amp; RepaymentAmount.touched">Repayment
+                                                Amount</label>
+                                            <div class="col-md-8">
+                                                <input disabled type="number" id="RepaymentAmount"
+                                                    name="RepaymentAmount" class="form-control"
+                                                    [(ngModel)]="obj.RepaymentAmount" required
+                                                    #RepaymentAmount="ngModel"
+                                                    [class.is-invalid]="RepaymentAmount.invalid &amp;&amp; RepaymentAmount.touched"
+                                                    placeholder="Enter Repayment Amount...">
+                                                <div *ngIf="RepaymentAmount.invalid &amp;&amp; RepaymentAmount.touched">
+                                                    <small *ngIf="RepaymentAmount.errors?.required"
+                                                        class="text-danger">Repayment Amount is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row ">
+                                            <label class="col-md-4 form-control-label" for="PayrollPeriodID"
+                                                [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Repayment
+                                                Start Period <i class="col-md-4 text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <ng-select [items]="PayrollPeriod" bindLabel="PayrollPeriod"
+                                                    bindValue="id" #PayrollPeriodID="ngModel" name="PayrollPeriodID"
+                                                    [(ngModel)]="obj.StartPeriodID"
+                                                    [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                                    placeholder="Select Payroll Period ..." required></ng-select>
+
+                                                <div *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                                    <small *ngIf="PayrollPeriodID.errors?.required"
+                                                        class="text-danger">Payroll Period is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="MonthlyRepayment"
+                                                [class.text-danger]="MonthlyRepayment.invalid &amp;&amp; MonthlyRepayment.touched">Monthly
+                                                Repayment</label>
+                                            <div class="col-md-8">
+                                                <input disabled type="number" id="MonthlyRepayment"
+                                                    name="MonthlyRepayment" class="form-control"
+                                                    [(ngModel)]="obj.MonthlyRepayment" required
+                                                    #MonthlyRepayment="ngModel"
+                                                    [class.is-invalid]="MonthlyRepayment.invalid &amp;&amp; MonthlyRepayment.touched"
+                                                    placeholder="Enter Monthly Repayment...">
+                                                <div
+                                                    *ngIf="MonthlyRepayment.invalid &amp;&amp; MonthlyRepayment.touched">
+                                                    <small *ngIf="MonthlyRepayment.errors?.required"
+                                                        class="text-danger">Monthly Repayment is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="ApprovingOfficerID"
+                                                [class.text-danger]="ApprovingOfficerID.invalid &amp;&amp; ApprovingOfficerID.touched">Approving
+                                                Officer</label>
+                                            <div class="col-md-8">
+                                                <ng-select [items]="employee" bindLabel="FullName" bindValue="id"
+                                                    [(ngModel)]="obj.ApprovingOfficerID" name="ApprovingOfficerID"
+                                                    required #ApprovingOfficerID="ngModel"
+                                                    [class.is-invalid]="ApprovingOfficerID.invalid &amp;&amp; ApprovingOfficerID.touched"
+                                                    placeholder="Select Approving Officer..."></ng-select>
+                                                <div
+                                                    *ngIf="ApprovingOfficerID.invalid &amp;&amp; ApprovingOfficerID.touched">
+                                                    <small *ngIf="ApprovingOfficerID.errors?.required"
+                                                        class="text-danger">Approving Officer is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="GuarantorName"
+                                                [class.text-danger]="GuarantorName.invalid && GuarantorName.touched">Guarantor
+                                                Name<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="GuarantorName" name="GuarantorName"
+                                                    #GuarantorName="ngModel" [(ngModel)]="obj.GuarantorName"
+                                                    [class.is-invalid]="GuarantorName.invalid &amp;&amp; GuarantorName.touched"
+                                                    class="form-control" placeholder="Enter Guarantor Name..." required>
+                                                <div *ngIf="GuarantorName.invalid &amp;&amp; GuarantorName.touched">
+                                                    <small *ngIf="GuarantorName.errors?.required"
+                                                        class="text-danger">Guarantor Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Address"
+                                                [class.text-danger]="Address.invalid && Address.touched">Address<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <textarea type="text" id="Address" name="Address" #Address="ngModel"
+                                                    [(ngModel)]="obj.Address"
+                                                    [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                                                    class="form-control" placeholder="Enter Address..."
+                                                    required></textarea>
+                                                <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                                                    <small *ngIf="Address.errors?.required" class="text-danger">Address
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="PhoneNumber"
+                                                [class.text-danger]="PhoneNumber.invalid && PhoneNumber.touched">Phone
+                                                Number<i class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="PhoneNumber" name="PhoneNumber"
+                                                    #PhoneNumber="ngModel" [(ngModel)]="obj.PhoneNumber"
+                                                    [class.is-invalid]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched"
+                                                    class="form-control" placeholder="Enter Phone Number..." required>
+                                                <div *ngIf="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">
+                                                    <small *ngIf="PhoneNumber.errors?.required"
+                                                        class="text-danger">Phone
+                                                        Number is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="JobTitle"
+                                                [class.text-danger]="JobTitle.invalid && JobTitle.touched">Job Title<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="JobTitle" name="JobTitle" #JobTitle="ngModel"
+                                                    [(ngModel)]="obj.JobTitle"
+                                                    [class.is-invalid]="JobTitle.invalid &amp;&amp; JobTitle.touched"
+                                                    class="form-control" placeholder="Enter Job Title..." required>
+                                                <div *ngIf="JobTitle.invalid &amp;&amp; JobTitle.touched">
+                                                    <small *ngIf="JobTitle.errors?.required" class="text-danger">Job
+                                                        Title is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Email"
+                                                [class.text-danger]="Email.invalid && Email.touched">Email<i
+                                                    class="text-danger">*</i></label>
+                                            <div class="col-md-8">
+                                                <input type="text" id="Email" name="Email" #Email="ngModel"
+                                                    [(ngModel)]="obj.Email"
+                                                    [class.is-invalid]="Email.invalid &amp;&amp; Email.touched"
+                                                    class="form-control" placeholder="Enter Email..." required>
+                                                <div *ngIf="Email.invalid &amp;&amp; Email.touched">
+                                                    <small *ngIf="Email.errors?.required" class="text-danger">Email is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-warning">Cancel</button>
+                                &nbsp;
+                                <button type="button" matStepperNext class="btn btn-primary pull-right"
+                                    (click)="onConfirm()" [disabled]="order.invalid">Next</button>&nbsp;
+                            </div>
+                        </mat-step>
+                        <mat-step [editable]="isEditable">
+                            <ng-template matStepLabel>Confirmation</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanDate">Loan Date</label>
+                                            <div class="col-md-8">
+                                                {{ obj.LoanDate | date:'longDate' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanTypeID">Loan
+                                                Type</label>
+                                            <div class="col-md-8">
+                                                {{ obj.LoanType }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Amount">Amount</label>
+                                            <div class="col-md-8">
+                                                {{ obj.Amount | number:'1.2-2' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="InterestRate">Interest
+                                                Rate</label>
+                                            <div class="col-md-8">
+                                                {{ obj.InterestRate | number:'1.2-2' }}%
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Tenor">Tenor</label>
+                                            <div class="col-md-8">
+                                                {{ obj.Tenor }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentAmount">Repayment
+                                                Amount</label>
+                                            <div class="col-md-8">
+                                                {{ obj.RepaymentAmount | number:'1.2-2' }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="StartPeriodID">Repayment
+                                                Start Period </label>
+                                            <div class="col-md-8">
+                                                {{ obj.StartPeriod }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="MonthlyRepayment">Monthly
+                                                Repayment</label>
+                                            <div class="col-md-8">
+                                                {{ obj.MonthlyRepayment  | number:'1.2-2'}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label"
+                                                for="ApprovingOfficerID">Approving Officer</label>
+                                            <div class="col-md-8">
+                                                {{ obj.FullName }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="GuarantorName">Guarantor
+                                                Name </label>
+                                            <div class="col-md-8">
+                                               {{ obj.GuarantorName }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Address" >Address </label>
+                                            <div class="col-md-8">
+                                                {{ obj.Address }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="PhoneNumber">Phone
+                                                Number </label>
+                                            <div class="col-md-8">
+                                                {{ obj.PhoneNumber }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="JobTitle">Job Title</label>
+                                            <div class="col-md-8">
+                                                 {{ obj.JobTitle }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Email" >Email </label>
+                                            <div class="col-md-8">
+                                               {{ obj.Email }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="panel-footer">
+                                <button type="button" matStepperPrevious class="btn btn-primary">Back</button>&nbsp;
+                                <button type="submit" matStepperNext class="btn btn-primary pull-right">Confirm
+                                    Application</button>&nbsp;
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Completed</ng-template>
+                            <div class="row">
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="LoanDate">Loan Date</label>
+                                        <div class="col-md-8">
+                                            {{ obj.LoanDate | date:'longDate' }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="LoanTypeID">Loan
+                                            Type</label>
+                                        <div class="col-md-8">
+                                            {{ obj.LoanType }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="Amount">Amount</label>
+                                        <div class="col-md-8">
+                                            {{ obj.Amount | number:'1.2-2' }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="InterestRate">Interest
+                                            Rate</label>
+                                        <div class="col-md-8">
+                                            {{ obj.InterestRate | number:'1.2-2' }}%
+                                        </div>
+                                    </div>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="Tenor">Tenor</label>
+                                        <div class="col-md-8">
+                                            {{ obj.Tenor }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="RepaymentAmount">Repayment
+                                            Amount</label>
+                                        <div class="col-md-8">
+                                            {{ obj.RepaymentAmount | number:'1.2-2' }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="StartPeriodID">Repayment Start
+                                            Period </label>
+                                        <div class="col-md-8">
+                                            {{ obj.StartPeriod }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="MonthlyRepayment">Monthly
+                                            Repayment</label>
+                                        <div class="col-md-8">
+                                            {{ obj.MonthlyRepayment  | number:'1.2-2'}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="ApprovingOfficerID">Approving
+                                            Officer</label>
+                                        <div class="col-md-8">
+                                            {{ obj.FullName }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="GuarantorName">Guarantor
+                                            Name </label>
+                                        <div class="col-md-8">
+                                           {{ obj.GuarantorName }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="Address" >Address </label>
+                                        <div class="col-md-8">
+                                            {{ obj.Address }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="PhoneNumber">Phone
+                                            Number </label>
+                                        <div class="col-md-8">
+                                            {{ obj.PhoneNumber }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="JobTitle">Job Title</label>
+                                        <div class="col-md-8">
+                                             {{ obj.JobTitle }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-md-4 form-control-label" for="Email" >Email </label>
+                                        <div class="col-md-8">
+                                           {{ obj.Email }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="media-body halfway-fab align-self-end">
+                                <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                                    <button type="button" class="btn btn-primary pull-right" (click)="stepper.reset()">New
+                                        Loan Application</button>&nbsp;
+
+                                    <a (click)="print()" class="btn btn-primary btn-raised mr-2 d-print-none"
+                                    target="_blank" style="background-color: #15537d; color: white;">Print</a>
+                                </div>
+                            </div>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!--/.col (right) -->
+    </div>
+    <!-- /.row -->
+</section>

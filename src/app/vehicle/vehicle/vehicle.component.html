@@ -1,0 +1,244 @@
+<!--  -->
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Make" [class.text-danger]="Make.invalid &amp;&amp; Make.touched">Make</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Make" name="Make" #Make="ngModel" [(ngModel)]="obj.Make"
+                          [class.is-invalid]="Make.invalid &amp;&amp; Make.touched" class="form-control"
+                          placeholder="Enter Make..." required>
+                        <div *ngIf="Make.invalid &amp;&amp; Make.touched">
+                          <small *ngIf="Make.errors?.required" class="text-danger">Make is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Model" [class.text-danger]="Model.invalid &amp;&amp; Model.touched">Model</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Model" name="Model" #Model="ngModel" [(ngModel)]="obj.Model"
+                          [class.is-invalid]="Model.invalid &amp;&amp; Model.touched" class="form-control"
+                          placeholder="Enter Model..." required>
+                        <div *ngIf="Model.invalid &amp;&amp; Model.touched">
+                          <small *ngIf="Model.errors?.required" class="text-danger">Model is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Type" [class.text-danger]="Type.invalid &amp;&amp; Type.touched">Type</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Type" name="Type" #Type="ngModel" [(ngModel)]="obj.Type"
+                          [class.is-invalid]="Type.invalid &amp;&amp; Type.touched" class="form-control"
+                          placeholder="Enter Type..." required>
+                        <div *ngIf="Type.invalid &amp;&amp; Type.touched">
+                          <small *ngIf="Type.errors?.required" class="text-danger">Type is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Year" [class.text-danger]="Year.invalid &amp;&amp; Year.touched">Year</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Year" name="Year" #Year="ngModel" [(ngModel)]="obj.Year"
+                          [class.is-invalid]="Year.invalid &amp;&amp; Year.touched" class="form-control"
+                          placeholder="Enter Year..." required>
+                        <div *ngIf="Year.invalid &amp;&amp; Year.touched">
+                          <small *ngIf="Year.errors?.required" class="text-danger">Year is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="InitialMileage"
+                          [class.text-danger]="InitialMileage.invalid &amp;&amp; InitialMileage.touched">Initial
+                          Mileage</label><i class="text-danger">*</i>
+                        <input type="number" id="InitialMileage" name="InitialMileage" #InitialMileage="ngModel"
+                          [(ngModel)]="obj.InitialMileage"
+                          [class.is-invalid]="InitialMileage.invalid &amp;&amp; InitialMileage.touched"
+                          class="form-control" placeholder="Enter Initial Mileage..." required>
+                        <div *ngIf="InitialMileage.invalid &amp;&amp; InitialMileage.touched">
+                          <small *ngIf="InitialMileage.errors?.required" class="text-danger">Initial Mileage is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="EngineTypeID"
+                          [class.text-danger]="EngineTypeID.invalid &amp;&amp; EngineTypeID.touched">Engine Type
+                          </label><i class="text-danger">*</i>
+                          <ng-select [items]="EngineType" bindValue="EngineTypeID" bindLabel="EngineType" id="EngineTypeID" name="EngineTypeID" #EngineTypeID="ngModel"
+                          [(ngModel)]="obj.EngineTypeID"
+                          [class.is-invalid]="EngineTypeID.invalid &amp;&amp; EngineTypeID.touched"
+                          placeholder="Select Engine Type..." required></ng-select>
+                        <div *ngIf="EngineTypeID.invalid &amp;&amp; EngineTypeID.touched">
+                          <small *ngIf="EngineTypeID.errors?.required" class="text-danger">Engine Type is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="HorsePower"
+                          [class.text-danger]="HorsePower.invalid &amp;&amp; HorsePower.touched">Horse Power</label><i
+                          class="text-danger">*</i>
+                        <input type="number" id="HorsePower" name="HorsePower" #HorsePower="ngModel"
+                          [(ngModel)]="obj.HorsePower"
+                          [class.is-invalid]="HorsePower.invalid &amp;&amp; HorsePower.touched" class="form-control"
+                          placeholder="Enter Horse Power..." required>
+                        <div *ngIf="HorsePower.invalid &amp;&amp; HorsePower.touched">
+                          <small *ngIf="HorsePower.errors?.required" class="text-danger">Horse Power is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Color" [class.text-danger]="Color.invalid &amp;&amp; Color.touched">Color</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Color" name="Color" #Color="ngModel" [(ngModel)]="obj.Color"
+                          [class.is-invalid]="Color.invalid &amp;&amp; Color.touched" class="form-control"
+                          placeholder="Enter Color..." required>
+                        <div *ngIf="Color.invalid &amp;&amp; Color.touched">
+                          <small *ngIf="Color.errors?.required" class="text-danger">Color is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="VIN" [class.text-danger]="VIN.invalid &amp;&amp; VIN.touched">VIN</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="VIN" name="VIN" #VIN="ngModel" [(ngModel)]="obj.VIN"
+                          [class.is-invalid]="VIN.invalid &amp;&amp; VIN.touched" class="form-control"
+                          placeholder="Enter VIN..." required>
+                        <div *ngIf="VIN.invalid &amp;&amp; VIN.touched">
+                          <small *ngIf="VIN.errors?.required" class="text-danger">VIN is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="LicensePlateNumber"
+                          [class.text-danger]="LicensePlateNumber.invalid &amp;&amp; LicensePlateNumber.touched">License
+                          Plate Number</label><i class="text-danger">*</i>
+                        <input type="text" id="LicensePlateNumber" name="LicensePlateNumber"
+                          #LicensePlateNumber="ngModel" [(ngModel)]="obj.LicensePlateNumber"
+                          [class.is-invalid]="LicensePlateNumber.invalid &amp;&amp; LicensePlateNumber.touched"
+                          class="form-control" placeholder="Enter License Plate Number..." required>
+                        <div *ngIf="LicensePlateNumber.invalid &amp;&amp; LicensePlateNumber.touched">
+                          <small *ngIf="LicensePlateNumber.errors?.required" class="text-danger">License Plate Number is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="inService" [class.text-danger]="inService.invalid &amp;&amp; inService.touched">In
+                          Service</label><i class="text-danger">*</i>
+                        <input type="text" id="inService" name="inService" #inService="ngModel"
+                          [(ngModel)]="obj.inService"
+                          [class.is-invalid]="inService.invalid &amp;&amp; inService.touched" class="form-control"
+                          placeholder="Enter In Service..." required>
+                        <div *ngIf="inService.invalid &amp;&amp; inService.touched">
+                          <small *ngIf="inService.errors?.required" class="text-danger">In Service is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Vehicle</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="Make" caption="Make">
+                  </dxi-column>
+                  <dxi-column dataField="Model" caption="Model">
+                  </dxi-column>
+                  <dxi-column dataField="Type" caption="Type">
+                  </dxi-column>
+                  <dxi-column dataField="Year" caption="Year">
+                  </dxi-column>
+                  <dxi-column dataField="InitialMileage" caption="Initial Mileage">
+                  </dxi-column>
+                  <dxi-column dataField="EngineTypeID" caption="Engine Type">
+                  </dxi-column>
+                  <dxi-column dataField="HorsePower" caption="Horse Power">
+                  </dxi-column>
+                  <dxi-column dataField="Color" caption="Color">
+                  </dxi-column>
+                  <dxi-column dataField="VIN" caption="VIN">
+                  </dxi-column>
+                  <dxi-column dataField="LicensePlateNumber" caption="License Plate Number">
+                  </dxi-column>
+                  <dxi-column dataField="inService" caption="In Service">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

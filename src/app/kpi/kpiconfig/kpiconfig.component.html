@@ -1,0 +1,285 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="period_id"
+                                        [class.text-danger]="period_id.invalid && period_id.touched">Period<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="period" bindLabel="period_name" bindValue="id"
+                                            [(ngModel)]="obj.period_id" name="period_id" required #period_id="ngModel"
+                                            [class.is-invalid]="period_id.invalid && period_id.touched"
+                                            placeholder="Select Period..."></ng-select>
+                                        <div *ngIf="period_id.invalid && period_id.touched">
+                                            <small *ngIf="period_id.errors?.required" class="text-danger">Period is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="employee_id"
+                                        [class.text-danger]="employee_id.invalid && employee_id.touched">Employee<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="employee_id" name="employee_id" class="form-control"
+                                            placeholder="Enter Employee..." [(ngModel)]="obj.employee_id" required
+                                            #employee_id="ngModel"
+                                            [class.is-invalid]="employee_id.invalid && employee_id.touched"
+                                            placeholder="Select Employee...">
+                                        <div *ngIf="employee_id.invalid && employee_id.touched">
+                                            <small *ngIf="employee_id.errors?.required" class="text-danger">Employee id
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="depunit_id"
+                                        [class.text-danger]="depunit_id.invalid && depunit_id.touched">Depunit<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="depunit_id" name="depunit_id" class="form-control"
+                                            placeholder="Enter Depunit..." [(ngModel)]="obj.depunit_id" required
+                                            #depunit_id="ngModel"
+                                            [class.is-invalid]="depunit_id.invalid && depunit_id.touched"
+                                            placeholder="Select Depunit...">
+                                        <div *ngIf="depunit_id.invalid && depunit_id.touched">
+                                            <small *ngIf="depunit_id.errors?.required" class="text-danger">Depunit is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="designation_id"
+                                        [class.text-danger]="designation_id.invalid && designation_id.touched">Designation
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="designation_id" name="designation_id"
+                                            class="form-control" placeholder="Enter Designation..."
+                                            [(ngModel)]="obj.designation_id" required #designation_id="ngModel"
+                                            [class.is-invalid]="designation_id.invalid && designation_id.touched"
+                                            placeholder="Select Designation...">
+                                        <div *ngIf="designation_id.invalid && designation_id.touched">
+                                            <small *ngIf="designation_id.errors?.required"
+                                                class="text-danger">Designation is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="posted_by"
+                                        [class.text-danger]="posted_by.invalid && posted_by.touched">Posted by<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="posted_by" name="posted_by" class="form-control"
+                                            placeholder="Enter Posted by .." [(ngModel)]="obj.posted_by" required
+                                            #posted_by="ngModel"
+                                            [class.is-invalid]="posted_by.invalid && posted_by.touched"
+                                            placeholder="Select Posted by...">
+                                        <div *ngIf="posted_by.invalid && posted_by.touched">
+                                            <small *ngIf="posted_by.errors?.required" class="text-danger">Posted by is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="date_posted"
+                                        [class.text-danger]="date_posted.invalid && date_posted.touched">Date posted<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="date" id="date_posted" name="date_posted" class="form-control"
+                                            placeholder="Enter Date posted .." [(ngModel)]="obj.date_posted" required
+                                            #date_posted="ngModel"
+                                            [class.is-invalid]="date_posted.invalid && date_posted.touched"
+                                            placeholder="Select Date posted...">
+                                        <div *ngIf="date_posted.invalid && date_posted.touched">
+                                            <small *ngIf="date_posted.errors?.required" class="text-danger">Date posted
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="transID"
+                                        [class.text-danger]="transID.invalid && transID.touched">Trans<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="transID" name="transID" class="form-control"
+                                            placeholder="Enter Trans..." [(ngModel)]="obj.transID" required
+                                            #transID="ngModel" [class.is-invalid]="transID.invalid && transID.touched"
+                                            placeholder="Select Trans...">
+                                        <div *ngIf="transID.invalid && transID.touched">
+                                            <small *ngIf="transID.errors?.required" class="text-danger">Trans is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="approvalStage_id"
+                                        [class.text-danger]="approvalStage_id.invalid && approvalStage_id.touched">Approval
+                                        Stage<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="approvalStage_id" name="approvalStage_id"
+                                            class="form-control" placeholder="Enter Approval Stage..."
+                                            [(ngModel)]="obj.approvalStage_id" required #approvalStage_id="ngModel"
+                                            [class.is-invalid]="approvalStage_id.invalid && approvalStage_id.touched"
+                                            placeholder="Select Approval Stage...">
+                                        <div *ngIf="approvalStage_id.invalid && approvalStage_id.touched">
+                                            <small *ngIf="approvalStage_id.errors?.required"
+                                                class="text-danger">Approval Stage is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="approving_officer"
+                                        [class.text-danger]="approving_officer.invalid && approving_officer.touched">Approving
+                                        officer<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="approving_officer" name="approving_officer"
+                                            class="form-control" placeholder="Enter Approving officer .."
+                                            [(ngModel)]="obj.approving_officer" required #approving_officer="ngModel"
+                                            [class.is-invalid]="approving_officer.invalid && approving_officer.touched"
+                                            placeholder="Select Approving officer...">
+                                        <div *ngIf="approving_officer.invalid && approving_officer.touched">
+                                            <small *ngIf="approving_officer.errors?.required"
+                                                class="text-danger">Approving officer is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="exceptflagID"
+                                        [class.text-danger]="exceptflagID.invalid && exceptflagID.touched">Exceptflag
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="exceptflagID" name="exceptflagID" class="form-control"
+                                            placeholder="Enter Exceptflag..." [(ngModel)]="obj.exceptflagID" required
+                                            #exceptflagID="ngModel"
+                                            [class.is-invalid]="exceptflagID.invalid && exceptflagID.touched"
+                                            placeholder="Select Exceptflag...">
+                                        <div *ngIf="exceptflagID.invalid && exceptflagID.touched">
+                                            <small *ngIf="exceptflagID.errors?.required" class="text-danger">Exceptflag
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="work_id"
+                                        [class.text-danger]="work_id.invalid && work_id.touched">Work<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="work_id" name="work_id" class="form-control"
+                                            placeholder="Enter Work..." [(ngModel)]="obj.work_id" required
+                                            #work_id="ngModel" [class.is-invalid]="work_id.invalid && work_id.touched"
+                                            placeholder="Select Work...">
+                                        <div *ngIf="work_id.invalid && work_id.touched">
+                                            <small *ngIf="work_id.errors?.required" class="text-danger">Work is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="department_id"
+                                        [class.text-danger]="department_id.invalid && department_id.touched">Department
+                                       <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="department_id" name="department_id"
+                                            class="form-control" placeholder="Enter Department..."
+                                            [(ngModel)]="obj.department_id" required #department_id="ngModel"
+                                            [class.is-invalid]="department_id.invalid && department_id.touched"
+                                            placeholder="Select Department...">
+                                        <div *ngIf="department_id.invalid && department_id.touched">
+                                            <small *ngIf="department_id.errors?.required" class="text-danger">Department
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-primary"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of KPI Config</h3>
+                    <div class="panel-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="period_name" caption="Period Name"></dxi-column>
+                            <dxi-column dataField="employee_id" caption="Employee"></dxi-column>
+                            <dxi-column dataField="depunit_id" caption="Depunit"></dxi-column>
+                            <dxi-column dataField="designation_id" caption="Designation"></dxi-column>
+                            <dxi-column dataField="posted_by" caption="Posted By"></dxi-column>
+                            <dxi-column dataField="date_posted" caption="Date Posted"></dxi-column>
+                            <dxi-column dataField="transID" caption="Trans"></dxi-column>
+                            <dxi-column dataField="approvalStage_id" caption="Approval Stage"></dxi-column>
+                            <dxi-column dataField="approving_officer" caption="Approving Officer"></dxi-column>
+                            <dxi-column dataField="exceptflagID" caption="Exceptflag"></dxi-column>
+                            <dxi-column dataField="work_id" caption="Work"></dxi-column>
+                            <dxi-column dataField="department_id" caption="Department"></dxi-column>
+
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+                        <!--  <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action> -->
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

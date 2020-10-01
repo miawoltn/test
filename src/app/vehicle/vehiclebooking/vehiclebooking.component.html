@@ -1,0 +1,269 @@
+<!--  -->
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="EmployeeID"
+                          [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Employee</label><i
+                          class="text-danger">*</i>
+                        <ng-select [items]="employee" bindLabel="FullName" bindValue="id" #EmployeeID="ngModel"
+                          name="EmployeeID" [(ngModel)]="obj.EmployeeID"
+                          [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                          placeholder="Select Employee..." required></ng-select>
+                        <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                          <small *ngIf="EmployeeID.errors?.required" class="text-danger">Employee is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="VehicleID"
+                          [class.text-danger]="VehicleID.invalid &amp;&amp; VehicleID.touched">Vehicle</label><i
+                          class="text-danger">*</i>
+                        <ng-select [items]="vehicle" bindLabel="Make" bindValue="id" #VehicleID="ngModel"
+                          name="VehicleID" [(ngModel)]="obj.VehicleID"
+                          [class.is-invalid]="VehicleID.invalid &amp;&amp; VehicleID.touched"
+                          placeholder="Select Vehicle..." required></ng-select>
+                        <div *ngIf="VehicleID.invalid &amp;&amp; VehicleID.touched">
+                          <small *ngIf="VehicleID.errors?.required" class="text-danger">Vehicle is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="NumberOfTravellers"
+                          [class.text-danger]="NumberOfTravellers.invalid &amp;&amp; NumberOfTravellers.touched">Number
+                          Of Travellers</label><i class="text-danger">*</i>
+                        <input type="number" id="NumberOfTravellers" name="NumberOfTravellers"
+                          #NumberOfTravellers="ngModel" [(ngModel)]="obj.NumberOfTravellers"
+                          [class.is-invalid]="NumberOfTravellers.invalid &amp;&amp; NumberOfTravellers.touched"
+                          class="form-control" placeholder="Enter Number Of Travellers..." required>
+                        <div *ngIf="NumberOfTravellers.invalid &amp;&amp; NumberOfTravellers.touched">
+                          <small *ngIf="NumberOfTravellers.errors?.required" class="text-danger">Number Of Travellers is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="DateFrom" [class.text-danger]="DateFrom.invalid &amp;&amp; DateFrom.touched">Date
+                          From</label><i class="text-danger">*</i>
+                        <input type="date" id="DateFrom" name="DateFrom" #DateFrom="ngModel" [(ngModel)]="obj.DateFrom"
+                          [class.is-invalid]="DateFrom.invalid &amp;&amp; DateFrom.touched" class="form-control"
+                          placeholder="Enter Date From..." required>
+                        <div *ngIf="DateFrom.invalid &amp;&amp; DateFrom.touched">
+                          <small *ngIf="DateFrom.errors?.required" class="text-danger">Date From is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="DateTo" [class.text-danger]="DateTo.invalid &amp;&amp; DateTo.touched">Date
+                          To</label><i class="text-danger">*</i>
+                        <input type="date" id="DateTo" name="DateTo" #DateTo="ngModel" [(ngModel)]="obj.DateTo"
+                          [class.is-invalid]="DateTo.invalid &amp;&amp; DateTo.touched" class="form-control"
+                          placeholder="Enter Date To..." required>
+                        <div *ngIf="DateTo.invalid &amp;&amp; DateTo.touched">
+                          <small *ngIf="DateTo.errors?.required" class="text-danger">Date To is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PickupTime"
+                          [class.text-danger]="PickupTime.invalid &amp;&amp; PickupTime.touched">Pickup Time</label><i
+                          class="text-danger">*</i>
+                        <input type="time" id="PickupTime" name="PickupTime" #PickupTime="ngModel"
+                          [(ngModel)]="obj.PickupTime"
+                          [class.is-invalid]="PickupTime.invalid &amp;&amp; PickupTime.touched" class="form-control"
+                          placeholder="Enter Pickup Time..." required>
+                        <div *ngIf="PickupTime.invalid &amp;&amp; PickupTime.touched">
+                          <small *ngIf="PickupTime.errors?.required" class="text-danger">Pickup Time is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PickupAddress"
+                          [class.text-danger]="PickupAddress.invalid &amp;&amp; PickupAddress.touched">Pickup Address</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="PickupAddress" name="PickupAddress" #PickupAddress="ngModel"
+                          [(ngModel)]="obj.PickupAddress"
+                          [class.is-invalid]="PickupAddress.invalid &amp;&amp; PickupAddress.touched"
+                          class="form-control" placeholder="Enter Pickup Address..." required>
+                        <div *ngIf="PickupAddress.invalid &amp;&amp; PickupAddress.touched">
+                          <small *ngIf="PickupAddress.errors?.required" class="text-danger">Pickup Address is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="DropoffAddress"
+                          [class.text-danger]="DropoffAddress.invalid &amp;&amp; DropoffAddress.touched">Dropoff Address</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="DropoffAddress" name="DropoffAddress" #DropoffAddress="ngModel"
+                          [(ngModel)]="obj.DropoffAddress"
+                          [class.is-invalid]="DropoffAddress.invalid &amp;&amp; DropoffAddress.touched"
+                          class="form-control" placeholder="Enter Dropoff Address..." required>
+                        <div *ngIf="DropoffAddress.invalid &amp;&amp; DropoffAddress.touched">
+                          <small *ngIf="DropoffAddress.errors?.required" class="text-danger">Dropoff Address is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Comment"
+                          [class.text-danger]="Comment.invalid &amp;&amp; Comment.touched">Comment</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Comment" name="Comment" #Comment="ngModel" [(ngModel)]="obj.Comment"
+                          [class.is-invalid]="Comment.invalid &amp;&amp; Comment.touched" class="form-control"
+                          placeholder="Enter Comment..." required>
+                        <div *ngIf="Comment.invalid &amp;&amp; Comment.touched">
+                          <small *ngIf="Comment.errors?.required" class="text-danger">Comment is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="RequestedBy"
+                          [class.text-danger]="RequestedBy.invalid &amp;&amp; RequestedBy.touched">Requested
+                          By</label><i class="text-danger">*</i>
+                        <input type="number" id="RequestedBy" name="RequestedBy" #RequestedBy="ngModel"
+                          [(ngModel)]="obj.RequestedBy"
+                          [class.is-invalid]="RequestedBy.invalid &amp;&amp; RequestedBy.touched" class="form-control"
+                          placeholder="Enter Requested By..." required>
+                        <div *ngIf="RequestedBy.invalid &amp;&amp; RequestedBy.touched">
+                          <small *ngIf="RequestedBy.errors?.required" class="text-danger">Requested By is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="NextApprovingOfficerID"
+                          [class.text-danger]="NextApprovingOfficerID.invalid &amp;&amp; NextApprovingOfficerID.touched">NextApproving
+                          Officer</label><i class="text-danger">*</i>
+                        <input type="number" id="NextApprovingOfficerID" name="NextApprovingOfficerID"
+                          #NextApprovingOfficerID="ngModel" [(ngModel)]="obj.NextApprovingOfficerID"
+                          [class.is-invalid]="NextApprovingOfficerID.invalid &amp;&amp; NextApprovingOfficerID.touched"
+                          class="form-control" placeholder="Enter NextApproving Officer..." required>
+                        <div *ngIf="NextApprovingOfficerID.invalid &amp;&amp; NextApprovingOfficerID.touched">
+                          <small *ngIf="NextApprovingOfficerID.errors?.required" class="text-danger">NextApproving
+                            Officer is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="ApprovalStageID"
+                          [class.text-danger]="ApprovalStageID.invalid &amp;&amp; ApprovalStageID.touched">Approval
+                          Stage</label><i class="text-danger">*</i>
+                        <input type="number" id="ApprovalStageID" name="ApprovalStageID" #ApprovalStageID="ngModel"
+                          [(ngModel)]="obj.ApprovalStageID"
+                          [class.is-invalid]="ApprovalStageID.invalid &amp;&amp; ApprovalStageID.touched"
+                          class="form-control" placeholder="Enter Approval Stage..." required>
+                        <div *ngIf="ApprovalStageID.invalid &amp;&amp; ApprovalStageID.touched">
+                          <small *ngIf="ApprovalStageID.errors?.required" class="text-danger">Approval Stage is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Vehicle Booking</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="FirstName" caption="Employee">
+                  </dxi-column>
+                  <dxi-column dataField="Make" caption="Make">
+                  </dxi-column>
+                  <dxi-column dataField="NumberOfTravellers" caption="Number Of Travellers">
+                  </dxi-column>
+                  <dxi-column dataField="DateFrom" caption="Date From">
+                  </dxi-column>
+                  <dxi-column dataField="DateTo" caption="Date To">
+                  </dxi-column>
+                  <dxi-column dataField="PickupTime" caption="Pickup Time">
+                  </dxi-column>
+                  <dxi-column dataField="PickupAddress" caption="Pickup Address">
+                  </dxi-column>
+                  <dxi-column dataField="DropoffAddress" caption="Dropoff Address">
+                  </dxi-column>
+                  <dxi-column dataField="Comment" caption="Comment">
+                  </dxi-column>
+                  <dxi-column dataField="RequestedBy" caption="Requested By">
+                  </dxi-column>
+                  <dxi-column dataField="NextApprovingOfficerID" caption="Next Approving Officer">
+                  </dxi-column>
+                  <dxi-column dataField="ApprovalStageID" caption="Approval Stage">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

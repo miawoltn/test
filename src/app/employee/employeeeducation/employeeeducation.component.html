@@ -1,0 +1,196 @@
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="form" *ngIf="displayForm">
+            <div class="form-header">
+                {{operation}} Record
+            </div>
+
+            <div class="form-body">
+                <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="SchoolName"
+                                    [class.text-danger]="SchoolName.invalid && SchoolName.touched">School Name<i
+                                        class="text-danger">*</i></label>
+                                <input type="text" id="SchoolName" name="SchoolName" class="form-control"
+                                    placeholder="Enter School Name .." [(ngModel)]="obj.SchoolName" required
+                                    #SchoolName="ngModel" [class.is-invalid]="SchoolName.invalid && SchoolName.touched"
+                                    placeholder="Enter School Name...">
+                                <div *ngIf="SchoolName.invalid && SchoolName.touched">
+                                    <small *ngIf="SchoolName.errors?.required" class="text-danger">School Name is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="StartDate"
+                                    [class.text-danger]="StartDate.invalid && StartDate.touched">Start Date<i
+                                        class="text-danger">*</i></label>
+                                <input type="date" id="StartDate" name="StartDate" class="form-control"
+                                    placeholder="Enter Start Date .." [(ngModel)]="obj.StartDate" required
+                                    #StartDate="ngModel" [class.is-invalid]="StartDate.invalid && StartDate.touched"
+                                    placeholder="Enter Start Date...">
+                                <div *ngIf="StartDate.invalid && StartDate.touched">
+                                    <small *ngIf="StartDate.errors?.required" class="text-danger">Start Date is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="EndDate"
+                                    [class.text-danger]="EndDate.invalid && EndDate.touched">End Date<i
+                                        class="text-danger">*</i></label>
+                                <input type="date" id="EndDate" name="EndDate" class="form-control"
+                                    placeholder="Enter End Date .." [(ngModel)]="obj.EndDate" required
+                                    #EndDate="ngModel" [class.is-invalid]="EndDate.invalid && EndDate.touched"
+                                    placeholder="Enter End Date...">
+                                <div *ngIf="EndDate.invalid && EndDate.touched">
+                                    <small *ngIf="EndDate.errors?.required" class="text-danger">End Date is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="SchoolTypeID"
+                                    [class.text-danger]="SchoolTypeID.invalid && SchoolTypeID.touched">School Type<i
+                                        class="text-danger">*</i></label>
+                                <ng-select [items]="schooltypes" bindLabel="SchoolType" bindValue="id"
+                                    [(ngModel)]="obj.SchoolTypeID" name="SchoolTypeID" required #SchoolTypeID="ngModel"
+                                    [class.is-invalid]="SchoolTypeID.invalid && SchoolTypeID.touched"
+                                    placeholder="Select School Type..."></ng-select>
+                                <div *ngIf="SchoolTypeID.invalid && SchoolTypeID.touched">
+                                    <small *ngIf="SchoolTypeID.errors?.required" class="text-danger">School Type is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="ProgrammeTypeID"
+                                    [class.text-danger]="ProgrammeTypeID.invalid && ProgrammeTypeID.touched">Programme
+                                    Type
+                                    <i class="text-danger">*</i></label>
+                                    <ng-select [items]="programmetypes" bindLabel="ProgrammeType" bindValue="id"
+                                    [(ngModel)]="obj.ProgrammeTypeID" name="ProgrammeTypeID" required
+                                    #ProgrammeTypeID="ngModel"
+                                    [class.is-invalid]="ProgrammeTypeID.invalid && ProgrammeTypeID.touched"
+                                    placeholder="Select Programme Type..."></ng-select>
+                                <div *ngIf="ProgrammeTypeID.invalid && ProgrammeTypeID.touched">
+                                    <small *ngIf="ProgrammeTypeID.errors?.required" class="text-danger">Programme
+                                        Type
+                                        is Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="QualificationID"
+                                    [class.text-danger]="QualificationID.invalid && QualificationID.touched">Qualification
+                                    <i class="text-danger">*</i></label>
+                                    <ng-select [items]="qualifications" bindLabel="QualificationName" bindValue="id"
+                                    [(ngModel)]="obj.QualificationID" name="QualificationID" required
+                                    #QualificationID="ngModel"
+                                    [class.is-invalid]="QualificationID.invalid && QualificationID.touched"
+                                    placeholder="Select Qualification..."></ng-select>
+                                <div *ngIf="QualificationID.invalid && QualificationID.touched">
+                                    <small *ngIf="QualificationID.errors?.required"
+                                        class="text-danger">Qualification
+                                        is Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="form-control-label" for="QualificationGradeID"
+                                    [class.text-danger]="QualificationGradeID.invalid && QualificationGradeID.touched">Qualification
+                                    Grade<i class="text-danger">*</i></label>
+                                    <ng-select [items]="qualificationgrade" bindLabel="QualificationGradeName"
+                                    bindValue="id" [(ngModel)]="obj.QualificationGradeID"
+                                    name="QualificationGradeID" required #QualificationGradeID="ngModel"
+                                    [class.is-invalid]="QualificationGradeID.invalid && QualificationGradeID.touched"
+                                    placeholder="Select Qualification Grade..."></ng-select>
+                                <div *ngIf="QualificationGradeID.invalid && QualificationGradeID.touched">
+                                    <small *ngIf="QualificationGradeID.errors?.required"
+                                        class="text-danger">Qualification Grade is Required</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label class="form-control-label" for="Description"
+                                    [class.text-danger]="Description.invalid && Description.touched">Description<i
+                                        class="text-danger">*</i></label>
+                                        <textarea id="Description" name="Description" class="form-control"
+                                        placeholder="Enter Description .." [(ngModel)]="obj.Description" required
+                                        #Description="ngModel"
+                                        [class.is-invalid]="Description.invalid && Description.touched"
+                                        placeholder="Enter Description..." cols="10" rows="4"></textarea>
+                                <div *ngIf="Description.invalid && Description.touched">
+                                    <small *ngIf="Description.errors?.required" class="text-danger">Description is
+                                        Required</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-warning" (click)="hideForm()">Cancel</button>&nbsp;
+                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{operation}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="form">
+            <div class="form-heading">
+                <h3>Academic & Professional History</h3>
+                <div class="form-tools pull-right">
+                    <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                            class="fa fa-plus"></span>
+                        Add New</button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="form-body">
+
+                <div class="table-responsive">
+
+                    <dx-data-grid class="dx-form wide-form" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                        [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                        [columnHidingEnabled]="false">
+                        <dxo-paging [pageSize]="10"></dxo-paging>
+                        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+                        <dxi-column dataField="SchoolName" caption="School"></dxi-column>
+                        <dxi-column dataField="Description" caption="Description"></dxi-column>
+                        <dxi-column dataField="StartDate" caption="Start Date" dataType="date"></dxi-column>
+                        <dxi-column dataField="EndDate" caption="End Date" dataType="date"></dxi-column>
+                        <dxi-column dataField="SchoolType" caption="School Type"></dxi-column>
+                        <dxi-column dataField="ProgrammeType" caption="Programme Type"></dxi-column>
+                        <dxi-column dataField="QualificationName" caption="Qualification"></dxi-column>
+                        <dxi-column dataField="QualificationGradeName" caption="Qualification Grade"></dxi-column>
+
+                        <dxi-column type="buttons">
+                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                        </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+            <!-- end box-body -->
+        </div>
+        <!-- end box -->
+    </div>
+</div>

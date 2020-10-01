@@ -1,0 +1,13 @@
+
+::ng-deep #scheduler1 .dx-scheduler-cell-sizes-horizontal {
+    width: 50px;
+}
+
+::ng-deep #scheduler1 .dx-scheduler-cell-sizes-vertical {
+    height: 50px !important;
+}
+
+// ::ng-deep #scheduler1 .dx-scheduler-timeline.dx-scheduler-work-space-grouped[dx-group-column-count='1'] .dx-scheduler-group-table, .dx-scheduler-timeline.dx-scheduler-work-space-grouped[dx-group-column-count='1'] .dx-scheduler-sidebar-scrollable, .dx-scheduler-timeline.dx-scheduler-work-space-grouped[dx-group-column-count='1'] .dx-scheduler-sidebar-scrollable:before
+// {
+//     height: 200px !important;
+// }

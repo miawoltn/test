@@ -1,0 +1,141 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Activity_Name"
+                                                    [class.text-danger]="Activity_Name.invalid &amp;&amp; Activity_Name.touched">Activity_
+                                                    Name</label><i class="text-danger">*</i>
+                                                <input type="text" id="Activity_Name" name="Activity_Name"
+                                                    #Activity_Name="ngModel" [(ngModel)]="obj.Activity_Name"
+                                                    [class.is-invalid]="Activity_Name.invalid &amp;&amp; Activity_Name.touched"
+                                                    class="form-control" placeholder="Enter Activity_ Name..." required>
+                                                <div *ngIf="Activity_Name.invalid &amp;&amp; Activity_Name.touched">
+                                                    <small *ngIf="Activity_Name.errors?.required"
+                                                        class="text-danger">Activity_ Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pagepath"
+                                                    [class.text-danger]="pagepath.invalid &amp;&amp; pagepath.touched">Pagepath</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="text" id="pagepath" name="pagepath" #pagepath="ngModel"
+                                                    [(ngModel)]="obj.pagepath"
+                                                    [class.is-invalid]="pagepath.invalid &amp;&amp; pagepath.touched"
+                                                    class="form-control" placeholder="Enter Pagepath..." required>
+                                                <div *ngIf="pagepath.invalid &amp;&amp; pagepath.touched">
+                                                    <small *ngIf="pagepath.errors?.required"
+                                                        class="text-danger">Pagepath is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="order_by"
+                                                    [class.text-danger]="order_by.invalid &amp;&amp; order_by.touched">Order_by</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="number" id="order_by" name="order_by" #order_by="ngModel"
+                                                    [(ngModel)]="obj.order_by"
+                                                    [class.is-invalid]="order_by.invalid &amp;&amp; order_by.touched"
+                                                    class="form-control" placeholder="Enter Order_by..." required>
+                                                <div *ngIf="order_by.invalid &amp;&amp; order_by.touched">
+                                                    <small *ngIf="order_by.errors?.required"
+                                                        class="text-danger">Order_by is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="stage_id"
+                                                    [class.text-danger]="stage_id.invalid &amp;&amp; stage_id.touched">Approval Stage</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select [items]="ApprovalStages" bindValue="id" bindLabel="ApprovalStages" id="stage_id" name="stage_id" #stage_id="ngModel"
+                                                    [(ngModel)]="obj.stage_id"
+                                                    [class.is-invalid]="stage_id.invalid &amp;&amp; stage_id.touched"
+                                                    placeholder="Select Approval Stage..." required></ng-select>
+                                                <div *ngIf="stage_id.invalid &amp;&amp; stage_id.touched">
+                                                    <small *ngIf="stage_id.errors?.required"
+                                                        class="text-danger">Approval Stage is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Privilege_activity</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="Activity_Name" caption="Activity_ Name">
+                                    </dxi-column>
+                                    <dxi-column dataField="pagepath" caption="Pagepath">
+                                    </dxi-column>
+                                    <dxi-column dataField="order_by" caption="Order_by">
+                                    </dxi-column>
+                                    <dxi-column dataField="stage_id" caption="Stage_id">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

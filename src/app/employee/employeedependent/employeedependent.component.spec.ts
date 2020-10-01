@@ -1,0 +1,23 @@
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { EmployeeDependentComponent } from './employeedependent.component';
+
+describe("EmployeeDependentComponent", () => {
+  let component: EmployeeDependentComponent;
+  let fixture: ComponentFixture<EmployeeDependentComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [EmployeeDependentComponent],
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(EmployeeDependentComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it("should create", () => {
+    expect(component).toBeTruthy();
+  });
+});

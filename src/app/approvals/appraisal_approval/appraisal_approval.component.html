@@ -1,0 +1,622 @@
+
+<!-- <div class="content-body" *ngIf="displayForm"> -->
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4> -->
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step [editable]="isEditable" #scoring="ngModelGroup" ngModelGroup="scoring"
+                                        [stepControl]="form.controls.scoring">
+                                        <ng-template matStepLabel>Scoring</ng-template>
+                                        <div class="card-body">
+                                            <div class="col-sm-12 table-responsive">
+                                                <dx-data-grid class="dx-card wide-card" [dataSource]="detail"
+                                                    [showBorders]="true" keyExpr="kpi_id" [focusedRowEnabled]="true"
+                                                    [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                                    [columnHidingEnabled]="true">
+                                                    <dxo-paging [pageSize]="100"></dxo-paging>
+
+                                                    <dxo-paging [enabled]="false"></dxo-paging>
+                                                    <dxo-editing mode="cell" [allowUpdating]="true"
+                                                        [selectTextOnEditStart]="true" startEditAction="click">
+                                                    </dxo-editing>
+
+                                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true">
+                                                    </dxo-pager>
+
+                                                    <dxi-column dataField="kpi_name" caption="KPI"
+                                                        [allowEditing]="false">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="Kpi_desc" caption="KPI Description"
+                                                        [allowEditing]="false"></dxi-column>
+                                                    <dxi-column dataField="kpitype" [groupIndex]="1" caption="KPI Type"
+                                                        [allowEditing]="false">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="kpiclass" [groupIndex]="0"
+                                                        caption="KPI Class" [allowEditing]="false">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="targetvalue" caption="Target"
+                                                        [allowEditing]="false">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="maxWeight" caption="Weight"
+                                                        [allowEditing]="false">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="selfscore" caption="Self Appraisal Score"
+                                                        dataType="number" [allowEditing]="false"></dxi-column>
+                                                    <dxi-column dataField="comments" caption="Comment"
+                                                        [allowEditing]="false"></dxi-column>
+                                                    <dxi-column dataField="score" caption="Score" dataType="number">
+                                                        <!-- <dx-validator>
+                                                <dxi-validation-rule type="required" message="Score is required"></dxi-validation-rule>
+                                                <dxi-validation-rule type="stringLength" [min]="0" [max]="4" message="Score cannot be greater than Weight"></dxi-validation-rule>
+                                            </dx-validator> -->
+                                                    </dxi-column>
+                                                    <dxi-column dataField="appraiser_comments" caption="Comment"
+                                                        editCellTemplate="tagBoxEditor"></dxi-column>
+                                                    <div *dxTemplate="let tagBoxEditor of 'tagBoxEditor'">
+                                                        <textarea class="form-control"
+                                                            (change)="tagBoxEditor.setValue($event.target.value)"></textarea>
+                                                    </div>
+
+                                                    <dxo-summary>
+                                                        <dxi-group-item column="maxWeight" summaryType="sum"
+                                                            valueFormat="fixedPoint" displayFormat="Total: {0}"
+                                                            [showInGroupFooter]="true">
+                                                        </dxi-group-item>
+                                                        <dxi-total-item column="maxWeight" summaryType="sum"
+                                                            valueFormat="fixedPoint" displayFormat="Total: {0}">
+                                                        </dxi-total-item>
+
+                                                        <dxi-group-item column="score" summaryType="sum"
+                                                            valueFormat="fixedPoint" displayFormat="Achieved: {0}"
+                                                            [showInGroupFooter]="true">
+                                                        </dxi-group-item>
+                                                        <dxi-total-item column="score" summaryType="sum"
+                                                            valueFormat="fixedPoint" displayFormat="Achieved: {0}">
+                                                        </dxi-total-item>
+
+                                                        <dxi-group-item column="selfscore" summaryType="sum"
+                                                            valueFormat="fixedPoint" displayFormat="Appraised: {0}"
+                                                            [showInGroupFooter]="true">
+                                                        </dxi-group-item>
+                                                        <dxi-total-item column="selfscore" summaryType="sum"
+                                                            valueFormat="fixedPoint" displayFormat="Appraised: {0}">
+                                                        </dxi-total-item>
+                                                    </dxo-summary>
+                                                </dx-data-grid>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer ">
+                                            <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Back</button>
+                                            <button type="button" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right" [disabled]="scoring.invalid">
+                                                <i class="fa fa-dot-circle-o"></i>Next</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step #leave="ngModelGroup" ngModelGroup="leave"
+                                        [stepControl]="form.controls.leave" [editable]="isEditable">
+                                        <ng-template matStepLabel>KPI Approval </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Employee:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.FullName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Appraisal Period:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.period_name }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Designation:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.DesignationName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Work Location:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.WorkLocation }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <dx-data-grid class="dx-card wide-card" [dataSource]="detail"
+                                                        [showBorders]="true" keyExpr="id" [focusedRowEnabled]="true"
+                                                        [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                                        [columnHidingEnabled]="true">
+                                                        <dxo-paging [pageSize]="100"></dxo-paging>
+
+                                                        <dxo-paging [enabled]="false"></dxo-paging>
+
+
+                                                        <dxo-pager [showPageSizeSelector]="true" [showInfo]="true">
+                                                        </dxo-pager>
+
+                                                        <dxi-column dataField="kpi_name" caption="KPI"
+                                                            [allowEditing]="false">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="Kpi_desc" caption="KPI Description"
+                                                            [allowEditing]="false"></dxi-column>
+                                                        <dxi-column dataField="kpitype" [groupIndex]="1"
+                                                            caption="KPI Type" [allowEditing]="false">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="kpiclass" [groupIndex]="0"
+                                                            caption="KPI Class" [allowEditing]="false">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="targetvalue" caption="Target"
+                                                            [allowEditing]="false">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="maxWeight" caption="Weight"
+                                                            [allowEditing]="false">
+                                                        </dxi-column>
+                                                        <dxi-column dataField="selfscore" caption="Self Appraisal Score"
+                                                            dataType="number" [allowEditing]="false"></dxi-column>
+                                                        <dxi-column dataField="comments" caption="Comment"
+                                                            [allowEditing]="false"></dxi-column>
+                                                        <dxi-column dataField="score" caption="Score" dataType="number">
+                                                            <!-- <dx-validator>
+                                                <dxi-validation-rule type="required" message="Score is required"></dxi-validation-rule>
+                                                <dxi-validation-rule type="stringLength" [min]="0" [max]="4" message="Score cannot be greater than Weight"></dxi-validation-rule>
+                                            </dx-validator> -->
+                                                        </dxi-column>
+                                                        <dxi-column dataField="appraiser_comments"
+                                                            caption="Appraiser Comments"></dxi-column>
+
+                                                        <dxo-summary>
+                                                            <dxi-group-item column="maxWeight" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Total: {0}"
+                                                                [showInGroupFooter]="true">
+                                                            </dxi-group-item>
+                                                            <dxi-total-item column="maxWeight" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Total: {0}">
+                                                            </dxi-total-item>
+
+                                                            <dxi-group-item column="score" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Achieved: {0}"
+                                                                [showInGroupFooter]="true">
+                                                            </dxi-group-item>
+                                                            <dxi-total-item column="score" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Achieved: {0}">
+                                                            </dxi-total-item>
+
+                                                            <dxi-group-item column="selfscore" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Appraised: {0}"
+                                                                [showInGroupFooter]="true">
+                                                            </dxi-group-item>
+                                                            <dxi-total-item column="selfscore" summaryType="sum"
+                                                                valueFormat="fixedPoint" displayFormat="Appraised: {0}">
+                                                            </dxi-total-item>
+                                                        </dxo-summary>
+                                                    </dx-data-grid>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovedBy">Approving
+                                                                Officer: </label>
+                                                            {{ user_name }}
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovalInstancesID"
+                                                                [class.text-danger]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">Action</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="ApprovalInstances" bindValue="id"
+                                                                bindLabel="ApprovalType" id="ApprovalInstancesID"
+                                                                name="ApprovalInstancesID"
+                                                                #ApprovalInstancesID="ngModel"
+                                                                [(ngModel)]="obj.ApprovalInstancesID"
+                                                                [class.is-invalid]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched"
+                                                                placeholder="Select Action ..." [required]="isRequired"
+                                                                (change)="loadEvent($event)">
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">
+                                                                <small *ngIf="ApprovalInstancesID.errors?.required"
+                                                                    class="text-danger">Approval Action is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label class=" form-control-label" for="brief_description"
+                                                                [class.text-danger]="brief_description.invalid && brief_description.touched">Staff's
+                                                                Main Strength
+                                                                <i class="text-danger">*</i></label>
+                                                            <div class="">
+                                                                <textarea type="text" id="brief_description"
+                                                                    name="brief_description" class="form-control"
+                                                                    placeholder="Enter Staff's Main Strength .."
+                                                                    [(ngModel)]="info.appraiser_comment_strength"
+                                                                    [required]="isRequired" #brief_description="ngModel"
+                                                                    [class.is-invalid]="brief_description.invalid && brief_description.touched"></textarea>
+                                                                <div
+                                                                    *ngIf="brief_description.invalid && brief_description.touched">
+                                                                    <small *ngIf="brief_description.errors?.required"
+                                                                        class="text-danger">Staff's Main Strength is
+                                                                        Required</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label"
+                                                                for="appraiser_comment_improve"
+                                                                [class.text-danger]="appraiser_comment_improve.invalid && appraiser_comment_improve.touched">Staff's
+                                                                areas of improvement
+                                                                <i class="text-danger">*</i></label>
+                                                            <div class="">
+                                                                <textarea type="text" id="appraiser_comment_improve"
+                                                                    name="appraiser_comment_improve"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Staff's areas of improvement .."
+                                                                    [(ngModel)]="info.appraiser_comment_improve"
+                                                                    required #appraiser_comment_improve="ngModel"
+                                                                    [class.is-invalid]="appraiser_comment_improve.invalid && appraiser_comment_improve.touched"></textarea>
+                                                                <div
+                                                                    *ngIf="appraiser_comment_improve.invalid && appraiser_comment_improve.touched">
+                                                                    <small
+                                                                        *ngIf="appraiser_comment_improve.errors?.required"
+                                                                        class="text-danger">Staff's areas of improvement
+                                                                        is
+                                                                        Required</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label class=" form-control-label"
+                                                                for="appraiser_comment_dev"
+                                                                [class.text-danger]="appraiser_comment_dev.invalid && appraiser_comment_dev.touched">Training/Development
+                                                                activities recommended for
+                                                                the staff to undergo
+                                                                <i class="text-danger">*</i></label>
+                                                            <div class="">
+                                                                <textarea type="text" id="appraiser_comment_dev"
+                                                                    name="appraiser_comment_dev" class="form-control"
+                                                                    placeholder="Enter Training/Development activities recommended for
+                                                                    the staff to undergo .."
+                                                                    [(ngModel)]="info.appraiser_comment_dev"
+                                                                    [required]="isRequired"
+                                                                    #appraiser_comment_dev="ngModel"
+                                                                    [class.is-invalid]="appraiser_comment_dev.invalid && appraiser_comment_dev.touched"></textarea>
+                                                                <div
+                                                                    *ngIf="appraiser_comment_dev.invalid && appraiser_comment_dev.touched">
+                                                                    <small
+                                                                        *ngIf="appraiser_comment_dev.errors?.required"
+                                                                        class="text-danger">Training/Development
+                                                                        activities recommended for
+                                                                        the staff to undergo is
+                                                                        Required</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label for="NextApprovalOfficerID"
+                                                                [class.text-danger]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">Next
+                                                                Approving Officer</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Employee" bindValue="id"
+                                                                bindLabel="FullName" id="NextApprovalOfficerID"
+                                                                name="NextApprovalOfficerID"
+                                                                #NextApprovalOfficerID="ngModel"
+                                                                [(ngModel)]="obj.NextApprovalOfficerID"
+                                                                [class.is-invalid]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched"
+                                                                placeholder="Select Next Approving Officer..."
+                                                                [required]="isRequired">
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">
+                                                                <small *ngIf="NextApprovalOfficerID.errors?.required"
+                                                                    class="text-danger">Next Approving Officer is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="Comment"
+                                                                [class.text-danger]="Comment.invalid &amp;&amp; Comment.touched">Comment</label><i
+                                                                class="text-danger">*</i>
+                                                            <textarea id="Comment" name="Comment" #Comment="ngModel"
+                                                                [(ngModel)]="obj.Comment"
+                                                                [class.is-invalid]="Comment.invalid &amp;&amp; Comment.touched"
+                                                                class="form-control" placeholder="Enter Comment..."
+                                                                [required]="!isRequired"></textarea>
+                                                            <div *ngIf="Comment.invalid &amp;&amp; Comment.touched">
+                                                                <small *ngIf="Comment.errors?.required"
+                                                                    class="text-danger">Comment is Required</small>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer ">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="submit" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right" [disabled]="leave.invalid">
+                                                <i class="fa fa-dot-circle-o"></i> Submit</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable" #leaveApproval="ngModelGroup"
+                                        ngModelGroup="leaveApproval" [stepControl]="form.controls.leaveApproval">
+                                        <ng-template matStepLabel>Completion</ng-template>
+                                        <h3>Appraisal Application Treated</h3>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Employee:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.FullName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Appraisal Period:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.period_name }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Designation:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.DesignationName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Work Location:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.WorkLocation }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label" for="noDirectlySupervised">No.
+                                                                    Directly Supervised<i class="text-danger">*</i></label>
+                                                                <div class="col-md-8">
+                                                                    {{ info.noDirectlySupervised }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label" for="noindirectlySupervised">No
+                                                                    Indirectly Supervised<i class="text-danger">*</i></label>
+                                                                <div class="col-md-8">
+                                                                    {{ info.noindirectlySupervised }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label" for="brief_description">Brief
+                                                                    Description of main duties during the assessment period<i
+                                                                        class="text-danger">*</i></label>
+                                                                <div class="col-md-8">
+                                                                    {{ info.brief_description }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                    
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label" for="support_recieved">Support
+                                                                    Recieved with the year in discharging your duties<i
+                                                                        class="text-danger">*</i></label>
+                                                                <div class="col-md-8">
+                                                                    {{ info.support_recieved }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+
+                                                    <table class="table table-bordered">
+                                                        <caption>Score Summary</caption>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>KPI Type</th>
+                                                                <th>Self Appraisal</th>
+                                                                <th>Supervisor Appraisal</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let item of scores.type_scores, index as i">
+                                                                <td>{{item.kpitype}}</td>
+                                                                <td class="text-right">
+                                                                    {{item.SelfScoreEquivalent | number:'1.2-2' }}
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    {{item.ScoreEquivalent | number:'1.2-2'}}</td>
+                                                            </tr>
+                                                            <tr></tr>
+                                                            <tr>
+                                                                <th>KPI Class</th>
+                                                                <th>Self Appraisal</th>
+                                                                <th>Supervisor Appraisal</th>
+                                                            </tr>
+                                                            <tr *ngFor="let item of scores.class_scores, index as i">
+                                                                <td>{{item.kpiclass}}</td>
+                                                                <td class="text-right">
+                                                                    {{item.SelfScoreClassEquivalent | number:'1.2-2' }}
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    {{item.ScoreClassEquivalent | number:'1.2-2'}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Total Score</th>
+                                                                <th class="text-right">
+                                                                    {{scores.scores.selfscore_final | number:'1.2-2' }}
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    {{scores.scores.score_final | number:'1.2-2'}}</th>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <dx-data-grid class="dx-card wide-card" [dataSource]="detail"
+                                                [showBorders]="true" keyExpr="id" [focusedRowEnabled]="true"
+                                                [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                                [columnHidingEnabled]="true">
+                                                <dxo-paging [pageSize]="100"></dxo-paging>
+
+                                                <dxo-paging [enabled]="false"></dxo-paging>
+
+
+                                                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true">
+                                                </dxo-pager>
+
+                                                <dxi-column dataField="kpi_name" caption="KPI" [allowEditing]="false">
+                                                </dxi-column>
+                                                <dxi-column dataField="Kpi_desc" caption="KPI Description"
+                                                    [allowEditing]="false"></dxi-column>
+                                                <dxi-column dataField="kpitype" [groupIndex]="1" caption="KPI Type"
+                                                    [allowEditing]="false">
+                                                </dxi-column>
+                                                <dxi-column dataField="kpiclass" [groupIndex]="0" caption="KPI Class"
+                                                    [allowEditing]="false">
+                                                </dxi-column>
+                                                <dxi-column dataField="targetvalue" caption="Target"
+                                                    [allowEditing]="false">
+                                                </dxi-column>
+                                                <dxi-column dataField="maxWeight" caption="Weight"
+                                                    [allowEditing]="false">
+                                                </dxi-column>
+                                                <dxi-column dataField="selfscore" caption="Self Appraisal Score"
+                                                    dataType="number" [allowEditing]="false"></dxi-column>
+                                                <dxi-column dataField="comments" caption="Comment"
+                                                    [allowEditing]="false"></dxi-column>
+                                                <dxi-column dataField="score" caption="Score" dataType="number">
+                                                    <!-- <dx-validator>
+                                        <dxi-validation-rule type="required" message="Score is required"></dxi-validation-rule>
+                                        <dxi-validation-rule type="stringLength" [min]="0" [max]="4" message="Score cannot be greater than Weight"></dxi-validation-rule>
+                                    </dx-validator> -->
+                                                </dxi-column>
+                                                <dxi-column dataField="appraiser_comments" caption="Appraiser Comments">
+                                                </dxi-column>
+
+                                                <dxo-summary>
+                                                    <dxi-group-item column="maxWeight" summaryType="sum"
+                                                        valueFormat="fixedPoint" displayFormat="Total: {0}"
+                                                        [showInGroupFooter]="true">
+                                                    </dxi-group-item>
+                                                    <dxi-total-item column="maxWeight" summaryType="sum"
+                                                        valueFormat="fixedPoint" displayFormat="Total: {0}">
+                                                    </dxi-total-item>
+
+                                                    <dxi-group-item column="score" summaryType="sum"
+                                                        valueFormat="fixedPoint" displayFormat="Achieved: {0}"
+                                                        [showInGroupFooter]="true">
+                                                    </dxi-group-item>
+                                                    <dxi-total-item column="score" summaryType="sum"
+                                                        valueFormat="fixedPoint" displayFormat="Achieved: {0}">
+                                                    </dxi-total-item>
+
+                                                    <dxi-group-item column="selfscore" summaryType="sum"
+                                                        valueFormat="fixedPoint" displayFormat="Appraised: {0}"
+                                                        [showInGroupFooter]="true">
+                                                    </dxi-group-item>
+                                                    <dxi-total-item column="selfscore" summaryType="sum"
+                                                        valueFormat="fixedPoint" displayFormat="Appraised: {0}">
+                                                    </dxi-total-item>
+                                                </dxo-summary>
+                                            </dx-data-grid>
+                                        </div>
+
+                                        <div class="card-footer ">
+
+                                            <a [routerLink]="['/appraisal/appraisal-bin']"
+                                                class="btn btn-sm btn-primary pull-right">
+                                                <i class="fa fa-dot-circle-o"></i> Back to Approval Bin</a>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+
+                            </form>
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h3>Apraisal Approval History</h3>
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="ApprovalDate" caption="Approval Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Approved By">
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

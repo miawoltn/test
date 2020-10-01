@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>{{obj.operation}} Task</h1>
+<div mat-dialog-content class="mat-typography">
+    <form #form="ngForm">
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <label class="col-md-4 form-control-label" for="TaskStatusID"
+                            [class.text-danger]="TaskStatusID.invalid &amp;&amp; TaskStatusID.touched">Task
+                            Status
+                            </label>
+                        <div class="col-md-8">
+                            <ng-select [items]="data.taskstatus" bindLabel="TaskStatus"
+                                bindValue="id" [(ngModel)]="obj.TaskStatusID"
+                                name="TaskStatusID" required #TaskStatusID="ngModel"
+                                [class.is-invalid]="TaskStatusID.invalid &amp;&amp; TaskStatusID.touched"
+                                placeholder="Select Task Status..."></ng-select>
+                            <div
+                                *ngIf="TaskStatusID.invalid &amp;&amp; TaskStatusID.touched">
+                                <small *ngIf="TaskStatusID.errors?.required"
+                                    class="text-danger">Task Status is
+                                    Required</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <label class="col-md-4 form-control-label" for="TaskNote"
+                            [class.text-danger]="TaskNote.invalid &amp;&amp; TaskNote.touched">Task
+                            Note</label>
+                        <div class="col-md-8">
+                            <textarea id="TaskNote" name="TaskNote"
+                            class="form-control" [(ngModel)]="obj.TaskNote" required
+                            #TaskNote="ngModel"
+                            [class.is-invalid]="TaskNote.invalid &amp;&amp; TaskNote.touched"
+                            placeholder="Enter Task Note..." cols="3" rows="2"></textarea>
+                            <div *ngIf="TaskNote.invalid &amp;&amp; TaskNote.touched">
+                                <small *ngIf="TaskNote.errors?.required"
+                                    class="text-danger">Task Note is Required</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button class="btn btn-danger" (click)="onNoClick()">Close</button> &nbsp;
+    <button  class="btn btn-success" [mat-dialog-close]="data.obj" [disabled]="form.invalid" cdkFocusInitial>{{obj.operation}}</button>
+</div>

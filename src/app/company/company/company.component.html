@@ -1,0 +1,168 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CompanyName"
+                                                    [class.text-danger]="CompanyName.invalid &amp;&amp; CompanyName.touched">Company Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CompanyName"
+                                                    name="CompanyName" #CompanyName="ngModel"
+                                                    [(ngModel)]="obj.CompanyName"
+                                                    [class.is-invalid]="CompanyName.invalid &amp;&amp; CompanyName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Company Name..."
+                                                    required>
+                                                <div *ngIf="CompanyName.invalid &amp;&amp; CompanyName.touched">
+                                                    <small *ngIf="CompanyName.errors?.required"
+                                                        class="text-danger">Company Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Location"
+                                                    [class.text-danger]="Location.invalid &amp;&amp; Location.touched">Location</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Location"
+                                                    name="Location" #Location="ngModel"
+                                                    [(ngModel)]="obj.Location"
+                                                    [class.is-invalid]="Location.invalid &amp;&amp; Location.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Location..."
+                                                    required>
+                                                <div *ngIf="Location.invalid &amp;&amp; Location.touched">
+                                                    <small *ngIf="Location.errors?.required"
+                                                        class="text-danger">Location is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="LogoUrl"
+                                                    [class.text-danger]="LogoUrl.invalid &amp;&amp; LogoUrl.touched">Logo Url</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="LogoUrl"
+                                                    name="LogoUrl" #LogoUrl="ngModel"
+                                                    [(ngModel)]="obj.LogoUrl"
+                                                    [class.is-invalid]="LogoUrl.invalid &amp;&amp; LogoUrl.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Logo Url..."
+                                                    required>
+                                                <div *ngIf="LogoUrl.invalid &amp;&amp; LogoUrl.touched">
+                                                    <small *ngIf="LogoUrl.errors?.required"
+                                                        class="text-danger">Logo Url is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CompanyAbbr"
+                                                    [class.text-danger]="CompanyAbbr.invalid &amp;&amp; CompanyAbbr.touched">CompanyAbbr</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="CompanyAbbr"
+                                                    name="CompanyAbbr" #CompanyAbbr="ngModel"
+                                                    [(ngModel)]="obj.CompanyAbbr"
+                                                    [class.is-invalid]="CompanyAbbr.invalid &amp;&amp; CompanyAbbr.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Company Abbr..."
+                                                    required>
+                                                <div *ngIf="CompanyAbbr.invalid &amp;&amp; CompanyAbbr.touched">
+                                                    <small *ngIf="CompanyAbbr.errors?.required"
+                                                        class="text-danger">CompanyAbbr is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Company</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="CompanyName"
+                                        caption="Company Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Location"
+                                        caption="Location">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="LogoUrl"
+                                        caption="Logo Url">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CompanyAbbr"
+                                        caption="Company Abbr">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

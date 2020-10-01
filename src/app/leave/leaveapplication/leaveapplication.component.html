@@ -1,0 +1,476 @@
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div> -->
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #order="ngModelGroup" ngModelGroup="order"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Step I: Leave Application </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <!-- <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="YearID"
+                                                            [class.text-danger]="YearID.invalid &amp;&amp; YearID.touched">Year</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="years" bindLabel="YearName" bindValue="id"
+                                                            [(ngModel)]="obj.YearID" name="YearID" required
+                                                            #YearID="ngModel"
+                                                            [class.is-invalid]="YearID.invalid && YearID.touched"
+                                                            placeholder="Select Year..."></ng-select>
+
+                                                        <div *ngIf="YearID.invalid &amp;&amp; YearID.touched">
+                                                            <small *ngIf="YearID.errors?.required"
+                                                                class="text-danger">Year is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="LeaveTypeID"
+                                                            [class.text-danger]="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">Leave
+                                                            Type</label><i class="text-danger">*</i>
+                                                        <ng-select [items]="LeaveTypes" bindLabel="LeaveType"
+                                                            bindValue="id" [(ngModel)]="obj.LeaveTypeID"
+                                                            name="LeaveTypeID" required #LeaveTypeID="ngModel"
+                                                            [class.is-invalid]="LeaveTypeID.invalid && LeaveTypeID.touched"
+                                                            placeholder="Select Leave Type..." (change)="CheckLeaveType($event)"></ng-select>
+                                                        <div *ngIf="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">
+                                                            <small *ngIf="LeaveTypeID.errors?.required"
+                                                                class="text-danger">Leave Type is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4" *ngIf="!halfDay">
+                                                    <div class="form-group">
+                                                        <label for="PayLeaveGrant"
+                                                            [class.text-danger]="PayLeaveGrant.invalid &amp;&amp; PayLeaveGrant.touched">Pay
+                                                            Leave Grant</label><i class="text-danger">*</i>
+                                                        <ng-select [items]="choices" bindValue="value" bindLabel="label"
+                                                            id="PayLeaveGrant" name="PayLeaveGrant"
+                                                            #PayLeaveGrant="ngModel" [(ngModel)]="obj.PayLeaveGrant"
+                                                            [class.is-invalid]="PayLeaveGrant.invalid &amp;&amp; PayLeaveGrant.touched"
+                                                            placeholder="Pay Leave Grant?..." required></ng-select>
+                                                        <div
+                                                            *ngIf="PayLeaveGrant.invalid &amp;&amp; PayLeaveGrant.touched">
+                                                            <small *ngIf="PayLeaveGrant.errors?.required"
+                                                                class="text-danger">Pay Leave Grant is Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="DateFrom"
+                                                            [class.text-danger]="DateFrom.invalid &amp;&amp; DateFrom.touched">Date
+                                                            From</label><i class="text-danger">*</i>
+                                                        <input type="date" id="DateFrom" name="DateFrom"
+                                                            #DateFrom="ngModel" [(ngModel)]="obj.DateFrom"
+                                                            [class.is-invalid]="DateFrom.invalid &amp;&amp; DateFrom.touched"
+                                                            class="form-control" placeholder="Enter Date From..."
+                                                            required>
+                                                        <div *ngIf="DateFrom.invalid &amp;&amp; DateFrom.touched">
+                                                            <small *ngIf="DateFrom.errors?.required"
+                                                                class="text-danger">Date
+                                                                From is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4" *ngIf="!halfDay">
+                                                    <div class="form-group">
+                                                        <label for="DateTo"
+                                                            [class.text-danger]="DateTo.invalid &amp;&amp; DateTo.touched">Resumption
+                                                            Date</label><i class="text-danger">*</i>
+                                                        <input type="date" id="DateTo" name="DateTo" #DateTo="ngModel"
+                                                            [(ngModel)]="obj.DateBack"
+                                                            [class.is-invalid]="DateTo.invalid &amp;&amp; DateTo.touched"
+                                                            class="form-control" placeholder="Enter Date To..."
+                                                            required>
+                                                        <div *ngIf="DateTo.invalid &amp;&amp; DateTo.touched">
+                                                            <small *ngIf="DateTo.errors?.required"
+                                                                class="text-danger">Date To
+                                                                is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4" *ngIf="!halfDay">
+                                                    <div class="form-group">
+                                                        <label for="contactaddress"
+                                                            [class.text-danger]="ContactAddress.invalid &amp;&amp; ContactAddress.touched"> Contact Address
+                                                        </label><i class="text-danger">*</i>
+                                                        <textarea [(ngModel)]="obj.ContactAddress" name="contactaddress"
+                                                            id="contactaddress" required #ContactAddress="ngModel"
+                                                            class="form-control"
+                                                            [class.is-invalid]="ContactAddress.invalid && ContactAddress.touched"
+                                                            placeholder="Enter Contact Address ..."></textarea>
+                                                        <div
+                                                            *ngIf="ContactAddress.invalid &amp;&amp; ContactAddress.touched">
+                                                            <small *ngIf="ContactAddress.errors?.required"
+                                                                class="text-danger">Contact Address is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              
+                                                <div class="col-md-4" *ngIf="!halfDay">
+                                                    <div class="form-group">
+                                                        <label for="RelieveOfficerID"
+                                                            [class.text-danger]="RelieveOfficerID.invalid &amp;&amp; RelieveOfficerID.touched">Relieving
+                                                            Officer</label><i class="text-danger">*</i>
+                                                        <ng-select [items]="reliever" bindLabel="FullName"
+                                                            bindValue="id" [(ngModel)]="obj.RelieveOfficerID"
+                                                            name="RelieveOfficerID" required #RelieveOfficerID="ngModel"
+                                                            [class.is-invalid]="RelieveOfficerID.invalid && RelieveOfficerID.touched"
+                                                            placeholder="Select Relieving Officer ..."></ng-select>
+                                                        <div
+                                                            *ngIf="RelieveOfficerID.invalid &amp;&amp; RelieveOfficerID.touched">
+                                                            <small *ngIf="RelieveOfficerID.errors?.required"
+                                                                class="text-danger">Relieving Officer is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="ApprovalOfficerID"
+                                                            [class.text-danger]="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched">Approving
+                                                            Officer</label><i class="text-danger">*</i>
+                                                        <ng-select [items]="approver" bindLabel="FullName"
+                                                            bindValue="id" [(ngModel)]="obj.ApprovalOfficerID"
+                                                            name="ApprovalOfficerID" required
+                                                            #ApprovalOfficerID="ngModel"
+                                                            [class.is-invalid]="ApprovalOfficerID.invalid && ApprovalOfficerID.touched"
+                                                            placeholder="Select Approving Officer ..."></ng-select>
+                                                        <div
+                                                            *ngIf="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched">
+                                                            <small *ngIf="ApprovalOfficerID.errors?.required"
+                                                                class="text-danger">Approving Officer is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="handover"
+                                                            [class.text-danger]="handover.invalid &amp;&amp; handover.touched">Handover
+                                                            Remark
+                                                        </label><i class="text-danger">*</i>
+                                                        <textarea [(ngModel)]="obj.handover" name="handover" required
+                                                            #handover="ngModel" class="form-control"
+                                                            [class.is-invalid]="handover.invalid && handover.touched"
+                                                            placeholder="Enter Handover Notes ..."></textarea>
+                                                        <div *ngIf="handover.invalid &amp;&amp; handover.touched">
+                                                            <small *ngIf="handover.errors?.required"
+                                                                class="text-danger">Notes is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="reason"
+                                                            [class.text-danger]="reason.invalid &amp;&amp; reason.touched">Reason for Leave
+                                                        </label>
+                                                        <textarea [(ngModel)]="obj.reason" name="reason"
+                                                            #reason="ngModel" class="form-control"
+                                                            [class.is-invalid]="reason.invalid && reason.touched"
+                                                            placeholder="Enter Reason for Leave ..."></textarea>
+                                                        <div *ngIf="reason.invalid &amp;&amp; reason.touched">
+                                                            <small *ngIf="reason.errors?.required"
+                                                                class="text-danger">Reason is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="button" matStepperNext class="btn btn-sm btn-primary pull-right"
+                                                [disabled]="order.invalid" (click)="onConfirm()">
+                                                <i class="fa fa-dot-circle-o"></i> Next</button>
+                                        </div>
+                                    </mat-step>
+
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 2: Confirmation</ng-template>
+                                        <div class="card-body">
+                                            <h3>Leave Application Information</h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="YearID">Year</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.YearName}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Leave
+                                                            Type</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.LeaveTypeName}}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Date
+                                                            From</label>
+                                                        <div class="col-md-8">{{obj.DateFrom | date:'longDate'}}</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Resumption
+                                                            Date</label>
+                                                        <div class="col-md-8">{{obj.DateBack | date:'longDate'}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Contact Address
+                                                        </label>
+                                                        <div class="col-md-8">{{obj.ContactAddress}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Pay
+                                                            Leave Grant</label>
+                                                        <div class="col-md-8">{{obj2.PayLeaveGrantName}}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Relieving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.RelieveOfficerName}}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Approving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.ApprovalOfficerName}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Handover
+                                                            Notes</label>
+                                                        <div class="col-md-8">{{ obj.handover }}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Reason for Leave</label>
+                                                        <div class="col-md-8">{{ obj.reason }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer ">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger ">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button> &nbsp;
+                                            <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Back</button>
+                                            <button type="submit" matStepperNext class="btn btn-sm btn-primary pull-right">
+                                                <i class="fa fa-dot-circle-o"></i> Confirm</button>
+                                        </div>
+
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Step 3: Completion</ng-template>
+                                        <div class="card-body">
+                                            <h3>Leave Application Information</h3>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="YearID">Year</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.YearName}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Leave
+                                                            Type</label>
+                                                        <div class="col-md-8">
+                                                            {{obj2.LeaveTypeName}}
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Date
+                                                            From</label>
+                                                        <div class="col-md-8">{{obj.DateFrom | date:'longDate'}}</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Resumption
+                                                            Date</label>
+                                                        <div class="col-md-8">{{obj.DateBack | date:'longDate'}}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Contact Address
+                                                        </label>
+                                                        <div class="col-md-8">{{obj.ContactAddress}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Pay
+                                                            Leave Grant</label>
+                                                        <div class="col-md-8">{{obj2.PayLeaveGrantName}}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Relieving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.RelieveOfficerName}}</div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Approving
+                                                            Officer</label>
+                                                        <div class="col-md-8">{{obj2.ApprovalOfficerName}}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Handover
+                                                            Notes</label>
+                                                        <div class="col-md-8">{{ obj.handover }}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label">Reason for Leave</label>
+                                                        <div class="col-md-8">{{ obj.reason }}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer pull-right">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                (click)="stepper.reset()">
+                                                <i class="fa fa-plus"></i> New Request</button>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">My Leave Applications</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                New Request</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="LeaveApplicationID" caption="ID">
+                                    </dxi-column>
+                                    <dxi-column dataField="LeaveType" caption="Leave Type">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateFrom" caption="Start Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateBack" caption="Resumption Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="NoDayApplied" caption="No DayApplied">
+                                    </dxi-column>
+                                    <dxi-column dataField="PayLeaveGrant" caption="Pay Leave Grant">
+                                        <dxo-lookup displayExpr="label" valueExpr="value" [dataSource]="choices"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="RelieveOfficer" caption="Relieve Officer">
+                                    </dxi-column>
+                                    <dxi-column dataField="ApprovalOfficer" caption="Approving Officer">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Edit" [onClick]="loadItem"></dxi-button>
+                                        <dxi-button text="View" [onClick]="loadLeave"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

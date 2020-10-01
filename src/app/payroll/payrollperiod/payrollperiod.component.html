@@ -1,0 +1,146 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PayrollPeriod"
+                                                    [class.text-danger]="PayrollPeriod.invalid &amp;&amp; PayrollPeriod.touched">Payroll
+                                                    Period</label><i class="text-danger">*</i>
+                                                <input type="text" id="PayrollPeriod" name="PayrollPeriod"
+                                                    #PayrollPeriod="ngModel" [(ngModel)]="obj.PayrollPeriod"
+                                                    [class.is-invalid]="PayrollPeriod.invalid &amp;&amp; PayrollPeriod.touched"
+                                                    class="form-control" placeholder="Enter Payroll Period..." required>
+                                                <div *ngIf="PayrollPeriod.invalid &amp;&amp; PayrollPeriod.touched">
+                                                    <small *ngIf="PayrollPeriod.errors?.required"
+                                                        class="text-danger">Payroll Period is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateFrom"
+                                                    [class.text-danger]="DateFrom.invalid &amp;&amp; DateFrom.touched">Date
+                                                    From</label><i class="text-danger">*</i>
+                                                <input type="date" id="DateFrom" name="DateFrom" #DateFrom="ngModel"
+                                                    [(ngModel)]="obj.DateFrom"
+                                                    [class.is-invalid]="DateFrom.invalid &amp;&amp; DateFrom.touched"
+                                                    class="form-control" placeholder="Enter Date From..." required>
+                                                <div *ngIf="DateFrom.invalid &amp;&amp; DateFrom.touched">
+                                                    <small *ngIf="DateFrom.errors?.required" class="text-danger">Date
+                                                        From is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateTo"
+                                                    [class.text-danger]="DateTo.invalid &amp;&amp; DateTo.touched">Date
+                                                    To</label><i class="text-danger">*</i>
+                                                <input type="date" id="DateTo" name="DateTo" #DateTo="ngModel"
+                                                    [(ngModel)]="obj.DateTo"
+                                                    [class.is-invalid]="DateTo.invalid &amp;&amp; DateTo.touched"
+                                                    class="form-control" placeholder="Enter Date To..." required>
+                                                <div *ngIf="DateTo.invalid &amp;&amp; DateTo.touched">
+                                                    <small *ngIf="DateTo.errors?.required" class="text-danger">Date To
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="IsPublished"
+                                                    [class.text-danger]="IsPublished.invalid &amp;&amp; IsPublished.touched">Is
+                                                    Published</label><i class="text-danger">*</i>
+                                                <input type="text" id="IsPublished" name="IsPublished"
+                                                    #IsPublished="ngModel" [(ngModel)]="obj.IsPublished"
+                                                    [class.is-invalid]="IsPublished.invalid &amp;&amp; IsPublished.touched"
+                                                    class="form-control" placeholder="Enter Is Published..." required>
+                                                <div *ngIf="IsPublished.invalid &amp;&amp; IsPublished.touched">
+                                                    <small *ngIf="IsPublished.errors?.required" class="text-danger">Is
+                                                        Published is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Payrollperiod</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="PayrollPeriod" caption="Payroll Period">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateFrom" caption="Date From">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateTo" caption="Date To">
+                                    </dxi-column>
+                                    <dxi-column dataField="IsPublished" caption="Is Published">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

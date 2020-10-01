@@ -1,0 +1,229 @@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="card card-info" *ngIf="displayForm">
+                <div class="card-header">
+                    {{operation}} Record
+                </div>
+
+                <div class="card-body">
+                    <form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="chart_title"
+                                        [class.text-danger]="chart_title.invalid && chart_title.touched">Chart Title<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="text" id="chart_title" name="chart_title" class="form-control"
+                                            placeholder="Enter Chart title .." [(ngModel)]="obj.chart_title" required
+                                            #chart_title="ngModel"
+                                            [class.is-invalid]="chart_title.invalid && chart_title.touched"
+                                            placeholder="Enter Chart title...">
+                                        <div *ngIf="chart_title.invalid && chart_title.touched">
+                                            <small *ngIf="chart_title.errors?.required" class="text-danger">Chart Title
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="chart_category_id"
+                                        [class.text-danger]="chart_category_id.invalid && chart_category_id.touched">Chart
+                                        Category<i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="chart_category" bindLabel="chart_category" bindValue="id"
+                                            [(ngModel)]="obj.chart_category_id" name="chart_category_id" required
+                                            #chart_category_id="ngModel"
+                                            [class.is-invalid]="chart_category_id.invalid && chart_category_id.touched"
+                                            placeholder="Select Chart category ..."></ng-select>
+                                        <div *ngIf="chart_category_id.invalid && chart_category_id.touched">
+                                            <small *ngIf="chart_category_id.errors?.required" class="text-danger">Chart
+                                                Category is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="chart_type_id"
+                                        [class.text-danger]="chart_type_id.invalid && chart_type_id.touched">Chart type
+                                        <i class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="chart_types" bindLabel="chart_type" bindValue="id"
+                                            [(ngModel)]="obj.chart_type_id" name="chart_type_id" required
+                                            #chart_type_id="ngModel"
+                                            [class.is-invalid]="chart_type_id.invalid && chart_type_id.touched"
+                                            placeholder="Select Chart type ..."></ng-select>
+                                        <div *ngIf="chart_type_id.invalid && chart_type_id.touched">
+                                            <small *ngIf="chart_type_id.errors?.required" class="text-danger">Chart type
+                                                is Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="chart_id"
+                                        [class.text-danger]="chart_id.invalid && chart_id.touched">Chart<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="charts" bindLabel="chart_title" bindValue="id"
+                                            [(ngModel)]="obj.chart_id" name="chart_id" required #chart_id="ngModel"
+                                            [class.is-invalid]="chart_id.invalid && chart_id.touched"
+                                            placeholder="Select Chart ..."></ng-select>
+                                        <div *ngIf="chart_id.invalid && chart_id.touched">
+                                            <small *ngIf="chart_id.errors?.required" class="text-danger">Chart is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="isActive"
+                                        [class.text-danger]="isActive.invalid && isActive.touched">Status<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="statuses" bindLabel="title" bindValue="id"
+                                            [(ngModel)]="obj.isActive" name="isActive" required #isActive="ngModel"
+                                            [class.is-invalid]="isActive.invalid && isActive.touched"
+                                            placeholder="Select Chart category ..."></ng-select>
+                                        <div *ngIf="isActive.invalid && isActive.touched">
+                                            <small *ngIf="isActive.errors?.required" class="text-danger">Status is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="module_id"
+                                        [class.text-danger]="module_id.invalid && module_id.touched">Module<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="modules" bindLabel="moduleName" bindValue="moduleId"
+                                            [(ngModel)]="obj.module_id" name="module_id" required #module_id="ngModel"
+                                            [class.is-invalid]="module_id.invalid && module_id.touched"
+                                            placeholder="Select Module ..."></ng-select>
+                                        <div *ngIf="module_id.invalid && module_id.touched">
+                                            <small *ngIf="module_id.errors?.required" class="text-danger">Module is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="module_id"
+                                        [class.text-danger]="submoduleId.invalid && submoduleId.touched">Sub Module<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="submodules" bindLabel="submodule" bindValue="submodule_id"
+                                            [(ngModel)]="obj.subModuleId" name="submoduleId" required #submoduleId="ngModel"
+                                            [class.is-invalid]="submoduleId.invalid && submoduleId.touched"
+                                            placeholder="Select Sub Module ..."></ng-select>
+                                        <div *ngIf="submoduleId.invalid && submoduleId.touched">
+                                            <small *ngIf="submoduleId.errors?.required" class="text-danger">Sub Module is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="orderby"
+                                        [class.text-danger]="orderby.invalid && orderby.touched">Sequence<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <input type="number" id="orderby" name="orderby" class="form-control"
+                                            placeholder="Enter Orderby .." [(ngModel)]="obj.orderby" required
+                                            #orderby="ngModel" [class.is-invalid]="orderby.invalid && orderby.touched"
+                                            placeholder="Enter Orderby...">
+                                        <div *ngIf="orderby.invalid && orderby.touched">
+                                            <small *ngIf="orderby.errors?.required" class="text-danger">Orderby is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-4 form-control-label" for="isGroup"
+                                        [class.text-danger]="isGroup.invalid && isGroup.touched">Group<i
+                                            class="text-danger">*</i></label>
+                                    <div class="col-md-8">
+                                        <ng-select [items]="yesNo" bindLabel="title" bindValue="id"
+                                            [(ngModel)]="obj.isGroup" name="isGroup" required #isGroup="ngModel"
+                                            [class.is-invalid]="isGroup.invalid && isGroup.touched"
+                                            placeholder="Select Chart category ..."></ng-select>
+                                        <div *ngIf="isGroup.invalid && isGroup.touched">
+                                            <small *ngIf="isGroup.errors?.required" class="text-danger">Group is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-default" (click)="hideForm()">Cancel</button>&nbsp;
+                            <button type="submit" class="btn btn-success"
+                                [disabled]="form.invalid">{{operation}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>List of Dashboard Setting</h3>
+                    <div class="card-tools pull-right">
+                        <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                class="fa fa-plus"></span>
+                            Add New</button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="15"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="chart_title" caption="Chart Title"></dxi-column>
+                            <dxi-column dataField="chart_title2" caption="Chart"></dxi-column>
+                            <dxi-column dataField="isActive" caption="Status">
+                                <dxo-lookup [dataSource]="statuses" valueExpr="id" displayExpr="title"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column dataField="moduleName" caption="Dashboard"></dxi-column>
+                            <dxi-column dataField="orderby" caption="Sequence"></dxi-column>
+                            <dxi-column dataField="chart_type" caption="Type"></dxi-column>
+                            <dxi-column dataField="chart_category" caption="Category"></dxi-column>
+                            <dxi-column dataField="isGroup" caption="Group">
+                                <dxo-lookup [dataSource]="yesNo" valueExpr="id" displayExpr="title"></dxo-lookup>
+                            </dxi-column>
+                            <dxi-column type="buttons">
+                                <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

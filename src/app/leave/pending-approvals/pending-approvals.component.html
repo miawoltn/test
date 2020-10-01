@@ -1,0 +1,88 @@
+
+
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">{{data.length}} Leave Applications, {{ dataResumption.length }} Leave Resumptions Pending</h4>
+        </div>
+        <div class="card-content">
+          <div class="card-body">
+              
+            <ul class="nav nav-tabs justify-content-start">
+              <li class="nav-item ng-star-inserted">
+                <a class="nav-link active" id="base-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1" aria-expanded="true">Leave Approvals</a>
+              </li>
+              <li class="nav-item ng-star-inserted">
+                <a class="nav-link" id="base-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2" aria-expanded="false">Leave Resumption Approvals</a>
+              </li>
+              
+            </ul>
+            <div class="tab-content px-1 pt-1">
+              <div role="tabpanel" class="tab-pane active " id="tab1" aria-expanded="true" aria-labelledby="base-tab1">
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                            keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                            [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                            <dxo-paging [pageSize]="10"></dxo-paging>
+                                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                            <dxi-column dataField="Employee" caption="Employee">
+                                            </dxi-column>
+                                            <dxi-column dataField="LeaveType" caption="Leave Type">
+                                            </dxi-column>
+                                            <dxi-column dataField="DateFrom" caption="Start Date" dataType="date">
+                                            </dxi-column>
+                                            <dxi-column dataField="DateBack" caption="Expected Resumption Date" dataType="date">
+                                            </dxi-column>
+                                            <dxi-column dataField="NoDayApplied" caption="No DayApplied">
+                                            </dxi-column>
+                                            <dxi-column dataField="PayLeaveGrant" caption="Pay Leave Grant">
+                                                <dxo-lookup displayExpr="label" valueExpr="value" [dataSource]="choices">
+                                                </dxo-lookup>
+                                            </dxi-column>
+                                            <dxi-column dataField="RelieveOfficer" caption="Relieve Officer">
+                                            </dxi-column>
+                                            <dxi-column dataField="ApprovalOfficer" caption="Approving Officer">
+                                            </dxi-column>
+        
+                                            <dxi-column type="buttons">
+                                                <dxi-button text="Proceed" [onClick]="loadLeave"></dxi-button>
+                                            </dxi-column>
+                                        </dx-data-grid>
+              </div>
+              <div class="tab-pane" id="tab2" aria-labelledby="base-tab2">
+                <dx-data-grid class="dx-card wide-card" [dataSource]="dataResumption" [showBorders]="false"
+                                            keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                            [columnAutoWidth]="true" [columnHidingEnabled]="false">
+                                            <dxo-paging [pageSize]="10"></dxo-paging>
+                                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                            <dxi-column dataField="LeaveResumptionID" caption="ID">
+                                            </dxi-column>
+                                            <dxi-column dataField="Employee" caption="Employee">
+                                            </dxi-column>
+                                            <dxi-column dataField="LeaveType" caption="Leave Type">
+                                            </dxi-column>
+                                            <dxi-column dataField="DateFrom" caption="Start Date" dataType="date">
+                                            </dxi-column>
+                                            <dxi-column dataField="DateTo" caption="Expected Resumption Date" dataType="date">
+                                            </dxi-column>
+                                            <dxi-column dataField="ResumptionDate" caption="Resumption Date" dataType="date">
+                                            </dxi-column>
+                                            <dxi-column dataField="NoDayApplied" caption="No DayApplied">
+                                            </dxi-column>
+                                            <dxi-column dataField="ApprovalOfficer" caption="Approving Officer">
+                                            </dxi-column>
+                                            <dxi-column type="buttons">
+                                                <dxi-button text="Proceed" [onClick]="loadResumption"></dxi-button>
+                                            </dxi-column>
+                                        </dx-data-grid>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+</div>

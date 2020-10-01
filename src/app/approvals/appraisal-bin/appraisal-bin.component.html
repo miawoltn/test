@@ -1,0 +1,40 @@
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Pending Appraisal Approvals</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+
+                    <div class="table-responsive">
+
+                        <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                            [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                            [columnHidingEnabled]="true">
+                            <dxo-paging [pageSize]="10"></dxo-paging>
+                            <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                            <dxo-filter-row [visible]="true"></dxo-filter-row>
+                            <dxi-column dataField="period_name" caption="Appraisal Period"></dxi-column>
+                            <dxi-column dataField="FullName" caption="Employee"></dxi-column>
+                            <dxi-column dataField="DesignationName" caption="Designation"></dxi-column>
+                            <dxi-column dataField="workLocation" caption="Work Location"></dxi-column>
+                            <dxi-column dataField="DepartmentName" caption="Department"></dxi-column>
+                            <dxi-column type="buttons">
+                                <dxi-button text="Proceed" [onClick]="loadItem"></dxi-button>
+                            </dxi-column>
+                        </dx-data-grid>
+
+                    </div>
+                </div>
+                <!-- end box-body -->
+            </div>
+            <!-- end box -->
+        </div>
+    </div>
+</section>

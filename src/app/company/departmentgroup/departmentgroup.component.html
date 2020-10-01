@@ -1,0 +1,171 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DepartmentGroupName"
+                                                    [class.text-danger]="DepartmentGroupName.invalid &amp;&amp; DepartmentGroupName.touched">Department Group Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="DepartmentGroupName"
+                                                    name="DepartmentGroupName" #DepartmentGroupName="ngModel"
+                                                    [(ngModel)]="obj.DepartmentGroupName"
+                                                    [class.is-invalid]="DepartmentGroupName.invalid &amp;&amp; DepartmentGroupName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Department Group Name..."
+                                                    required>
+                                                <div *ngIf="DepartmentGroupName.invalid &amp;&amp; DepartmentGroupName.touched">
+                                                    <small *ngIf="DepartmentGroupName.errors?.required"
+                                                        class="text-danger">Department Group Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DepartmentGroupCode"
+                                                    [class.text-danger]="DepartmentGroupCode.invalid &amp;&amp; DepartmentGroupCode.touched">Department Group Code</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="DepartmentGroupCode"
+                                                    name="DepartmentGroupCode" #DepartmentGroupCode="ngModel"
+                                                    [(ngModel)]="obj.DepartmentGroupCode"
+                                                    [class.is-invalid]="DepartmentGroupCode.invalid &amp;&amp; DepartmentGroupCode.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Department Group Code..."
+                                                    required>
+                                                <div *ngIf="DepartmentGroupCode.invalid &amp;&amp; DepartmentGroupCode.touched">
+                                                    <small *ngIf="DepartmentGroupCode.errors?.required"
+                                                        class="text-danger">Department Group Code is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DivisionID"
+                                                    [class.text-danger]="DivisionID.invalid &amp;&amp; DivisionID.touched">Division</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="DivisionID"
+                                                    name="DivisionID" #DivisionID="ngModel"
+                                                    [(ngModel)]="obj.DivisionID"
+                                                    [class.is-invalid]="DivisionID.invalid &amp;&amp; DivisionID.touched"
+                                                    placeholder="Select Division..."
+                                                    required [items]="Division" bindValue="id" bindLabel="DivisionName"></ng-select>
+
+                                                 
+                                                <div *ngIf="DivisionID.invalid &amp;&amp; DivisionID.touched">
+                                                    <small *ngIf="DivisionID.errors?.required"
+                                                        class="text-danger">Division is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StatusID"
+                                                    [class.text-danger]="StatusID.invalid &amp;&amp; StatusID.touched">Status</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="StatusID"
+                                                    name="StatusID" #StatusID="ngModel"
+                                                    [(ngModel)]="obj.StatusID"
+                                                    [class.is-invalid]="StatusID.invalid &amp;&amp; StatusID.touched"
+                                                    placeholder="Select Status..."
+                                                    required [items]="Status" bindValue="id" bindLabel="title"></ng-select>
+
+                                                <div *ngIf="StatusID.invalid &amp;&amp; StatusID.touched">
+                                                    <small *ngIf="StatusID.errors?.required"
+                                                        class="text-danger">Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Department Group</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="DepartmentGroupName"
+                                        caption="Department Group Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DepartmentGroupCode"
+                                        caption="Department Group Code">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="DivisionID"
+                                        caption="Division">
+                                        <dxo-lookup [dataSource]="Division" valueExpr="id" displayExpr="DivisionName"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StatusID"
+                                        caption="Status">
+                                        <dxo-lookup [dataSource]="Status" valueExpr="id" displayExpr="title"></dxo-lookup>
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

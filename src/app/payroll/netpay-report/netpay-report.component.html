@@ -1,0 +1,86 @@
+
+
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title"> Payroll Report</h4>
+                        
+                    </div>
+                    <div class="content-body">
+                        <section id="basic-form-layouts">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        
+                                        <div class="card-content collpase show">
+                                            <div class="card-body">
+                    
+                                                <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                                    <div class="form-body">
+                                                        <div class="row">
+                    
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <div class="col-md-4">
+                                                                        <label for="PayrollPeriodID"
+                                                                            [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Payroll
+                                                                            Period <i class=" text-danger">*</i></label>
+                                                                    </div>
+                                                                    <div class="col-md-8">
+                                                                        <ng-select [items]="payrollperiod" bindLabel="PayrollPeriod"
+                                                                            bindValue="id" #PayrollPeriodID="ngModel" name="PayrollPeriodID"
+                                                                            [(ngModel)]="obj.PayrollID"
+                                                                            [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                                                            placeholder="Select Payroll Period..." required></ng-select>
+                                                                        <div
+                                                                            *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                                                            <small *ngIf="PayrollPeriodID.errors?.required"
+                                                                                class="text-danger">Payroll Period is
+                                                                                Required</small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                    
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-actions right">
+                    
+                                                        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    
+                                                            Generate Report
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="card-content collapse show">
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-pivot-grid id="pivotgrid" [allowSortingBySummary]="true" [allowFiltering]="true"
+                                    [showBorders]="true" [allowSortingBySummary]="true" [showColumnGrandTotals]="true"
+                                    [showRowGrandTotals]="true" [showRowTotals]="true" [showColumnTotals]="true"
+                                    [dataSource]="pivotGridDataSource">
+                                    <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
+                                    <dxo-scrolling mode="virtual"></dxo-scrolling>
+                                    <dxo-export [enabled]="true" [printingEnabled]="true"></dxo-export>
+                                </dx-pivot-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

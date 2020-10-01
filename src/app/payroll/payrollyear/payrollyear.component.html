@@ -1,0 +1,159 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <!-- <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="YeardID"
+                                                    [class.text-danger]="YeardID.invalid &amp;&amp; YeardID.touched">Yeard</label><i
+                                                    class="text-danger">*</i>
+                                                <input type="number" id="YeardID" name="YeardID" #YeardID="ngModel"
+                                                    [(ngModel)]="obj.YeardID"
+                                                    [class.is-invalid]="YeardID.invalid &amp;&amp; YeardID.touched"
+                                                    class="form-control" placeholder="Enter Yeard..." required>
+                                                <div *ngIf="YeardID.invalid &amp;&amp; YeardID.touched">
+                                                    <small *ngIf="YeardID.errors?.required" class="text-danger">Yeard is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="YearName"
+                                                    [class.text-danger]="YearName.invalid &amp;&amp; YearName.touched">Year
+                                                    Name</label><i class="text-danger">*</i>
+                                                <input type="text" id="YearName" name="YearName" #YearName="ngModel"
+                                                    [(ngModel)]="obj.YearName"
+                                                    [class.is-invalid]="YearName.invalid &amp;&amp; YearName.touched"
+                                                    class="form-control" placeholder="Enter Year Name..." required>
+                                                <div *ngIf="YearName.invalid &amp;&amp; YearName.touched">
+                                                    <small *ngIf="YearName.errors?.required" class="text-danger">Year
+                                                        Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateFrom"
+                                                    [class.text-danger]="DateFrom.invalid &amp;&amp; DateFrom.touched">Date
+                                                    From</label><i class="text-danger">*</i>
+                                                <input type="date" id="DateFrom" name="DateFrom" #DateFrom="ngModel"
+                                                    [(ngModel)]="obj.DateFrom"
+                                                    [class.is-invalid]="DateFrom.invalid &amp;&amp; DateFrom.touched"
+                                                    class="form-control" placeholder="Enter Date From..." required>
+                                                <div *ngIf="DateFrom.invalid &amp;&amp; DateFrom.touched">
+                                                    <small *ngIf="DateFrom.errors?.required" class="text-danger">Date
+                                                        From is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DateTo"
+                                                    [class.text-danger]="DateTo.invalid &amp;&amp; DateTo.touched">Date
+                                                    To</label><i class="text-danger">*</i>
+                                                <input type="date" id="DateTo" name="DateTo" #DateTo="ngModel"
+                                                    [(ngModel)]="obj.DateTo"
+                                                    [class.is-invalid]="DateTo.invalid &amp;&amp; DateTo.touched"
+                                                    class="form-control" placeholder="Enter Date To..." required>
+                                                <div *ngIf="DateTo.invalid &amp;&amp; DateTo.touched">
+                                                    <small *ngIf="DateTo.errors?.required" class="text-danger">Date To
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="YearID"
+                                                    [class.text-danger]="YearID.invalid &amp;&amp; YearID.touched">Year</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select [items]="year" bindLabel="YearName"
+                                                    bindValue="id" #YearID="ngModel" [(ngModel)]="obj.YearID" id="YearID"
+                                                    name="YearID" [class.is-invalid]="YearID.invalid &amp;&amp; YearID.touched"
+                                                    placeholder="Select Year..." required></ng-select>
+                                                <div *ngIf="YearID.invalid &amp;&amp; YearID.touched">
+                                                    <small *ngIf="YearID.errors?.required" class="text-danger">Year is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Payrollyear</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="YearName" caption="Year Name">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateFrom" caption="Date From">
+                                    </dxi-column>
+                                    <dxi-column dataField="DateTo" caption="Date To">
+                                    </dxi-column>
+                                    <dxi-column dataField="YearID" caption="Year">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

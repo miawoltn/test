@@ -1,0 +1,215 @@
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Loan Applications</h4>
+                        <div class="box-tools pull-right">
+                            <a class="btn btn-primary btn-sm" type="button" routerLink="/loan/loanapplication"><span
+                                    class="fa fa-plus"></span>
+                                Apply for Loan</a>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <!-- <dx-data-grid id="gridContainer" [dataSource]="data"
+                                    [masterDetail]="{ enabled: true, template: 'detail' }" keyExpr="id"
+                                    [showBorders]="true">
+
+                                    <dxi-column dataField="LoanDate" caption="Loan Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="LoanType" caption="Loan Type">
+                                    </dxi-column>
+                                    <dxi-column dataField="Amount" caption="Amount">
+                                    </dxi-column>
+                                    <dxi-column dataField="InterestRate" caption="Interest Rate">
+                                    </dxi-column>
+                                    <dxi-column dataField="Tenor" caption="Tenor">
+                                    </dxi-column>
+                                    <dxi-column dataField="RepaymentAmount" caption="Repayment Amount">
+                                    </dxi-column>
+
+                                    <div *dxTemplate="let employee of 'detail'">
+                                        <div class="master-detail-caption">{{employee.data.LoanType +"'s Tasks:"}}</div>
+                                        <dx-tab-panel>
+                                            <dxi-item title="Loan Information" template="addressTab"></dxi-item>
+                                            <dxi-item title="Approval History" template="ordersTab"></dxi-item>
+                                            <dxi-item title="RePayment History" template="repaymentTab"></dxi-item>
+                                            <div *dxTemplate="let addressTabItem of 'addressTab'">
+                                                <dx-form [formData]="employee.data" [colCount]="2" [customizeItem]="customizeItemTemplate"
+                                                    class="address-form form-container">
+                                                    <dxi-item dataField="LoanDate" caption="Loan Date" dataType="date">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="LoanType" caption="Loan Type">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="Amount" caption="Amount">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="InterestRate" caption="Interest Rate">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="Tenor" caption="Tenor">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="RepaymentAmount" caption="Repayment Amount">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="MonthlyRepayment" caption="Monthly Repayment">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="PayrollPeriod"
+                                                        caption="Repayment Commencement">
+                                                    </dxi-item>
+
+                                                    <div *dxTemplate="let item of 'formItem'">
+                                                        <span>{{item.editorOptions.value}}</span>
+                                                    </div>
+                                                </dx-form>
+
+                                            </div>
+                                            <div *dxTemplate="let addressTabItem2 of 'ordersTab'">
+                                                <dx-data-grid
+                                                    [dataSource]="getApprovalHistoryData(employee.key)"
+                                                    [showBorders]="true">
+                                                    <dxo-paging [pageSize]="5"></dxo-paging>
+
+                                                    <dxi-column dataField="LoanID" caption="Loan ID">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="LoanApprovalID" caption="LoanApproval ID">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="ApprovedBy" caption="Approved By">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="Comment" caption="Comment">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="NextApprovingOfficerID"
+                                                        caption="NextApproving Officer ID">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="ProcessModuleID" caption="Process Module ID">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="ApprovalInstancesID"
+                                                        caption="Approval Instances ID">
+                                                    </dxi-column>
+                                                </dx-data-grid>
+                                            </div>
+                                            <div *dxTemplate="let addressTabItem3 of 'repaymentTab'">
+                                                <dx-data-grid
+                                                    [dataSource]="getRepaymentHistoryData(employee.key)"
+                                                    [showBorders]="true">
+                                                    <dxo-paging [pageSize]="5"></dxo-paging>
+                                                    <dxi-column dataField="Amount" caption="Amount">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="DateCreated" caption="Date" dataType="date"
+                                                        format="MMMM d, yyyy">
+                                                    </dxi-column>
+
+                                                </dx-data-grid>
+
+                                            </div>
+
+                                        </dx-tab-panel>
+
+                                    </div>
+                                </dx-data-grid>
+
+                                <br /> -->
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="LoanDate" caption="Loan Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="LoanType" caption="Loan Type">
+                                    </dxi-column>
+                                    <dxi-column dataField="Amount" caption="Amount">
+                                    </dxi-column>
+                                    <dxi-column dataField="InterestRate" caption="Interest Rate">
+                                    </dxi-column>
+                                    <dxi-column dataField="Tenor" caption="Tenor">
+                                    </dxi-column>
+                                    <dxi-column dataField="RepaymentAmount" caption="Repayment Amount">
+                                    </dxi-column>
+
+                                    <dxo-master-detail [enabled]="true" template="masterDetail"></dxo-master-detail>
+
+                                    <div *dxTemplate="let masterDetailItem of 'masterDetail'">
+                                        <dx-tab-panel>
+                                            <dxi-item title="Loan Information" template="addressTab"></dxi-item>
+                                            <dxi-item title="Approval History" template="ordersTab"></dxi-item>
+                                            <dxi-item title="RePayment History" template="repaymentTab"></dxi-item>
+
+
+                                            <div *dxTemplate="let addressTabItem of 'addressTab'">
+                                                <dx-form [formData]="masterDetailItem.data" [colCount]="2"
+                                                    [customizeItem]="customizeItemTemplate"
+                                                    class="address-form form-container">
+
+                                                    <dxi-item dataField="LoanDate" caption="Loan Date" dataType="date">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="LoanType" caption="Loan Type">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="Amount" caption="Amount">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="InterestRate" caption="Interest Rate">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="Tenor" caption="Tenor">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="RepaymentAmount" caption="Repayment Amount">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="MonthlyRepayment" caption="Monthly Repayment">
+                                                    </dxi-item>
+                                                    <dxi-item dataField="PayrollPeriod"
+                                                        caption="Repayment Commencement">
+                                                    </dxi-item>
+
+                                                    <div *dxTemplate="let item of 'formItem'">
+                                                        <span>{{item.editorOptions.value}}</span>
+                                                    </div>
+                                                </dx-form>
+                                            </div>
+                                            <div *dxTemplate="let ordersTabItem of 'ordersTab'">
+                                                <dx-form labelLocation="top" class="form-container">
+
+                                                    <dxi-item template="orderHistory">
+                                                        <dxo-label text="Loan Information History"></dxo-label>
+                                                    </dxi-item>
+                                                    <div *dxTemplate="let order of 'orderHistory'">
+                                                        <dx-data-grid
+                                                            [dataSource]="getApprovalHistoryData(masterDetailItem.key)"
+                                                            [showBorders]="true">
+                                                            <dxo-paging [pageSize]="10"></dxo-paging>
+                                                            <dxi-column dataField="ApprovalDate" caption="Approval Date" dataType="date" format="MMMM d, yyyy">
+                                                            </dxi-column>
+                                                            <dxi-column dataField="ApprovedBy" caption="Approved By">
+                                                            </dxi-column>
+                                                            <dxi-column dataField="Action" caption="Action Taken">
+                                                            </dxi-column>
+                                                            <dxi-column dataField="Comment" caption="Comment">
+                                                            </dxi-column>
+                                                        </dx-data-grid>
+                                                    </div>
+                                                </dx-form>
+                                            </div>
+                                            <div *dxTemplate="let order2 of 'repaymentTab'">
+                                                <dx-data-grid
+                                                    [dataSource]="getRepaymentHistoryData(masterDetailItem.key)"
+                                                    [showBorders]="true">
+                                                    <dxo-paging [pageSize]="5"></dxo-paging>
+
+                                                    <dxi-column dataField="Amount" caption="Amount">
+                                                    </dxi-column>
+                                                    <dxi-column dataField="DateCreated" caption="Date" dataType="date"
+                                                        format="MMMM d, yyyy">
+                                                    </dxi-column>
+
+                                                </dx-data-grid>
+                                            </div>
+                                        </dx-tab-panel>
+                                    </div>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

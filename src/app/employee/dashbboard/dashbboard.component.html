@@ -1,0 +1,489 @@
+<div class="row match-height">
+
+    <div class="col-xl-6 col-md-6" *ngFor="let item  of data; index as i">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">{{item.title}}</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart *ngIf="item.chart_category == 'Bar' && item.isGroup == 0 " id="chart{{i}}"
+                        [dataSource]="item.data" style="height: 300px;"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)">
+                        <dxi-series valueField="total" argumentField="name" [type]="item.chart_type">
+                            <dxo-label [visible]="true" [format]="{
+                                type: 'fixedPoint',
+                                precision: '0'
+                            }" position="outside">
+                            </dxo-label>
+                        </dxi-series>
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+                        <dxo-argument-axis>
+                            <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                            <dxo-label overlappingBehavior="rotate" [rotationAngle]="45">
+                            </dxo-label>
+                        </dxo-argument-axis>
+                        <dxo-legend [visible]="false" verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+
+                    <dx-pie-chart id="pie{{i}}" *ngIf="item.chart_category == 'Pie' && item.isGroup == 0 "
+                        [type]="item.chart_type" style="height: 300px;" [dataSource]="item.data"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)" resolveLabelOverlapping="shift">
+                        <dxi-series argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxi-series>
+
+                        <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right" verticalAlignment="top">
+                        </dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" format="millions">
+                        </dxo-tooltip>
+                    </dx-pie-chart>
+
+                    <dx-chart id="chart{{i}}" [dataSource]="item.data"
+                        *ngIf="item.chart_category == 'Bar' && item.isGroup == 1 " style="height: 300px;"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)">
+                        <dxo-common-series-settings argumentField="name2" valueField="total" [type]="item.chart_type"
+                            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                            <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: '0'
+                                }"></dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="name">
+                        </dxo-series-template>
+
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+                        <dxo-argument-axis>
+                            <!-- or dxi-value-axis, or dxo-common-axis-settings -->
+                            <dxo-label overlappingBehavior="rotate" [rotationAngle]="45">
+                            </dxo-label>
+                        </dxo-argument-axis>
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+
+                    <dx-pie-chart *ngIf="item.chart_category == 'Pie' && item.isGroup == 1 " id="pie{{i}}"
+                        [type]="item.chart_type" innerRadius="0.2" [dataSource]="item.data" resolveLabelOverlapping="shift"
+                        (onPointClick)="openDialog($event, item.filterColumn, item.isGroup, item.reportTitle)"
+                        resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true"></dxo-legend>
+                        <dxo-common-series-settings argumentField="name2" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel2" format="fixedPoint">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="false" [customizeTooltip]="customizeTooltip2">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="name">
+                        </dxo-series-template>
+                    </dx-pie-chart>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Position</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.cadre" style="height: 300px;">
+                        <dxi-series valueField="total" argumentField="name" type="bar">
+                            <dxo-label [visible]="true" [format]="{
+                                type: 'fixedPoint',
+                                precision: '0'
+                            }" position="outside">
+                            </dxo-label>
+                        </dxi-series>
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend [visible]="false" verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Position</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" style="height: 300px;" 
+                        [dataSource]="data.cadre">
+                        <dxi-series argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxi-series>
+                        <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right" verticalAlignment="top">
+                        </dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" format="millions">
+                        </dxo-tooltip>
+                    </dx-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Type</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.EmployeeTypes" style="height: 300px;">
+                        <dxi-series valueField="total" argumentField="name" type="bar">
+                            <dxo-label [visible]="true" [format]="{
+                                type: 'fixedPoint',
+                                precision: '0'
+                            }" position="outside">
+                            </dxo-label>
+                        </dxi-series>
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend [visible]="false" verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Type</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" style="height: 300px;" 
+                        [dataSource]="data.EmployeeTypes">
+                        <dxi-series argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxi-series>
+                        <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right" verticalAlignment="top">
+                        </dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" format="millions">
+                        </dxo-tooltip>
+                    </dx-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Gender</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.gender" style="height: 300px;">
+                        <dxi-series valueField="total" argumentField="name" type="bar">
+                            <dxo-label [visible]="true" [format]="{
+                                type: 'fixedPoint',
+                                precision: '0'
+                            }" position="outside">
+                            </dxo-label>
+                        </dxi-series>
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend [visible]="false" verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Gender</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" style="height: 300px;" 
+                        [dataSource]="data.gender">
+                        <dxi-series argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxi-series>
+                        <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right" verticalAlignment="top">
+                        </dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" format="millions">
+                        </dxo-tooltip>
+                    </dx-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Age Group</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.agegroup" style="height: 300px;">
+                        <dxi-series valueField="total" argumentField="name" type="bar">
+                            <dxo-label [visible]="true" [format]="{
+                                type: 'fixedPoint',
+                                precision: '0'
+                            }" position="outside">
+                            </dxo-label>
+                        </dxi-series>
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend [visible]="false" verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Age Group</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" style="height: 300px;" 
+                        [dataSource]="data.agegroup">
+                        <dxi-series argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxi-series>
+                        <dxo-legend [visible]="false" [margin]="0" horizontalAlignment="right" verticalAlignment="top">
+                        </dxo-legend>
+                        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip" format="millions">
+                        </dxo-tooltip>
+                    </dx-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Age Group (Gender)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.agegroupGender" style="height: 300px;">
+
+                        <dxo-common-series-settings argumentField="name2" valueField="total" type="bar"
+                            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                            <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: '0'
+                                }"></dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="name">
+
+                        </dxo-series-template>
+
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Age Group (Gender)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" innerRadius="0.2"
+                        [dataSource]="data.agegroupGender" resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true"></dxo-legend>
+                        <dxo-common-series-settings argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel2" format="fixedPoint">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="false" [customizeTooltip]="customizeTooltip2">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="name2">
+                        </dxo-series-template>
+                    </dx-pie-chart>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Age Group(Gender)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.agegroupGender" style="height: 300px;">
+
+                        <dxo-common-series-settings argumentField="name" valueField="total" type="bar"
+                            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                            <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: '0'
+                                }"></dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="name2"></dxo-series-template>
+
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Age Group(Gender)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" innerRadius="0.2"
+                        [dataSource]="data.agegroupGender" resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true"></dxo-legend>
+                        <dxo-common-series-settings argumentField="name2" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel2" format="fixedPoint">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="false" [customizeTooltip]="customizeTooltip2">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="name">
+                        </dxo-series-template>
+                    </dx-pie-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Age Group (Type)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.agegroupType" style="height: 300px;">
+
+                        <dxo-common-series-settings argumentField="name2" valueField="total" type="bar"
+                            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                            <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: '0'
+                                }"></dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="name">
+
+                        </dxo-series-template>
+
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Age Group (Type)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" innerRadius="0.2"
+                        [dataSource]="data.agegroupType" resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true"></dxo-legend>
+                        <dxo-common-series-settings argumentField="name" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel2" format="fixedPoint">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="false" [customizeTooltip]="customizeTooltip2">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="name2">
+                        </dxo-series-template>
+                    </dx-pie-chart>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary By Age Group (Type)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-chart id="chart" [dataSource]="data.agegroupType" style="height: 300px;">
+
+                        <dxo-common-series-settings argumentField="name" valueField="total" type="bar"
+                            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints">
+                            <dxo-label [visible]="true" [format]="{
+                                    type: 'fixedPoint',
+                                    precision: '0'
+                                }"></dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-series-template nameField="name2"></dxo-series-template>
+
+                        <dxi-value-axis valueType="numeric"></dxi-value-axis>
+
+                        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+                        </dxo-legend>
+                    </dx-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Summary by Age Group (Type)</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <dx-pie-chart id="pie" type="doughnut" innerRadius="0.2"
+                        [dataSource]="data.agegroupType" resolveLabelOverlapping="shift">
+                        <dxo-legend [visible]="true"></dxo-legend>
+                        <dxo-common-series-settings argumentField="name2" valueField="total">
+                            <dxo-label [visible]="true" [customizeText]="customizeLabel2" format="fixedPoint">
+                                <dxo-connector [visible]="true"></dxo-connector>
+                            </dxo-label>
+                        </dxo-common-series-settings>
+                        <dxo-tooltip [enabled]="false" [customizeTooltip]="customizeTooltip2">
+                        </dxo-tooltip>
+                        <dxo-series-template nameField="name">
+                        </dxo-series-template>
+                    </dx-pie-chart>
+
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

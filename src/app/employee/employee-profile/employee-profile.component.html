@@ -1,0 +1,1014 @@
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div> -->
+                    <div class="card-content collpase show"> 
+                        <div class="card-body">
+
+                            <div class="card-body">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="baseIcon-tab1" data-toggle="tab"
+                                            aria-controls="tab1" href="#tab1" aria-expanded="true">Employee Info</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="baseIcon-tab2" data-toggle="tab" aria-controls="tab2"
+                                            href="#tab2" aria-expanded="false">Employee Setting</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="baseIcon-tab2" data-toggle="tab" aria-controls="tab3"
+                                            href="#tab3" aria-expanded="false">Employee Education</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tab4"
+                                            href="#tab4" aria-expanded="false">Employee Family</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tab5"
+                                            href="#tab5" aria-expanded="false">Employee Guarantor</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content px-1 pt-1">
+                                    <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true"
+                                        aria-labelledby="baseIcon-tab1">
+
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()"
+                                            *ngIf="!isEditableEmployee">
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">First Name:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.FirstName }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Middle Name:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.MiddleName }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Surname:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.SurName }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">MobileNum:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.MobileNum }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Email:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Email }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Date Of Birth:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.DateOfBirth }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Gender:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Gender }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Marital Status:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.MaritalStatus }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Religion:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Religion }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Residential Address:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.ResidentialAddress }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Country:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Country }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">State:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.state }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Lga:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.local_govt }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Tribe:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Tribe }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Hobbies:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Hobbies }}</span>
+                                                    </div>
+                                                    <!-- <div class="col-4">
+                                                        <span class="text-bold-500 primary">NHFNo:</span>
+                                                        <span class="d-block overflow-hidden">{{ emp.NHFNo }}</span>
+                                                    </div> -->
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Pension Provider:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.PensionProvider }}</span>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Employee Title:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.EmployeeTitle }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Employee Type:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.EmployeeType }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Employee Number:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.EmployeeNumber }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Company:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Company }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Branch:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.Branch }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Department:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.Department }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Designation:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.Designation }}</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <span class="text-bold-500 primary">Employment Status:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj.EmployeeStatus }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-primary" (click)="editEmployee()">
+                                                    Edit Employee
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()"
+                                            *ngIf="isEditableEmployee">
+                                            <div class="form-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="NationalityID"
+                                                                [class.text-danger]="NationalityID.invalid &amp;&amp; NationalityID.touched">Nationality</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="Country" bindValue="country_id"
+                                                                bindLabel="Name" id="NationalityID" name="NationalityID"
+                                                                #NationalityID="ngModel" [(ngModel)]="obj.NationalityID"
+                                                                [class.is-invalid]="NationalityID.invalid &amp;&amp; NationalityID.touched"
+                                                                placeholder="Select Nationality..." required
+                                                                (change)="filterStates($event)"></ng-select>
+                                                            <div
+                                                                *ngIf="NationalityID.invalid &amp;&amp; NationalityID.touched">
+                                                                <small *ngIf="NationalityID.errors?.required"
+                                                                    class="text-danger">Nationality is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" *ngIf="obj.StateofOriginID != null">
+                                                        <div class="form-group">
+                                                            <label for="StateofOriginID"
+                                                                [class.text-danger]="StateofOriginID.invalid &amp;&amp; StateofOriginID.touched">State
+                                                                of Origin</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="State" bindValue="state_id"
+                                                                bindLabel="state" id="StateofOriginID"
+                                                                name="StateofOriginID" #StateofOriginID="ngModel"
+                                                                [(ngModel)]="obj.StateofOriginID"
+                                                                [class.is-invalid]="StateofOriginID.invalid &amp;&amp; StateofOriginID.touched"
+                                                                placeholder="Enter Stateof Origin..."
+                                                                (change)="filterLga($event)" required></ng-select>
+                                                            <div
+                                                                *ngIf="StateofOriginID.invalid &amp;&amp; StateofOriginID.touched">
+                                                                <small *ngIf="StateofOriginID.errors?.required"
+                                                                    class="text-danger">State of Origin is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" *ngIf="obj.StateofOriginID == null">
+                                                        <div class="form-group">
+                                                            <label for="StateofOriginID"
+                                                                [class.text-danger]="StateofOriginID.invalid &amp;&amp; StateofOriginID.touched">State
+                                                                of Origin</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="filteredStates" bindValue="state_id"
+                                                                bindLabel="state" id="StateofOriginID"
+                                                                name="StateofOriginID" #StateofOriginID="ngModel"
+                                                                [(ngModel)]="obj.StateofOriginID"
+                                                                [class.is-invalid]="StateofOriginID.invalid &amp;&amp; StateofOriginID.touched"
+                                                                placeholder="Enter Stateof Origin..."
+                                                                (change)="filterLga($event)" required></ng-select>
+                                                            <div
+                                                                *ngIf="StateofOriginID.invalid &amp;&amp; StateofOriginID.touched">
+                                                                <small *ngIf="StateofOriginID.errors?.required"
+                                                                    class="text-danger">State of Origin is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" *ngIf="obj.LgaID != null">
+                                                        <div class="form-group">
+                                                            <label for="LgaID"
+                                                                [class.text-danger]="LgaID.invalid &amp;&amp; LgaID.touched">Lga</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="LGA" bindValue="local_govt_id"
+                                                                bindLabel="local_govt" id="LgaID" name="LgaID"
+                                                                #LgaID="ngModel" [(ngModel)]="obj.LgaID"
+                                                                [class.is-invalid]="LgaID.invalid &amp;&amp; LgaID.touched"
+                                                                placeholder="Enter Lga..." required></ng-select>
+                                                            <div *ngIf="LgaID.invalid &amp;&amp; LgaID.touched">
+                                                                <small *ngIf="LgaID.errors?.required"
+                                                                    class="text-danger">Lga is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6" *ngIf="obj.LgaID == null">
+                                                        <div class="form-group">
+                                                            <label for="LgaID"
+                                                                [class.text-danger]="LgaID.invalid &amp;&amp; LgaID.touched">Lga</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="filteredLGA" bindValue="local_govt_id"
+                                                                bindLabel="local_govt" id="LgaID" name="LgaID"
+                                                                #LgaID="ngModel" [(ngModel)]="obj.LgaID"
+                                                                [class.is-invalid]="LgaID.invalid &amp;&amp; LgaID.touched"
+                                                                placeholder="Enter Lga..." required></ng-select>
+                                                            <div *ngIf="LgaID.invalid &amp;&amp; LgaID.touched">
+                                                                <small *ngIf="LgaID.errors?.required"
+                                                                    class="text-danger">Lga is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="ResidentialAddress"
+                                                                [class.text-danger]="ResidentialAddress.invalid &amp;&amp; ResidentialAddress.touched">ResidentialAddress</label><i
+                                                                class="text-danger">*</i>
+                                                            <textarea id="ResidentialAddress" name="ResidentialAddress"
+                                                                #ResidentialAddress="ngModel"
+                                                                [(ngModel)]="obj.ResidentialAddress"
+                                                                [class.is-invalid]="ResidentialAddress.invalid &amp;&amp; ResidentialAddress.touched"
+                                                                class="form-control"
+                                                                placeholder="Enter ResidentialAddress..." required
+                                                                cols="1" rows="1"></textarea>
+                                                            <div
+                                                                *ngIf="ResidentialAddress.invalid &amp;&amp; ResidentialAddress.touched">
+                                                                <small *ngIf="ResidentialAddress.errors?.required"
+                                                                    class="text-danger">ResidentialAddress is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Tribe"
+                                                                [class.text-danger]="Tribe.invalid &amp;&amp; Tribe.touched">Tribe</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="text" id="Tribe" name="Tribe" #Tribe="ngModel"
+                                                                [(ngModel)]="obj.Tribe"
+                                                                [class.is-invalid]="Tribe.invalid &amp;&amp; Tribe.touched"
+                                                                class="form-control" placeholder="Enter Tribe..."
+                                                                required>
+                                                            <div *ngIf="Tribe.invalid &amp;&amp; Tribe.touched">
+                                                                <small *ngIf="Tribe.errors?.required"
+                                                                    class="text-danger">Tribe is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="ReligionID"
+                                                                [class.text-danger]="ReligionID.invalid &amp;&amp; ReligionID.touched">Religion</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="Religion" bindValue="ReligionID"
+                                                                bindLabel="Religion" id="ReligionID" name="ReligionID"
+                                                                #ReligionID="ngModel" [(ngModel)]="obj.ReligionID"
+                                                                [class.is-invalid]="ReligionID.invalid &amp;&amp; ReligionID.touched"
+                                                                placeholder="Enter Religion..." required></ng-select>
+                                                            <div
+                                                                *ngIf="ReligionID.invalid &amp;&amp; ReligionID.touched">
+                                                                <small *ngIf="ReligionID.errors?.required"
+                                                                    class="text-danger">Religion is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Hobbies"
+                                                                [class.text-danger]="Hobbies.invalid &amp;&amp; Hobbies.touched">Hobbies</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="text" id="Hobbies" name="Hobbies"
+                                                                #Hobbies="ngModel" [(ngModel)]="obj.Hobbies"
+                                                                [class.is-invalid]="Hobbies.invalid &amp;&amp; Hobbies.touched"
+                                                                class="form-control" placeholder="Enter Hobbies..."
+                                                                required>
+                                                            <div *ngIf="Hobbies.invalid &amp;&amp; Hobbies.touched">
+                                                                <small *ngIf="Hobbies.errors?.required"
+                                                                    class="text-danger">Hobbies is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="NHFNo" [class.text-danger]="NHFNo.invalid &amp;&amp; NHFNo.touched">N H F
+                                                                No</label><i class="text-danger">*</i>
+                                                            <input type="text" id="NHFNo" name="NHFNo" #NHFNo="ngModel" [(ngModel)]="obj.NHFNo"
+                                                                [class.is-invalid]="NHFNo.invalid &amp;&amp; NHFNo.touched" class="form-control"
+                                                                placeholder="Enter N H F No..." required>
+                                                            <div *ngIf="NHFNo.invalid &amp;&amp; NHFNo.touched">
+                                                                <small *ngIf="NHFNo.errors?.required" class="text-danger">N H F No is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="PensionProviderID"
+                                                                [class.text-danger]="PensionProviderID.invalid &amp;&amp; PensionProviderID.touched">Pension
+                                                                Provider</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Pensionprovider"
+                                                                bindValue="PensionProviderID"
+                                                                bindLabel="PensionProvider" id="PensionProviderID"
+                                                                name="PensionProviderID" #PensionProviderID="ngModel"
+                                                                [(ngModel)]="obj.PensionProviderID"
+                                                                [class.is-invalid]="PensionProviderID.invalid &amp;&amp; PensionProviderID.touched"
+                                                                placeholder="Enter Pension Provider..."></ng-select>
+                                                            <div
+                                                                *ngIf="PensionProviderID.invalid &amp;&amp; PensionProviderID.touched">
+                                                                <small *ngIf="PensionProviderID.errors?.required"
+                                                                    class="text-danger">Pension
+                                                                    Provider is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="BankID"
+                                                                [class.text-danger]="BankID.invalid &amp;&amp; BankID.touched">Bank
+                                                               </label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Bank" bindValue="BankID"
+                                                                bindLabel="BankName" id="BankID" name="BankID"
+                                                                #BankID="ngModel" [(ngModel)]="obj.BankID"
+                                                                [class.is-invalid]="BankID.invalid &amp;&amp; BankID.touched"
+                                                                placeholder="Select Bank..."></ng-select>
+                                                            <div *ngIf="BankID.invalid &amp;&amp; BankID.touched">
+                                                                <small *ngIf="BankID.errors?.required"
+                                                                    class="text-danger">Bank is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="BankAccountNo"
+                                                                [class.text-danger]="BankAccountNo.invalid &amp;&amp; BankAccountNo.touched">BankAccount
+                                                                No</label><i class="text-danger">*</i>
+                                                            <input type="text" id="BankAccountNo" name="BankAccountNo"
+                                                                #BankAccountNo="ngModel" [(ngModel)]="obj.BankAccountNo"
+                                                                [class.is-invalid]="BankAccountNo.invalid &amp;&amp; BankAccountNo.touched"
+                                                                class="form-control"
+                                                                placeholder="Enter BankAccount No..." required>
+                                                            <div
+                                                                *ngIf="BankAccountNo.invalid &amp;&amp; BankAccountNo.touched">
+                                                                <small *ngIf="BankAccountNo.errors?.required"
+                                                                    class="text-danger">BankAccount No is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-warning mr-1"
+                                                    (click)="resetForm()">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                                    {{operation}}
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="tab-pane" id="tab2" aria-labelledby="baseIcon-tab2">
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                            <div class="form-body">
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Tribe"
+                                                                [class.text-danger]="Tribe.invalid &amp;&amp; Tribe.touched">Password</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="password" id="Tribe" name="Tribe"
+                                                                #Tribe="ngModel" [(ngModel)]="obj.Tribe"
+                                                                [class.is-invalid]="Tribe.invalid &amp;&amp; Tribe.touched"
+                                                                class="form-control" placeholder="Enter Tribe..."
+                                                                required>
+                                                            <div *ngIf="Tribe.invalid &amp;&amp; Tribe.touched">
+                                                                <small *ngIf="Tribe.errors?.required"
+                                                                    class="text-danger">Password is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Hobbies"
+                                                                [class.text-danger]="Hobbies.invalid &amp;&amp; Hobbies.touched">Confirm
+                                                                Password</label><i class="text-danger">*</i>
+                                                            <input type="password" id="Hobbies" name="Hobbies"
+                                                                #Hobbies="ngModel" [(ngModel)]="obj.Hobbies"
+                                                                [class.is-invalid]="Hobbies.invalid &amp;&amp; Hobbies.touched"
+                                                                class="form-control" placeholder="Enter Hobbies..."
+                                                                required>
+                                                            <div *ngIf="Hobbies.invalid &amp;&amp; Hobbies.touched">
+                                                                <small *ngIf="Hobbies.errors?.required"
+                                                                    class="text-danger">Confirm Password is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-warning mr-1"
+                                                    (click)="resetForm()">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                                    {{operation}}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab3" aria-labelledby="baseIcon-tab2">
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()"
+                                            *ngIf="!isEditableEducation">
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <!-- <div class="col-6">
+                                                        <span class="text-bold-500 primary">Description:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj.FirstName }}</span>
+                                                    </div> -->
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">School Name:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj2.SchoolName }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Start Date:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj2.StartDate }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">End Date:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj2.EndDate }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">School Type:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj2.SchoolType }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Programme Type:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj2.ProgrammeType }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Qualification:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj2.QualificationName }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Qualification Grade:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj2.QualificationGradeName }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-primary" (click)="editEducation()">
+                                                    Edit Education
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm2()"
+                                            *ngIf="isEditableEducation">
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <!-- <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Description"
+                                                                [class.text-danger]="Description.invalid &amp;&amp; Description.touched">Description</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="text" id="Description" name="Description"
+                                                                #Description="ngModel" [(ngModel)]="obj2.Description"
+                                                                [class.is-invalid]="Description.invalid &amp;&amp; Description.touched"
+                                                                class="form-control" placeholder="Enter Description..."
+                                                                required>
+                                                            <div
+                                                                *ngIf="Description.invalid &amp;&amp; Description.touched">
+                                                                <small *ngIf="Description.errors?.required"
+                                                                    class="text-danger">Description is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="SchoolName"
+                                                                [class.text-danger]="SchoolName.invalid &amp;&amp; SchoolName.touched">School
+                                                                Name</label><i class="text-danger">*</i>
+                                                            <input type="text" id="SchoolName" name="SchoolName"
+                                                                #SchoolName="ngModel" [(ngModel)]="obj2.SchoolName"
+                                                                [class.is-invalid]="SchoolName.invalid &amp;&amp; SchoolName.touched"
+                                                                class="form-control" placeholder="Enter School Name..."
+                                                                required>
+                                                            <div
+                                                                *ngIf="SchoolName.invalid &amp;&amp; SchoolName.touched">
+                                                                <small *ngIf="SchoolName.errors?.required"
+                                                                    class="text-danger">School Name is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="StartDate"
+                                                                [class.text-danger]="StartDate.invalid &amp;&amp; StartDate.touched">Start
+                                                                Date</label><i class="text-danger">*</i>
+                                                            <input type="date" id="StartDate" name="StartDate"
+                                                                #StartDate="ngModel" [(ngModel)]="obj2.StartDate"
+                                                                [class.is-invalid]="StartDate.invalid &amp;&amp; StartDate.touched"
+                                                                class="form-control" placeholder="Enter Start Date..."
+                                                                required>
+                                                            <div *ngIf="StartDate.invalid &amp;&amp; StartDate.touched">
+                                                                <small *ngIf="StartDate.errors?.required"
+                                                                    class="text-danger">Start
+                                                                    Date is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="EndDate"
+                                                                [class.text-danger]="EndDate.invalid &amp;&amp; EndDate.touched">End
+                                                                Date</label><i class="text-danger">*</i>
+                                                            <input type="date" id="EndDate" name="EndDate"
+                                                                #EndDate="ngModel" [(ngModel)]="obj2.EndDate"
+                                                                [class.is-invalid]="EndDate.invalid &amp;&amp; EndDate.touched"
+                                                                class="form-control" placeholder="Enter End Date..."
+                                                                required>
+                                                            <div *ngIf="EndDate.invalid &amp;&amp; EndDate.touched">
+                                                                <small *ngIf="EndDate.errors?.required"
+                                                                    class="text-danger">End Date
+                                                                    is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="SchoolTypeID"
+                                                                [class.text-danger]="SchoolTypeID.invalid &amp;&amp; SchoolTypeID.touched">School
+                                                                Type</label><i class="text-danger">*</i>
+                                                            <input type="text" id="SchoolTypeID" name="SchoolTypeID"
+                                                                #SchoolTypeID="ngModel" [(ngModel)]="obj2.SchoolTypeID"
+                                                                [class.is-invalid]="SchoolTypeID.invalid &amp;&amp; SchoolTypeID.touched"
+                                                                class="form-control" placeholder="Enter School Type..."
+                                                                required>
+                                                            <div
+                                                                *ngIf="SchoolTypeID.invalid &amp;&amp; SchoolTypeID.touched">
+                                                                <small *ngIf="SchoolTypeID.errors?.required"
+                                                                    class="text-danger">School Type is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="ProgrammeTypeID"
+                                                                [class.text-danger]="ProgrammeTypeID.invalid &amp;&amp; ProgrammeTypeID.touched">Programme
+                                                                Type</label><i class="text-danger">*</i>
+                                                            <input type="text" id="ProgrammeTypeID"
+                                                                name="ProgrammeTypeID" #ProgrammeTypeID="ngModel"
+                                                                [(ngModel)]="obj2.ProgrammeTypeID"
+                                                                [class.is-invalid]="ProgrammeTypeID.invalid &amp;&amp; ProgrammeTypeID.touched"
+                                                                class="form-control"
+                                                                placeholder="Enter Programme Type..." required>
+                                                            <div
+                                                                *ngIf="ProgrammeTypeID.invalid &amp;&amp; ProgrammeTypeID.touched">
+                                                                <small *ngIf="ProgrammeTypeID.errors?.required"
+                                                                    class="text-danger">Programme Type is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="QualificationID"
+                                                                [class.text-danger]="QualificationID.invalid &amp;&amp; QualificationID.touched">Qualification</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="number" id="QualificationID"
+                                                                name="QualificationID" #QualificationID="ngModel"
+                                                                [(ngModel)]="obj2.QualificationID"
+                                                                [class.is-invalid]="QualificationID.invalid &amp;&amp; QualificationID.touched"
+                                                                class="form-control"
+                                                                placeholder="Enter Qualification..." required>
+                                                            <div
+                                                                *ngIf="QualificationID.invalid &amp;&amp; QualificationID.touched">
+                                                                <small *ngIf="QualificationID.errors?.required"
+                                                                    class="text-danger">Qualification is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="QualificationGradeID"
+                                                                [class.text-danger]="QualificationGradeID.invalid &amp;&amp; QualificationGradeID.touched">Qualification
+                                                                Grade</label><i class="text-danger">*</i>
+                                                            <input type="number" id="QualificationGradeID"
+                                                                name="QualificationGradeID"
+                                                                #QualificationGradeID="ngModel"
+                                                                [(ngModel)]="obj2.QualificationGradeID"
+                                                                [class.is-invalid]="QualificationGradeID.invalid &amp;&amp; QualificationGradeID.touched"
+                                                                class="form-control"
+                                                                placeholder="Enter Qualification Grade..." required>
+                                                            <div
+                                                                *ngIf="QualificationGradeID.invalid &amp;&amp; QualificationGradeID.touched">
+                                                                <small *ngIf="QualificationGradeID.errors?.required"
+                                                                    class="text-danger">Qualification Grade is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-warning mr-1"
+                                                    (click)="resetForm2()">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                                    {{operation}}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab4" aria-labelledby="baseIcon-tab3">
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()"
+                                            *ngIf="!isEditableFamily">
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Full Name:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj3.FullName }}</span>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Address:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj3.Address }}</span>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Phone Number:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj3.PhoneNumber }}</span>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Job Title:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj3.JobTitle }}</span>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Email:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj3.Email }}</span>
+                                                    </div>
+
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Relationship:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj3.RelationshipName }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-primary" (click)="editFamily()">
+                                                    Edit Family
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm3()"
+                                            *ngIf="isEditableFamily">
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="FullName"
+                                                                [class.text-danger]="FullName.invalid &amp;&amp; FullName.touched">Full
+                                                                Name</label><i class="text-danger">*</i>
+                                                            <input type="text" id="FullName" name="FullName"
+                                                                #FullName="ngModel" [(ngModel)]="obj3.FullName"
+                                                                [class.is-invalid]="FullName.invalid &amp;&amp; FullName.touched"
+                                                                class="form-control" placeholder="Enter Full Name..."
+                                                                required>
+                                                            <div *ngIf="FullName.invalid &amp;&amp; FullName.touched">
+                                                                <small *ngIf="FullName.errors?.required"
+                                                                    class="text-danger">Full Name is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Address"
+                                                                [class.text-danger]="Address.invalid &amp;&amp; Address.touched">Address</label><i
+                                                                class="text-danger">*</i>
+                                                            <textarea id="Address" name="Address" #Address="ngModel"
+                                                                [(ngModel)]="obj3.Address"
+                                                                [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                                                                class="form-control" placeholder="Enter Address..."
+                                                                required cols="1" rows="1"></textarea>
+                                                            <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                                                                <small *ngIf="Address.errors?.required"
+                                                                    class="text-danger">Address is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="PhoneNumber"
+                                                                [class.text-danger]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">Phone
+                                                                Number</label><i class="text-danger">*</i>
+                                                            <input type="text" id="PhoneNumber" name="PhoneNumber"
+                                                                #PhoneNumber="ngModel" [(ngModel)]="obj3.PhoneNumber"
+                                                                [class.is-invalid]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched"
+                                                                class="form-control" placeholder="Enter Phone Number..."
+                                                                required>
+                                                            <div
+                                                                *ngIf="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">
+                                                                <small *ngIf="PhoneNumber.errors?.required"
+                                                                    class="text-danger">Phone Number is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="JobTitle"
+                                                                [class.text-danger]="JobTitle.invalid &amp;&amp; JobTitle.touched">Job
+                                                                Title</label><i class="text-danger">*</i>
+                                                            <input type="text" id="JobTitle" name="JobTitle"
+                                                                #JobTitle="ngModel" [(ngModel)]="obj3.JobTitle"
+                                                                [class.is-invalid]="JobTitle.invalid &amp;&amp; JobTitle.touched"
+                                                                class="form-control" placeholder="Enter Job Title..."
+                                                                required>
+                                                            <div *ngIf="JobTitle.invalid &amp;&amp; JobTitle.touched">
+                                                                <small *ngIf="JobTitle.errors?.required"
+                                                                    class="text-danger">Job Title is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Email"
+                                                                [class.text-danger]="Email.invalid &amp;&amp; Email.touched">Email</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="text" id="Email" name="Email" #Email="ngModel"
+                                                                [(ngModel)]="obj3.Email"
+                                                                [class.is-invalid]="Email.invalid &amp;&amp; Email.touched"
+                                                                class="form-control" placeholder="Enter Email..."
+                                                                required>
+                                                            <div *ngIf="Email.invalid &amp;&amp; Email.touched">
+                                                                <small *ngIf="Email.errors?.required"
+                                                                    class="text-danger">Email is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="RelationshipID"
+                                                                [class.text-danger]="RelationshipID.invalid &amp;&amp; RelationshipID.touched">Relationship</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="Relationship" bindValue="RelationshipID"
+                                                                bindLabel="RelationshipName" id="RelationshipID"
+                                                                name="RelationshipID" #RelationshipID="ngModel"
+                                                                [(ngModel)]="obj3.RelationshipID"
+                                                                [class.is-invalid]="RelationshipID.invalid &amp;&amp; RelationshipID.touched"
+                                                                placeholder="Select Relationship..." required>
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="RelationshipID.invalid &amp;&amp; RelationshipID.touched">
+                                                                <small *ngIf="RelationshipID.errors?.required"
+                                                                    class="text-danger">Relationship is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-warning mr-1"
+                                                    (click)="resetForm3()">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                                    {{operation}}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab5" aria-labelledby="baseIcon-tab3">
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()"
+                                            *ngIf="!isEditableGuarantor">
+                                            <div class="form-body">
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Guarantor Name:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj4.GuarantorName }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Address:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj4.Address }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Phone Number:</span>
+                                                        <span
+                                                            class="d-block overflow-hidden">{{ obj4.PhoneNumber }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Job Title:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj4.JobTitle }}</span>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span class="text-bold-500 primary">Email:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj4.Email }}</span>
+                                                    </div>
+                                                    <!-- <div class="col-6">
+                                                        <span class="text-bold-500 primary">Relationship:</span>
+                                                        <span class="d-block overflow-hidden">{{ obj4.RelationshipID }}</span>
+                                                    </div> -->
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-primary" (click)="editGuarantor()">
+                                                    Edit Guarantor
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm4()"
+                                            *ngIf="isEditableGuarantor">
+                                            <div class="form-body">
+
+                                                <div class="row">
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="GuarantorName"
+                                                                [class.text-danger]="GuarantorName.invalid &amp;&amp; GuarantorName.touched">Guarantor
+                                                                Full Name</label><i class="text-danger">*</i>
+                                                            <input type="text" id="GuarantorName" name="GuarantorName"
+                                                                #GuarantorName="ngModel"
+                                                                [(ngModel)]="obj4.GuarantorName"
+                                                                [class.is-invalid]="GuarantorName.invalid &amp;&amp; GuarantorName.touched"
+                                                                class="form-control"
+                                                                placeholder="Enter Guarantor Name..." required>
+                                                            <div
+                                                                *ngIf="GuarantorName.invalid &amp;&amp; GuarantorName.touched">
+                                                                <small *ngIf="GuarantorName.errors?.required"
+                                                                    class="text-danger">Guarantor Full Name is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Address"
+                                                                [class.text-danger]="Address.invalid &amp;&amp; Address.touched">Address</label><i
+                                                                class="text-danger">*</i>
+                                                            <textarea id="Address" name="Address" #Address="ngModel"
+                                                                [(ngModel)]="obj4.Address"
+                                                                [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                                                                class="form-control" placeholder="Enter Address..."
+                                                                required cols="1" rows="1"></textarea>
+                                                            <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                                                                <small *ngIf="Address.errors?.required"
+                                                                    class="text-danger">Address is Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="PhoneNumber"
+                                                                [class.text-danger]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">Phone
+                                                                Number</label><i class="text-danger">*</i>
+                                                            <input type="text" id="PhoneNumber" name="PhoneNumber"
+                                                                #PhoneNumber="ngModel" [(ngModel)]="obj4.PhoneNumber"
+                                                                [class.is-invalid]="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched"
+                                                                class="form-control" placeholder="Enter Phone Number..."
+                                                                required>
+                                                            <div
+                                                                *ngIf="PhoneNumber.invalid &amp;&amp; PhoneNumber.touched">
+                                                                <small *ngIf="PhoneNumber.errors?.required"
+                                                                    class="text-danger">Phone Number is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="JobTitle"
+                                                                [class.text-danger]="JobTitle.invalid &amp;&amp; JobTitle.touched">Job
+                                                                Title</label><i class="text-danger">*</i>
+                                                            <input type="text" id="JobTitle" name="JobTitle"
+                                                                #JobTitle="ngModel" [(ngModel)]="obj4.JobTitle"
+                                                                [class.is-invalid]="JobTitle.invalid &amp;&amp; JobTitle.touched"
+                                                                class="form-control" placeholder="Enter Job Title..."
+                                                                required>
+                                                            <div *ngIf="JobTitle.invalid &amp;&amp; JobTitle.touched">
+                                                                <small *ngIf="JobTitle.errors?.required"
+                                                                    class="text-danger">Job
+                                                                    Title is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="Email"
+                                                                [class.text-danger]="Email.invalid &amp;&amp; Email.touched">Email</label><i
+                                                                class="text-danger">*</i>
+                                                            <input type="text" id="Email" name="Email" #Email="ngModel"
+                                                                [(ngModel)]="obj4.Email"
+                                                                [class.is-invalid]="Email.invalid &amp;&amp; Email.touched"
+                                                                class="form-control" placeholder="Enter Email..."
+                                                                required>
+                                                            <div *ngIf="Email.invalid &amp;&amp; Email.touched">
+                                                                <small *ngIf="Email.errors?.required"
+                                                                    class="text-danger">Email is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-actions right">
+                                                <button type="button" class="btn btn-warning mr-1"
+                                                    (click)="resetForm4()">
+                                                    Cancel
+                                                </button>
+                                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                                    {{operation}}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

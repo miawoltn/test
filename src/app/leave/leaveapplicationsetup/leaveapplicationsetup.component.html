@@ -1,0 +1,136 @@
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="LeaveTypeID"
+                                                    [class.text-danger]="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">Leave
+                                                    Type</label><i class="text-danger">*</i>
+                                                <ng-select [items]="leavetype" bindLabel="LeaveType" bindValue="id"
+                                                    [(ngModel)]="obj.LeaveTypeID" name="LeaveTypeID" required
+                                                    #LeaveTypeID="ngModel"
+                                                    [class.is-invalid]="LeaveTypeID.invalid && LeaveTypeID.touched"
+                                                    placeholder="Select Leave Type..."></ng-select>
+
+                                                <div *ngIf="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">
+                                                    <small *ngIf="LeaveTypeID.errors?.required"
+                                                        class="text-danger">Leave Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="GradeID"
+                                                    [class.text-danger]="GradeID.invalid &amp;&amp; GradeID.touched">Grade
+                                                    </label><i class="text-danger">*</i>
+                                                <ng-select [items]="grades" bindLabel="GradeName" bindValue="id"
+                                                    [(ngModel)]="obj.GradeID" name="GradeID" required
+                                                    #GradeID="ngModel"
+                                                    [class.is-invalid]="GradeID.invalid &amp;&amp; GradeID.touched"
+                                                    placeholder="Select Grade ..."></ng-select>
+
+                                                <div *ngIf="GradeID.invalid &amp;&amp; GradeID.touched">
+                                                    <small *ngIf="GradeID.errors?.required" class="text-danger">Grade ID
+                                                        is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="NotEntitled"
+                                                    [class.text-danger]="NotEntitled.invalid &amp;&amp; NotEntitled.touched">Days
+                                                    Entitled</label><i class="text-danger">*</i>
+                                                <input type="number" id="NotEntitled" name="NotEntitled"
+                                                    #NotEntitled="ngModel" [(ngModel)]="obj.NotEntitled"
+                                                    [class.is-invalid]="NotEntitled.invalid &amp;&amp; NotEntitled.touched"
+                                                    class="form-control" placeholder="Enter Days Entitled..." required>
+                                                <div *ngIf="NotEntitled.invalid &amp;&amp; NotEntitled.touched">
+                                                    <small *ngIf="NotEntitled.errors?.required" class="text-danger">Days
+                                                        Entitled is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{ operation }} Entry
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of {{ title }}</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="LeaveTypeID" caption="Leave Type">
+                                        <dxo-lookup [dataSource]="leavetype" valueExpr="id" displayExpr="LeaveType">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="GradeID" caption="Grade">
+                                        <dxo-lookup [dataSource]="grades" valueExpr="id" displayExpr="GradeName">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="NotEntitled" caption="Days Entitled">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

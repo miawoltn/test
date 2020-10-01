@@ -1,0 +1,168 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProductName"
+                                                    [class.text-danger]="ProductName.invalid &amp;&amp; ProductName.touched">Product Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ProductName"
+                                                    name="ProductName" #ProductName="ngModel"
+                                                    [(ngModel)]="obj.ProductName"
+                                                    [class.is-invalid]="ProductName.invalid &amp;&amp; ProductName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Product Name..."
+                                                    required>
+                                                <div *ngIf="ProductName.invalid &amp;&amp; ProductName.touched">
+                                                    <small *ngIf="ProductName.errors?.required"
+                                                        class="text-danger">Product Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProductCategoryID"
+                                                    [class.text-danger]="ProductCategoryID.invalid &amp;&amp; ProductCategoryID.touched">Product Category</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="productcategory"
+                                                    bindLabel="ProductCategory"
+                                                    bindValue="id" #ProductCategoryID="ngModel" name="ProductCategoryID"
+                                                    [(ngModel)]="obj.ProductCategoryID"
+                                                    [class.is-invalid]="ProductCategoryID.invalid &amp;&amp; ProductCategoryID.touched"
+                                                    placeholder="Select Product Category..."
+                                                    required></ng-select>
+                                                <div *ngIf="ProductCategoryID.invalid &amp;&amp; ProductCategoryID.touched">
+                                                    <small *ngIf="ProductCategoryID.errors?.required"
+                                                        class="text-danger">Product Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProductTypeID"
+                                                    [class.text-danger]="ProductTypeID.invalid &amp;&amp; ProductTypeID.touched">Product Type</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="producttype"
+                                                    bindLabel="ProductType"
+                                                    bindValue="id" #ProductTypeID="ngModel" name="ProductTypeID"
+                                                    [(ngModel)]="obj.ProductTypeID"
+                                                    [class.is-invalid]="ProductTypeID.invalid &amp;&amp; ProductTypeID.touched"
+                                                    placeholder="Select Product Type..."
+                                                    required></ng-select>
+                                                <div *ngIf="ProductTypeID.invalid &amp;&amp; ProductTypeID.touched">
+                                                    <small *ngIf="ProductTypeID.errors?.required"
+                                                        class="text-danger">Product Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProductStatusID"
+                                                    [class.text-danger]="ProductStatusID.invalid &amp;&amp; ProductStatusID.touched">Product Status</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ProductStatusID"
+                                                    name="ProductStatusID" #ProductStatusID="ngModel"
+                                                    [(ngModel)]="obj.ProductStatusID"
+                                                    [class.is-invalid]="ProductStatusID.invalid &amp;&amp; ProductStatusID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Product Status..."
+                                                    required>
+                                                <div *ngIf="ProductStatusID.invalid &amp;&amp; ProductStatusID.touched">
+                                                    <small *ngIf="ProductStatusID.errors?.required"
+                                                        class="text-danger">Product Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Product</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="ProductName"
+                                        caption="Product Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ProductCategory"
+                                        caption="Product Category">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ProductType"
+                                        caption="Product Type">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ProductStatusID"
+                                        caption="Product Status">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

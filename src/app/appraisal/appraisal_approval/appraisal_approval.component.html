@@ -1,0 +1,374 @@
+
+<!-- <div class="content-body" *ngIf="displayForm"> -->
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4> -->
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form #form="ngForm" (ngSubmit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step [editable]="isEditable" #scoring="ngModelGroup" ngModelGroup="scoring"
+                                        [stepControl]="form.controls.scoring">
+                                        <ng-template matStepLabel>Scoring</ng-template>
+                                        <div class="card-body">
+                                            <div class="col-sm-12 table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Criteria</th>
+                                                            <th>Staff Self Rating</th>
+                                                            <th>Rating</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of detail, index as i">
+                                                            <td>{{i+1}}</td>
+                                                            <!-- <td>{{item.kpi_type}}</td> -->
+                                                            <td>{{item.kpi_name}}</td>
+                                                            <td>{{item.option_nameself}}</td>
+                                                            <td>
+                                                                <mat-radio-group aria-label="Select an option" [(ngModel)]="item.scoreId" name="dad{{i}}" required="true">
+                                                                    <mat-radio-button value="{{opt.id}}" *ngFor="let opt of options, index as j">{{opt.ratingName}} &nbsp;</mat-radio-button> 
+                                                                  </mat-radio-group>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="panel-footer ">
+                                            <button type="button" matStepperPrevious class="btn btn-sm btn-primary">
+                                                <i class="fa fa-dot-circle-o"></i> Back</button>
+                                            <button type="button" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right" [disabled]="scoring.invalid" (click)="onConfirm()">
+                                                <i class="fa fa-dot-circle-o"></i>Next</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step #leave="ngModelGroup" ngModelGroup="leave"
+                                        [stepControl]="form.controls.leave" [editable]="isEditable">
+                                        <ng-template matStepLabel>Evaluation </ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Employee:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.FullName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Appraisal Period:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.period_name }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Designation:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.DesignationName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Work Location:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.WorkLocation }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-sm-12 table-responsive">
+                                                        <table class="table table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Criteria</th> 
+                                                                    <th>Staff Self Rating</th>
+                                                                    <th>Evaluator's Rating</th>
+                                                                    <!-- <th>Comment</th> -->
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let item of detail, index as i">
+                                                                    <td>{{i+1}}</td>
+                                                                    <!-- <td>{{item.kpi_type}}</td> -->
+                                                                    <td>{{item.kpi_name}}</td>
+                                                                    <td>{{item.option_nameself}}</td>
+                                                                    <td>{{item.option_name}}</td>
+                                                                    
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovedBy">Evaluator </label>
+                                                            {{ user_name }}
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="ApprovalInstancesID"
+                                                                [class.text-danger]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">Action</label><i
+                                                                class="text-danger">*</i>
+                                                            <ng-select [items]="ApprovalInstances" bindValue="id"
+                                                                bindLabel="ApprovalType" id="ApprovalInstancesID"
+                                                                name="ApprovalInstancesID"
+                                                                #ApprovalInstancesID="ngModel"
+                                                                [(ngModel)]="obj.ApprovalInstancesID"
+                                                                [class.is-invalid]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched"
+                                                                placeholder="Select Action ..." [required]="isRequired"
+                                                                (change)="loadEvent($event)">
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">
+                                                                <small *ngIf="ApprovalInstancesID.errors?.required"
+                                                                    class="text-danger">Approval Action is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label class=" form-control-label" for="brief_description"
+                                                                [class.text-danger]="brief_description.invalid && brief_description.touched">Evaluator's Comments
+                                                                <i class="text-danger">*</i></label>
+                                                            <div class="">
+                                                                <textarea type="text" id="brief_description"
+                                                                    name="brief_description" class="form-control"
+                                                                    placeholder="Enter Staff's Main Strength .."
+                                                                    [(ngModel)]="info.appraiser_comment_strength"
+                                                                    [required]="isRequired" #brief_description="ngModel"
+                                                                    [class.is-invalid]="brief_description.invalid && brief_description.touched"></textarea>
+                                                                <div
+                                                                    *ngIf="brief_description.invalid && brief_description.touched">
+                                                                    <small *ngIf="brief_description.errors?.required"
+                                                                        class="text-danger">Comment</small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                 
+                                                    
+
+                                                    <div class="col-md-12" *ngIf="show">
+                                                        <div class="form-group">
+                                                            <label for="NextApprovalOfficerID"
+                                                                [class.text-danger]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">Next
+                                                                Approving Officer</label><i class="text-danger">*</i>
+                                                            <ng-select [items]="Employee" bindValue="id"
+                                                                bindLabel="FullName" id="NextApprovalOfficerID"
+                                                                name="NextApprovalOfficerID"
+                                                                #NextApprovalOfficerID="ngModel"
+                                                                [(ngModel)]="obj.NextApprovalOfficerID"
+                                                                [class.is-invalid]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched"
+                                                                placeholder="Select Next Approving Officer..."
+                                                                [required]="isRequired">
+                                                            </ng-select>
+                                                            <div
+                                                                *ngIf="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">
+                                                                <small *ngIf="NextApprovalOfficerID.errors?.required"
+                                                                    class="text-danger">Next Approving Officer is
+                                                                    Required</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label for="Comment"
+                                                                [class.text-danger]="Comment.invalid &amp;&amp; Comment.touched">Comment</label><i
+                                                                class="text-danger">*</i>
+                                                            <textarea id="Comment" name="Comment" #Comment="ngModel"
+                                                                [(ngModel)]="obj.Comment"
+                                                                [class.is-invalid]="Comment.invalid &amp;&amp; Comment.touched"
+                                                                class="form-control" placeholder="Enter Comment..."
+                                                                [required]="!isRequired"></textarea>
+                                                            <div *ngIf="Comment.invalid &amp;&amp; Comment.touched">
+                                                                <small *ngIf="Comment.errors?.required"
+                                                                    class="text-danger">Comment is Required</small>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-footer ">
+                                            <button type="button" (click)="resetForm()" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-dot-circle-o"></i> Cancel</button>
+                                            <button type="submit" matStepperNext
+                                                class="btn btn-sm btn-primary pull-right" [disabled]="leave.invalid">
+                                                <i class="fa fa-dot-circle-o"></i> Submit</button>
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable" #leaveApproval="ngModelGroup"
+                                        ngModelGroup="leaveApproval" [stepControl]="form.controls.leaveApproval">
+                                        <ng-template matStepLabel>Completion</ng-template>
+                                        <h3>Appraisal Application Treated</h3>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="row">
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Employee:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.FullName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Appraisal Period:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.period_name }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Designation:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.DesignationName }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group row">
+                                                                <label class="col-md-4 form-control-label"
+                                                                    for="date"><b>Work Location:</b></label>
+                                                                <div class="col-md-8">
+                                                                    {{info.WorkLocation }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                             
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <table class="table table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="3">
+                                                                    Score Summary
+                                                                </th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Category</th>
+                                                                <th>Self Appraisal</th>
+                                                                <th>Evaluator's Rating</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                            <tr *ngFor="let item of scores.class_scores, index as i">
+                                                                <td>{{item.kpiclass}}</td>
+                                                                <td class="text-right">
+                                                                    {{item.SelfScoreClassEquivalent | number:'1.2-2' }}
+                                                                </td>
+                                                                <td class="text-right">
+                                                                    {{item.ScoreClassEquivalent | number:'1.2-2'}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Total Score</th>
+                                                                <th class="text-right">
+                                                                    {{scores.scores.selfscore_final | number:'1.2-2' }}
+                                                                </th>
+                                                                <th class="text-right">
+                                                                    {{scores.scores.score_final | number:'1.2-2'}}</th>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="col-sm-12 table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Criteria</th> 
+                                                            <th>Staff Self Rating</th>
+                                                            <th>Evaluator's Rating</th>
+                                                            <!-- <th>Comment</th> -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr *ngFor="let item of detail, index as i">
+                                                            <td>{{i+1}}</td>
+                                                            <!-- <td>{{item.kpi_type}}</td> -->
+                                                            <td>{{item.kpi_name}}</td>
+                                                            <td>{{item.option_nameself}}</td>
+                                                            <td>{{item.option_name}}</td>
+                                                            
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer ">
+
+                                            <a [routerLink]="['/appraisal/appraisal-bin']"
+                                                class="btn btn-sm btn-primary pull-right">
+                                                <i class="fa fa-dot-circle-o"></i> Back to Approval Bin</a>
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+
+                            </form>
+
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <h3>Apraisal Approval History</h3>
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="ApprovalDate" caption="Approval Date" dataType="date">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Approved By">
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

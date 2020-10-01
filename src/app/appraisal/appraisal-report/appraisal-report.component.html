@@ -1,0 +1,99 @@
+<div class="content-body">
+
+    <div class="card">
+
+        <div class="card-content collpase show">
+            <div class="card-body">
+
+                <form class="form" role="form" #form="ngForm" (ngSubmit)="loadData()">
+                    <div class="form-body">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-md-3" for="PayrollPeriodID"
+                                        [class.text-danger]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">Appraisal
+                                        Period <i class="text-danger">*</i></label>
+                                    <div class="col-md-9">
+                                        <ng-select [items]="PayrollPeriod" bindLabel="period_name"
+                                            bindValue="id" #PayrollPeriodID="ngModel" name="PayrollPeriodID"
+                                            [(ngModel)]="obj.id"
+                                            [class.is-invalid]="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched"
+                                            placeholder="Select Payroll Period ..." required></ng-select>
+
+                                        <div
+                                            *ngIf="PayrollPeriodID.invalid &amp;&amp; PayrollPeriodID.touched">
+                                            <small *ngIf="PayrollPeriodID.errors?.required"
+                                                class="text-danger">Appraisal Period
+                                                is
+                                                Required</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+
+                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                    Generate Report
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card" *ngIf="displayChart">
+
+        <div class="card-content collpase show" >
+            <div class="card-body">
+                <dx-data-grid id="gridContainer" [dataSource]="data" [allowColumnReordering]="true"
+                    [showBorders]="true">
+                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+                    <dxi-column dataField="LeaveType" caption="Leave Type">
+                    </dxi-column>
+                    <dxi-column dataField="Employee" Caption="Employee Name"></dxi-column>
+                    <dxi-column dataField="DateFrom" caption="Start Date" dataType="date" format="MMMM d, yyyy">
+                    </dxi-column>
+                    <dxi-column dataField="DateBack" caption="Resumption Date" dataType="date" format="MMMM d, yyyy">
+                    </dxi-column>
+                    <dxi-column dataField="NoDayApplied" caption="Number of Days">
+                    </dxi-column>
+                    <dxi-column dataField="PayLeaveGrant" caption="Pay Leave Grant">
+                        <dxo-lookup displayExpr="label" valueExpr="value" [dataSource]="choices"></dxo-lookup>
+                    </dxi-column>
+                    <dxi-column dataField="RelieveOfficer" caption="Relieve Officer">
+                    </dxi-column>
+                    <dxi-column dataField="ApprovalOfficer" caption="Approving Officer">
+                    </dxi-column>
+
+                    <dxi-column dataField="Department" caption="Department"></dxi-column>
+                    <dxi-column dataField="Unit" [visible]="false"></dxi-column>
+
+                    <dxi-column dataField="Job Title" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Project" Caption="Project" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Office Location" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Category" [visible]="false"></dxi-column>
+                    <dxi-column dataField="Gender" caption="Gender" [visible]="false"></dxi-column>
+                    <dxo-search-panel [visible]="true"></dxo-search-panel>
+                    <dxo-paging [pageSize]="20"></dxo-paging>
+                    <dxo-group-panel [visible]="true"></dxo-group-panel>
+                    <dxo-grouping #expand [autoExpandAll]="true"></dxo-grouping>
+
+                    <dxo-export [enabled]="true" fileName="Employee Report"></dxo-export>
+                </dx-data-grid>
+                <div class="options">
+                    <div class="caption">Options</div>
+                    <div class="option">
+                        <dx-check-box [(value)]="expand.autoExpandAll" text="Expand All Groups">
+                        </dx-check-box>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

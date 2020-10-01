@@ -1,0 +1,60 @@
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">{{data.length}} Loan Applications Pending</h4>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+
+                    <ul class="nav nav-tabs justify-content-start">
+                        <li class="nav-item ng-star-inserted">
+                            <a class="nav-link active" id="base-tab1" data-toggle="tab" aria-controls="tab1"
+                                href="#tab1" aria-expanded="true">Loan Approvals</a>
+                        </li>
+
+
+                    </ul>
+                    <div class="tab-content px-1 pt-1">
+                        <div role="tabpanel" class="tab-pane active " id="tab1" aria-expanded="true"
+                            aria-labelledby="base-tab1">
+                            <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                [columnHidingEnabled]="true">
+                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                <dxi-column dataField="LoanDate" caption="Loan Date" dataType="date" format="MMMM d, yyyy">
+                                </dxi-column>
+                                <dxi-column dataField="FullName" caption="Employee">
+                                </dxi-column>
+                                <dxi-column dataField="LoanType" caption="Loan Type" >
+                                </dxi-column>
+                                <dxi-column dataField="Amount" caption="Amount" dataType="number" format="#,###.00">
+                                </dxi-column>
+                                <!-- <dxi-column dataField="InterestRate" caption="Interest Rate (%)" dataType="number" format="#.00">
+                                </dxi-column> -->
+                                <dxi-column dataField="Tenor" caption="Tenor" dataType="number" >
+                                </dxi-column>
+                                <dxi-column dataField="RepaymentAmount" caption="Repayment Amount" dataType="number" format="#,###.00"
+                                    precision="2"></dxi-column>
+                                <dxi-column dataField="MonthlyRepayment" caption="Monthly Repayment" dataType="number"format="#,###.00" >
+                                </dxi-column>
+                                <dxi-column dataField="ApprovingOfficer" caption="Approving Officer">
+                                </dxi-column>
+
+                                <dxi-column type="buttons">
+                                    <dxi-button text="Proceed" [onClick]="loadLeave"></dxi-button>
+                                </dxi-column>
+                            </dx-data-grid>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

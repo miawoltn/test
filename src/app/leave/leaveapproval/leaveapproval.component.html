@@ -1,0 +1,237 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="LeaveApplicationID"
+                                                    [class.text-danger]="LeaveApplicationID.invalid &amp;&amp; LeaveApplicationID.touched">LeaveApplication</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="LeaveApplicationID"
+                                                    name="LeaveApplicationID" #LeaveApplicationID="ngModel"
+                                                    [(ngModel)]="obj.LeaveApplicationID"
+                                                    [class.is-invalid]="LeaveApplicationID.invalid &amp;&amp; LeaveApplicationID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter LeaveApplication..."
+                                                    required>
+                                                <div *ngIf="LeaveApplicationID.invalid &amp;&amp; LeaveApplicationID.touched">
+                                                    <small *ngIf="LeaveApplicationID.errors?.required"
+                                                        class="text-danger">LeaveApplication is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalInstanceID"
+                                                    [class.text-danger]="ApprovalInstanceID.invalid &amp;&amp; ApprovalInstanceID.touched">Approval Instance</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ApprovalInstanceID"
+                                                    name="ApprovalInstanceID" #ApprovalInstanceID="ngModel"
+                                                    [(ngModel)]="obj.ApprovalInstanceID"
+                                                    [class.is-invalid]="ApprovalInstanceID.invalid &amp;&amp; ApprovalInstanceID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approval Instance..."
+                                                    required>
+                                                <div *ngIf="ApprovalInstanceID.invalid &amp;&amp; ApprovalInstanceID.touched">
+                                                    <small *ngIf="ApprovalInstanceID.errors?.required"
+                                                        class="text-danger">Approval Instance is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovedBy"
+                                                    [class.text-danger]="ApprovedBy.invalid &amp;&amp; ApprovedBy.touched">Approved By</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApprovedBy"
+                                                    name="ApprovedBy" #ApprovedBy="ngModel"
+                                                    [(ngModel)]="obj.ApprovedBy"
+                                                    [class.is-invalid]="ApprovedBy.invalid &amp;&amp; ApprovedBy.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approved By..."
+                                                    required>
+                                                <div *ngIf="ApprovedBy.invalid &amp;&amp; ApprovedBy.touched">
+                                                    <small *ngIf="ApprovedBy.errors?.required"
+                                                        class="text-danger">Approved By is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="NextApprovalOfficerID"
+                                                    [class.text-danger]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">NextApproval Officer</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="NextApprovalOfficerID"
+                                                    name="NextApprovalOfficerID" #NextApprovalOfficerID="ngModel"
+                                                    [(ngModel)]="obj.NextApprovalOfficerID"
+                                                    [class.is-invalid]="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter NextApproval Officer..."
+                                                    required>
+                                                <div *ngIf="NextApprovalOfficerID.invalid &amp;&amp; NextApprovalOfficerID.touched">
+                                                    <small *ngIf="NextApprovalOfficerID.errors?.required"
+                                                        class="text-danger">NextApproval Officer is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Comment"
+                                                    [class.text-danger]="Comment.invalid &amp;&amp; Comment.touched">Comment</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Comment"
+                                                    name="Comment" #Comment="ngModel"
+                                                    [(ngModel)]="obj.Comment"
+                                                    [class.is-invalid]="Comment.invalid &amp;&amp; Comment.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Comment..."
+                                                    required>
+                                                <div *ngIf="Comment.invalid &amp;&amp; Comment.touched">
+                                                    <small *ngIf="Comment.errors?.required"
+                                                        class="text-danger">Comment is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ProcessModuleID"
+                                                    [class.text-danger]="ProcessModuleID.invalid &amp;&amp; ProcessModuleID.touched">Process Module</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ProcessModuleID"
+                                                    name="ProcessModuleID" #ProcessModuleID="ngModel"
+                                                    [(ngModel)]="obj.ProcessModuleID"
+                                                    [class.is-invalid]="ProcessModuleID.invalid &amp;&amp; ProcessModuleID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Process Module..."
+                                                    required>
+                                                <div *ngIf="ProcessModuleID.invalid &amp;&amp; ProcessModuleID.touched">
+                                                    <small *ngIf="ProcessModuleID.errors?.required"
+                                                        class="text-danger">Process Module is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalInstancesID"
+                                                    [class.text-danger]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">Approval Instances</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="ApprovalInstancesID"
+                                                    name="ApprovalInstancesID" #ApprovalInstancesID="ngModel"
+                                                    [(ngModel)]="obj.ApprovalInstancesID"
+                                                    [class.is-invalid]="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approval Instances..."
+                                                    required>
+                                                <div *ngIf="ApprovalInstancesID.invalid &amp;&amp; ApprovalInstancesID.touched">
+                                                    <small *ngIf="ApprovalInstancesID.errors?.required"
+                                                        class="text-danger">Approval Instances is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Leave Approval</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="LeaveApplicationID"
+                                        caption="LeaveApplication">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalInstanceID"
+                                        caption="Approval Instance">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovedBy"
+                                        caption="Approved By">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="NextApprovalOfficerID"
+                                        caption="NextApproval Officer">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Comment"
+                                        caption="Comment">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ProcessModuleID"
+                                        caption="Process Module">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalInstancesID"
+                                        caption="Approval Instances">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

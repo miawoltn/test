@@ -1,0 +1,243 @@
+
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyApplicationID"
+                          [class.text-danger]="PropertyApplicationID.invalid &amp;&amp; PropertyApplicationID.touched">Property Application
+                          </label><i class="text-danger">*</i>
+                        <ng-select [items]="propertyapplication" bindLabel="Employee" bindValue="id"
+                          #PropertyApplicationID="ngModel" name="PropertyApplicationID"
+                          [(ngModel)]="obj.PropertyApplicationID"
+                          [class.is-invalid]="PropertyApplicationID.invalid &amp;&amp; PropertyApplicationID.touched"
+                          placeholder="Select PropertyApplication..." (change)="fetchApplicationPropertyInfo($event)"></ng-select>
+                        <div *ngIf="PropertyApplicationID.invalid &amp;&amp; PropertyApplicationID.touched">
+                          <small *ngIf="PropertyApplicationID.errors?.required" class="text-danger">Property Application is Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="AllocationDate"
+                          [class.text-danger]="AllocationDate.invalid &amp;&amp; AllocationDate.touched">Allocation
+                          Date</label><i class="text-danger">*</i>
+                        <input type="text" id="AllocationDate" name="AllocationDate" #AllocationDate="ngModel"
+                          [(ngModel)]="obj.AllocationDate"
+                          [class.is-invalid]="AllocationDate.invalid &amp;&amp; AllocationDate.touched"
+                          class="form-control" placeholder="Enter Allocation Date..." required>
+                        <div *ngIf="AllocationDate.invalid &amp;&amp; AllocationDate.touched">
+                          <small *ngIf="AllocationDate.errors?.required" class="text-danger">Allocation Date is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="SubscriberInfoID"
+                          [class.text-danger]="SubscriberInfoID.invalid &amp;&amp; SubscriberInfoID.touched">Subscriber
+                          Info</label><i class="text-danger">*</i>
+                        <input type="number" id="SubscriberInfoID" name="SubscriberInfoID" #SubscriberInfoID="ngModel"
+                          [(ngModel)]="obj.SubscriberInfoID"
+                          [class.is-invalid]="SubscriberInfoID.invalid &amp;&amp; SubscriberInfoID.touched"
+                          class="form-control" placeholder="Enter Subscriber Info..." required>
+                        <div *ngIf="SubscriberInfoID.invalid &amp;&amp; SubscriberInfoID.touched">
+                          <small *ngIf="SubscriberInfoID.errors?.required" class="text-danger">Subscriber Info is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyID"
+                          [class.text-danger]="PropertyID.invalid &amp;&amp; PropertyID.touched">Property</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="PropertyID" name="PropertyID" #PropertyID="ngModel"
+                          [(ngModel)]="obj.PropertyID"
+                          [class.is-invalid]="PropertyID.invalid &amp;&amp; PropertyID.touched" [value]="PropertyApplicationInfo.PropertyName" class="form-control"
+                          placeholder="Enter Property...">
+                        <div *ngIf="PropertyID.invalid &amp;&amp; PropertyID.touched">
+                          <small *ngIf="PropertyID.errors?.required" class="text-danger">Property is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyAmount"
+                          [class.text-danger]="PropertyAmount.invalid &amp;&amp; PropertyAmount.touched">Property Amount</label><i
+                          class="text-danger">*</i>
+                        <input type="number" id="PropertyAmount" name="PropertyAmount" #PropertyAmount="ngModel"
+                          [(ngModel)]="obj.PropertyAmount"
+                          [class.is-invalid]="PropertyAmount.invalid &amp;&amp; PropertyAmount.touched" [value]="PropertyApplicationInfo.PaymentAmount"
+                          class="form-control" placeholder="Enter PropertyAmount...">
+                        <div *ngIf="PropertyAmount.invalid &amp;&amp; PropertyAmount.touched">
+                          <small *ngIf="PropertyAmount.errors?.required" class="text-danger">Property Amount is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="AmountReceived"
+                          [class.text-danger]="AmountReceived.invalid &amp;&amp; AmountReceived.touched">Amount
+                          Received</label><i class="text-danger">*</i>
+                        <input type="number" id="AmountReceived" name="AmountReceived" #AmountReceived="ngModel"
+                          [(ngModel)]="obj.AmountReceived"
+                          [class.is-invalid]="AmountReceived.invalid &amp;&amp; AmountReceived.touched" [value]="PropertyApplicationInfo.InitialDeposit"
+                          class="form-control" placeholder="Enter Amount Received...">
+                        <div *ngIf="AmountReceived.invalid &amp;&amp; AmountReceived.touched">
+                          <small *ngIf="AmountReceived.errors?.required" class="text-danger">Amount Received is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="BalanceAmount"
+                          [class.text-danger]="BalanceAmount.invalid &amp;&amp; BalanceAmount.touched">Balance Amount</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="BalanceAmount" name="BalanceAmount" #BalanceAmount="ngModel"
+                          [(ngModel)]="obj.BalanceAmount"
+                          [class.is-invalid]="BalanceAmount.invalid &amp;&amp; BalanceAmount.touched" [value]="PropertyApplicationInfo.PaymentAmount - PropertyApplicationInfo.InitialDeposit"
+                          class="form-control" placeholder="Enter BalanceAmount...">
+                        <div *ngIf="BalanceAmount.invalid &amp;&amp; BalanceAmount.touched">
+                          <small *ngIf="BalanceAmount.errors?.required" class="text-danger">Balance Amount is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PaymentMethodID"
+                          [class.text-danger]="PaymentMethodID.invalid &amp;&amp; PaymentMethodID.touched">Payment
+                          Method</label><i class="text-danger">*</i>
+                          <ng-select [items]="PaymentMethod" bindLabel="PaymentMethod" bindValue="PaymentMethodID"
+                          id="PaymentMethodID" name="PaymentMethodID" #PaymentMethodID="ngModel"
+                          [(ngModel)]="obj.PaymentMethodID"
+                          [class.is-invalid]="PaymentMethodID.invalid &amp;&amp; PaymentMethodID.touched"
+                          placeholder="Enter Payment Method..." required></ng-select>
+                        <div *ngIf="PaymentMethodID.invalid &amp;&amp; PaymentMethodID.touched">
+                          <small *ngIf="PaymentMethodID.errors?.required" class="text-danger">Payment Method is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PaymentDate"
+                          [class.text-danger]="PaymentDate.invalid &amp;&amp; PaymentDate.touched">Payment
+                          Date</label><i class="text-danger">*</i>
+                        <input type="text" id="PaymentDate" name="PaymentDate" #PaymentDate="ngModel"
+                          [(ngModel)]="obj.PaymentDate"
+                          [class.is-invalid]="PaymentDate.invalid &amp;&amp; PaymentDate.touched" value="{{ PropertyApplicationInfo.DateCreated | date:'fullDate' }}" class="form-control"
+                          placeholder="Enter Payment Date...">
+                        <div *ngIf="PaymentDate.invalid &amp;&amp; PaymentDate.touched">
+                          <small *ngIf="PaymentDate.errors?.required" class="text-danger">Payment Date is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Comments"
+                          [class.text-danger]="Comments.invalid &amp;&amp; Comments.touched">Comments</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Comments" name="Comments" #Comments="ngModel" [(ngModel)]="obj.Comments"
+                          [class.is-invalid]="Comments.invalid &amp;&amp; Comments.touched" class="form-control"
+                          placeholder="Enter Comments...">
+                        <div *ngIf="Comments.invalid &amp;&amp; Comments.touched">
+                          <small *ngIf="Comments.errors?.required" class="text-danger">Comments is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    <!-- <i class="ft-x"></i>  -->
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    <!-- <i class="fa fa-check-square-o"></i>  -->
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Propertyallocation</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="PropertyApplicantID" caption="PropertyApplicant ID">
+                  </dxi-column>
+                  <dxi-column dataField="AllocationDate" caption="Allocation Date">
+                  </dxi-column>
+                  <dxi-column dataField="Comments" caption="Comments">
+                  </dxi-column>
+                  <dxi-column dataField="SubscriberInfoID" caption="Subscriber Info ID">
+                  </dxi-column>
+                  <dxi-column dataField="PropertyID" caption="Property ID">
+                  </dxi-column>
+                  <dxi-column dataField="PropertyAmount" caption="PropertyAmount">
+                  </dxi-column>
+                  <dxi-column dataField="AmountReceived" caption="Amount Received">
+                  </dxi-column>
+                  <dxi-column dataField="BalanceAmount" caption="BalanceAmount">
+                  </dxi-column>
+                  <dxi-column dataField="PaymentMethodID" caption="Payment Method ID">
+                  </dxi-column>
+                  <dxi-column dataField="PaymentDate" caption="Payment Date">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

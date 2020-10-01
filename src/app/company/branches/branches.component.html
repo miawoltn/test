@@ -1,0 +1,191 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="BranchName"
+                                                    [class.text-danger]="BranchName.invalid &amp;&amp; BranchName.touched">Branch Name</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="BranchName"
+                                                    name="BranchName" #BranchName="ngModel"
+                                                    [(ngModel)]="obj.BranchName"
+                                                    [class.is-invalid]="BranchName.invalid &amp;&amp; BranchName.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Branch Name..."
+                                                    required>
+                                                <div *ngIf="BranchName.invalid &amp;&amp; BranchName.touched">
+                                                    <small *ngIf="BranchName.errors?.required"
+                                                        class="text-danger">Branch Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Location"
+                                                    [class.text-danger]="Location.invalid &amp;&amp; Location.touched">Location</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Location"
+                                                    name="Location" #Location="ngModel"
+                                                    [(ngModel)]="obj.Location"
+                                                    [class.is-invalid]="Location.invalid &amp;&amp; Location.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Location..."
+                                                    required>
+                                                <div *ngIf="Location.invalid &amp;&amp; Location.touched">
+                                                    <small *ngIf="Location.errors?.required"
+                                                        class="text-danger">Location is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CompanyID"
+                                                    [class.text-danger]="CompanyID.invalid &amp;&amp; CompanyID.touched">Company</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="CompanyID"
+                                                    name="CompanyID" #CompanyID="ngModel"
+                                                    [(ngModel)]="obj.CompanyID"
+                                                    [class.is-invalid]="CompanyID.invalid &amp;&amp; CompanyID.touched"
+                                                    placeholder="Select Company..."
+                                                    required [items]="Company" bindValue="id" bindLabel="CompanyName"></ng-select>
+                                                <div *ngIf="CompanyID.invalid &amp;&amp; CompanyID.touched">
+                                                    <small *ngIf="CompanyID.errors?.required"
+                                                        class="text-danger">Company is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="BranchTypeID"
+                                                    [class.text-danger]="BranchTypeID.invalid &amp;&amp; BranchTypeID.touched">Branch Type</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="BranchTypeID"
+                                                    name="BranchTypeID" #BranchTypeID="ngModel"
+                                                    [(ngModel)]="obj.BranchTypeID"
+                                                    [class.is-invalid]="BranchTypeID.invalid &amp;&amp; BranchTypeID.touched"
+                                                    placeholder="Select Branch Type..."
+                                                    required [items]="BranchType" bindValue="id" bindLabel="BranchType"></ng-select>
+                                                <div *ngIf="BranchTypeID.invalid &amp;&amp; BranchTypeID.touched">
+                                                    <small *ngIf="BranchTypeID.errors?.required"
+                                                        class="text-danger">Branch Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StateID"
+                                                    [class.text-danger]="StateID.invalid &amp;&amp; StateID.touched">State</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select id="StateID"
+                                                    name="StateID" #StateID="ngModel"
+                                                    [(ngModel)]="obj.StateID"
+                                                    [class.is-invalid]="StateID.invalid &amp;&amp; StateID.touched"
+                                                    placeholder="Select State..."
+                                                    required [items]="State" bindValue="id" bindLabel="state"></ng-select>
+                                                <div *ngIf="StateID.invalid &amp;&amp; StateID.touched">
+                                                    <small *ngIf="StateID.errors?.required"
+                                                        class="text-danger">State is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Branches</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="BranchName"
+                                        caption="Branch Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Location"
+                                        caption="Location">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CompanyID"
+                                        caption="Company">
+                                        <dxo-lookup [dataSource]="Company" valueExpr="id" displayExpr="CompanyName"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="BranchTypeID"
+                                        caption="Branch Type">
+                                        <dxo-lookup [dataSource]="BranchType" valueExpr="id" displayExpr="BranchType"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StateID"
+                                        caption="State">
+                                        <dxo-lookup [dataSource]="State" valueExpr="id" displayExpr="state"></dxo-lookup>
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

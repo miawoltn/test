@@ -1,0 +1,103 @@
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Risk"
+                                                    [class.text-danger]="Risk.invalid &amp;&amp; Risk.touched">Risk</label><i
+                                                    class="text-danger">*</i>
+                                                    <ng-select [items]="Risks" bindValue="RiskID" bindLabel="Risk" id="Risk" name="Risk" #Risk="ngModel"
+                                                    [(ngModel)]="obj.RiskID"
+                                                    [class.is-invalid]="Risk.invalid &amp;&amp; Risk.touched"
+                                                    placeholder="Select Risk..." required></ng-select>
+                                                <div *ngIf="Risk.invalid &amp;&amp; Risk.touched">
+                                                    <small *ngIf="Risk.errors?.required" class="text-danger">Risk is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RiskMitigant"
+                                                    [class.text-danger]="RiskMitigant.invalid &amp;&amp; RiskMitigant.touched">Risk Mitigant</label><i
+                                                    class="text-danger">*</i>
+                                                    <textarea id="RiskMitigant" name="RiskMitigant" #RiskMitigant="ngModel"
+                                                    [(ngModel)]="obj.RiskMitigant"
+                                                    [class.is-invalid]="RiskMitigant.invalid &amp;&amp; RiskMitigant.touched"
+                                                    class="form-control" placeholder="Enter Risk Mitigant..." required cols="5" rows="3"></textarea>
+                                                <div *ngIf="RiskMitigant.invalid &amp;&amp; RiskMitigant.touched">
+                                                    <small *ngIf="RiskMitigant.errors?.required" class="text-danger">Risk Mitigant is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Risk</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="Risk" caption="Risk"></dxi-column>
+                                    <dxi-column dataField="RiskMitigant" caption="Risk Mitigant"></dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

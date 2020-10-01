@@ -1,0 +1,495 @@
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <form #form="ngForm" (submit)="processForm()">
+                                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                                    <mat-step #order="ngModelGroup" ngModelGroup="order"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Employee Info</ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="shift_template"
+                                                            [class.text-danger]="shift_template.invalid &amp;&amp; shift_template.touched">Shift Template</label><i
+                                                            class="text-danger">*</i>
+                                                        <input type="text" id="shift_template" name="shift_template"
+                                                            #shift_template="ngModel" [(ngModel)]="obj.shift_template"
+                                                            [class.is-invalid]="shift_template.invalid &amp;&amp; shift_template.touched"
+                                                            class="form-control" placeholder="Enter Shift Template..."
+                                                            required>
+                                                        <div
+                                                            *ngIf="shift_template.invalid &amp;&amp; shift_template.touched">
+                                                            <small *ngIf="shift_template.errors?.required"
+                                                                class="text-danger">Shift Template is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="shift_category_id"
+                                                            [class.text-danger]="shift_category_id.invalid &amp;&amp; shift_category_id.touched">Shift Category</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="shift_category" bindLabel="shift_category"
+                                                            bindValue="id" #shift_category_id="ngModel"
+                                                            name="shift_category_id" [(ngModel)]="obj.shift_category_id"
+                                                            [class.is-invalid]="shift_category_id.invalid &amp;&amp; shift_category_id.touched"
+                                                            placeholder="Select Shift Category..." required>
+                                                        </ng-select>
+                                                        <div
+                                                            *ngIf="shift_category_id.invalid &amp;&amp; shift_category_id.touched">
+                                                            <small *ngIf="shift_category_id.errors?.required"
+                                                                class="text-danger">Shift Category is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="shift_type_id"
+                                                            [class.text-danger]="shift_type_id.invalid &amp;&amp; shift_type_id.touched">Shift Type</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="shift_types" bindLabel="shift_type"
+                                                            bindValue="id" #shift_type_id="ngModel" name="shift_type_id"
+                                                            [(ngModel)]="obj.shift_type_id"
+                                                            [class.is-invalid]="shift_type_id.invalid &amp;&amp; shift_type_id.touched"
+                                                            placeholder="Select Shift Type..." required></ng-select>
+                                                        <div
+                                                            *ngIf="shift_type_id.invalid &amp;&amp; shift_type_id.touched">
+                                                            <small *ngIf="shift_type_id.errors?.required"
+                                                                class="text-danger">Shift Type is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="shift_id"
+                                                            [class.text-danger]="shift_id.invalid &amp;&amp; shift_id.touched">Shift</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="shifts" bindLabel="shift_name"
+                                                            bindValue="id" #shift_id="ngModel" name="shift_id"
+                                                            [(ngModel)]="obj.shift_id"
+                                                            [class.is-invalid]="shift_id.invalid &amp;&amp; shift_id.touched"
+                                                            placeholder="Select Shift..." required></ng-select>
+                                                        <div *ngIf="shift_id.invalid &amp;&amp; shift_id.touched">
+                                                            <small *ngIf="shift_id.errors?.required"
+                                                                class="text-danger">Shift is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="time_in"
+                                                            [class.text-danger]="time_in.invalid &amp;&amp; time_in.touched">Time in</label><i
+                                                            class="text-danger">*</i>
+                                                        <input type="time" id="time_in" name="time_in"
+                                                            #time_in="ngModel" [(ngModel)]="obj.time_in"
+                                                            [class.is-invalid]="time_in.invalid &amp;&amp; time_in.touched"
+                                                            class="form-control" placeholder="Enter Time in..."
+                                                            required>
+                                                        <div *ngIf="time_in.invalid &amp;&amp; time_in.touched">
+                                                            <small *ngIf="time_in.errors?.required"
+                                                                class="text-danger">Time in
+                                                                is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="time_out"
+                                                            [class.text-danger]="time_out.invalid &amp;&amp; time_out.touched">Time out</label><i
+                                                            class="text-danger">*</i>
+                                                        <input type="time" id="time_out" name="time_out"
+                                                            #time_out="ngModel" [(ngModel)]="obj.time_out"
+                                                            [class.is-invalid]="time_out.invalid &amp;&amp; time_out.touched"
+                                                            class="form-control" placeholder="Enter Time out..."
+                                                            required>
+                                                        <div *ngIf="time_out.invalid &amp;&amp; time_out.touched">
+                                                            <small *ngIf="time_out.errors?.required"
+                                                                class="text-danger">Time out is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="card-footer">
+
+                                            <button type="button" matStepperNext
+                                                class="btn btn-primary pull-right">Next</button>&nbsp;
+                                            <!-- <button type="button" matStepperNext class="btn btn-primary pull-right"
+                                                (click)="onConfirm()" [disabled]="order.invalid">Next</button>&nbsp; -->
+                                        </div>
+                                    </mat-step>
+
+                                    <mat-step #order2="ngModelGroup" ngModelGroup="order2"
+                                        [stepControl]="form.controls.order" [editable]="isEditable">
+                                        <ng-template matStepLabel>Employee Info</ng-template>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <!-- <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="shift_template_id"
+                                                            [class.text-danger]="shift_template_id.invalid &amp;&amp; shift_template_id.touched">Shift_template_id</label><i
+                                                            class="text-danger">*</i>
+                                                        <ng-select [items]="shift_templates" bindLabel="shift_template"
+                                                            bindValue="id" #shift_template_id="ngModel"
+                                                            name="shift_template_id"
+                                                            [(ngModel)]="obj2.shift_template_id"
+                                                            [class.is-invalid]="shift_template_id.invalid &amp;&amp; shift_template_id.touched"
+                                                            placeholder="Select Shift_template_id..." required>
+                                                        </ng-select>
+                                                        <div
+                                                            *ngIf="shift_template_id.invalid &amp;&amp; shift_template_id.touched">
+                                                            <small *ngIf="shift_template_id.errors?.required"
+                                                                class="text-danger">Shift_template_is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="date_from"
+                                                            [class.text-danger]="date_from.invalid &amp;&amp; date_from.touched">Date from</label><i
+                                                            class="text-danger">*</i>
+                                                        <input type="date" id="date_from" name="date_from"
+                                                            #date_from="ngModel" [(ngModel)]="obj2.date_from"
+                                                            [class.is-invalid]="date_from.invalid &amp;&amp; date_from.touched"
+                                                            class="form-control" placeholder="Enter Date from..."
+                                                            required>
+                                                        <div *ngIf="date_from.invalid &amp;&amp; date_from.touched">
+                                                            <small *ngIf="date_from.errors?.required"
+                                                                class="text-danger">Date from is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="date_to"
+                                                            [class.text-danger]="date_to.invalid &amp;&amp; date_to.touched">Date to</label><i
+                                                            class="text-danger">*</i>
+                                                        <input type="date" id="date_to" name="date_to"
+                                                            #date_to="ngModel" [(ngModel)]="obj2.date_to"
+                                                            [class.is-invalid]="date_to.invalid &amp;&amp; date_to.touched"
+                                                            class="form-control" placeholder="Enter Date to..."
+                                                            required>
+                                                        <div *ngIf="date_to.invalid &amp;&amp; date_to.touched">
+                                                            <small *ngIf="date_to.errors?.required"
+                                                                class="text-danger">Date to
+                                                                is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="DepartmentID"
+                                                            [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Department
+                                                            </label><i class="text-danger">*</i>
+                                                        <ng-select [items]="departments" bindLabel="DepartmentName"
+                                                            bindValue="id" #DepartmentID="ngModel" name="DepartmentID"
+                                                            [(ngModel)]="obj2.DepartmentID"
+                                                            [class.is-invalid]="DepartmentID.invalid &amp;&amp; DepartmentID.touched"
+                                                            placeholder="Select Department..." required></ng-select>
+                                                        <div
+                                                            *ngIf="DepartmentID.invalid &amp;&amp; DepartmentID.touched">
+                                                            <small *ngIf="DepartmentID.errors?.required"
+                                                                class="text-danger">Department is
+                                                                Required</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="card-footer">
+
+                                            <button type="button" matStepperNext class="btn btn-primary pull-right"
+                                                (click)="onConfirm()" [disabled]="order2.invalid">Next</button>&nbsp;
+                                        </div>
+                                    </mat-step>
+                                    <mat-step [editable]="isEditable">
+                                        <ng-template matStepLabel>Confirmation</ng-template>
+                                        <div class="card-body">
+                                            <h6><strong>Shift Template</strong></h6>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4" for="SurName">Shift
+                                                            Template:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift_template }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="FirstName">Shift</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="MiddleName">Shift Category:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift_category }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="EmployeeTitleID">Shift Type:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift_type }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="Email">Time
+                                                            In:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.time_in }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="Email">Time
+                                                            Out:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.time_out }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h6><strong>Shift Schedule</strong></h6>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="SurName">Department:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj2.Department }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="FirstName">Date
+                                                            From:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj2.date_from | date:'longDate' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="FirstName">Date
+                                                            To:</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj2.date_to | date:'longDate' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="button" matStepperPrevious
+                                                class="btn btn-primary">Back</button>&nbsp;
+                                            <button type="submit" matStepperNext
+                                                class="btn btn-primary pull-right">Confirm
+                                                Application</button>&nbsp;
+                                        </div>
+                                    </mat-step>
+                                    <mat-step>
+                                        <ng-template matStepLabel>Completed</ng-template>
+                                        <div class="card-body">
+                                            <h5><strong>Shift Template</strong></h5>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="SurName">Shift
+                                                            Template</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift_template }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="FirstName">Shift</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="MiddleName">Shift Category</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift_category }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="EmployeeTitleID">Shift Type</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.shift_type }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="Email">Time
+                                                            In</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.time_in }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="Email">Time
+                                                            Out</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj.time_out }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h5><strong>Shift Template</strong></h5>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label"
+                                                            for="SurName">Department</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj2.Department }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="FirstName">Date
+                                                            From</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj2.date_from | date:'longDate' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group row">
+                                                        <label class="col-md-4 form-control-label" for="FirstName">Date
+                                                            To</label>
+                                                        <div class="col-md-8">
+                                                            {{ obj2.date_to | date:'longDate' }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="card-footer">
+                                            <button type="button" class="btn btn-primary pull-right"
+                                                (click)="stepper.reset()">New
+                                                Application</button>&nbsp;
+                                        </div>
+                                    </mat-step>
+                                </mat-horizontal-stepper>
+                                <!-- /.box-footer -->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- <div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Shift_templates</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="shift_template" caption="Shift_template">
+                                    </dxi-column>
+                                    <dxi-column dataField="shift_category" caption="Shift_category">
+                                    </dxi-column>
+                                    <dxi-column dataField="shift_type" caption="Shift_type">
+                                    </dxi-column>
+                                    <dxi-column dataField="time_in" caption="Time_in">
+                                    </dxi-column>
+                                    <dxi-column dataField="time_out" caption="Time_out">
+                                    </dxi-column>
+                                    <dxi-column dataField="shift_name" caption="Shift_name">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div> -->

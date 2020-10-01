@@ -1,0 +1,73 @@
+
+
+
+<section class="content">
+<div class="row">
+   <div class="col-md-12">
+    
+	<div class="card card-info" *ngIf="displayForm">
+        <div class="card-header">
+		  {{operation}} Record
+        </div>
+        
+        
+        <div class="card-body">
+			<form #form="ngForm" class="form-horizontal" (ngSubmit)="processForm()">
+            <div class="col-md-6">
+                <div class="form-group row">
+                    <label class="col-md-4 form-control-label" for="chart_provider" [class.text-danger]="chart_provider.invalid && chart_provider.touched">Chart provider<i class="text-danger">*</i></label>
+                    <div class="col-md-8">
+						<input type="text" id="chart_provider" name="chart_provider" class="form-control" placeholder="Enter Chart provider .." [(ngModel)]="obj.chart_provider" required #chart_provider="ngModel" [class.is-invalid]="chart_provider.invalid && chart_provider.touched" placeholder="Enter Chart provider...">
+						<div *ngIf="chart_provider.invalid && chart_provider.touched">
+                            <small *ngIf="chart_provider.errors?.required"
+                                class="text-danger">Chart provider is Required</small>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        
+		<div class="col-md-12">
+            <button type="button" class="btn btn-default" (click)="hideForm()">Cancel</button>&nbsp;
+            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">{{operation}}</button>
+         </div>
+      </form>
+	  </div>
+    </div>
+    
+	<div class="card">
+        <div class="card-header">
+          <h3>List of Chart providers</h3>
+          <!--<div class="card-tools pull-right">
+            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+              Add New</button>
+          </div>-->
+        </div>
+        <!-- /.box-header -->
+        <div class="card-body">
+
+        <div class="table-responsive" >
+         
+             <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+					[focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true" [columnHidingEnabled]="true">
+					<dxo-paging [pageSize]="10"></dxo-paging>
+					<dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+					<dxo-filter-row [visible]="true"></dxo-filter-row>
+					<dxi-column dataField="chart_provider"
+                          caption="Chart provider"></dxi-column>
+      				
+						<dxi-column type="buttons">
+							<dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+						</dxi-column>
+                </dx-data-grid>
+            <dx-speed-dial-action icon="add" hint="Add New" (onClick)="addItem()">
+			</dx-speed-dial-action>
+        
+     </div>
+    </div>
+    <!-- end box-body -->
+</div>
+<!-- end box -->
+</div>
+</div>
+</section>
+

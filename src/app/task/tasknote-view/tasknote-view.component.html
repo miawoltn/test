@@ -1,0 +1,165 @@
+<div class="content-body" *ngIf="displayForm">
+
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">Task Information</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="Task">Task</label>
+                                                <div class="col-md-8">
+                                                    {{ taskInfo.Task }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="PriorityID">Priority
+                                                </label>
+                                                <div class="col-md-8">
+                                                    {{ taskInfo.TaskPriority }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="TaskStatusID">Task
+                                                    Status</label>
+                                                <div class="col-md-8">
+                                                    {{ taskInfo.TaskStatus }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label" for="AssignTo">Assign
+                                                    To</label>
+                                                <div class="col-md-8">
+                                                    {{ taskInfo.AssignTo }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-4 form-control-label"
+                                                    for="ProjectID">Project</label>
+                                                <div class="col-md-8">
+                                                    {{ taskInfo.Project }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <!-- <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div> -->
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm">
+                                <div class="form-body">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+
+                                            <dx-data-grid class="dx-card wide-card" [dataSource]="tasknoteList"
+                                                [showBorders]="false" keyExpr="TaskNoteID" [focusedRowEnabled]="true"
+                                                [focusedRowIndex]="0" [columnAutoWidth]="true"
+                                                [columnHidingEnabled]="true">
+                                                <dxo-paging [pageSize]="10"></dxo-paging>
+                                                <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                                <dxi-column dataField="Task" caption="Task">
+                                                </dxi-column>
+                                                <dxi-column dataField="TaskNote" caption="Task Note">
+                                                </dxi-column>
+                                                <dxi-column dataField="TaskStatus" caption="Task Status">
+                                                </dxi-column>
+
+                                                <!-- <dxi-column type="buttons">
+                                                    <dxi-button text="Add Task Note" [onClick]="loadItem"></dxi-button>
+                                                </dxi-column> -->
+                                            </dx-data-grid>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body" *ngIf="!displayForm">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Task</h4>
+
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="Task" caption="Task">
+                                    </dxi-column>
+                                    <dxi-column dataField="ProjectDescription" caption="Project">
+                                    </dxi-column>
+                                    <dxi-column dataField="FullName" caption="Assigned To">
+                                    </dxi-column>
+                                    <dxi-column dataField="TaskStatus" caption="Task Status">
+                                    </dxi-column>
+                                    <dxi-column dataField="TaskPriority" caption="Task Priority">
+                                    </dxi-column>
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="View Task" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

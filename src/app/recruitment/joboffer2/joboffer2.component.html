@@ -1,0 +1,184 @@
+<div class="content-body" *ngIf="displayForm">
+    <div class="content-wrapper">
+        <section class="invoice-template">
+            <div class="card">
+                <div class="card-content p-3">
+                    <div id="invoice-template" class="card-body">
+                        <div id="invoice-company-details" class="row">
+                            <div class="col-md-6 col-sm-12 text-center text-md-left">
+                                <div class="media">
+                                    <!-- <img src="../../../assets/img/logos/logo-big-black.png" alt="company logo"
+                                        width="80" height="80"> -->
+                                    <div class="media-body">
+                                        <ul class="ml-2 px-0 list-unstyled">
+                                            <li class="text-bold-800">{{ obj.Applicant }}</li>
+                                            <li>{{ obj.Address }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="invoice-customer-details" class="row pt-2">
+                            <div class="col-sm-12 text-left">
+                                <p class="text-muted">Dear {{ obj.Applicant }},</p>
+                            </div>
+                        </div>
+
+                        <div id="invoice-items-details" class="pt-2">
+                            <div class="row">
+                                <div class="table-responsive col-sm-12">
+                                    <div style="text-align: center; margin-bottom: 25px;"><strong><u>PROVISIONAL OFFER
+                                                OF EMPLOYMENT</u></strong></div>
+                                </div>
+                                <p>With reference to your application for employment letter dated
+                                    <strong><i>{{ obj.DateofApplication | date: 'MMMM d, y' }}</i></strong>, we are
+                                    pleased to inform you that, you have been offered a provisional appointment for the
+                                    stated duration.</p>
+                                <br>
+                                <p style="white-space: pre-line;" class="col-md-12">Your remuneration are as follows:
+                                </p>
+                                <ol class="col-md-12 col-sm-12">
+                                    <li>
+                                        <p>Position: <strong>{{ obj.DesignationName }}</strong></p>
+                                    </li>
+                                    <li>
+                                        <p>Place of engagement: {{ obj.BranchName }}</p>
+                                    </li>
+                                    <li>
+                                        <p>Date of engagement: {{ obj.OfferDate | date: 'MMMM d, y' }}</p>
+                                    </li>
+                                    <li class="col-md-12 col-sm-12">
+                                        <p>Remuneration:</p>
+                                        <div class="col-md-10 col-sm-10">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Basic Salary Per Month</td>
+                                                            <td class="text-right">₦
+                                                                {{ obj.MonthlySalary | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Housing Allowance</td>
+                                                            <td class="text-right">₦ {{ obj.HousingAllowance | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Transport Allowance</td>
+                                                            <td class="text-right">₦ {{ obj.TransportAllowance | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Utility Allowance</td>
+                                                            <td class="text-right">₦ {{ obj.UtilityAllowance | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Meal Subsidy</td>
+                                                            <td class="text-right">₦ {{ obj.MealSubsidy | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <!-- <tr>
+                                                            <td>Payment Made</td>
+                                                            <td class="pink text-right">(-) ₦ 4,688.00</td>
+                                                        </tr> -->
+                                                        <tr class="bg-grey bg-lighten-4">
+                                                            <td class="text-bold-800"><strong>Sub Total</strong></td>
+                                                            <td class="text-bold-800 text-right">₦ {{ obj.Subtotal | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Fixed Over Time</td>
+                                                            <td class="text-right">₦ {{ obj.FixedOverTime | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                        <tr class="bg-grey bg-lighten-4">
+                                                            <td class="text-bold-800"><strong>Grand Total</strong></td>
+                                                            <td class="text-bold-800 text-right">₦ {{ obj.GrandTotal | number:'1.2-2' }}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <p>Other terms and conditions not mentioned here will be as contained in the
+                                            Company's Handbook on Conditions of Service for Senior Staff.</p>
+                                    </li>
+                                </ol>
+
+                                <br>
+                                <p>Kindly acknowledge receipt/acceptance of this letter by signing it's duplicated copy.
+                                </p>
+
+                                <br>
+                                <br>
+                                <p>Thank you.</p>
+
+                                <p>Yours faithfully,</p>
+
+                                <p><strong>T.E.A.M.:</strong> Technics Engineering Architecture Marketing (Nig.) Limited
+                                </p>
+
+                                <br>
+                                <p>Human Resource (HR) Department</p>
+                            </div>
+                        </div>
+                        <div id="invoice-footer">
+                            <div class="row">
+                                <hr>
+                                <div class="col-md-12 col-sm-12 text-center mt-5 d-print-none">
+                                    <button type="button" class="btn btn-primary btn-raised my-1 mr-2" (click)="sendOfferLetter()"><i
+                                            class="fa fa-paper-plane-o d-print-none"></i> Send offer letter</button>
+                                    <button (click)="onPrint()" type="button" class="btn btn-primary btn-raised my-1 mr-2 d-print-none"><i
+                                            class="fa fa-print"></i> Print offer letter</button>
+                                    <button type="button" class="btn btn-danger btn-raised my-1 d-print-none"
+                                        (click)="resetForm()"><i class="fa fa-window-close"></i> Cancel </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="content-body" *ngIf="!displayForm">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">Job Offer</h4>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="id" caption="#" [width]="50"></dxi-column>
+                                    <dxi-column dataField="Title" caption="Job Title">
+                                    </dxi-column>
+                                    <dxi-column dataField="Applicant" caption="Applicant">
+                                    </dxi-column>
+                                    <dxi-column dataField="DesignationName" caption="Designation">
+                                    </dxi-column>
+                                    <dxi-column dataField="OfferDate" caption="Offer Date">
+                                    </dxi-column>
+
+                                    <!-- <dxi-column type="buttons">
+                                        <dxi-button text="Comment" [onClick]="process"></dxi-button>
+                                    </dxi-column> -->
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="View" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

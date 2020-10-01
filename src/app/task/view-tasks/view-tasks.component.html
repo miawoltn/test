@@ -1,0 +1,28 @@
+<div id="kanban">
+    <dx-scroll-view class="scrollable-board" direction="horizontal" showScrollbar="always">
+        <dx-sortable class="sortable-lists" itemOrientation="horizontal" handle=".list-title">
+            <div class="list" *ngFor="let list of lists; let listIndex = index">
+                <div class="list-title dx-theme-text-color"  style="background: {{statuses[listIndex].color}}">{{ statuses[listIndex].TaskStatus }}</div>
+                <dx-scroll-view class="scrollable-list" direction="vertical" showScrollbar="always">
+                    <dx-sortable class="sortable-cards" group="cardsGroup" [data]="list">
+                        <div class="card dx-card dx-theme-text-color dx-theme-background-color"
+                            *ngFor="let task of list">
+                            <div class="card-priority" style="background: {{task.color}}"></div>
+                            <div class="card-subject">{{task.Task}}</div>
+                            <div class="card-assignee">{{task.FullName}}</div>
+                            <div>
+                                <button type="button" *ngIf="task.TaskStatusID == 1" class="btn btn-default" (click)="acceptTask(task)"><i class="fa fa-edit"></i>Accept Task</button>
+                                <button type="button" class="btn btn-default" (click)="viewItem(task)"><i class="fa fa-edit"></i>View</button>
+                                <!-- <button type="button" class="btn btn-default" (click)="loadItem(task)"><i class="fa fa-edit"></i>View</button> -->
+                                <button type="button" *ngIf="task.TaskStatusID != 1" class="btn btn-default" (click)="loadNoteItem(task)"><i class="fa fa-edit"></i>Feedback</button>
+                            </div>
+                        </div>
+                    </dx-sortable>
+                </dx-scroll-view>
+            </div>
+        </dx-sortable>
+    </dx-scroll-view>
+
+</div>
+<dx-speed-dial-action icon="add" hint="Add New" (onClick)="addTask()">
+</dx-speed-dial-action>

@@ -1,0 +1,236 @@
+<h3 mat-dialog-title><b>Vacancy information</b></h3>
+<div mat-dialog-content class="mat-typography">
+    <form>
+        <div class="panel-body" style="max-height:fit-content">
+            <!-- <section id="user-profile">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card profile-with-cover">
+                            <div class="card-img-top img-fluid bg-cover height-300"
+                                style="background: url('../../../assets//img/photos/14.jpg') 50%;"></div>
+                            <div class="media profil-cover-details row">
+                                <div class="col-1">
+                                    <div class="align-self-center halfway-fab text-center">
+                                        <a *ngIf="obj.applicant.Photo == null" class="profile-image">
+                                            <img src="../../../assets/img/can-5.jpg"
+                                                class="rounded-circle img-border gradient-summer w-150" alt="Card image">
+                                        
+                                        <a *ngIf="obj.applicant.Photo != null" class="profile-image">
+                                            <img src="{{API_URL2}}{{obj.applicant.Photo}}"
+                                                class="rounded-circle img-border gradient-summer w-150" alt="Card image">
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-5 pad-t" style="margin-left: 29px;">
+                                    <p class="m-b"><span class="text-bold-500 trackhub-blue">{{ obj.applicant.Applicant }},
+                                                {{ obj.applicant.Age }}</span></p>
+                                    <p><span>{{ obj.applicant.Email }}</span></p>
+                                </div>
+                                <div class="profile-cover-buttons">
+                                    <div class="media-body halfway-fab align-self-end">
+                                        <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                                            <a *ngIf="obj.applicant.ApplicantCV != null"
+                                                href="{{API_URL2}}{{obj.applicant.ApplicantCV}}"
+                                                class="btn btn-primary btn-raised mr-2" target="_blank"
+                                                style="background-color: #15537d;">View CV
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <section id="about">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><strong>Basic Information</strong></h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+
+                                    <div class="row">
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <ul class="no-list-style">
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Vacancy Title:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.Title }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Available Slots:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.Slots }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Years of
+                                                        Experience:</span>
+                                                    <span
+                                                        class="d-block overflow-hidden">{{ obj.YearsofExperience }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Employment Type:</span>
+                                                    <span
+                                                        class="d-block overflow-hidden">{{ obj.EmploymentType }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">State:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.state }}</span>
+                                                </li>
+
+                                                <!-- <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">
+                                                        Full:
+                                                    </span>
+                                                    <span class="d-block overflow-hidden">{{ obj.Title }}</span>
+                                                </li> -->
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <ul class="no-list-style">
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Reference No:.:</span>
+                                                    <span class="d-block overflow-hidden">ref-{{ obj.VacancyID }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Role:</span>
+                                                    <span
+                                                        class="d-block overflow-hidden">{{ obj.DesignationName }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Qualification:</span>
+                                                    <span
+                                                        class="d-block overflow-hidden">{{ obj.QualificationName }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Address:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.BranchName }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Country:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.Name }}</span>
+                                                </li>
+
+                                                <!-- <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">
+                                                        Full:
+                                                    </span>
+                                                    <span class="d-block overflow-hidden">{{ obj.Title }}</span>
+                                                </li> -->
+
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <ul class="no-list-style">
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Location:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.BranchName }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Level of
+                                                        Experience:</span>
+                                                    <span
+                                                        class="d-block overflow-hidden">{{ obj.ExperienceLevel }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Job Type:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.ContractType }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">City:</span>
+                                                    <span class="d-block overflow-hidden">{{ obj.local_govt }}</span>
+                                                </li>
+
+                                                <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">Email:</span>
+                                                    <span class="d-block overflow-hidden">jobs@teamnigeria.com</span>
+                                                </li>
+
+                                                <!-- <li class="mb-2">
+                                                    <span class="text-bold-500 trackhub-blue">
+                                                        Full:
+                                                    </span>
+                                                    <span class="d-block overflow-hidden">{{ obj.Title }}</span>
+                                                </li> -->
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><strong>Job Summary</strong></h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div style="padding: 25px" [innerHTML]="obj.Introduction"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><strong>Job Requirements</strong></h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div style="padding: 25px" [innerHTML]="obj.JobDescription"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><strong>Job Description</strong></h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body">
+                                    <div style="padding: 25px" [innerHTML]="obj.JobRequirements"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button class="btn btn-danger" (click)="onNoClick()">Close</button> &nbsp;
+</div>

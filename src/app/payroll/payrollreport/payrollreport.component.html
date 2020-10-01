@@ -1,0 +1,352 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="GrossPay"
+                                                    [class.text-danger]="GrossPay.invalid &amp;&amp; GrossPay.touched">Gross Pay</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="GrossPay"
+                                                    name="GrossPay" #GrossPay="ngModel"
+                                                    [(ngModel)]="obj.GrossPay"
+                                                    [class.is-invalid]="GrossPay.invalid &amp;&amp; GrossPay.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Gross Pay..."
+                                                    required>
+                                                <div *ngIf="GrossPay.invalid &amp;&amp; GrossPay.touched">
+                                                    <small *ngIf="GrossPay.errors?.required"
+                                                        class="text-danger">Gross Pay is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="OtherAllowance"
+                                                    [class.text-danger]="OtherAllowance.invalid &amp;&amp; OtherAllowance.touched">OtherAllowance</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="OtherAllowance"
+                                                    name="OtherAllowance" #OtherAllowance="ngModel"
+                                                    [(ngModel)]="obj.OtherAllowance"
+                                                    [class.is-invalid]="OtherAllowance.invalid &amp;&amp; OtherAllowance.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter OtherAllowance..."
+                                                    required>
+                                                <div *ngIf="OtherAllowance.invalid &amp;&amp; OtherAllowance.touched">
+                                                    <small *ngIf="OtherAllowance.errors?.required"
+                                                        class="text-danger">OtherAllowance is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="TotalIncome"
+                                                    [class.text-danger]="TotalIncome.invalid &amp;&amp; TotalIncome.touched">Total Income</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="TotalIncome"
+                                                    name="TotalIncome" #TotalIncome="ngModel"
+                                                    [(ngModel)]="obj.TotalIncome"
+                                                    [class.is-invalid]="TotalIncome.invalid &amp;&amp; TotalIncome.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Total Income..."
+                                                    required>
+                                                <div *ngIf="TotalIncome.invalid &amp;&amp; TotalIncome.touched">
+                                                    <small *ngIf="TotalIncome.errors?.required"
+                                                        class="text-danger">Total Income is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PAYE"
+                                                    [class.text-danger]="PAYE.invalid &amp;&amp; PAYE.touched">PAYE</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="PAYE"
+                                                    name="PAYE" #PAYE="ngModel"
+                                                    [(ngModel)]="obj.PAYE"
+                                                    [class.is-invalid]="PAYE.invalid &amp;&amp; PAYE.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter PAYE..."
+                                                    required>
+                                                <div *ngIf="PAYE.invalid &amp;&amp; PAYE.touched">
+                                                    <small *ngIf="PAYE.errors?.required"
+                                                        class="text-danger">PAYE is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Pension"
+                                                    [class.text-danger]="Pension.invalid &amp;&amp; Pension.touched">Pension</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Pension"
+                                                    name="Pension" #Pension="ngModel"
+                                                    [(ngModel)]="obj.Pension"
+                                                    [class.is-invalid]="Pension.invalid &amp;&amp; Pension.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Pension..."
+                                                    required>
+                                                <div *ngIf="Pension.invalid &amp;&amp; Pension.touched">
+                                                    <small *ngIf="Pension.errors?.required"
+                                                        class="text-danger">Pension is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Rent"
+                                                    [class.text-danger]="Rent.invalid &amp;&amp; Rent.touched">Rent</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Rent"
+                                                    name="Rent" #Rent="ngModel"
+                                                    [(ngModel)]="obj.Rent"
+                                                    [class.is-invalid]="Rent.invalid &amp;&amp; Rent.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Rent..."
+                                                    required>
+                                                <div *ngIf="Rent.invalid &amp;&amp; Rent.touched">
+                                                    <small *ngIf="Rent.errors?.required"
+                                                        class="text-danger">Rent is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StaffLoan"
+                                                    [class.text-danger]="StaffLoan.invalid &amp;&amp; StaffLoan.touched">Staff Loan</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="StaffLoan"
+                                                    name="StaffLoan" #StaffLoan="ngModel"
+                                                    [(ngModel)]="obj.StaffLoan"
+                                                    [class.is-invalid]="StaffLoan.invalid &amp;&amp; StaffLoan.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Staff Loan..."
+                                                    required>
+                                                <div *ngIf="StaffLoan.invalid &amp;&amp; StaffLoan.touched">
+                                                    <small *ngIf="StaffLoan.errors?.required"
+                                                        class="text-danger">Staff Loan is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Lateness"
+                                                    [class.text-danger]="Lateness.invalid &amp;&amp; Lateness.touched">Lateness</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="Lateness"
+                                                    name="Lateness" #Lateness="ngModel"
+                                                    [(ngModel)]="obj.Lateness"
+                                                    [class.is-invalid]="Lateness.invalid &amp;&amp; Lateness.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Lateness..."
+                                                    required>
+                                                <div *ngIf="Lateness.invalid &amp;&amp; Lateness.touched">
+                                                    <small *ngIf="Lateness.errors?.required"
+                                                        class="text-danger">Lateness is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="OtherDeduction"
+                                                    [class.text-danger]="OtherDeduction.invalid &amp;&amp; OtherDeduction.touched">Other Deduction</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="OtherDeduction"
+                                                    name="OtherDeduction" #OtherDeduction="ngModel"
+                                                    [(ngModel)]="obj.OtherDeduction"
+                                                    [class.is-invalid]="OtherDeduction.invalid &amp;&amp; OtherDeduction.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Other Deduction..."
+                                                    required>
+                                                <div *ngIf="OtherDeduction.invalid &amp;&amp; OtherDeduction.touched">
+                                                    <small *ngIf="OtherDeduction.errors?.required"
+                                                        class="text-danger">Other Deduction is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="TotalDeduction"
+                                                    [class.text-danger]="TotalDeduction.invalid &amp;&amp; TotalDeduction.touched">Total Deduction</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="TotalDeduction"
+                                                    name="TotalDeduction" #TotalDeduction="ngModel"
+                                                    [(ngModel)]="obj.TotalDeduction"
+                                                    [class.is-invalid]="TotalDeduction.invalid &amp;&amp; TotalDeduction.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Total Deduction..."
+                                                    required>
+                                                <div *ngIf="TotalDeduction.invalid &amp;&amp; TotalDeduction.touched">
+                                                    <small *ngIf="TotalDeduction.errors?.required"
+                                                        class="text-danger">Total Deduction is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="NetPay"
+                                                    [class.text-danger]="NetPay.invalid &amp;&amp; NetPay.touched">Net Pay</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="NetPay"
+                                                    name="NetPay" #NetPay="ngModel"
+                                                    [(ngModel)]="obj.NetPay"
+                                                    [class.is-invalid]="NetPay.invalid &amp;&amp; NetPay.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Net Pay..."
+                                                    required>
+                                                <div *ngIf="NetPay.invalid &amp;&amp; NetPay.touched">
+                                                    <small *ngIf="NetPay.errors?.required"
+                                                        class="text-danger">Net Pay is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ModiifiedBy"
+                                                    [class.text-danger]="ModiifiedBy.invalid &amp;&amp; ModiifiedBy.touched">Modiified By</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ModiifiedBy"
+                                                    name="ModiifiedBy" #ModiifiedBy="ngModel"
+                                                    [(ngModel)]="obj.ModiifiedBy"
+                                                    [class.is-invalid]="ModiifiedBy.invalid &amp;&amp; ModiifiedBy.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Modiified By..."
+                                                    required>
+                                                <div *ngIf="ModiifiedBy.invalid &amp;&amp; ModiifiedBy.touched">
+                                                    <small *ngIf="ModiifiedBy.errors?.required"
+                                                        class="text-danger">Modiified By is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Payrollreport</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="GrossPay"
+                                        caption="Gross Pay">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="OtherAllowance"
+                                        caption="OtherAllowance">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="TotalIncome"
+                                        caption="Total Income">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PAYE"
+                                        caption="PAYE">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Pension"
+                                        caption="Pension">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Rent"
+                                        caption="Rent">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StaffLoan"
+                                        caption="Staff Loan">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="Lateness"
+                                        caption="Lateness">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="OtherDeduction"
+                                        caption="Other Deduction">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="TotalDeduction"
+                                        caption="Total Deduction">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="NetPay"
+                                        caption="Net Pay">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ModiifiedBy"
+                                        caption="Modiified By">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

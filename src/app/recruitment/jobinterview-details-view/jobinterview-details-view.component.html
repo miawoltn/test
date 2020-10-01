@@ -1,0 +1,310 @@
+<div class="content-body" *ngIf="displayForm1">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6"> 
+                                            <div class="form-group">
+                                                <label for="AnnualSalary"
+                                                    [class.text-danger]="AnnualSalary.invalid &amp;&amp; AnnualSalary.touched">Annual
+                                                    Salary</label><i class="text-danger">*</i>
+                                                <input type="number" id="AnnualSalary" name="AnnualSalary"
+                                                    #AnnualSalary="ngModel" [(ngModel)]="obj.AnnualSalary"
+                                                    [class.is-invalid]="AnnualSalary.invalid &amp;&amp; AnnualSalary.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." required>
+                                                <div *ngIf="AnnualSalary.invalid &amp;&amp; AnnualSalary.touched">
+                                                    <small *ngIf="AnnualSalary.errors?.required"
+                                                        class="text-danger">Annual Salary is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="OtherVariables"
+                                                    [class.text-danger]="OtherVariables.invalid &amp;&amp; OtherVariables.touched">Other
+                                                    Variables</label><i class="text-danger">*</i>
+                                                <input type="text" id="OtherVariables" name="OtherVariables"
+                                                    #OtherVariables="ngModel" [(ngModel)]="obj.OtherVariables"
+                                                    [class.is-invalid]="OtherVariables.invalid &amp;&amp; OtherVariables.touched"
+                                                    class="form-control" placeholder="Enter Other Variables..."
+                                                    required>
+                                                <div *ngIf="OtherVariables.invalid &amp;&amp; OtherVariables.touched">
+                                                    <small *ngIf="OtherVariables.errors?.required"
+                                                        class="text-danger">Other Variables is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="OfferDate"
+                                                    [class.text-danger]="OfferDate.invalid &amp;&amp; OfferDate.touched">Offer
+                                                    Date</label><i class="text-danger">*</i>
+                                                <input type="date" id="OfferDate" name="OfferDate" #OfferDate="ngModel"
+                                                    [(ngModel)]="obj.OfferDate"
+                                                    [class.is-invalid]="OfferDate.invalid &amp;&amp; OfferDate.touched"
+                                                    class="form-control" placeholder="Enter Offer Date..." required>
+                                                <div *ngIf="OfferDate.invalid &amp;&amp; OfferDate.touched">
+                                                    <small *ngIf="OfferDate.errors?.required" class="text-danger">Offer
+                                                        Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DesignationID"
+                                                    [class.text-danger]="DesignationID.invalid &amp;&amp; DesignationID.touched">Designation
+                                                    </label><i class="text-danger">*</i>
+                                                    <ng-select id="DesignationID"
+                                                    name="DesignationID" #DesignationID="ngModel"
+                                                    [(ngModel)]="obj.DesignationID"
+                                                    [class.is-invalid]="DesignationID.invalid &amp;&amp; DesignationID.touched"
+                                                    placeholder="Select Designation..."
+                                                    required [items]="Designation" bindValue="id" bindLabel="DesignationName"></ng-select>
+                                                <div *ngIf="DesignationID.invalid &amp;&amp; DesignationID.touched">
+                                                    <small *ngIf="DesignationID.errors?.required"
+                                                        class="text-danger">Designation is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body" *ngIf="displayForm2">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">PROCESS INTERVIEW</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6"> 
+                                            <div class="form-group">
+                                                <label for="Title"
+                                                    [class.text-danger]="Title.invalid &amp;&amp; Title.touched">Job
+                                                    Ttile</label><i class="text-danger">*</i>
+                                                <input type="text" id="Title" name="Title"
+                                                    #Title="ngModel" [(ngModel)]="applicant.Title"
+                                                    [class.is-invalid]="Title.invalid &amp;&amp; Title.touched"
+                                                    class="form-control" placeholder="Enter Annual Salary..." readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Applicant"
+                                                    [class.text-danger]="Applicant.invalid &amp;&amp; Applicant.touched">Applicant</label><i class="text-danger">*</i>
+                                                <input type="text" id="Applicant" name="Applicant"
+                                                    #Applicant="ngModel" [(ngModel)]="applicant.Applicant"
+                                                    [class.is-invalid]="Applicant.invalid &amp;&amp; Applicant.touched"
+                                                    class="form-control" placeholder="Enter Other Variables..." readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Venue"
+                                                    [class.text-danger]="Venue.invalid &amp;&amp; Venue.touched">Venue</label><i class="text-danger">*</i>
+                                                <input type="text" id="Venue" name="Venue"
+                                                    #Venue="ngModel" [(ngModel)]="applicant.Venue"
+                                                    [class.is-invalid]="Venue.invalid &amp;&amp; Venue.touched"
+                                                    class="form-control" placeholder="Enter Other Variables..." readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RequirementStage"
+                                                    [class.text-danger]="RequirementStage.invalid &amp;&amp; RequirementStage.touched">Requirement Stage</label><i class="text-danger">*</i>
+                                                <input type="text" id="RequirementStage" name="RequirementStage"
+                                                    #RequirementStage="ngModel" [(ngModel)]="applicant.RequirementStage"
+                                                    [class.is-invalid]="RequirementStage.invalid &amp;&amp; RequirementStage.touched"
+                                                    class="form-control" placeholder="Enter Other Variables..." readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="InterviewedBy"
+                                                    [class.text-danger]="InterviewedBy.invalid &amp;&amp; InterviewedBy.touched">Interviewed By</label><i class="text-danger">*</i>
+                                                <input type="text" id="InterviewedBy" name="InterviewedBy"
+                                                    #InterviewedBy="ngModel" [(ngModel)]="applicant.InterviewedBy"
+                                                    [class.is-invalid]="InterviewedBy.invalid &amp;&amp; InterviewedBy.touched"
+                                                    class="form-control" placeholder="Enter Other Variables..." readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="Attachment">Attachment</label><i class="text-danger">*</i>
+                                                <br>
+                                                    <input type="file" id="Attachment" name="Attachment" #Attachment="ngModel"
+                                                    [(ngModel)]="applicant.Attachment"
+                                                    [class.is-invalid]="Attachment.invalid &amp;&amp; Attachment.touched"
+                                                    placeholder="Enter Dead Line..." (change)="handleFileInputIdentification($event)">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <a class="btn btn-primary mr-2" (click)="openDialog(ApplicantID)">View Applicant's Profile</a>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <label for="InterviewNote" [class.text-danger]="InterviewNote.invalid &amp;&amp; InterviewNote.touched">Interview Remark</label><i class="text-danger">*</i>
+                                                    <textarea id="InterviewNote" name="InterviewNote" #InterviewNote="ngModel"
+                                                    [(ngModel)]="applicant.InterviewNote"
+                                                    [class.is-invalid]="InterviewNote.invalid &amp;&amp; InterviewNote.touched"
+                                                    class="form-control" placeholder="Interview remark..." required cols="10" rows="3"></textarea>
+                                                <div *ngIf="InterviewNote.invalid &amp;&amp; InterviewNote.touched">
+                                                    <small *ngIf="InterviewNote.errors?.required" class="text-danger">Offer
+                                                        Date is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for="isConfidential" class="col-form-label">Is Present?</label>
+                                                <div class="kt-radio-inline">
+                                                    <mat-radio-group aria-label="Select an option" name="isConfidential"
+                                                        #isConfidential="ngModel" [(ngModel)]="applicant.isPresent">
+                                                        <mat-radio-button [value]="1">Yes</mat-radio-button>
+                                                        <mat-radio-button [value]="0">No</mat-radio-button>
+                                                    </mat-radio-group>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for="Recommend" class="col-form-label">Recommend for job?</label>
+                                                <div class="kt-radio-inline">
+                                                    <mat-radio-group aria-label="Select an option" name="Recommend"
+                                                        #Recommend="ngModel" [(ngModel)]="applicant.Recommend">
+                                                        <mat-radio-button [value]="1">Yes</mat-radio-button>
+                                                        <mat-radio-button [value]="0">No</mat-radio-button>
+                                                    </mat-radio-group>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Job Interviews Detail</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button"
+                                routerLink="/recruitment/jobinterview"><span class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column dataField="Title" caption="Job Vacancy">
+                                    </dxi-column>
+                                    <dxi-column dataField="Applicant" caption="Applicant">
+                                    </dxi-column>
+                                    <dxi-column dataType="date" format="MMMM d, yyy HH:mm:ss" dataField="InterviewDate" caption="Interview Date">
+                                    </dxi-column>
+                                    <dxi-column dataField="InterviewedBy" caption="Interviewed By">
+                                    </dxi-column>
+                                    <dxi-column dataField="RequirementStage" caption="Recruitment Stage">
+                                    </dxi-column>
+                                    <!-- <dxi-column dataField="Location" caption="Location">
+                                    </dxi-column>
+                                    <dxi-column dataField="InterviewDate" caption="Recruitment Status ID">
+                                    </dxi-column> -->
+                                    
+                                    <!-- <dxi-column dataField="CV" caption="CV">
+                                    </dxi-column> -->
+
+                                    <dxi-column type="buttons">
+                                        <dxi-button text="Comment" [onClick]="process"></dxi-button>
+                                    </dxi-column>
+                                    <!-- <dxi-column type="buttons">
+                                        <dxi-button text="Create Offer" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column> -->
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

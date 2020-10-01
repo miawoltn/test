@@ -1,0 +1,651 @@
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" id="baseIcon-tab1" data-toggle="tab" aria-controls="tab1" href="#tab1"
+                    aria-expanded="true">Project Info</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="baseIcon-tab2" data-toggle="tab" aria-controls="tab2" href="#tab2"
+                    aria-expanded="false">Project Risk</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="baseIcon-tab6" data-toggle="tab" aria-controls="tab6" href="#tab6"
+                    aria-expanded="false">Project MileStone</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="baseIcon-tab2" data-toggle="tab" aria-controls="tab3" href="#tab3"
+                    aria-expanded="false">Project Task</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tab5" href="#tab5"
+                    aria-expanded="false">Project Team</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="baseIcon-tab3" data-toggle="tab" aria-controls="tab4" href="#tab4"
+                    aria-expanded="false">Project Tools</a>
+                </li>
+              </ul>
+              <div class="tab-content px-1 pt-1">
+                <div role="tabpanel" class="tab-pane active" id="tab1" aria-expanded="true"
+                  aria-labelledby="baseIcon-tab1">
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()" *ngIf="!isEditableEmployee">
+                    <div class="form-body">
+                      <div class="row">
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Customer Name:</span>
+                          <span class="d-block overflow-hidden">{{ project.CustomerName }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Type:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectType }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Status:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectStatus }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Duration:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectDuration }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Budget:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectApprovedBudget }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Location:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectLocation }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Description:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectDescription }}</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="text-bold-500 primary">Project Award Date:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectAwardDate }}</span>
+                        </div>
+                        <div class="col-4">
+                          <span class="text-bold-500 primary">Project Start Date:</span>
+                          <span class="d-block overflow-hidden">{{ project.ProjectStartDate }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()" *ngIf="isEditableEmployee">
+                    <div class="form-body">
+                      <div class="row">
+
+
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                        {{operation}}
+                      </button>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="tab-pane" id="tab2" aria-labelledby="baseIcon-tab2">
+                  <form class="form" role="form" *ngIf="!isEditableRisk">
+                    <div class="form-body">
+                      <div *ngIf="projectRisks.length == 0" class="row">
+                        <div class="col-12">
+                          <div class="card text-center">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <!-- <img src="../../../assets/img/gallery/hr.svg" class="modimg"> -->
+                                <h4 class="modt">Project Rist Evaluation</h4>
+                                <p class="card-text">There are no project risks.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="projectRisks.length > 0" class="row">
+                        <div class="col-12" *ngFor="let projectRisk of projectRisks, index as i">
+                          <div class="row">
+                            <div class="col-1 number-class">{{ i + 1 }}.</div>
+                            <div class="col-5">
+                              <span class="text-bold-500 primary">Risk:</span>
+                              <span class="d-block overflow-hidden">{{ projectRisk.Risk }}</span>
+                            </div>
+                            <div class="col-5">
+                              <span class="text-bold-500 primary">Mitigant:</span>
+                              <span class="d-block overflow-hidden">{{ projectRisk.RiskMitigant }}</span>
+                            </div>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-primary" (click)="editRisk()">
+                        Add Risk
+                      </button>
+                    </div>
+                  </form>
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processProjectRisk()"
+                    *ngIf="isEditableRisk">
+                    <div class="form-body">
+                      <div class="row" *ngFor="let project of projects, index as i">
+                        <div class="col-md-1 col-lg-1 col-sm-1 number-class">
+                          <br>
+                          {{i + 1}}.
+                        </div>
+                        <div class="col-md-5 col-lg-5 col-sm-5">
+                          <div class="form-group">
+                            <label for="RiskID"
+                              [class.text-danger]="RiskID.invalid &amp;&amp; RiskID.touched">Risk</label><i
+                              class="text-danger">*</i>
+                            <ng-select [items]="Risks" bindLabel="Risk" bindValue="id" #RiskID="ngModel"
+                              name="RiskID{{i}}" [(ngModel)]="project.RiskID"
+                              [class.is-invalid]="RiskID.invalid &amp;&amp; RiskID.touched"
+                              placeholder="Select Risk..." (change)="filterRiskMitigants($event)" required>
+                            </ng-select>
+                            <div *ngIf="RiskID.invalid &amp;&amp; RiskID.touched">
+                              <small *ngIf="RiskID.errors?.required" class="text-danger">Risk is Required</small>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-5 col-lg-5 col-sm-5">
+                          <div class="form-group">
+                            <label for="RiskMitigantID"
+                              [class.text-danger]="RiskMitigantID.invalid &amp;&amp; RiskMitigantID.touched">Risk
+                              Mitigants</label><i class="text-danger">*</i>
+                            <ng-select [items]="RiskMitigants" bindValue="RiskMitigantID" bindLabel="RiskMitigant"
+                              id="RiskMitigantID" name="RiskMitigantID{{i}}" #RiskMitigantID="ngModel"
+                              [(ngModel)]="project.RiskMitigantID"
+                              [class.is-invalid]="RiskMitigantID.invalid &amp;&amp; RiskMitigantID.touched"
+                              placeholder="Select Risk Mitigant..." required>
+                            </ng-select>
+                            <div *ngIf="RiskMitigantID.invalid &amp;&amp; RiskMitigantID.touched">
+                              <small *ngIf="RiskMitigantID.errors?.required" class="text-danger">Risk Mitigants is
+                                Required</small>
+                            </div>
+                          </div>
+                        </div>
+                        <div *ngIf="projects.length > 1" class="col-md-1 col-lg-1 col-sm-1">
+                          <label>Action</label>
+                          <button class="btn btn-danger btn-sm" type="button"
+                            (click)="removeProjectRisk(i)">Remove</button>
+                        </div>
+                      </div>
+                      <div class="right">
+                        <button class="btn btn-primary btn-sm mr-1" type="button" (click)="addProjectRisk()">Add
+                          Row</button>
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-warning mr-1" (click)="resetProjectRisk()">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- begin Project Milestone section -->
+                <div class="tab-pane" id="tab6" aria-labelledby="baseIcon-tab6">
+                  <form class="form" role="form" #form="ngForm" *ngIf="!isEditableProjectMilestone">
+                    <div class="form-body">
+                      <div *ngIf="projectMilestones.length === 0" class="row">
+                        <div class="col-12">
+                          <div class="card text-center">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <!-- <img src="../../../assets/img/gallery/hr.svg" class="modimg"> -->
+                                <h4 class="modt">Project MileStone</h4>
+                                <p class="card-text">There are no project milestones.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="projectMilestones.length > 0" class="row">
+                        <div class="col-12" *ngFor="let projectMilestone of projectMilestones, index as i">
+                          <div class="col-md-12 col-lg-12 col-sm-12">
+                            <!-- <br> -->
+                            {{i + 1}}.
+                          </div>
+                          <div class="row" style="margin-left: 1.5rem;">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Project Description:</span>
+                              <span class="d-block overflow-hidden">{{ projectMilestone.ProjectDescription }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Milestone:</span>
+                              <span class="d-block overflow-hidden">{{ projectMilestone.Milestone }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Start Date:</span>
+                              <span class="d-block overflow-hidden">{{ projectMilestone.StartDate }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">End Date:</span>
+                              <span class="d-block overflow-hidden">{{ projectMilestone.EndDate }}</span>
+                            </div>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-primary" (click)="editProjectMileStone()">
+                        Add Project MileStone
+                      </button>
+                    </div>
+                  </form>
+                  <!-- begin edit project milestone section -->
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processProjectMilestone()"
+                    *ngIf="isEditableProjectMilestone">
+                    <div class="row" *ngFor="let milestone of projectMilestoneList, index as i">
+                      <div class="col-md-1 col-lg-1 col-sm-1 number-class">
+                        <br>
+                        {{i + 1}}.
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="Milestone"
+                            [class.text-danger]="Milestone.invalid &amp;&amp; Milestone.touched">Milestone
+                            Title</label><i class="text-danger">*</i>
+                          <input type="text" id="Milestone" name="Milestone{{i}}" #Milestone="ngModel"
+                            [(ngModel)]="milestone.Milestone"
+                            [class.is-invalid]="Milestone.invalid &amp;&amp; Milestone.touched" class="form-control"
+                            placeholder="Enter Milestone..." required>
+                          <div *ngIf="Milestone.invalid &amp;&amp; Milestone.touched">
+                            <small *ngIf="Milestone.errors?.required" class="text-danger">Milestone Title is
+                              Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="StartDate"
+                            [class.text-danger]="StartDate.invalid &amp;&amp; StartDate.touched">Start
+                            Date</label><i class="text-danger">*</i>
+                          <input type="date" id="StartDate" name="StartDate{{i}}" #StartDate="ngModel"
+                            [(ngModel)]="milestone.StartDate"
+                            [class.is-invalid]="StartDate.invalid &amp;&amp; StartDate.touched" class="form-control"
+                            placeholder="Enter Start Date..." required>
+                          <div *ngIf="StartDate.invalid &amp;&amp; StartDate.touched">
+                            <small *ngIf="StartDate.errors?.required" class="text-danger">Start
+                              Date is
+                              Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="EndDate" [class.text-danger]="EndDate.invalid &amp;&amp; EndDate.touched">End
+                            Date</label><i class="text-danger">*</i>
+                          <input type="date" id="EndDate" name="EndDate{{i}}" #EndDate="ngModel"
+                            [(ngModel)]="milestone.EndDate"
+                            [class.is-invalid]="EndDate.invalid &amp;&amp; EndDate.touched" class="form-control"
+                            placeholder="Enter End Date..." required>
+                          <div *ngIf="EndDate.invalid &amp;&amp; EndDate.touched">
+                            <small *ngIf="EndDate.errors?.required" class="text-danger">End Date is Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="projectMilestoneList.length > 1" class="col-md-1 col-lg-1 col-sm-1">
+                        <label for="action">Action</label>
+                        <button class="btn btn-danger btn-sm" type="button"
+                          (click)="removeProjectMilestone(i)">Remove</button>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <button class="btn btn-primary btn-sm mr-1" type="button" (click)="addProjectMilestone()">Add
+                        Row</button>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-warning mr-1" (click)="resetProjectMilestoneList()">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- begin project task section -->
+                <div class="tab-pane" id="tab3" aria-labelledby="baseIcon-tab2">
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()" *ngIf="!isEditableTask">
+                    <div class="form-body">
+                      <div *ngIf="projectTasks.length === 0" class="row">
+                        <div class="col-12">
+                          <div class="card text-center">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <!-- <img src="../../../assets/img/gallery/hr.svg" class="modimg"> -->
+                                <h4 class="modt">Project Task Evaluation</h4>
+                                <p class="card-text">There are no project tasks.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="projectTasks.length > 0" class="row">
+                        <div class="col-12" *ngFor="let projectTask of projectTasks, index as i">
+                          <div class="col-md-12 col-lg-12 col-sm-12">
+                            <!-- <br> -->
+                            {{i + 1}}.
+                          </div>
+                          <div class="row" style="margin-left: 1.5rem;">
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Project Description:</span>
+                              <span class="d-block overflow-hidden">{{ projectTask.ProjectDescription }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Milestone:</span>
+                              <span class="d-block overflow-hidden">{{ projectTask.Milestone }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Task:</span>
+                              <span class="d-block overflow-hidden">{{ projectTask.Task }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">Start Date:</span>
+                              <span class="d-block overflow-hidden">{{ projectTask.StartDate }}</span>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6">
+                              <span class="text-bold-500 primary">End Date:</span>
+                              <span class="d-block overflow-hidden">{{ projectTask.EndDate }}</span>
+                            </div>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-primary" (click)="editTask()">
+                        Add Task
+                      </button>
+                    </div>
+                  </form>
+
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processProjectTask()"
+                    *ngIf="isEditableTask">
+                    <div class="row" *ngFor="let project of projectTasksList, index as i">
+                      <div class="col-md-12 col-lg-12 col-sm-12">{{i + 1}}</div>
+                      <br>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="ProjectMilestoneID"
+                            [class.text-danger]="ProjectMilestoneID.invalid &amp;&amp; ProjectMilestoneID.touched">Project
+                            Milestone</label><i class="text-danger">*</i>
+                          <ng-select [items]="projectMilestones" bindLabel="Milestone" bindValue="id"
+                            #ProjectMilestoneID="ngModel" name="ProjectMilestoneID{{i}}"
+                            [(ngModel)]="project.ProjectMilestoneID"
+                            [class.is-invalid]="ProjectMilestoneID.invalid &amp;&amp; ProjectMilestoneID.touched"
+                            placeholder="Select Project Milestone..." required>
+                          </ng-select>
+                          <div *ngIf="ProjectMilestoneID.invalid &amp;&amp; ProjectMilestoneID.touched">
+                            <small *ngIf="ProjectMilestoneID.errors?.required" class="text-danger">Project Milestone is
+                              Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="Task" [class.text-danger]="Task.invalid &amp;&amp; Task.touched">Task</label><i
+                            class="text-danger">*</i>
+                          <input type="text" id="Task" name="Task{{i}}" #Task="ngModel" [(ngModel)]="project.Task"
+                            [class.is-invalid]="Task.invalid &amp;&amp; Task.touched" class="form-control"
+                            placeholder="Enter Task..." required>
+                          <div *ngIf="Task.invalid &amp;&amp; Task.touched">
+                            <small *ngIf="Task.errors?.required" class="text-danger">Task is
+                              Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="StartDate"
+                            [class.text-danger]="StartDate.invalid &amp;&amp; StartDate.touched">Start
+                            Date</label><i class="text-danger">*</i>
+                          <input type="date" id="StartDate" name="StartDate{{i}}" #StartDate="ngModel"
+                            [(ngModel)]="project.StartDate"
+                            [class.is-invalid]="StartDate.invalid &amp;&amp; StartDate.touched" class="form-control"
+                            placeholder="Enter Start Date..." required>
+                          <div *ngIf="StartDate.invalid &amp;&amp; StartDate.touched">
+                            <small *ngIf="StartDate.errors?.required" class="text-danger">Start
+                              Date is
+                              Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="EndDate" [class.text-danger]="EndDate.invalid &amp;&amp; EndDate.touched">End
+                            Date</label><i class="text-danger">*</i>
+                          <input type="date" id="EndDate" name="EndDate{{i}}" #EndDate="ngModel"
+                            [(ngModel)]="project.EndDate"
+                            [class.is-invalid]="EndDate.invalid &amp;&amp; EndDate.touched" class="form-control"
+                            placeholder="Enter End Date..." required>
+                          <div *ngIf="EndDate.invalid &amp;&amp; EndDate.touched">
+                            <small *ngIf="EndDate.errors?.required" class="text-danger">End
+                              Date is Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <button *ngIf="projectTasksList.length > 1" class="btn btn-danger btn-sm" type="button"
+                          (click)="removeProjectTask(i)">Remove</button>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <button class="btn btn-primary btn-sm mr-1" type="button" (click)="addProjectTask()">Add
+                        Row</button>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-warning mr-1" (click)="resetProjectTaskList()">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                        Submit
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- beging section for project team -->
+                <div class="tab-pane" id="tab5" aria-labelledby="baseIcon-tab3">
+                  <form class="form" role="form" *ngIf="!isEditableTeam">
+                    <div class="form-body">
+                      <div *ngIf="projectTeam.length == 0" class="row">
+                        <div class="col-12">
+                          <div class="card text-center">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <!-- <img src="../../../assets/img/gallery/hr.svg" class="modimg"> -->
+                                <h4 class="modt">Project Team</h4>
+                                <p class="card-text">There is no team for this project.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="projectTeam.length > 0" class="row">
+                        <div class="col-12" *ngFor="let projectMember of projectTeam, index as i">
+                          <div class="row">
+                            <div class="col-1 number-class">{{ i + 1 }}.</div>
+                            <div class="col-5">
+                              <span class="text-bold-500 primary">Employee:</span>
+                              <span class="d-block overflow-hidden">{{ projectMember.FullName }}</span>
+                            </div>
+                            <div class="col-6">
+                              <span class="text-bold-500 primary">Mitigant:</span>
+                              <span class="d-block overflow-hidden">{{ projectMember.Description }}</span>
+                            </div>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-primary" (click)="editTeam()">
+                        Add Team
+                      </button>
+                    </div>
+                  </form>
+
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processProjectTeam()" *ngIf="isEditableTeam">
+                    <div class="row" *ngFor="let projectTeam of projectTeamList, index as i">
+                      <div class="col-md-1 col-lg-1 col-sm-1 number-class">
+                        <br>
+                        {{i + 1}}.
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="EmployeeID"
+                            [class.text-danger]="EmployeeID.invalid &amp;&amp; EmployeeID.touched">Project
+                            Milestone</label><i class="text-danger">*</i>
+                          <ng-select [items]="Employees" bindLabel="FullName" bindValue="EmployeeID"
+                            #EmployeeID="ngModel" name="EmployeeID{{i}}"
+                            [(ngModel)]="projectTeam.EmployeeID"
+                            [class.is-invalid]="EmployeeID.invalid &amp;&amp; EmployeeID.touched"
+                            placeholder="Select Employee..." required>
+                          </ng-select>
+                          <div *ngIf="EmployeeID.invalid &amp;&amp; EmployeeID.touched">
+                            <small *ngIf="EmployeeID.errors?.required" class="text-danger">Project Milestone is Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="Description" [class.text-danger]="Description.invalid &amp;&amp; Description.touched">Description</label><i
+                            class="text-danger">*</i>
+                          <input type="text" id="Description" name="Description{{i}}" #Description="ngModel" [(ngModel)]="projectTeam.Description"
+                            [class.is-invalid]="Description.invalid &amp;&amp; Description.touched" class="form-control"
+                            placeholder="Enter Description..." required>
+                          <div *ngIf="Description.invalid &amp;&amp; Description.touched">
+                            <small *ngIf="Description.errors?.required" class="text-danger">Description is
+                              Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1">
+                        <label for="action">Action</label>
+                        <button *ngIf="projectTeamList.length > 1" class="btn btn-danger btn-sm" type="button"
+                          (click)="removeProjectTeam(i)">Remove</button>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <button class="btn btn-primary btn-sm mr-1" type="button" (click)="addProjectTeam()">Add
+                        Row</button>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-warning mr-1" (click)="resetProjectTeamList()">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                        {{operation}}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- begin project tool section -->
+                <div class="tab-pane" id="tab4" aria-labelledby="baseIcon-tab3">
+                  <form class="form" *ngIf="!isEditableTool">
+                    <div class="form-body">
+                      <div *ngIf="projectTools.length === 0" class="row">
+                        <div class="col-12">
+                          <div class="card text-center">
+                            <div class="card-content">
+                              <div class="card-body">
+                                <!-- <img src="../../../assets/img/gallery/hr.svg" class="modimg"> -->
+                                <h4 class="modt">Project Tools Evaluation</h4>
+                                <p class="card-text">There are no project tools.</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div *ngIf="projectTools.length > 0" class="row">
+                        <div class="col-12" *ngFor="let projectTool of projectTools, index as i">
+                          <div class="row">
+                            <div class="col-1 number-class">{{ i + 1 }}.</div>
+                            <div class="col-10">
+                              <span class="text-bold-500 primary">Equipment:</span>
+                              <span class="d-block overflow-hidden">{{ projectTool.Equipment }}</span>
+                            </div>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-primary" (click)="editTool()">
+                        Add Project Tool
+                      </button>
+                    </div>
+                  </form>
+                  <form class="form" role="form" #form="ngForm" (ngSubmit)="processProjectTool()"
+                    *ngIf="isEditableTool">
+                    <div class="row" *ngFor="let projectTool of projectToolList, index as i">
+                      <div class="col-md-1 col-lg-1 col-sm-1 number-class">
+                        <br>
+                        {{i + 1}}.
+                      </div>
+                      <div class="col-md-10">
+                        <div class="form-group">
+                          <label for="EquipmentID"
+                            [class.text-danger]="EquipmentID.invalid &amp;&amp; EquipmentID.touched">Project Equipment</label><i class="text-danger">*</i>
+                          <ng-select [items]="Equipments" bindLabel="Equipment" bindValue="EquipmentID"
+                            #EquipmentID="ngModel" name="EquipmentID{{i}}"
+                            [(ngModel)]="projectTool.EquipmentID"
+                            [class.is-invalid]="EquipmentID.invalid &amp;&amp; EquipmentID.touched"
+                            placeholder="Select Equipment..." required>
+                          </ng-select>
+                          <div *ngIf="EquipmentID.invalid &amp;&amp; EquipmentID.touched">
+                            <small *ngIf="EquipmentID.errors?.required" class="text-danger">Project Equipment is Required</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-1 col-md-1 col-sm-1">
+                        <label for="action">Action</label>
+                        <button *ngIf="projectToolList.length > 1" class="btn btn-danger btn-sm" type="button"
+                          (click)="removeProjectTool(i)">Remove</button>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <button class="btn btn-primary btn-sm mr-1" type="button" (click)="addProjectTool()">Add
+                        Row</button>
+                    </div>
+                    <div class="form-actions right">
+                      <button type="button" class="btn btn-warning mr-1" (click)="resetProjectTool()">
+                        Cancel
+                      </button>
+                      <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                        {{operation}}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

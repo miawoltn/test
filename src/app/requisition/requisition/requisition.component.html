@@ -1,0 +1,168 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ItemCategoryID"
+                                                    [class.text-danger]="ItemCategoryID.invalid &amp;&amp; ItemCategoryID.touched">Item Category</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="itemcategory"
+                                                    bindLabel="ItemCategory"
+                                                    bindValue="id" #ItemCategoryID="ngModel" name="ItemCategoryID"
+                                                    [(ngModel)]="obj.ItemCategoryID"
+                                                    [class.is-invalid]="ItemCategoryID.invalid &amp;&amp; ItemCategoryID.touched"
+                                                    placeholder="Select Item Category..."
+                                                    required></ng-select>
+                                                <div *ngIf="ItemCategoryID.invalid &amp;&amp; ItemCategoryID.touched">
+                                                    <small *ngIf="ItemCategoryID.errors?.required"
+                                                        class="text-danger">Item Category is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StoreID"
+                                                    [class.text-danger]="StoreID.invalid &amp;&amp; StoreID.touched">Store</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="stores"
+                                                    bindLabel="StoreName"
+                                                    bindValue="id" #StoreID="ngModel" name="StoreID"
+                                                    [(ngModel)]="obj.StoreID"
+                                                    [class.is-invalid]="StoreID.invalid &amp;&amp; StoreID.touched"
+                                                    placeholder="Select Store..."
+                                                    required></ng-select>
+                                                <div *ngIf="StoreID.invalid &amp;&amp; StoreID.touched">
+                                                    <small *ngIf="StoreID.errors?.required"
+                                                        class="text-danger">Store is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RequestDate"
+                                                    [class.text-danger]="RequestDate.invalid &amp;&amp; RequestDate.touched">Request Date</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="RequestDate"
+                                                    name="RequestDate" #RequestDate="ngModel"
+                                                    [(ngModel)]="obj.RequestDate"
+                                                    [class.is-invalid]="RequestDate.invalid &amp;&amp; RequestDate.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Request Date..."
+                                                    required>
+                                                <div *ngIf="RequestDate.invalid &amp;&amp; RequestDate.touched">
+                                                    <small *ngIf="RequestDate.errors?.required"
+                                                        class="text-danger">Request Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="RequestBy"
+                                                    [class.text-danger]="RequestBy.invalid &amp;&amp; RequestBy.touched">Request By</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="RequestBy"
+                                                    name="RequestBy" #RequestBy="ngModel"
+                                                    [(ngModel)]="obj.RequestBy"
+                                                    [class.is-invalid]="RequestBy.invalid &amp;&amp; RequestBy.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Request By..."
+                                                    required>
+                                                <div *ngIf="RequestBy.invalid &amp;&amp; RequestBy.touched">
+                                                    <small *ngIf="RequestBy.errors?.required"
+                                                        class="text-danger">Request By is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Requisition</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="ItemCategory"
+                                        caption="Item Category">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StoreName"
+                                        caption="Store Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="RequestDate"
+                                        caption="Request Date">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="RequestBy"
+                                        caption="Request By">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

@@ -1,0 +1,470 @@
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+
+              <form #form="ngForm" (submit)="processForm()">
+                <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                  <mat-step #order="ngModelGroup" ngModelGroup="order" [stepControl]="form.controls.order"
+                    [editable]="isEditable">
+                    <ng-template matStepLabel>Add Project Info</ng-template>
+                    <div class="panel-body">
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="CustomerID"
+                              [class.text-danger]="CustomerID.invalid &amp;&amp; CustomerID.touched">Customer
+                            </label>
+                            <div class="col-md-8">
+                              <ng-select [items]="customer" bindLabel="CustomerName" bindValue="id"
+                                [(ngModel)]="obj.CustomerID" name="CustomerID" required #CustomerID="ngModel"
+                                [class.is-invalid]="CustomerID.invalid &amp;&amp; CustomerID.touched"
+                                placeholder="Select Customer..."></ng-select>
+                              <div *ngIf="CustomerID.invalid &amp;&amp; CustomerID.touched">
+                                <small *ngIf="CustomerID.errors?.required" class="text-danger">Customer is
+                                  Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectTypeID"
+                              [class.text-danger]="ProjectTypeID.invalid &amp;&amp; ProjectTypeID.touched">Project
+                              Type</label>
+                            <div class="col-md-8">
+                              <ng-select [items]="projecttype" bindLabel="ProjectType" bindValue="ProjectTypeID"
+                                [(ngModel)]="obj.ProjectTypeID" name="ProjectTypeID" required #ProjectTypeID="ngModel"
+                                [class.is-invalid]="ProjectTypeID.invalid &amp;&amp; ProjectTypeID.touched"
+                                placeholder="Select Project Type..."></ng-select>
+                              <div *ngIf="ProjectTypeID.invalid &amp;&amp; ProjectTypeID.touched">
+                                <small *ngIf="ProjectTypeID.errors?.required" class="text-danger">Project Type is
+                                  Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectSubTypeID"
+                              [class.text-danger]="ProjectSubTypeID.invalid &amp;&amp; ProjectSubTypeID.touched">Project
+                              Sub Type</label>
+                            <div class="col-md-8">
+                              <ng-select [items]="projectsubtype" bindLabel="ProjectSubType" bindValue="id"
+                                [(ngModel)]="obj.ProjectSubTypeID" name="ProjectSubTypeID" required
+                                #ProjectSubTypeID="ngModel"
+                                [class.is-invalid]="ProjectSubTypeID.invalid &amp;&amp; ProjectSubTypeID.touched"
+                                placeholder="Select Project Sub Type..."></ng-select>
+                              <div *ngIf="ProjectSubTypeID.invalid &amp;&amp; ProjectSubTypeID.touched">
+                                <small *ngIf="ProjectSubTypeID.errors?.required" class="text-danger">Project Sub Type is
+                                  Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectStatusID"
+                              [class.text-danger]="ProjectStatusID.invalid &amp;&amp; ProjectStatusID.touched">Project
+                              Status</label>
+                            <div class="col-md-8">
+                              <ng-select [items]="projectstatus" bindLabel="ProjectStatus" bindValue="id"
+                                [(ngModel)]="obj.ProjectStatusID" name="ProjectStatusID" required
+                                #ProjectStatusID="ngModel"
+                                [class.is-invalid]="ProjectStatusID.invalid &amp;&amp; ProjectStatusID.touched"
+                                placeholder="Select Project Status..."></ng-select>
+                              <div *ngIf="ProjectStatusID.invalid &amp;&amp; ProjectStatusID.touched">
+                                <small *ngIf="ProjectStatusID.errors?.required" class="text-danger">Project Status is
+                                  Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectDescription"
+                              [class.text-danger]="ProjectDescription.invalid &amp;&amp; ProjectDescription.touched">Project
+                              Description</label>
+                            <div class="col-md-8">
+                              <textarea id="ProjectDescription" name="ProjectDescription" class="form-control"
+                                [(ngModel)]="obj.ProjectDescription" required #ProjectDescription="ngModel"
+                                [class.is-invalid]="ProjectDescription.invalid &amp;&amp; ProjectDescription.touched"
+                                placeholder="Enter Project Description..." cols="3" rows="2"></textarea>
+                              <div *ngIf="ProjectDescription.invalid &amp;&amp; ProjectDescription.touched">
+                                <small *ngIf="ProjectDescription.errors?.required" class="text-danger">Project
+                                  Description is Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectLocation"
+                              [class.text-danger]="ProjectLocation.invalid &amp;&amp; ProjectLocation.touched">Project
+                              Location</label>
+                            <div class="col-md-8">
+                              <textarea id="ProjectLocation" name="ProjectLocation" class="form-control"
+                                [(ngModel)]="obj.ProjectLocation" required #ProjectLocation="ngModel"
+                                [class.is-invalid]="ProjectLocation.invalid &amp;&amp; ProjectLocation.touched"
+                                placeholder="Enter Project Location..." cols="3" rows="2"></textarea>
+                              <div *ngIf="ProjectLocation.invalid &amp;&amp; ProjectLocation.touched">
+                                <small *ngIf="ProjectLocation.errors?.required" class="text-danger">Project Location is
+                                  Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectApprovedBudget"
+                              [class.text-danger]="ProjectApprovedBudget.invalid &amp;&amp; ProjectApprovedBudget.touched">ProjectApproved
+                              Budget</label>
+                            <div class="col-md-8">
+                              <input type="number" id="ProjectApprovedBudget" name="ProjectApprovedBudget"
+                                class="form-control" [(ngModel)]="obj.ProjectApprovedBudget" required
+                                #ProjectApprovedBudget="ngModel"
+                                [class.is-invalid]="ProjectApprovedBudget.invalid &amp;&amp; ProjectApprovedBudget.touched"
+                                placeholder="Enter Project Approved Budget...">
+                              <div *ngIf="ProjectApprovedBudget.invalid &amp;&amp; ProjectApprovedBudget.touched">
+                                <small *ngIf="ProjectApprovedBudget.errors?.required"
+                                  class="text-danger">ProjectApproved Budget is Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectDuration"
+                              [class.text-danger]="ProjectDuration.invalid &amp;&amp; ProjectDuration.touched">Project
+                              Duration</label>
+                            <div class="col-md-8">
+                              <input type="number" id="ProjectDuration" name="ProjectDuration" class="form-control"
+                                [(ngModel)]="obj.ProjectDuration" required #ProjectDuration="ngModel"
+                                [class.is-invalid]="ProjectDuration.invalid &amp;&amp; ProjectDuration.touched"
+                                placeholder="Enter Project Duration...">
+                              <div *ngIf="ProjectDuration.invalid &amp;&amp; ProjectDuration.touched">
+                                <small *ngIf="ProjectDuration.errors?.required" class="text-danger">Project Duration is
+                                  Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectAwardDate"
+                              [class.text-danger]="ProjectAwardDate.invalid &amp;&amp; ProjectAwardDate.touched">ProjectAward
+                              Date</label>
+                            <div class="col-md-8">
+                              <input type="date" id="ProjectAwardDate" name="ProjectAwardDate" class="form-control"
+                                [(ngModel)]="obj.ProjectAwardDate" required #ProjectAwardDate="ngModel"
+                                [class.is-invalid]="ProjectAwardDate.invalid &amp;&amp; ProjectAwardDate.touched"
+                                placeholder="Enter Project Award Date...">
+                              <div *ngIf="ProjectAwardDate.invalid &amp;&amp; ProjectAwardDate.touched">
+                                <small *ngIf="ProjectAwardDate.errors?.required" class="text-danger">ProjectAward Date
+                                  is Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectStartDate"
+                              [class.text-danger]="ProjectStartDate.invalid &amp;&amp; ProjectStartDate.touched">Project
+                              Start Date</label>
+                            <div class="col-md-8">
+                              <input type="date" id="ProjectStartDate" name="ProjectStartDate" class="form-control"
+                                [(ngModel)]="obj.ProjectStartDate" required #ProjectStartDate="ngModel"
+                                [class.is-invalid]="ProjectStartDate.invalid &amp;&amp; ProjectStartDate.touched"
+                                placeholder="Enter Project Start Date...">
+                              <div *ngIf="ProjectStartDate.invalid &amp;&amp; ProjectStartDate.touched">
+                                <small *ngIf="ProjectStartDate.errors?.required" class="text-danger">Project Start Date
+                                  is Required</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="panel-footer">
+                      <button type="button" class="btn btn-default" (click)="resetEditForm()">Cancel</button>
+                      &nbsp;
+                      <button type="button" matStepperNext class="btn btn-primary pull-right" (click)="onConfirm()"
+                        [disabled]="order.invalid">Next</button>&nbsp;
+                    </div>
+                  </mat-step>
+                  <mat-step [editable]="isEditable">
+                    <ng-template matStepLabel>Confirmation</ng-template>
+                    <div class="panel-body">
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="CustomerID">Customer
+                            </label>
+                            <div class="col-md-8">
+                              {{ obj.CustomerTypeID }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectTypeID">Project Type
+                            </label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectType }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectSubTypeID">Project
+                              Sub Type</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectType }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectStatusID">Project
+                              Status</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectStatus }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectDescription">Project
+                              Description</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectDescription }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectLocation">Project
+                              Location</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectLocation }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectApprovedBudget">ProjectApproved
+                              Budget</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectApprovedBudget }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectDuration">Project
+                              Duration</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectDuration }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectAwardDate">ProjectAward Date</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectAwardDate | date: 'EEEE, MMMM d, y' }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectStartDate">Project
+                              Start Date</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectStartDate | date: 'EEEE, MMMM d, y' }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="panel-footer">
+                      <button type="button" matStepperPrevious class="btn btn-primary">Back</button>&nbsp;
+                      <button type="submit" matStepperNext class="btn btn-primary pull-right">Confirm
+                        Application</button>&nbsp;
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Completed</ng-template>
+                    <div class="panel-body">
+                      <div class="row">
+
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="CustomerID">Customer
+                            </label>
+                            <div class="col-md-8">
+                              {{ obj.CustomerTypeID }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectTypeID">Project Type
+                            </label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectType }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectSubTypeID">Project
+                              Sub Type</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectType }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectStatusID">Project
+                              Status</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectStatus }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectDescription">Project
+                              Description</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectDescription }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectLocation">Project
+                              Location</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectLocation }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectApprovedBudget">ProjectApproved
+                              Budget</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectApprovedBudget }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectDuration">Project
+                              Duration</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectDuration }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectAwardDate">ProjectAward Date</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectAwardDate | date: 'EEEE, MMMM d, y' }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-md-4 form-control-label" for="ProjectStartDate">Project
+                              Start Date</label>
+                            <div class="col-md-8">
+                              {{ obj.ProjectStartDate | date: 'EEEE, MMMM d, y' }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="panel-footer">
+                      <button type="button" class="btn btn-primary pull-right" (click)="stepper.reset()">New
+                        Application</button>&nbsp;
+                    </div>
+                  </mat-step>
+                </mat-horizontal-stepper>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- <div class="content-body" *ngIf="showList"> -->
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Project</h4>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="CustomerName" caption="Customer Name">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectType" caption="Project Type">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectStatus" caption="Project Status">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectDescription" caption="Project Description">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectLocation" caption="Project Location">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectApprovedBudget" caption="ProjectApproved Budget">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectDuration" caption="Project Duration">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectAwardDate" caption="ProjectAward Date">
+                  </dxi-column>
+                  <dxi-column dataField="ProjectStartDate" caption="Project Start Date">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+
+                  <dxi-column type="buttons" caption="Overview">
+                    <dxi-button text="Overview" [onClick]="overview"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

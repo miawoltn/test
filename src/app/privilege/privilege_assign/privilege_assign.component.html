@@ -1,0 +1,168 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="user_id"
+                                                    [class.text-danger]="user_id.invalid &amp;&amp; user_id.touched">User_id</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="user_id"
+                                                    name="user_id" #user_id="ngModel"
+                                                    [(ngModel)]="obj.user_id"
+                                                    [class.is-invalid]="user_id.invalid &amp;&amp; user_id.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter User_id..."
+                                                    required>
+                                                <div *ngIf="user_id.invalid &amp;&amp; user_id.touched">
+                                                    <small *ngIf="user_id.errors?.required"
+                                                        class="text-danger">User_is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="pid"
+                                                    [class.text-danger]="pid.invalid &amp;&amp; pid.touched">Pid</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="pid"
+                                                    name="pid" #pid="ngModel"
+                                                    [(ngModel)]="obj.pid"
+                                                    [class.is-invalid]="pid.invalid &amp;&amp; pid.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Pid..."
+                                                    required>
+                                                <div *ngIf="pid.invalid &amp;&amp; pid.touched">
+                                                    <small *ngIf="pid.errors?.required"
+                                                        class="text-danger">Pis
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="is_active"
+                                                    [class.text-danger]="is_active.invalid &amp;&amp; is_active.touched">Is_active</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="is_active"
+                                                    name="is_active" #is_active="ngModel"
+                                                    [(ngModel)]="obj.is_active"
+                                                    [class.is-invalid]="is_active.invalid &amp;&amp; is_active.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Is_active..."
+                                                    required>
+                                                <div *ngIf="is_active.invalid &amp;&amp; is_active.touched">
+                                                    <small *ngIf="is_active.errors?.required"
+                                                        class="text-danger">Is_active is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="date_assigned"
+                                                    [class.text-danger]="date_assigned.invalid &amp;&amp; date_assigned.touched">Date_assigned</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="date_assigned"
+                                                    name="date_assigned" #date_assigned="ngModel"
+                                                    [(ngModel)]="obj.date_assigned"
+                                                    [class.is-invalid]="date_assigned.invalid &amp;&amp; date_assigned.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Date_assigned..."
+                                                    required>
+                                                <div *ngIf="date_assigned.invalid &amp;&amp; date_assigned.touched">
+                                                    <small *ngIf="date_assigned.errors?.required"
+                                                        class="text-danger">Date_assigned is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Privilege_assign</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="user_id"
+                                        caption="User_id">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="pid"
+                                        caption="Pid">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="is_active"
+                                        caption="Is_active">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="date_assigned"
+                                        caption="Date_assigned">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

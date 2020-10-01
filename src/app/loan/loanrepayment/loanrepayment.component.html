@@ -1,0 +1,206 @@
+
+<section class="content-body">
+    <div class="row">
+        <!-- right column -->
+        <div class="col-md-12">
+            <!-- Horizontal Form -->
+            <div class="card">
+                <div class="card-header d-print-none">
+                    {{operation}} Record
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form #form="ngForm" (submit)="processForm()">
+                    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+                        <mat-step #order="ngModelGroup" ngModelGroup="order" [stepControl]="form.controls.order"
+                            [editable]="isEditable">
+                            <ng-template matStepLabel>Loan Repayment Info</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanApplicationID"
+                                                [class.text-danger]="LoanApplicationID.invalid &amp;&amp; LoanApplicationID.touched">Loan
+                                                Application</label>
+                                            <div class="col-md-8">
+                                                <ng-select [items]="loanapplication" bindLabel="FullName" bindValue="id"
+                                                    [(ngModel)]="obj.LoanApplicationID" name="LoanApplicationID"
+                                                    required #LoanApplicationID="ngModel"
+                                                    [class.is-invalid]="LoanApplicationID.invalid &amp;&amp; LoanApplicationID.touched"
+                                                    placeholder="Select Loan Application...">
+                                                    <ng-template ng-option-tmp let-item="item">
+                                                        {{item.FullName}} <br/>
+                                                        <small>Type: {{item.LoanType}}</small><br/>
+                                                        <small>Amount: {{item.RepaymentAmount | number:'1.2-2'}}</small><br/>
+                                                        <small>Outstanding: {{item.Balance | number:'1.2-2'}}</small><br/>
+                                                    </ng-template>
+                                                </ng-select>
+                                                <div
+                                                    *ngIf="LoanApplicationID.invalid &amp;&amp; LoanApplicationID.touched">
+                                                    <small *ngIf="LoanApplicationID.errors?.required"
+                                                        class="text-danger">Loan Application is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentTypeID"
+                                                [class.text-danger]="RepaymentTypeID.invalid &amp;&amp; RepaymentTypeID.touched">Repayment
+                                                Type</label>
+                                            <div class="col-md-8">
+                                                <ng-select [items]="loanrepaymenttype" bindLabel="RepaymentType"
+                                                    bindValue="id" [(ngModel)]="obj.RepaymentTypeID" (change)="setAmount()"
+                                                    name="RepaymentTypeID" required #RepaymentTypeID="ngModel"
+                                                    [class.is-invalid]="RepaymentTypeID.invalid &amp;&amp; RepaymentTypeID.touched"
+                                                    placeholder="Select Repayment Type..."></ng-select>
+                                                <div *ngIf="RepaymentTypeID.invalid &amp;&amp; RepaymentTypeID.touched">
+                                                    <small *ngIf="RepaymentTypeID.errors?.required"
+                                                        class="text-danger">Repayment Type is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Amount"
+                                                [class.text-danger]="Amount.invalid &amp;&amp; Amount.touched">Amount</label>
+                                            <div class="col-md-8">
+                                                <input type="number" id="Amount" name="Amount" class="form-control"
+                                                    [(ngModel)]="obj.Amount" required #Amount="ngModel"
+                                                    [class.is-invalid]="Amount.invalid &amp;&amp; Amount.touched"
+                                                    placeholder="Enter Amount..." [readonly]="readonly">
+                                                <div *ngIf="Amount.invalid &amp;&amp; Amount.touched">
+                                                    <small *ngIf="Amount.errors?.required" class="text-danger">Amount is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-warning" >Cancel</button>
+                                &nbsp;
+                                <button type="button" matStepperNext class="btn btn-primary pull-right"
+                                    (click)="onConfirm()" [disabled]="order.invalid">Next</button>&nbsp;
+                            </div>
+                        </mat-step>
+                        <mat-step [editable]="isEditable">
+                            <ng-template matStepLabel>Confirmation</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanApplicationID">Loan
+                                                Application </label>
+                                            <div class="col-md-8">
+                                                {{ obj.LoanID }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Amount">Amount</label>
+                                            <div class="col-md-8">
+                                                {{ obj.Amount | number:'1.2-2' }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentTypeID">Repayment
+                                                Type</label>
+                                            <div class="col-md-8">
+                                                {{ obj.RepaymentType }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentSourceID">Repayment
+                                                Source</label>
+                                            <div class="col-md-8">
+                                                {{ obj.RepaymentSource }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" matStepperPrevious class="btn btn-primary">Back</button>&nbsp;
+                                <button type="submit" matStepperNext class="btn btn-primary pull-right">Confirm
+                                    Application</button>&nbsp;
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Completed</ng-template>
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="LoanApplicationID">Loan
+                                                Application </label>
+                                            <div class="col-md-8">
+                                                {{ obj.LoanID }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="Amount">Amount</label>
+                                            <div class="col-md-8">
+                                                {{ obj.Amount | number:'1.2-2' }}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentTypeID">Repayment
+                                                Type</label>
+                                            <div class="col-md-8">
+                                                {{ obj.RepaymentType }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-md-4 form-control-label" for="RepaymentSourceID">Repayment
+                                                Source</label>
+                                            <div class="col-md-8">
+                                                {{ obj.RepaymentSource }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                            <div class="media-body halfway-fab align-self-end">
+                                <div class="text-right d-none d-sm-none d-md-none d-lg-block">
+                                    <button type="button" class="btn btn-primary pull-right" (click)="stepper.reset()">New
+                                        Repayment</button>&nbsp;
+
+                                    <a (click)="print()" class="btn btn-primary btn-raised mr-2 d-print-none"
+                                    target="_blank" style="background-color: #15537d; color: white;">Print</a>
+                                </div>
+                            </div>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+</section>

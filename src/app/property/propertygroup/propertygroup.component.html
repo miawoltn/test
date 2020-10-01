@@ -1,0 +1,237 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PropertyGroup"
+                                                    [class.text-danger]="PropertyGroup.invalid &amp;&amp; PropertyGroup.touched">Property Group</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="PropertyGroup"
+                                                    name="PropertyGroup" #PropertyGroup="ngModel"
+                                                    [(ngModel)]="obj.PropertyGroup"
+                                                    [class.is-invalid]="PropertyGroup.invalid &amp;&amp; PropertyGroup.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Property Group..."
+                                                    required>
+                                                <div *ngIf="PropertyGroup.invalid &amp;&amp; PropertyGroup.touched">
+                                                    <small *ngIf="PropertyGroup.errors?.required"
+                                                        class="text-danger">Property Group is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CountryID"
+                                                    [class.text-danger]="CountryID.invalid &amp;&amp; CountryID.touched">Country</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="CountryID"
+                                                    name="CountryID" #CountryID="ngModel"
+                                                    [(ngModel)]="obj.CountryID"
+                                                    [class.is-invalid]="CountryID.invalid &amp;&amp; CountryID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Country..."
+                                                    required>
+                                                <div *ngIf="CountryID.invalid &amp;&amp; CountryID.touched">
+                                                    <small *ngIf="CountryID.errors?.required"
+                                                        class="text-danger">Country is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StateID"
+                                                    [class.text-danger]="StateID.invalid &amp;&amp; StateID.touched">State</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="StateID"
+                                                    name="StateID" #StateID="ngModel"
+                                                    [(ngModel)]="obj.StateID"
+                                                    [class.is-invalid]="StateID.invalid &amp;&amp; StateID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter State..."
+                                                    required>
+                                                <div *ngIf="StateID.invalid &amp;&amp; StateID.touched">
+                                                    <small *ngIf="StateID.errors?.required"
+                                                        class="text-danger">State is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="LgaID"
+                                                    [class.text-danger]="LgaID.invalid &amp;&amp; LgaID.touched">Lga</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="LgaID"
+                                                    name="LgaID" #LgaID="ngModel"
+                                                    [(ngModel)]="obj.LgaID"
+                                                    [class.is-invalid]="LgaID.invalid &amp;&amp; LgaID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Lga..."
+                                                    required>
+                                                <div *ngIf="LgaID.invalid &amp;&amp; LgaID.touched">
+                                                    <small *ngIf="LgaID.errors?.required"
+                                                        class="text-danger">Lga is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CityID"
+                                                    [class.text-danger]="CityID.invalid &amp;&amp; CityID.touched">City</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="CityID"
+                                                    name="CityID" #CityID="ngModel"
+                                                    [(ngModel)]="obj.CityID"
+                                                    [class.is-invalid]="CityID.invalid &amp;&amp; CityID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter City..."
+                                                    required>
+                                                <div *ngIf="CityID.invalid &amp;&amp; CityID.touched">
+                                                    <small *ngIf="CityID.errors?.required"
+                                                        class="text-danger">City is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StatusID"
+                                                    [class.text-danger]="StatusID.invalid &amp;&amp; StatusID.touched">Status</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="number" id="StatusID"
+                                                    name="StatusID" #StatusID="ngModel"
+                                                    [(ngModel)]="obj.StatusID"
+                                                    [class.is-invalid]="StatusID.invalid &amp;&amp; StatusID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Status..."
+                                                    required>
+                                                <div *ngIf="StatusID.invalid &amp;&amp; StatusID.touched">
+                                                    <small *ngIf="StatusID.errors?.required"
+                                                        class="text-danger">Status is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PhysicalAddress"
+                                                    [class.text-danger]="PhysicalAddress.invalid &amp;&amp; PhysicalAddress.touched">PhysicalAddress</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="PhysicalAddress"
+                                                    name="PhysicalAddress" #PhysicalAddress="ngModel"
+                                                    [(ngModel)]="obj.PhysicalAddress"
+                                                    [class.is-invalid]="PhysicalAddress.invalid &amp;&amp; PhysicalAddress.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter PhysicalAddress..."
+                                                    required>
+                                                <div *ngIf="PhysicalAddress.invalid &amp;&amp; PhysicalAddress.touched">
+                                                    <small *ngIf="PhysicalAddress.errors?.required"
+                                                        class="text-danger">PhysicalAddress is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Property Group</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="PropertyGroup"
+                                        caption="Property Group">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CountryID"
+                                        caption="Country">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StateID"
+                                        caption="State">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="LgaID"
+                                        caption="Lga">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="CityID"
+                                        caption="City">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="StatusID"
+                                        caption="Status">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="PhysicalAddress"
+                                        caption="PhysicalAddress">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

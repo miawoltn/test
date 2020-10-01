@@ -1,0 +1,191 @@
+
+
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="StoreID"
+                                                    [class.text-danger]="StoreID.invalid &amp;&amp; StoreID.touched">Store</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="stores"
+                                                    bindLabel="StoreName"
+                                                    bindValue="id" #StoreID="ngModel" name="StoreID"
+                                                    [(ngModel)]="obj.StoreID"
+                                                    [class.is-invalid]="StoreID.invalid &amp;&amp; StoreID.touched"
+                                                    placeholder="Select Store..."
+                                                    required></ng-select>
+                                                <div *ngIf="StoreID.invalid &amp;&amp; StoreID.touched">
+                                                    <small *ngIf="StoreID.errors?.required"
+                                                        class="text-danger">Store is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ReceiveDate"
+                                                    [class.text-danger]="ReceiveDate.invalid &amp;&amp; ReceiveDate.touched">Receive Date</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ReceiveDate"
+                                                    name="ReceiveDate" #ReceiveDate="ngModel"
+                                                    [(ngModel)]="obj.ReceiveDate"
+                                                    [class.is-invalid]="ReceiveDate.invalid &amp;&amp; ReceiveDate.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Receive Date..."
+                                                    required>
+                                                <div *ngIf="ReceiveDate.invalid &amp;&amp; ReceiveDate.touched">
+                                                    <small *ngIf="ReceiveDate.errors?.required"
+                                                        class="text-danger">Receive Date is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalStagesID"
+                                                    [class.text-danger]="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched">Approval Stages</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="approvalstages"
+                                                    bindLabel="ApprovalStages"
+                                                    bindValue="id" #ApprovalStagesID="ngModel" name="ApprovalStagesID"
+                                                    [(ngModel)]="obj.ApprovalStagesID"
+                                                    [class.is-invalid]="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched"
+                                                    placeholder="Select Approval Stages..."
+                                                    required></ng-select>
+                                                <div *ngIf="ApprovalStagesID.invalid &amp;&amp; ApprovalStagesID.touched">
+                                                    <small *ngIf="ApprovalStagesID.errors?.required"
+                                                        class="text-danger">Approval Stages is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="PurchaseID"
+                                                    [class.text-danger]="PurchaseID.invalid &amp;&amp; PurchaseID.touched">Purchase</label><i
+                                                    class="text-danger">*</i>
+                                                 <ng-select [items]="purchase"
+                                                    bindLabel="ProcurementID"
+                                                    bindValue="id" #PurchaseID="ngModel" name="PurchaseID"
+                                                    [(ngModel)]="obj.PurchaseID"
+                                                    [class.is-invalid]="PurchaseID.invalid &amp;&amp; PurchaseID.touched"
+                                                    placeholder="Select Purchase..."
+                                                    required></ng-select>
+                                                <div *ngIf="PurchaseID.invalid &amp;&amp; PurchaseID.touched">
+                                                    <small *ngIf="PurchaseID.errors?.required"
+                                                        class="text-danger">Purchase is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="ApprovalOfficerID"
+                                                    [class.text-danger]="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched">Approval Officer</label><i
+                                                    class="text-danger">*</i>
+                                                 <input type="text" id="ApprovalOfficerID"
+                                                    name="ApprovalOfficerID" #ApprovalOfficerID="ngModel"
+                                                    [(ngModel)]="obj.ApprovalOfficerID"
+                                                    [class.is-invalid]="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched"
+                                                    class="form-control"
+                                                    placeholder="Enter Approval Officer..."
+                                                    required>
+                                                <div *ngIf="ApprovalOfficerID.invalid &amp;&amp; ApprovalOfficerID.touched">
+                                                    <small *ngIf="ApprovalOfficerID.errors?.required"
+                                                        class="text-danger">Approval Officer is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Receive Orders</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+
+                                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false"
+                                    keyExpr="id" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+                                    [columnAutoWidth]="true" [columnHidingEnabled]="true">
+                                    <dxo-paging [pageSize]="10"></dxo-paging>
+                                    <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                                    <dxi-column
+                                        dataField="StoreName"
+                                        caption="Store Name">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ReceiveDate"
+                                        caption="Receive Date">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalStages"
+                                        caption="Approval Stages">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ProcurementID"
+                                        caption="Procurement ID">
+                                    </dxi-column>
+                                    <dxi-column
+                                        dataField="ApprovalOfficerID"
+                                        caption="Approval Officer ID">
+                                    </dxi-column>
+                                    
+                                        <dxi-column type="buttons">
+                                            <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                        </dxi-column>
+                                </dx-data-grid>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

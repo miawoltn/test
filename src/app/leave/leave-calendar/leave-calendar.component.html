@@ -1,0 +1,139 @@
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" id="horz-layout-basic">Filter </h4>
+                        </div>
+                        <div class="card-content collpase show">
+                            <div class="card-body">
+
+                                <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                    <div class="form-body">
+                                        <div class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4" for="LeaveTypeID"
+                                                        [class.text-danger]="LeaveTypeID.invalid &amp;&amp; LeaveTypeID.touched">Leave
+                                                        Type</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="LeaveTypes" bindLabel="LeaveType"
+                                                            bindValue="id" [(ngModel)]="obj.LeaveTypeID"
+                                                            name="LeaveTypeID" #LeaveTypeID="ngModel"
+                                                            [class.is-invalid]="LeaveTypeID.invalid && LeaveTypeID.touched" multiple="true"
+                                                            placeholder="Select Leave Type..."></ng-select>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="DepartmentID"
+                                                        [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Department</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="Departments" bindLabel="DepartmentName" multiple="true"
+                                                            bindValue="id" [(ngModel)]="obj.DepartmentID"
+                                                            name="DepartmentID"  #DepartmentID="ngModel"
+                                                            [class.is-invalid]="DepartmentID.invalid &amp;&amp; DepartmentID.touched"
+                                                            placeholder="Select Department...">
+                                                        </ng-select>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="DepartmentID"
+                                                        >Office</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="Office" bindLabel="BranchName" multiple="true"
+                                                            bindValue="id" [(ngModel)]="obj.BranchID"
+                                                            name="BranchID"  #DepartmentID="ngModel"
+                                                            
+                                                            placeholder="Select Office ...">
+                                                        </ng-select>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="DepartmentID"
+                                                        [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Staff Category</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="StaffCategory" bindLabel="cadre_name" multiple="true"
+                                                            bindValue="id" [(ngModel)]="obj.GradeCadreID"
+                                                            name="StaffCategory"  
+                                                            placeholder="Select Category..">
+                                                        </ng-select>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="DepartmentID"
+                                                        [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Residency</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="Residency" bindLabel="Residency" multiple="true"
+                                                            bindValue="id" [(ngModel)]="obj.ResidencyID"
+                                                            name="Residency"  
+                                                            placeholder="Select Category..">
+                                                        </ng-select>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-md-4 form-control-label" for="DepartmentID"
+                                                        >Project</label>
+                                                    <div class="col-md-8">
+                                                        <ng-select [items]="Project" bindLabel="ProjectDescription" multiple="true"
+                                                            bindValue="id" [(ngModel)]="obj.ProjectID"
+                                                            name="ProjectID"  #DepartmentID="ngModel"
+                                                            placeholder="Select Project ...">
+                                                        </ng-select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-actions right">
+                                        <button type="button" (click)="resetForm()" class="btn btn-warning mr-1">
+                                            Reset
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            Search
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">Leave Calendar</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            <full-calendar [options]='calendarOptions'></full-calendar>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

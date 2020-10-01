@@ -1,0 +1,214 @@
+<div class="content-body" *ngIf="displayForm">
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+                    </div>
+                    <div class="card-content collpase show">
+                        <div class="card-body">
+                            
+                            <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                                <div class="form-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DesignationName"
+                                                    [class.text-danger]="DesignationName.invalid &amp;&amp; DesignationName.touched">Designation
+                                                    Name</label><i class="text-danger">*</i>
+                                                <input type="text" id="DesignationName" name="DesignationName"
+                                                    #DesignationName="ngModel" [(ngModel)]="obj.DesignationName"
+                                                    [class.is-invalid]="DesignationName.invalid &amp;&amp; DesignationName.touched"
+                                                    class="form-control" placeholder="Enter Designation Name..."
+                                                    required>
+                                                <div *ngIf="DesignationName.invalid &amp;&amp; DesignationName.touched">
+                                                    <small *ngIf="DesignationName.errors?.required"
+                                                        class="text-danger">Designation Name is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="DepartmentID"
+                                                    [class.text-danger]="DepartmentID.invalid &amp;&amp; DepartmentID.touched">Department</label><i
+                                                    class="text-danger">*</i>
+                                                <ng-select id="CompanyID" name="DepartmentID" #DepartmentID="ngModel"
+                                                    [(ngModel)]="obj.DepartmentID"
+                                                    [class.is-invalid]="DepartmentID.invalid &amp;&amp; DepartmentID.touched"
+                                                    placeholder="Select Department..." required [items]="Department"
+                                                    bindValue="id" bindLabel="DepartmentName"></ng-select>
+                                                <div *ngIf="DepartmentID.invalid &amp;&amp; DepartmentID.touched">
+                                                    <small *ngIf="DepartmentID.errors?.required"
+                                                        class="text-danger">Department is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="CompanyID"
+                                                    [class.text-danger]="CompanyID.invalid &amp;&amp; CompanyID.touched">Company</label><i
+                                                    class="text-danger">*</i>
+                                                <ng-select id="CompanyID" name="CompanyID" #CompanyID="ngModel"
+                                                    [(ngModel)]="obj.CompanyID"
+                                                    [class.is-invalid]="CompanyID.invalid &amp;&amp; CompanyID.touched"
+                                                    placeholder="Select Company..." required [items]="Company"
+                                                    bindValue="id" bindLabel="CompanyName"></ng-select>
+                                                <div *ngIf="CompanyID.invalid &amp;&amp; CompanyID.touched">
+                                                    <small *ngIf="CompanyID.errors?.required"
+                                                        class="text-danger">Company is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="SupervisorTypeID"
+                                                    [class.text-danger]="SupervisorTypeID.invalid &amp;&amp; SupervisorTypeID.touched">Supervisor
+                                                    Type</label><i class="text-danger">*</i>
+                                                <ng-select id="SupervisorTypeID" name="SupervisorTypeID"
+                                                    #SupervisorTypeID="ngModel" [(ngModel)]="obj.SupervisorTypeID"
+                                                    [class.is-invalid]="SupervisorTypeID.invalid &amp;&amp; SupervisorTypeID.touched"
+                                                    placeholder="Select Supervisor Type..." required
+                                                    [items]="DesignationCategory" bindValue="id"
+                                                    bindLabel="DesignationCategory"></ng-select>
+                                                <div
+                                                    *ngIf="SupervisorTypeID.invalid &amp;&amp; SupervisorTypeID.touched">
+                                                    <small *ngIf="SupervisorTypeID.errors?.required"
+                                                        class="text-danger">Supervisor Type is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="FK_DesignationID"
+                                                    [class.text-danger]="FK_DesignationID.invalid &amp;&amp; FK_DesignationID.touched">Report
+                                                    To</label><i class="text-danger">*</i>
+                                                <ng-select id="FK_DesignationID" name="FK_DesignationID"
+                                                    #FK_DesignationID="ngModel" [(ngModel)]="obj.FK_DesignationID"
+                                                    [class.is-invalid]="FK_DesignationID.invalid &amp;&amp; FK_DesignationID.touched"
+                                                    placeholder="Select Division..." required [items]="data"
+                                                    bindValue="id" bindLabel="DesignationName"></ng-select>
+                                                <div
+                                                    *ngIf="FK_DesignationID.invalid &amp;&amp; FK_DesignationID.touched">
+                                                    <small *ngIf="FK_DesignationID.errors?.required"
+                                                        class="text-danger">Report To is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cadre_id"
+                                                    [class.text-danger]="cadre_id.invalid &amp;&amp; cadre_id.touched">Cadre
+                                                    To</label><i class="text-danger">*</i>
+                                                <ng-select id="cadre_id" name="cadre_id"
+                                                    #cadre_id="ngModel" [(ngModel)]="obj.cadre_id"
+                                                    [class.is-invalid]="cadre_id.invalid &amp;&amp; cadre_id.touched"
+                                                    placeholder="Select Cadre ..." required [items]="GradeCadre"
+                                                    bindValue="id" bindLabel="cadre_name"></ng-select>
+                                                <div
+                                                    *ngIf="cadre_id.invalid &amp;&amp; cadre_id.touched">
+                                                    <small *ngIf="cadre_id.errors?.required"
+                                                        class="text-danger">Cadre is
+                                                        Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="JobDescription"
+                                                    [class.text-danger]="JobDescription.invalid &amp;&amp; JobDescription.touched">Job Description</label><i class="text-danger">*</i>
+                                                    <textarea id="JobDescription" name="JobDescription"
+                                                    #JobDescription="ngModel" [(ngModel)]="obj.JobDescription"
+                                                    [class.is-invalid]="JobDescription.invalid &amp;&amp; JobDescription.touched"
+                                                    class="form-control" placeholder="Enter Designation Name..." cols="15" rows="5" required></textarea>
+                                                <div *ngIf="JobDescription.invalid &amp;&amp; JobDescription.touched">
+                                                    <small *ngIf="JobDescription.errors?.required"
+                                                        class="text-danger">Jjob Description is Required</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-actions right">
+                                    <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+
+                                        {{operation}}
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="content-body">
+    <section id="basic-form-layouts">
+        <div class="row match-height">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="box-title">List of Designations</h4>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span
+                                    class="fa fa-plus"></span>
+                                Add New</button>
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <dx-tree-list id="tasks" [dataSource]="data" keyExpr="id"
+                                    parentIdExpr="FK_DesignationID" [expandedRowKeys]="[1, 2]" [columnAutoWidth]="true"
+                                    [wordWrapEnabled]="true" [showBorders]="true">
+
+                                    <dxo-search-panel [visible]="true" width="250"></dxo-search-panel>
+                                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                                    <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+                                    <dxi-column dataField="DesignationName" caption="Designation">
+                                    </dxi-column>
+                                    <dxi-column dataField="DepartmentID" caption="Department">
+                                        <dxo-lookup [dataSource]="Department" valueExpr="id"
+                                            displayExpr="DepartmentName"></dxo-lookup>
+                                    </dxi-column>
+                                    
+                                    <dxi-column dataField="SupervisorTypeID" caption="Supervisor Type">
+                                        <dxo-lookup [dataSource]="DesignationCategory" valueExpr="id"
+                                            displayExpr="DesignationCategory"></dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="FK_DesignationID" caption="Reports To">
+                                        <dxo-lookup [dataSource]="data" valueExpr="id" displayExpr="DesignationName">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column dataField="cadre_id" caption="Cadre">
+                                        <dxo-lookup [dataSource]="GradeCadre" valueExpr="id" displayExpr="cadre_name">
+                                        </dxo-lookup>
+                                    </dxi-column>
+                                    <dxi-column type="buttons">
+                                        <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                                    </dxi-column>
+                                </dx-tree-list>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

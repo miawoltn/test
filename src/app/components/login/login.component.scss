@@ -1,0 +1,169 @@
+// .flexbox-container {
+//     background: url("../../../assets/images/cover.png");
+//     opacity: 0.7px;
+//     /* The image used */
+//     /* Full height */
+//     height: 100%;
+//     /* Center and scale the image nicely */
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
+
+// .card {
+//     background: url("../../../assets/images/cover_inner.png");
+//     margin-top: 105px !important;   
+// }
+
+.koy{
+    padding: 40px;
+    background: white;
+    height: 100% !important;
+}
+
+.dtop{
+    background: #000;
+}
+
+.pd-0{
+    padding: 0px !important;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.w-90{
+    width: 100%;
+}
+
+.btn-primary2 {
+    color: #fff;
+    background-color: #D03F7F;
+    height: 50px;
+    border-radius: 5px;
+}
+
+.btn-secondary2 {
+    color: #fff;
+    background-color: #17A937;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 12px;
+}
+
+
+.d-flex-f{
+    display: flex;
+    border: 1px solid #ced4da;
+    border-radius: 5px 5px 0px 0px;
+    background-color: #fff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-clip: padding-box;
+    background-image: url(../../../assets/img/gallery/usernamebg.svg);
+    border-bottom: 0px;
+}
+
+.d-flex-f2{
+    display: flex;
+    border: 1px solid #ced4da;
+    border-radius: 0px 0px 5px 5px;
+    background-color: #fff;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-clip: padding-box;
+}
+
+.fctr{
+        display: block;
+        width: 100%;
+        height: 60px;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        border: 0px;
+        background: transparent;
+}
+
+.loginico{
+    padding: 0px 15px;
+}
+
+.loginlogo{
+    height: 80px;
+    margin: 20px 10px;
+}
+
+.wlcustom{
+    padding: 0px 0px 0px 80px !important;
+    background: black !important;
+}
+
+.wlcmini{
+    font-size: 12px;
+}
+
+.wlcb{
+    font-size: 30px !important;
+    font-weight: 600 !important;
+    font-family: Segoe UI !important;
+}
+
+
+.dim{
+    width: 100%;
+    height: 100%;
+    margin: 0px !important;
+}
+
+.c100{
+    height: 100%;
+}
+
+.clogin{
+    width: 85%;
+}
+
+
+@media (max-width: 576px) {
+    .wlcustom {
+        padding: 10px !important;
+    }
+
+    .content-wrapper {
+        padding: 0;
+    }
+
+    .dim{
+        width: 100%;
+        height: 100%;
+        margin: 0px !important;
+    }
+
+}
+
+  
+  .content {
+    position: fixed;
+    // bottom: 90px;
+    // background: rgb(0, 0, 0);
+    color: #ffffff;
+    // width: 100%;
+    padding: 20px;
+    box-shadow: rgb(0, 0, 0) 1px 20px 100px 130px;
+    z-index: 1;
+    width: 60%;
+    text-align: center;
+  }
+  
+
+  .z9{
+      z-index: 5;
+  }
+
+
+  .loginf{
+    font-size: 20px;
+    font-family: "Segoe UI";
+    line-height: 28px;
+  }

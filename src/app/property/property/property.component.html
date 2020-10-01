@@ -1,0 +1,215 @@
+
+<div class="content-body" *ngIf="displayForm">
+  <section id="basic-form-layouts">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title" id="horz-layout-basic">{{ operation }} RECORD</h4>
+          </div>
+          <div class="card-content collpase show">
+            <div class="card-body">
+              <form class="form" role="form" #form="ngForm" (ngSubmit)="processForm()">
+                <div class="form-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyName"
+                          [class.text-danger]="PropertyName.invalid &amp;&amp; PropertyName.touched">Property
+                          Name</label><i class="text-danger">*</i>
+                        <input type="text" id="PropertyName" name="PropertyName" #PropertyName="ngModel"
+                          [(ngModel)]="obj.PropertyName"
+                          [class.is-invalid]="PropertyName.invalid &amp;&amp; PropertyName.touched" class="form-control"
+                          placeholder="Enter Property Name..." required>
+                        <div *ngIf="PropertyName.invalid &amp;&amp; PropertyName.touched">
+                          <small *ngIf="PropertyName.errors?.required" class="text-danger">Property Name is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyTypeID"
+                          [class.text-danger]="PropertyTypeID.invalid &amp;&amp; PropertyTypeID.touched">Property Type
+                          </label><i class="text-danger">*</i>
+                          <ng-select [items]="PropertyType" bindValue="PropertyTypeID" bindLabel="PropertyType" id="PropertyTypeID" name="PropertyTypeID" #PropertyTypeID="ngModel"
+                          [(ngModel)]="obj.PropertyTypeID"
+                          [class.is-invalid]="PropertyTypeID.invalid &amp;&amp; PropertyTypeID.touched" placeholder="Enter Property Type..." required></ng-select>
+                        <div *ngIf="PropertyTypeID.invalid &amp;&amp; PropertyTypeID.touched">
+                          <small *ngIf="PropertyTypeID.errors?.required" class="text-danger">Property Type is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyOwnerID"
+                          [class.text-danger]="PropertyOwnerID.invalid &amp;&amp; PropertyOwnerID.touched">Property
+                          Owner</label><i class="text-danger">*</i>
+                          <ng-select [items]="Company" bindValue="CompanyID" bindLabel="CompanyName" id="PropertyOwnerID" name="PropertyOwnerID" #PropertyOwnerID="ngModel"
+                          [(ngModel)]="obj.PropertyOwnerID"
+                          [class.is-invalid]="PropertyOwnerID.invalid &amp;&amp; PropertyOwnerID.touched"
+                          placeholder="Enter Property Owner..." required></ng-select>
+                        <div *ngIf="PropertyOwnerID.invalid &amp;&amp; PropertyOwnerID.touched">
+                          <small *ngIf="PropertyOwnerID.errors?.required" class="text-danger">Property Owner is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertySubTypeID"
+                          [class.text-danger]="PropertySubTypeID.invalid &amp;&amp; PropertySubTypeID.touched">Property
+                          Sub Type</label><i class="text-danger">*</i>
+                        <input type="number" id="PropertySubTypeID" name="PropertySubTypeID"
+                          #PropertySubTypeID="ngModel" [(ngModel)]="obj.PropertySubTypeID"
+                          [class.is-invalid]="PropertySubTypeID.invalid &amp;&amp; PropertySubTypeID.touched"
+                          class="form-control" placeholder="Enter Property Sub Type..." required>
+                        <div *ngIf="PropertySubTypeID.invalid &amp;&amp; PropertySubTypeID.touched">
+                          <small *ngIf="PropertySubTypeID.errors?.required" class="text-danger">Property Sub Type is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+                    <!-- <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Plot" [class.text-danger]="Plot.invalid &amp;&amp; Plot.touched">Plot</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Plot" name="Plot" #Plot="ngModel" [(ngModel)]="obj.Plot"
+                          [class.is-invalid]="Plot.invalid &amp;&amp; Plot.touched" class="form-control"
+                          placeholder="Enter Plot..." required>
+                        <div *ngIf="Plot.invalid &amp;&amp; Plot.touched">
+                          <small *ngIf="Plot.errors?.required" class="text-danger">Plot is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div> -->
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="StateID" [class.text-danger]="StateID.invalid &amp;&amp; StateID.touched">State</label><i class="text-danger">*</i>
+                          <ng-select [items]="State" bindValue="state_id" bindLabel="state" id="StateID" name="StateID" #StateID="ngModel" [(ngModel)]="obj.StateID"
+                          [class.is-invalid]="StateID.invalid &amp;&amp; StateID.touched" placeholder="Enter State..." required></ng-select>
+                        <div *ngIf="StateID.invalid &amp;&amp; StateID.touched">
+                          <small *ngIf="StateID.errors?.required" class="text-danger">State is Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="LgaID" [class.text-danger]="LgaID.invalid &amp;&amp; LgaID.touched">Lga</label><i
+                          class="text-danger">*</i>
+                          <ng-select [items]="LocalGovt" bindValue="local_govt_id" bindLabel="local_govt" id="LgaID" name="LgaID" #LgaID="ngModel" [(ngModel)]="obj.LgaID"
+                          [class.is-invalid]="LgaID.invalid &amp;&amp; LgaID.touched" placeholder="Enter Lga..." required></ng-select>
+                        <div *ngIf="LgaID.invalid &amp;&amp; LgaID.touched">
+                          <small *ngIf="LgaID.errors?.required" class="text-danger">Lga is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="Address"
+                          [class.text-danger]="Address.invalid &amp;&amp; Address.touched">Address</label><i
+                          class="text-danger">*</i>
+                        <input type="text" id="Address" name="Address" #Address="ngModel"
+                          [(ngModel)]="obj.Address"
+                          [class.is-invalid]="Address.invalid &amp;&amp; Address.touched"
+                          class="form-control" placeholder="Enter Address..." required>
+                        <div *ngIf="Address.invalid &amp;&amp; Address.touched">
+                          <small *ngIf="Address.errors?.required" class="text-danger">Address is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="PropertyDescription"
+                          [class.text-danger]="PropertyDescription.invalid &amp;&amp; PropertyDescription.touched">Property
+                          Description</label><i class="text-danger">*</i>
+                        <input type="text" id="PropertyDescription" name="PropertyDescription"
+                          #PropertyDescription="ngModel" [(ngModel)]="obj.PropertyDescription"
+                          [class.is-invalid]="PropertyDescription.invalid &amp;&amp; PropertyDescription.touched"
+                          class="form-control" placeholder="Enter Property Description..." required>
+                        <div *ngIf="PropertyDescription.invalid &amp;&amp; PropertyDescription.touched">
+                          <small *ngIf="PropertyDescription.errors?.required" class="text-danger">Property Description
+                            is
+                            Required</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-actions right">
+                  <button type="button" class="btn btn-warning mr-1" (click)="resetForm()">
+                    <!-- <i class="ft-x"></i>  -->
+                    Cancel
+                  </button>
+                  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
+                    <!-- <i class="fa fa-check-square-o"></i>  -->
+                    {{operation}}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="content-body">
+  <section id="basic-form-layouts">
+    <div class="row match-height">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="box-title">List of Property</h4>
+            <div class="box-tools pull-right">
+              <button class="btn btn-primary btn-sm" type="button" (click)="showForm()"><span class="fa fa-plus"></span>
+                Add New</button>
+            </div>
+          </div>
+          <div class="card-content collapse show">
+            <div class="card-body">
+              <div class="table-responsive">
+
+                <dx-data-grid class="dx-card wide-card" [dataSource]="data" [showBorders]="false" keyExpr="id"
+                  [focusedRowEnabled]="true" [focusedRowIndex]="0" [columnAutoWidth]="true"
+                  [columnHidingEnabled]="true">
+                  <dxo-paging [pageSize]="10"></dxo-paging>
+                  <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+                  <dxo-filter-row [visible]="true"></dxo-filter-row>
+                  <dxi-column dataField="PropertyName" caption="Property Name">
+                  </dxi-column>
+                  <dxi-column dataField="PropertyTypeID" caption="Property Type">
+                  </dxi-column>
+                  <dxi-column dataField="PropertySubTypeID" caption="Property Sub Type">
+                  </dxi-column>
+                  <dxi-column dataField="Plot" caption="Plot">
+                  </dxi-column>
+                  <dxi-column dataField="StateID" caption="State">
+                  </dxi-column>
+                  <dxi-column dataField="LgaID" caption="Lga">
+                  </dxi-column>
+                  <dxi-column dataField="CityID" caption="City">
+                  </dxi-column>
+                  <dxi-column dataField="PhysicalAddress" caption="PhysicalAddress">
+                  </dxi-column>
+                  <dxi-column dataField="PropertyOwnerID" caption="Property Owner">
+                  </dxi-column>
+                  <dxi-column dataField="PropertyDescription" caption="Property Description">
+                  </dxi-column>
+
+                  <dxi-column type="buttons">
+                    <dxi-button icon="edit" text="Edit" [onClick]="loadItem"></dxi-button>
+                  </dxi-column>
+                </dx-data-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
