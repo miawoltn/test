@@ -3,6 +3,8 @@ name: Build and deploy to surge
 on:
   pull_request:
     branches: [ master ]
+  push: 
+    branches: [staging]
   
 jobs:
   build-and-deploy:
